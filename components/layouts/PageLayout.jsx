@@ -1,7 +1,21 @@
 import React from "react";
+import { Footer, Meta, NavBar } from "../navigation";
 
-const PageLayout = () => {
-  return <div>PageLayout</div>;
+const PageLayout = ({ children }) => {
+  return (
+    <>
+      <Meta />
+      <div className="flex flex-col justify-between min-h-screen">
+        <div>
+          <NavBar />
+          {children}
+        </div>
+        <div>
+          <Footer />
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default PageLayout;
