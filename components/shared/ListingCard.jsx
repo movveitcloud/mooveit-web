@@ -9,6 +9,7 @@ import {
   VideoCameraIcon,
 } from "@heroicons/react/outline";
 import React from "react";
+import { formatMoney } from "../../helpers/utils";
 
 const ListingCard = () => {
   return (
@@ -44,13 +45,13 @@ const ListingCard = () => {
 
           <div className="flex flex-row gap-3">
             <p className="flex flex-row items-center gap-2 text-[#107E7E]">
-              <span className="rounded-full p-2 bg-[#CFE8A9]">
+              <span className="rounded-full p-[6px] bg-[#CFE8A9]">
                 <TruckIcon className="text-[#222222] w-4" />
               </span>
               <span className="text-[#222222] text-[12px]">Delivery</span>
             </p>
             <p className="flex flex-row items-center gap-2 text-[#107E7E]">
-              <span className="rounded-full p-2 bg-[#CFE8A9]">
+              <span className="rounded-full p-[6px] bg-[#CFE8A9]">
                 <ArchiveIcon className="text-[#222222] w-4" />
               </span>
               <span className="text-[#222222] text-[12px]">Pack & Move</span>
@@ -60,7 +61,7 @@ const ListingCard = () => {
 
         <div className="flex flex-row justify-between items-center mt-2">
           <p className="text-primary font-semibold text-xl">
-            £1,200 <span className="text-[#959595] font-normal text-xs">/month</span>
+            {formatMoney(1200)} <span className="text-[#959595] font-normal text-xs">/month</span>
           </p>
           <div>......</div>
         </div>
