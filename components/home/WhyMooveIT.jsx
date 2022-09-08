@@ -2,10 +2,10 @@ import React from "react";
 
 const WhyMooveIT = () => {
   return (
-    <div className="max-full pt-[4rem] bg-[#f9f9f9]">
-      <div className="flex mx-auto">
+    <div className="max-full pt-[6rem] bg-[#f9f9f9]">
+      <div className="flex ">
         <div className="w-full md:w-[50%] pb-[6rem] bg-[#107E7E] text-white pt-[3rem]">
-          <div className="w-[80%] text-left mx-auto">
+          <div className=" text-left mx-auto max-w-[90%] lg:max-w-[85%]">
             <h2 className=" my-[2rem] font-semibold text-2xl text-white">WHY MooveIT?</h2>
             <p className=" my-[2rem] font-light ">
               MooveIT provides an advanced online marketplace for self-storage and moving services that will effectively
