@@ -9,10 +9,21 @@ const FormInput = ({ label, type, name, disabled, register, errors, errorMessage
           errors[name] ? "border-red-600" : "input-primary"
         } text-black input input-bordered focus:outline-offset-0 focus:outline-1 disabled:bg-[#ececec] disabled:text-black`}
         type={type}
-        {...register(name, { required: true })}
+        {...register(name, {
+          required: true,
+          pattern: name == "email" && {
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+            message: "Please enter a valid email address",
+          },
+        })}
         disabled={disabled}
       />
-      {errors[name] && <span className="text-red-600 text-sm text-left">{errorMessage}</span>}
+      {name == "email" && errors.email?.message
+        ? ""
+        : errors[name] && <span className="text-red-600 text-sm text-left">{errorMessage}</span>}
+      {name == "email" && errors.email?.message && (
+        <span className="text-red-600 text-sm text-left">{errors.email?.message}</span>
+      )}
     </div>
   );
 };

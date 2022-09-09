@@ -13,7 +13,6 @@ const Signup = () => {
 
   const [active, setActive] = useState("partner");
   const [formDetails, setFormDetails] = useState(null);
-  const [disabled, setDisabled] = useState(true);
   const [loading, setLoading] = useState(false);
 
   const onSubmit = (data, e) => {
@@ -26,14 +25,14 @@ const Signup = () => {
     <AuthLayout>
       <div className="text-center">
         <h1 className="font-semibold text-2xl md:text-3xl text-black">Create an account</h1>
-        <div className="bg-white rounded-md my-10 flex gap-5 items-center justify-center w-fit py-3 px-6 mx-auto">
+        <div className="bg-white rounded-xl my-10 flex gap-5 items-center justify-center w-fit py-3 px-5 mx-auto shadow">
           <span
-            className={`${active == "customer" && "bg-primary text-white py-2 px-5 rounded-md "} cursor-pointer`}
+            className={`${active == "customer" && "bg-primary text-white py-2 px-5 rounded-xl "} cursor-pointer`}
             onClick={() => setActive("customer")}>
             Customer
           </span>
           <span
-            className={`${active == "partner" && "bg-primary text-white py-2 px-5 rounded-md "} cursor-pointer`}
+            className={`${active == "partner" && "bg-primary text-white py-2 px-5 rounded-xl "} cursor-pointer`}
             onClick={() => setActive("partner")}>
             Partner
           </span>
