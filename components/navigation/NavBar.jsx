@@ -17,7 +17,7 @@ const NavBar = () => {
   }, []);
 
   return (
-    <header className="uppercase text-[#222222]">
+    <header className="uppercase bg-[#f9f9f9] text-[#222222]">
       <div className="flex justify-between items-center py-6 max-w-[90%] lg:max-w-[85%] mx-auto text-sm text-black">
         <div className="flex flex-row gap-10 items-center ">
           <Link href="/">
