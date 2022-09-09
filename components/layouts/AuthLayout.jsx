@@ -10,9 +10,13 @@ const AuthLayout = ({ children, title }) => {
   return (
     <>
       <Meta title={title} />
-      <div className="h-screen bg-[#F9F9F9]">
-        <nav className="max-w-[85%] h-[10%] mx-auto py-4 flex items-center justify-between">
-          <img src="/logo.png" alt="logo" className="h-6 md:h-10" />
+      <div className="flex flex-col h-screen bg-[#F9F9F9]">
+        <nav className="max-w-[85%] w-full mx-auto py-6 flex items-center justify-between">
+          <Link href="/">
+            <a>
+              <img src="/logo.png" alt="logo" className="max-h-8" />
+            </a>
+          </Link>
           {pathname === "/signup" && (
             <div className="flex items-center text-black gap-5">
               <span className="hidden md:flex">Already have an account?</span>
@@ -27,7 +31,7 @@ const AuthLayout = ({ children, title }) => {
           )}
         </nav>
 
-        <div className="flex h-[90%]">
+        <div className="flex flex-grow">
           <div className="hidden md:w-[60%] md:flex bg-[url('/auth-image.png')] bg-cover bg-no-repeat bg-red-300" />
           <div className="w-full md:w-[40%] flex flex-col  justify-center px-8 md:px-16">{children}</div>
         </div>

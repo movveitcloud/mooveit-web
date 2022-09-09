@@ -22,7 +22,7 @@ const NavBar = () => {
         <div className="flex flex-row gap-10 items-center ">
           <Link href="/">
             <a>
-              <img src="/logo.png" alt="Mooveit" className="w-fit" />
+              <img src="/logo.png" alt="Mooveit" className="max-h-8" />
             </a>
           </Link>
 
