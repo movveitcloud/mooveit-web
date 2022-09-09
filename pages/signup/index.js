@@ -17,7 +17,7 @@ const Signup = () => {
 
   const onSubmit = (data, e) => {
     e.preventDefault();
-    setFormDetails({ role: "partner", ...formDetails, ...data });
+    setFormDetails({ role: active, ...formDetails, ...data });
     reset({ firstName: "", email: "", lastName: "", password: "" });
   };
 
@@ -70,7 +70,7 @@ const Signup = () => {
           <FormPassword register={register} name="password" errors={errors} errorMessage="Please add a password" />
 
           <button className={`${loading && "loading"}  btn btn-block btn-primary mt-5`} type="submit">
-            {loading ? "" : "Become a partner"}
+            {loading ? "" : active == "partner" ? "Become a partner" : "Create account"}
           </button>
         </form>
       </div>
