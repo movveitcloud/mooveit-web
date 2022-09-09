@@ -81,7 +81,6 @@ const MobileNavBar = ({ pageLink, setMenuOpen }) => {
       <div className="flex flex-col gap-4">
         <Link href="/signup" className="">
           <a className="text-white" onClick={() => setMenuOpen(false)}>
-            {" "}
             Become a Partner
           </a>
         </Link>

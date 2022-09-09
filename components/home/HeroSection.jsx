@@ -4,13 +4,13 @@ import Link from "next/link";
 const HeroSection = () => {
   return (
     <main className="bg-[#f9f9f9]">
-      <div className="flex justify-center h-[600px] rounded-2xl max-w-[90%] lg:max-w-[85%] mx-auto bg-[url('/hero-bg.png')] bg-cover">
-        <div className="text-center space-y-3 sm:space-y-5 my-24 max-w-md md:max-w-xl lg:max-w-2xl mx-auto">
-          <h1 className="font-semibold text-white text-3xl md:text-6xl leading-10">
-            Find Storage Around <span className="mt-3 block">You Easily</span>
+      <div className="flex justify-center h-[65vh] md:h-[82vh] rounded-2xl max-w-[90%] lg:max-w-[85%] mx-auto bg-[url('/hero-bg.png')] bg-cover">
+        <div className="text-center space-y-3 sm:space-y-5 my-24 max-w-[80%] md:max-w-2xl mx-auto">
+          <h1 className="font-semibold text-white text-2xl sm:text-4xl md:text-5xl lg:text-6xl">
+            Find Storage Around <span className="sm:mt-3 block">You Easily</span>
           </h1>
-          <p className="max-w-[85%] mx-auto text-sm md:text-base text-white">
-            Get access to a pool of prospective customers <br /> when you list your storage with us.
+          <p className="sm:max-w-[85%] mx-auto text-sm md:text-base text-white">
+            Get access to a pool of prospective customers when you list your storage with us.
           </p>
           <Link href="/get-started">
             <a className="btn btn-primary text-sm w-[150px] font-normal">Get Started</a>
@@ -18,7 +18,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="p-8 w-[75%] sm:-mt-[12%] -mt-[50%]  mx-auto rounded-2xl bg-white">
+      <div className="p-8 w-[80%] sm:w-[75%] -mt-[30%] sm:-mt-[12%]  mx-auto rounded-2xl bg-white">
         <h2 className="text-[#222222] text-base mb-4">Find a Storage Unit Near You</h2>
         <div className="space-y-5 text-center text-sm text-[#222222]">
           <div className="p-6 bg-[#DDDDDD66] flex flex-row gap-4 rounded-2xl">

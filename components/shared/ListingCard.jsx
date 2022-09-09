@@ -11,6 +11,7 @@ import {
 } from "@heroicons/react/outline";
 import Link from "next/link";
 import { formatMoney } from "../../helpers/utils";
+import { storageFeats } from "../../helpers/data";
 
 const ListingCard = () => {
   return (
@@ -38,11 +39,13 @@ const ListingCard = () => {
               </p>
             </div>
 
+            {/*storage features */}
             <div className="flex flex-row items-center gap-2">
-              <VideoCameraIcon className="text-[#222222] w-4" />
-              <UserGroupIcon className="text-[#222222] w-4" />
-              <LightBulbIcon className="text-[#222222] w-4" />
-              <LockClosedIcon className="text-[#222222] w-4" />
+              {storageFeats.map(({ name, icon }) => (
+                <span key={name} className="tooltip tooltip-primary" data-tip={name}>
+                  {icon}
+                </span>
+              ))}
             </div>
 
             <div className="flex flex-row gap-3">
@@ -65,9 +68,12 @@ const ListingCard = () => {
             <p className="text-primary font-semibold text-xl">
               {formatMoney(1200)} <span className="text-[#959595] font-normal text-xs">/month</span>
             </p>
-            <div>
-              {/* add ratings feature below */}
-              <img src="/stars.png" alt="stars" className="w-32" />
+            <div className="rating rating-sm">
+              <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+              <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+              <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+              <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+              <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
             </div>
           </div>
         </div>
