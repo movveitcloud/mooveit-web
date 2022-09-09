@@ -1,6 +1,7 @@
 import { LightBulbIcon, LockClosedIcon, UserGroupIcon, VideoCameraIcon } from "@heroicons/react/outline";
 
 export const navLinks = [
+  { path: "/how-it-works", title: "How it Works" },
   {
     path: "",
     title: "Storage",
@@ -28,7 +29,6 @@ export const navLinks = [
     ],
   },
   { path: "/support", title: "Support" },
-  { path: "/how-it-works", title: "How it Works" },
 ];
 
 export const storageFeats = [
