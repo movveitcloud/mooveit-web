@@ -21,7 +21,7 @@ const Signup = () => {
   };
 
   return (
-    <AuthLayout>
+    <AuthLayout title="Sign Up">
       <div className="text-center">
         <h1 className="font-semibold text-2xl md:text-3xl text-black">Create an account</h1>
         <div className="bg-white rounded-xl my-10 flex gap-5 items-center justify-center w-fit py-3 px-5 mx-auto shadow">

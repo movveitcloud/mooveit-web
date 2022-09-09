@@ -2,8 +2,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { MenuAlt3Icon } from "@heroicons/react/solid";
+import { AnimatePresence, motion } from "framer-motion";
 import { navLinks } from "../../helpers/data";
 import MenuItem from "./MenuItem";
+import MobileNavbar from "./MobileNavbar";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -48,22 +50,22 @@ const NavBar = () => {
 
         {/* mobile menu start */}
         <MenuAlt3Icon className="lg:hidden w-8 text-primary cursor-pointer" onClick={() => setMenuOpen(true)} />
-        {/* {menuOpen && (
-      <div
-        className="fixed left-0 right-0 bottom-0 h-screen w-full lg:hidden bg-[#0000003d] z-[99999]"
-        onClick={() => setMenuOpen(false)}>
-        <AnimatePresence>
-          <motion.div
-            initial={{ x: -100 }}
-            animate={{ x: 0 }}
-            exit={{ x: -100 }}
-            className="fixed top-0 left-0 bg-primary h-screen overflow-y-scroll"
-            onClick={(e) => e.stopPropagation()}>
-            <MobileNavBar setMenuOpen={setMenuOpen} pageLink={pageLink} />
-          </motion.div>
-        </AnimatePresence>
-      </div>
-    )} */}
+        {menuOpen && (
+          <div
+            className="fixed left-0 right-0 bottom-0 h-screen w-full lg:hidden bg-[#0000003d] z-[99999]"
+            onClick={() => setMenuOpen(false)}>
+            <AnimatePresence>
+              <motion.div
+                initial={{ x: -100 }}
+                animate={{ x: 0 }}
+                exit={{ x: -100 }}
+                className="fixed top-0 left-0 bg-primary h-screen overflow-y-scroll"
+                onClick={(e) => e.stopPropagation()}>
+                <MobileNavbar setMenuOpen={setMenuOpen} pageLink={pageLink} />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        )}
         {/* mobile menu end */}
       </div>
     </header>

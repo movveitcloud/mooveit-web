@@ -20,7 +20,7 @@ const SignIn = () => {
   };
 
   return (
-    <AuthLayout>
+    <AuthLayout title="Sign In">
       <div className="text-center">
         <h1 className="font-semibold text-2xl md:text-3xl text-black mb-10">Account Login</h1>
 
