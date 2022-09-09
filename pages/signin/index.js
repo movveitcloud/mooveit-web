@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { AuthLayout } from "../../components/layouts";
-import { FormInput, FormPassword } from "../../components/shared";
+import { AuthLayout, FormInput, FormPassword } from "../../components";
 
 const SignIn = () => {
   const {

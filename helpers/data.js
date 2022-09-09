@@ -14,6 +14,16 @@ export const navLinks = [
         //   { path: "", title: "" },
         // ],
       },
+      {
+        path: "",
+        title: "Storage 2",
+        // deepMenus: [
+        //   { path: "", title: "" },
+        //   { path: "", title: "" },
+        //   { path: "", title: "" },
+        //   { path: "", title: "" },
+        // ],
+      },
     ],
   },
   { path: "/support", title: "Support" },

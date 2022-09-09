@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { isLoggedIn } from "../../redux/features/auth.slice";
-import { Meta } from "../navigation";
+import { Meta } from "../index";
 
 const AuthLayout = ({ children, title }) => {
   const router = useRouter();
