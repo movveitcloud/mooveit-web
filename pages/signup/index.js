@@ -24,7 +24,7 @@ const Signup = () => {
   const onSubmit = (data, e) => {
     e.preventDefault();
     setFormDetails({ ...formDetails, ...data, role: active });
-    reset({ firstName: "", email: "", lastName: "", password: "" });
+    reset(initialState);
   };
 
   return (
