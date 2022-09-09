@@ -17,11 +17,10 @@ const FormInput = ({ label, type, name, register, errors, errorMessage }) => {
           },
         })}
       />
-      {name == "email" && errors.email?.message
-        ? ""
-        : errors[name] && <span className="text-red-600 text-sm text-left">{errorMessage}</span>}
-      {name == "email" && errors.email?.message && (
+      {name == "email" && errors.email?.message ? (
         <span className="text-red-600 text-sm text-left">{errors.email?.message}</span>
+      ) : (
+        errors[name] && <span className="text-red-600 text-sm text-left">{errorMessage}</span>
       )}
     </div>
   );
