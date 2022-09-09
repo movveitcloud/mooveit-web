@@ -4,6 +4,13 @@ import { AuthLayout } from "../../components/layouts";
 import { FormInput, FormPassword } from "../../components/shared";
 
 const Signup = () => {
+  const initialState = {
+    firstName: "",
+    email: "",
+    lastName: "",
+    password: "",
+    role: "",
+  };
   const {
     register,
     handleSubmit,
@@ -12,12 +19,12 @@ const Signup = () => {
   } = useForm();
 
   const [active, setActive] = useState("partner");
-  const [formDetails, setFormDetails] = useState(null);
+  const [formDetails, setFormDetails] = useState(initialState);
   const [loading, setLoading] = useState(false);
 
   const onSubmit = (data, e) => {
     e.preventDefault();
-    setFormDetails({ role: "partner", ...formDetails, ...data });
+    setFormDetails({ ...formDetails, ...data, role: active });
     reset({ firstName: "", email: "", lastName: "", password: "" });
   };
 
@@ -70,7 +77,7 @@ const Signup = () => {
           <FormPassword register={register} name="password" errors={errors} errorMessage="Please add a password" />
 
           <button className={`${loading && "loading"}  btn btn-block btn-primary mt-5`} type="submit">
-            {loading ? "" : "Become a partner"}
+            {loading ? "" : active == "partner" ? "Become a partner" : "Create account"}
           </button>
         </form>
       </div>

@@ -65,7 +65,10 @@ const ListingCard = () => {
             <p className="text-primary font-semibold text-xl">
               {formatMoney(1200)} <span className="text-[#959595] font-normal text-xs">/month</span>
             </p>
-            <div>......</div>
+            <div>
+              {/* add ratings feature below */}
+              <img src="/stars.png" alt="stars" className="w-32" />
+            </div>
           </div>
         </div>
       </a>
