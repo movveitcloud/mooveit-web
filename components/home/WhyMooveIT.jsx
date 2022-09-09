@@ -2,7 +2,7 @@ import React from "react";
 
 const WhyMooveIT = () => {
   return (
-    <div className="max-full pt-[6rem] bg-[#f9f9f9]">
+    <section className="max-full pt-[6rem] bg-[#f9f9f9]">
       <div className="flex ">
         <div className="w-full md:w-[50%] pb-[6rem] bg-[rgb(16,126,126)] text-white pt-[3rem]">
           <div className=" text-left mx-auto md:w-[74%] lg:max-w-[85%]">
@@ -23,7 +23,7 @@ const WhyMooveIT = () => {
         </div>
         <div className="w-full hidden md:block md:w-[50%] bg-primary bg-[url(/side.png)] bg-cover bg-no-repeat"></div>
       </div>
-    </div>
+    </section>
   );
 };
 

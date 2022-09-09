@@ -1,7 +1,8 @@
 import React from "react";
+import { PageLayout } from "../../components";
 
 const HowItWorks = () => {
-  return <div>HowItWorks</div>;
+  return <PageLayout>HowItWorks</PageLayout>;
 };
 
 export default HowItWorks;

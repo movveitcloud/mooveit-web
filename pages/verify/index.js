@@ -1,7 +1,7 @@
 import { AtSymbolIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import React, { useEffect } from "react";
-import { Meta } from "../../components/navigation";
+import { Meta } from "../../components";
 
 const VerifyEmail = () => {
   return (

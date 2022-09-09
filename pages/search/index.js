@@ -1,7 +1,8 @@
 import React from "react";
+import { PageLayout } from "../../components";
 
 const Search = () => {
-  return <div>index</div>;
+  return <PageLayout>index</PageLayout>;
 };
 
 export default Search;

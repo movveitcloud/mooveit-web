@@ -1,5 +1,5 @@
 import React from "react";
-import { Footer, Meta, NavBar } from "../navigation";
+import { Footer, Meta, NavBar } from "../index";
 
 const PageLayout = ({ children }) => {
   return (

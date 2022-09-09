@@ -1,7 +1,5 @@
 import React from "react";
-import { HowItWorks, FindStorage, HeroSection, WhyMooveIt } from "../components/home";
-import { PageLayout } from "../components/layouts";
-import { FeaturedListings } from "../components/shared";
+import { FindStorage, HeroSection, HowItWorks, PageLayout, WhyMooveIt, FeaturedListings } from "../components";
 
 const Home = () => {
   return (
