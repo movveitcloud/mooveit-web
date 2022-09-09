@@ -3,6 +3,13 @@ import { useForm } from "react-hook-form";
 import { AuthLayout, FormInput, FormPassword } from "../../components";
 
 const Signup = () => {
+  const initialState = {
+    firstName: "",
+    email: "",
+    lastName: "",
+    password: "",
+    role: "",
+  };
   const {
     register,
     handleSubmit,
@@ -11,13 +18,13 @@ const Signup = () => {
   } = useForm();
 
   const [active, setActive] = useState("partner");
-  const [formDetails, setFormDetails] = useState(null);
+  const [formDetails, setFormDetails] = useState(initialState);
   const [loading, setLoading] = useState(false);
 
   const onSubmit = (data, e) => {
     e.preventDefault();
-    setFormDetails({ role: active, ...formDetails, ...data });
-    reset({ firstName: "", email: "", lastName: "", password: "" });
+    setFormDetails({ ...formDetails, ...data, role: active });
+    reset(initialState);
   };
 
   return (

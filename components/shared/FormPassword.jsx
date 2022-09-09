@@ -17,7 +17,10 @@ const FormPassword = ({ name, register, errors, errorMessage }) => {
             errors[name] ? "border-red-600" : "input-primary"
           } text-black input input-bordered focus:outline-offset-0 focus:outline-1 disabled:bg-[#ececec] disabled:text-black w-full`}
           type={inputType}
-          {...register(name, { required: true })}
+          {...register(name, {
+            required: true,
+            minLength: { value: 6, message: "Password cannot be less than 6 characters." },
+          })}
         />
 
         {inputType === "password" && (
@@ -33,12 +36,11 @@ const FormPassword = ({ name, register, errors, errorMessage }) => {
           />
         )}
       </div>
-      {errors[name] && <span className="text-red-600 text-sm text-left">{errorMessage}</span>}
-      {/* {pathname !== "/register" && !pathname.includes("/reset-password") && (
-        <Link href="/forgot-password">
-          <span className="label-text-alt text-accent text-sm text-right cursor-pointer">Forgot Password?</span>
-        </Link>
-      )} */}
+      {errors.password?.message ? (
+        <span className="text-red-600 text-sm text-left">{errors.password?.message}</span>
+      ) : (
+        errors[name] && <span className="text-red-600 text-sm text-left">{errorMessage}</span>
+      )}
     </div>
   );
 };
