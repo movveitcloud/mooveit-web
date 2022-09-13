@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  ArchiveIcon,
-  ClockIcon,
-  LightBulbIcon,
-  LockClosedIcon,
-  MapIcon,
-  TruckIcon,
-  UserGroupIcon,
-  VideoCameraIcon,
-} from "@heroicons/react/outline";
+import { ArchiveIcon, ClockIcon, MapIcon, TruckIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import { formatMoney } from "../../helpers/utils";
 import { storageFeats } from "../../helpers/data";
