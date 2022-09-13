@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { AuthLayout, FormInput, FormPassword } from "../../components";
 
 const Signup = () => {
+  const router = useRouter();
   const initialState = {
     firstName: "",
     email: "",
@@ -25,6 +27,7 @@ const Signup = () => {
     e.preventDefault();
     setFormDetails({ ...formDetails, ...data, role: active });
     reset(initialState);
+    router.push("/onboarding");
   };
 
   return (

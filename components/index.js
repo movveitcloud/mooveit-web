@@ -9,6 +9,7 @@ export { default as Footer } from "./navigation/Footer";
 export { default as PageLayout } from "./layouts/PageLayout";
 export { default as AppLayout } from "./layouts/AppLayout";
 export { default as AuthLayout } from "./layouts/AuthLayout";
+export { default as NewListingLayout } from "./layouts/NewListingLayout";
 
 //SHARED
 export { default as PageLoading } from "./shared/PageLoading";
@@ -19,8 +20,16 @@ export { default as ListingCard } from "./shared/ListingCard";
 
 //HOME
 export { default as HowItWorks } from "./home/HowItWorks";
-export { default as HowCards } from "./home//HowCards";
-export { default as WhyMooveIt } from "./home//WhyMooveIT";
-export { default as FindStorage } from "./home//FindStorage";
-export { default as FindStorageCard } from "./home//FindStorageCard";
-export { default as HeroSection } from "./home//HeroSection";
+export { default as HowCards } from "./home/HowCards";
+export { default as WhyMooveIt } from "./home/WhyMooveIT";
+export { default as FindStorage } from "./home/FindStorage";
+export { default as FindStorageCard } from "./home/FindStorageCard";
+export { default as HeroSection } from "./home/HeroSection";
+
+//LISTINGS
+export { default as Steppers } from "./listings/Steppers";
+export { default as BasicInformationStepper } from "./listings/BasicInformationStepper";
+export { default as SpaceDetailsStepper } from "./listings/SpaceDetailsStepper";
+export { default as AvailabilityStepper } from "./listings/AvailabilityStepper";
+export { default as PricingStepper } from "./listings/PricingStepper";
+export { default as StepperControls } from "./listings/StepperControls";
