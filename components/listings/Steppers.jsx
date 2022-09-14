@@ -1,4 +1,4 @@
-const Steppers = ({ activeStepper }) => {
+const Steppers = ({ activeStepper, setActiveStepper }) => {
   const items = ["Basic Information", "Space Details", "Availability", "Pricing"];
 
   return (
@@ -8,7 +8,8 @@ const Steppers = ({ activeStepper }) => {
           <li
             key={i}
             data-content={i < activeStepper ? "✓" : i + 1}
-            className={`step ${i <= activeStepper ? "step-primary text-primary" : "text-[#959595]"} `}>
+            className={`${i <= activeStepper ? "step-primary text-primary" : "text-[#959595]"} step cursor-pointer`}
+            onClick={() => setActiveStepper(i)}>
             {item}
           </li>
         );

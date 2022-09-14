@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import { Address, Type, Services } from "../index";
 
 const BasicInformationStepper = () => {
-  return <div>BasicInformationStepper</div>;
+  return (
+    <>
+      <Address />
+      <Type />
+      <Services />
+    </>
+  );
 };
 
 export default BasicInformationStepper;
