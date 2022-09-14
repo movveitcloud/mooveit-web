@@ -8,7 +8,7 @@ const Steppers = ({ activeStepper }) => {
           <li
             key={i}
             data-content={i < activeStepper ? "✓" : i + 1}
-            className={`${i <= activeStepper ? "step step-primary text-primary" : "step text-[#959595]"} `}>
+            className={`step ${i <= activeStepper ? "step-primary text-primary" : "text-[#959595]"} `}>
             {item}
           </li>
         );
