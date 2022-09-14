@@ -27,7 +27,7 @@ const Signup = () => {
     e.preventDefault();
     setFormDetails({ ...formDetails, ...data, role: active });
     reset(initialState);
-    router.push("/onboarding");
+    active == "partner" ? router.push("/onboarding") : router.push("/dashboard");
   };
 
   return (

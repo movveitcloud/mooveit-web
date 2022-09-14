@@ -17,6 +17,7 @@ export { default as FormInput } from "./shared/FormInput";
 export { default as FormPassword } from "./shared/FormPassword";
 export { default as FeaturedListings } from "./shared/FeaturedListings";
 export { default as ListingCard } from "./shared/ListingCard";
+export { default as Accordion } from "./shared/Accordion";
 
 //HOME
 export { default as HowItWorks } from "./home/HowItWorks";
@@ -33,3 +34,6 @@ export { default as SpaceDetailsStepper } from "./listings/SpaceDetailsStepper";
 export { default as AvailabilityStepper } from "./listings/AvailabilityStepper";
 export { default as PricingStepper } from "./listings/PricingStepper";
 export { default as StepperControls } from "./listings/StepperControls";
+export { default as Address } from "./listings/Address";
+export { default as Type } from "./listings/Type";
+export { default as Services } from "./listings/Services";
