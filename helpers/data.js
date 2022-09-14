@@ -77,8 +77,8 @@ export const storageFloors = [
   { name: "Multiple Floors", value: "multipleFloors" },
 ];
 export const storageFeatures = [
-  { name: "CCTV", value: "cctv", icon: <VideoCameraIcon className="text-[#222222] w-4" /> },
-  { name: "Alarm", value: "alarm", icon: <LightBulbIcon className="text-[#222222] w-4" /> },
-  { name: "Padlock", value: "padlock", icon: <LockClosedIcon className="text-[#222222] w-4" /> },
-  { name: "Onsite Staff", value: "onsiteStaff", icon: <UserGroupIcon className="text-[#222222] w-4" /> },
+  { label: "CCTV", value: "cctv", icon: <VideoCameraIcon className="text-[#222222] w-4" /> },
+  { label: "Alarm", value: "alarm", icon: <LightBulbIcon className="text-[#222222] w-4" /> },
+  { label: "Padlock", value: "padlock", icon: <LockClosedIcon className="text-[#222222] w-4" /> },
+  { label: "Onsite Staff", value: "onsiteStaff", icon: <UserGroupIcon className="text-[#222222] w-4" /> },
 ];
