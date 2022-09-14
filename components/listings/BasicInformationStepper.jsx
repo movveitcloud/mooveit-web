@@ -25,8 +25,8 @@ const BasicInformationStepper = () => {
   return (
     <>
       <Address formDetails={formDetails} setFormDetails={setFormDetails} />
-      <Type formDetails={formDetails} setFormDetails={setFormDetails} />
-      <Services formDetails={formDetails} setFormDetails={setFormDetails} handleChange={handleChange} />
+      <Type formDetails={formDetails} setFormDetails={setFormDetails} handleChange={handleChange} />
+      <Services formDetails={formDetails} handleChange={handleChange} />
     </>
   );
 };

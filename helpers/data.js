@@ -56,3 +56,29 @@ export const ListingSteps = [
   "Provide storage availability period",
   "State pricing",
 ];
+
+export const storageKinds = [
+  { name: "Garage & Lock Up", value: "garage&lockup" },
+  { name: "Self-storage Unit", value: "selfStorageUnit" },
+  { name: "Warehouse", value: "warehouse" },
+  { name: "Outhouse & Shed", value: "outhouse&shed" },
+  { name: "Spare Room", value: "spareRoom" },
+  { name: "Basement", value: "basement" },
+  { name: "Loft", value: "loft" },
+  { name: "Busines Storage", value: "businessStorage" },
+  { name: "Motor Bike Storage", value: "motorBikeStorage" },
+];
+export const storageFloors = [
+  { name: "Ground Level", value: "groundLevel" },
+  { name: "1st Floor", value: "1stFloor" },
+  { name: "2nd Floor", value: "2ndFloor" },
+  { name: "3rd Floor or Higher", value: "3rdFloorOrHigher" },
+  { name: "Below Ground", value: "belowGround" },
+  { name: "Multiple Floors", value: "multipleFloors" },
+];
+export const storageFeatures = [
+  { name: "CCTV", value: "cctv", icon: <VideoCameraIcon className="text-[#222222] w-4" /> },
+  { name: "Alarm", value: "alarm", icon: <LightBulbIcon className="text-[#222222] w-4" /> },
+  { name: "Padlock", value: "padlock", icon: <LockClosedIcon className="text-[#222222] w-4" /> },
+  { name: "Onsite Staff", value: "onsiteStaff", icon: <UserGroupIcon className="text-[#222222] w-4" /> },
+];

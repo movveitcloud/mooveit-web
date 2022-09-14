@@ -2,7 +2,7 @@ const Steppers = ({ activeStepper, setActiveStepper }) => {
   const items = ["Basic Information", "Space Details", "Availability", "Pricing"];
 
   return (
-    <ul className="steps steps-horizontal w-full my-6 text-[14px] text-[#6666] font-semibold">
+    <ul className="steps steps-horizontal w-full my-6  text-[#6666] font-semibold">
       {items.map((item, i) => {
         return (
           <li
