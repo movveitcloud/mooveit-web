@@ -49,3 +49,10 @@ export const storageFeats = [
     icon: <LockClosedIcon className="text-[#222222] w-4" />,
   },
 ];
+
+export const ListingSteps = [
+  "Provide listing location & type",
+  "Describe your listing",
+  "Provide storage availability period",
+  "State pricing",
+];
