@@ -19,7 +19,10 @@ const FormPassword = ({ name, register, errors, errorMessage }) => {
           type={inputType}
           {...register(name, {
             required: true,
-            minLength: { value: 6, message: "Password cannot be less than 6 characters." },
+            pattern: {
+              value: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/i,
+              message: "Password must contain at least 6 characters, 1 uppercase, 1 lowercase and 1 special character",
+            },
           })}
         />
 
