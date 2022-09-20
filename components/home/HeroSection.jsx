@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const HeroSection = () => {
   return (
-    <main className="bg-[#f9f9f9]">
+    <main className="bg-[#f9f9f9] mb-[10%]">
       <div className="flex justify-center h-[600px] rounded-2xl max-w-[90%] lg:max-w-[85%] mx-auto bg-[url('/hero-bg.png')] bg-cover relative">
         <div className="text-center space-y-3 sm:space-y-5 my-24 max-w-[80%] md:max-w-2xl mx-auto">
           <h1 className="font-semibold text-white text-2xl sm:text-4xl md:text-5xl lg:text-6xl">
