@@ -1,4 +1,4 @@
-import { MapIcon } from "@heroicons/react/outline";
+import { LocationMarkerIcon, MapIcon, SearchIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 
 const HeroSection = () => {
@@ -29,17 +29,18 @@ const HeroSection = () => {
                   className="w-full bg-transparent h-full pr-6 outline-none text-base placeholder:text-[#959595]"
                 />
               </div>
-              <button className="btn btn-primary font-normal flex flex-row gap-2">
+              <button className="btn btn-primary w-[220px] font-normal flex flex-row gap-2">
+                <SearchIcon className="w-5" />
                 <span>Search Listings</span>
               </button>
             </div>
 
             <p className="text-[#959595] text-base">OR</p>
 
-            <div className="p-6 bg-[#FFFDE3] flex flex-row  justify-center rounded-2xl">
+            <div className="p-6 bg-accent flex flex-row  justify-center rounded-2xl">
               <div className="flex flex-row gap-4 items-center">
-                <MapIcon className="text-[#959595] w-6" />
-                <p className="text-[#959595] text-base">Use Live Location</p>
+                <LocationMarkerIcon className="text-[#222222] w-6" />
+                <p className="text-[#222222] text-base">Use Live Location</p>
               </div>
             </div>
           </div>

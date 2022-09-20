@@ -1,5 +1,5 @@
 import React from "react";
-import { ArchiveIcon, ClockIcon, MapIcon, TruckIcon } from "@heroicons/react/outline";
+import { ArchiveIcon, ClockIcon, LocationMarkerIcon, MapIcon, TruckIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import { formatMoney } from "../../helpers/utils";
 import { storageFeats } from "../../helpers/data";
@@ -13,9 +13,9 @@ const ListingCard = () => {
         </div>
         <div className="">
           <h3 className="text-[#222222] font-bold py-3">Access Self Storage - Chelsea</h3>
-          <p className="flex flex-row items-center gap-2 text-[#107E7E]">
-            <MapIcon className="text-[#959595] w-4" />
-            <span className="text-[#959595] text-sm uppercase">65-69 Lots Road, Chelsea, SW10 0RN</span>
+          <p className="flex flex-row items-center gap-2 text-primary">
+            <LocationMarkerIcon className="w-4" />
+            <span className="text-sm uppercase">65-69 Lots Road, Chelsea, SW10 0RN</span>
           </p>
 
           <div className="py-3 space-y-4">

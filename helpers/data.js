@@ -31,6 +31,49 @@ export const navLinks = [
   { path: "/support", title: "Support" },
 ];
 
+export const footerLinks = [
+  {
+    heading: "Company",
+    subMenus: [
+      { path: "#", title: "Services" },
+      { path: "#", title: "Terms of Use" },
+      { path: "#", title: "Privacy Policy" },
+      { path: "#", title: "How it Works" },
+      { path: "#", title: "Blog" },
+      { path: "#", title: "FAQs" },
+    ],
+  },
+  {
+    heading: "Company",
+    subMenus: [
+      { path: "#", title: "Services" },
+      { path: "#", title: "Terms of Use" },
+      { path: "#", title: "Privacy Policy" },
+      { path: "#", title: "How it Works" },
+      { path: "#", title: "Blog" },
+      { path: "#", title: "FAQs" },
+    ],
+  },
+  {
+    heading: "Company",
+    subMenus: [
+      { path: "#", title: "Services" },
+      { path: "#", title: "Terms of Use" },
+      { path: "#", title: "Privacy Policy" },
+      { path: "#", title: "How it Works" },
+      { path: "#", title: "Blog" },
+      { path: "#", title: "FAQs" },
+    ],
+  },
+];
+
+export const mediaLinks = [
+  { path: "#", title: "Twitter", icon: "/twitter.svg" },
+  { path: "#", title: "Instagram", icon: "/instagram.svg" },
+  { path: "#", title: "Youtube", icon: "/youtube.svg" },
+  { path: "#", title: "Facebook", icon: "/facebook.svg" },
+];
+
 export const storageFeats = [
   {
     name: "Video Surveillance",
