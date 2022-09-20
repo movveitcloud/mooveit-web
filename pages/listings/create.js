@@ -30,7 +30,7 @@ const NewListing = () => {
             {activeStepper == 2 && <AvailabilityStepper />}
             {activeStepper == 3 && <PricingStepper />}
           </div>
-          <div className="mt-8">
+          <div className="my-16">
             <StepperControls activeStepper={activeStepper} />
           </div>
         </div>

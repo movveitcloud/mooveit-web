@@ -1,13 +1,18 @@
 import React, { useState } from "react";
+import { useRef } from "react";
 import Select from "react-select";
 import { storageFeatures, storageFloors, storageKinds } from "../../helpers/data";
 import Accordion from "../shared/Accordion";
 
 const Type = ({ formDetails, handleChange }) => {
   const [selectedOption, setSelectedOption] = useState(null);
+  const multiRef = useRef(null);
+
+  //console.log(multiRef.current, "refffff");
+
   return (
     <Accordion title="type">
-      <div className="space-y-6 relative">
+      <div className="space-y-6">
         <div>
           <h3 className="mb-3">What kind of storage do you have?</h3>
           <div className="items-center border border-[#959595] rounded-lg px-4 py-3">
@@ -48,7 +53,7 @@ const Type = ({ formDetails, handleChange }) => {
           </div>
         </div>
 
-        <div>
+        <div className="relative">
           <h3 className="mb-3">What features does your storage have?</h3>
           {/* <div className="items-center border border-[#959595] rounded-lg px-4 py-3"> */}
           <Select
@@ -56,7 +61,8 @@ const Type = ({ formDetails, handleChange }) => {
             onChange={setSelectedOption}
             options={storageFeatures}
             isMulti
-            menuPortalTarget={document.getElementById("store")}
+            // menuPortalTarget={multiRef.current}
+            menuPosition="fixed"
             className="text-black"
             placeholder="Select storage features"
           />

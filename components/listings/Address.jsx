@@ -13,6 +13,7 @@ const Address = ({ formDetails, setFormDetails }) => {
           className="w-full bg-transparent h-full pr-6 outline-none placeholder:text-[#959595]"
         />
       </div>
+      <img src="/dummymap.png" alt="map" className="w-full mt-8" />
     </Accordion>
   );
 };

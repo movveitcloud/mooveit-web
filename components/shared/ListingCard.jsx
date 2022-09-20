@@ -41,14 +41,14 @@ const ListingCard = () => {
 
             <div className="flex flex-row gap-3">
               <p className="flex flex-row items-center gap-2 text-[#107E7E]">
-                <span className="rounded-full p-[6px] bg-[#CFE8A9]">
-                  <TruckIcon className="text-[#222222] w-4" />
+                <span className="rounded-full p-[6px] bg-accent">
+                  <TruckIcon className="text-primary w-4" />
                 </span>
                 <span className="text-[#222222] text-[12px]">Delivery</span>
               </p>
               <p className="flex flex-row items-center gap-2 text-[#107E7E]">
-                <span className="rounded-full p-[6px] bg-[#CFE8A9]">
-                  <ArchiveIcon className="text-[#222222] w-4" />
+                <span className="rounded-full p-[6px] bg-accent">
+                  <ArchiveIcon className="text-primary w-4" />
                 </span>
                 <span className="text-[#222222] text-[12px]">Pack & Move</span>
               </p>
