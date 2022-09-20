@@ -22,7 +22,7 @@ const HeroSection = () => {
           <div className="space-y-5 text-center text-sm text-[#222222]">
             <div className="p-6 bg-[#DDDDDD66] flex flex-row gap-4 rounded-2xl">
               <div className="flex flex-row flex-grow gap-4 items-center">
-                <MapIcon className="text-[#959595] w-6" />
+                <MapIcon className="text-primary w-6" />
                 <input
                   type="text"
                   placeholder="Enter postcode or location"
@@ -37,12 +37,12 @@ const HeroSection = () => {
 
             <p className="text-[#959595] text-base">OR</p>
 
-            <div className="p-6 bg-accent flex flex-row  justify-center rounded-2xl">
+            <button className="w-full p-6 bg-accent flex flex-row  justify-center rounded-2xl">
               <div className="flex flex-row gap-4 items-center">
                 <LocationMarkerIcon className="text-[#222222] w-6" />
                 <p className="text-[#222222] text-base">Use Live Location</p>
               </div>
-            </div>
+            </button>
           </div>
         </div>
       </div>

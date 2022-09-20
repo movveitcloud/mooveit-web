@@ -1,5 +1,13 @@
 import React from "react";
-import { FindStorage, HeroSection, HowItWorks, PageLayout, WhyMooveIt, FeaturedListings } from "../components";
+import {
+  FindStorage,
+  HeroSection,
+  HowItWorks,
+  PageLayout,
+  WhyMooveIt,
+  FeaturedListings,
+  StorageListingCTA,
+} from "../components";
 
 const Home = () => {
   return (
@@ -9,6 +17,9 @@ const Home = () => {
       <WhyMooveIt />
       <FindStorage />
       <FeaturedListings />
+      <div className="mt-20 mb-32">
+        <StorageListingCTA />
+      </div>
     </PageLayout>
   );
 };

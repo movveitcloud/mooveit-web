@@ -16,6 +16,7 @@ export { default as PageLoading } from "./shared/PageLoading";
 export { default as FormInput } from "./shared/FormInput";
 export { default as FormPassword } from "./shared/FormPassword";
 export { default as FeaturedListings } from "./shared/FeaturedListings";
+export { default as StorageListingCTA } from "./shared/StorageListingCTA";
 export { default as ListingCard } from "./shared/ListingCard";
 export { default as Accordion } from "./shared/Accordion";
 
