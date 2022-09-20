@@ -7,19 +7,19 @@ const Accordion = ({ title, children }) => {
   const arrowIcon = active ? <ChevronUpIcon className="w-4" /> : <ChevronDownIcon className="w-4" />;
 
   return (
-    <div className="mb-8 bg-white rounded-xl">
+    <div className="mb-8 bg-white rounded-xl h-full">
       <div
         className="flex justify-between px-6 py-4 mt-2 text-[#222222] cursor-pointer"
         onClick={() => setActive(!active)}>
-        <h2 className="font-semibold capitalize">{title}</h2>
+        <h2 className="font-semibold capitalize text-base">{title}</h2>
         {arrowIcon}
       </div>
       <motion.div
         initial={false}
         className="overflow-hidden"
-        animate={{ height: active ? "auto" : "0px" }}
+        animate={{ height: active ? "auto" : 0 }}
         transition={{ duration: 0.5, ease: [0.7, 0, 0.3, 1] }}>
-        <div className="w-full text-[#222222] px-6 pb-6">{children}</div>
+        <div className="w-full text-[#222222] px-6 pt-3 pb-6">{children}</div>
       </motion.div>
     </div>
   );
