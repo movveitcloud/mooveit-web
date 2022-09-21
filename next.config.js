@@ -5,6 +5,7 @@ const nextConfig = {
   swcMinify: true,
   env: {
     BASE_URL: process.env.BASE_URL,
+    ENCRYPTION_KEY: process.env.ENCRYPTION_KEY,
   },
   eslint: {
     ignoreDuringBuilds: true,

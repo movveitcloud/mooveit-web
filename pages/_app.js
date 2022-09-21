@@ -1,11 +1,11 @@
-import { PageLayout } from "../components/layouts";
+import { PageTransition } from "../components";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <PageLayout>
+    <PageTransition>
       <Component {...pageProps} />
-    </PageLayout>
+    </PageTransition>
   );
 }
 
