@@ -19,6 +19,7 @@ export { default as FeaturedListings } from "./shared/FeaturedListings";
 export { default as StorageListingCTA } from "./shared/StorageListingCTA";
 export { default as ListingCard } from "./shared/ListingCard";
 export { default as Accordion } from "./shared/Accordion";
+export { default as PageTransition } from "./shared/PageTransition";
 
 //HOME
 export { default as HowItWorks } from "./home/HowItWorks";
