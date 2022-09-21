@@ -4,13 +4,9 @@ import crypto from "crypto-js";
 import * as api from "../api";
 const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY;
 
-export const login = createAsyncThunk("/auth/login", async ({ payload, router, reset }, { rejectWithValue }) => {
+export const login = createAsyncThunk("/auth/login", async ({ payload, reset }, { rejectWithValue }) => {
   try {
     const response = await api.login(payload);
-    // setFormDetails(initialState);
-    // successPopUp(`Welcome back ${response.data.user.firstName}`, () =>
-    //   location.replace(`/${response.data.user.organization.organizationId}/dashboard`)
-    // );
     const bytes = response.data.response ? crypto.AES.decrypt(response.data.response, ENCRYPTION_KEY) : "";
     const user = JSON.parse(bytes ? bytes.toString(crypto.enc.Utf8) : null);
     successPopUp({
@@ -18,6 +14,23 @@ export const login = createAsyncThunk("/auth/login", async ({ payload, router, r
       callback: () => location.replace(`${user.role == "partner" ? "/listings" : "/your-storage"}`),
     });
     reset({ email: "", password: "" });
+    return response.data;
+  } catch (err) {
+    errorPopUp({ msg: err.response.data.error });
+    return rejectWithValue(err.response.data);
+  }
+});
+
+export const signup = createAsyncThunk("/auth/register", async ({ payload, reset }, { rejectWithValue }) => {
+  try {
+    const response = await api.signup(payload);
+    const bytes = response.data.response ? crypto.AES.decrypt(response.data.response, ENCRYPTION_KEY) : "";
+    const user = JSON.parse(bytes ? bytes.toString(crypto.enc.Utf8) : null);
+    successPopUp({
+      msg: "Registration successful",
+      callback: () => location.replace(`${user.role == "partner" ? "/onboarding" : "/your-storage"}`),
+    });
+    reset({ email: "", firstName: "", lastName: "", password: "" });
     console.log(response.data, "data");
     return response.data;
   } catch (err) {
@@ -46,6 +59,7 @@ const authSlice = createSlice({
     user: null,
     error: "",
     loading: false,
+    signupLoading: false,
   },
 
   reducers: {
@@ -69,7 +83,18 @@ const authSlice = createSlice({
     },
     [login.rejected]: (state, action) => {
       state.loading = false;
-      state.error = action.payload;
+    },
+
+    [signup.pending]: (state) => {
+      state.signupLoading = true;
+    },
+    [signup.fulfilled]: (state, action) => {
+      state.signupLoading = false;
+      localStorage.setItem("user", JSON.stringify({ ...action.payload }));
+      state.user = action.payload;
+    },
+    [signup.rejected]: (state, action) => {
+      state.signupLoading = false;
     },
   },
 });

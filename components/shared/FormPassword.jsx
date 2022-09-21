@@ -3,14 +3,14 @@ import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 
-const FormPassword = ({ name, register, errors, errorMessage }) => {
+const FormPassword = ({ name, register, errors, errorMessage, label }) => {
   const [inputType, setInputType] = useState("password");
   const router = useRouter();
   // const pathname = router.pathname;
 
   return (
-    <div className="flex flex-col mb-4 w-full">
-      <label className="text-base text-gray-800 mb-2 inline-block text-left">Password</label>
+    <div className="flex flex-col w-full">
+      <label className="text-base text-gray-800 mb-2 inline-block text-left">{label || "Password"}</label>
       <div className="relative">
         <input
           className={`${

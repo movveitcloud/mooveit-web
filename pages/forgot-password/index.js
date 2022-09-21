@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import Link from "next/link";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthLayout, FormInput, FormPassword } from "../../components";
-import { authenticatedUser, login } from "../../redux/features/auth.slice";
+//import { login } from "../../redux/features/auth.slice";
 
-const Login = () => {
+const ForgotPassword = () => {
   const { loading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const {
@@ -18,13 +17,16 @@ const Login = () => {
   const onSubmit = (data, e) => {
     e.preventDefault();
     const payload = { ...data };
-    dispatch(login({ payload, reset }));
+    // dispatch(login({ payload, reset }));
   };
 
   return (
-    <AuthLayout title="Log In">
+    <AuthLayout title="Forgot Password">
       <div className="text-center">
-        <h1 className="font-semibold text-2xl md:text-3xl text-black mb-10">Account Login</h1>
+        <div className="mb-8">
+          <h1 className="font-semibold text-2xl md:text-3xl text-black mb-2">Forgot Password</h1>
+          <p className="text-sm text-[#222222] font-light">A password reset link will be sent to your email</p>
+        </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormInput
             label="Email Address"
@@ -34,14 +36,8 @@ const Login = () => {
             errors={errors}
             errorMessage="Please add an email address"
           />
-          <FormPassword register={register} name="password" errors={errors} errorMessage="Please add a password" />
-          <div className="flex justify-end">
-            <Link href="/forgot-password">
-              <a className="text-red-500 text-sm">Forgot Password?</a>
-            </Link>
-          </div>
           <button className={`${loading && "loading"}  btn btn-block btn-primary mt-8`} type="submit">
-            {loading ? "" : "Log in"}
+            {loading ? "" : "Send Reset Link"}
           </button>
         </form>
       </div>
@@ -49,4 +45,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;
