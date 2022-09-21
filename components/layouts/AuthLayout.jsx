@@ -21,10 +21,10 @@ const AuthLayout = ({ children, title }) => {
             {pathname === "/signup" && (
               <div className="flex items-center text-black gap-5">
                 <span className="hidden md:flex">Already have an account?</span>
-                <Link href="/signin">Login Here</Link>
+                <Link href="/login">Login Here</Link>
               </div>
             )}
-            {pathname === "/signin" && (
+            {pathname === "/login" && (
               <div className="flex items-center text-black gap-5">
                 <span className="hidden md:flex">Don't have an account?</span>
                 <Link href="/signup">Sign Up</Link>
