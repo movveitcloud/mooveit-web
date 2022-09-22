@@ -1,11 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { AuthLayout, FormInput, FormPassword } from "../../components";
-//import { login } from "../../redux/features/auth.slice";
+import { AuthLayout, FormInput } from "../../components";
+import { forgotPassword } from "../../redux/features/auth.slice";
 
 const ForgotPassword = () => {
-  const { loading } = useSelector((state) => state.auth);
+  const { forgotLoading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const {
     register,
@@ -17,7 +17,7 @@ const ForgotPassword = () => {
   const onSubmit = (data, e) => {
     e.preventDefault();
     const payload = { ...data };
-    // dispatch(login({ payload, reset }));
+    dispatch(forgotPassword({ payload, reset }));
   };
 
   return (
@@ -36,8 +36,8 @@ const ForgotPassword = () => {
             errors={errors}
             errorMessage="Please add an email address"
           />
-          <button className={`${loading && "loading"}  btn btn-block btn-primary mt-8`} type="submit">
-            {loading ? "" : "Send Reset Link"}
+          <button className={`${forgotLoading && "loading"}  btn btn-block btn-primary mt-8`} type="submit">
+            {forgotLoading ? "" : "Send Reset Link"}
           </button>
         </form>
       </div>

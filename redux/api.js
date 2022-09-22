@@ -10,5 +10,8 @@ API.interceptors.request.use((req) => {
 });
 
 //AUTH
-export const login = (formData) => API.post("/auth/login", formData);
-export const signup = (formData) => API.post("/auth/register", formData);
+export const login = (payload) => API.post("/auth/login", payload);
+export const signup = (payload) => API.post("/auth/register", payload);
+export const forgotPassword = (payload) => API.post("/auth/forgot-password", payload);
+export const resetPassword = ({ payload, token }) => API.patch(`/auth/reset-password/${token}`, payload);
+export const verifyResetToken = (token) => API.get(`/auth/reset-password/${token}`);

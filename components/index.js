@@ -10,6 +10,7 @@ export { default as PageLayout } from "./layouts/PageLayout";
 export { default as AppLayout } from "./layouts/AppLayout";
 export { default as AuthLayout } from "./layouts/AuthLayout";
 export { default as NewListingLayout } from "./layouts/NewListingLayout";
+export { default as DashboardLayout } from "./layouts/DashboardLayout";
 
 //SHARED
 export { default as PageLoading } from "./shared/PageLoading";

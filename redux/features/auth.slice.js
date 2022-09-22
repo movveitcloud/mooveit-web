@@ -31,13 +31,60 @@ export const signup = createAsyncThunk("/auth/register", async ({ payload, reset
       callback: () => location.replace(`${user.role == "partner" ? "/onboarding" : "/your-storage"}`),
     });
     reset({ email: "", firstName: "", lastName: "", password: "" });
-    console.log(response.data, "data");
     return response.data;
   } catch (err) {
     errorPopUp({ msg: err.response.data.error });
     return rejectWithValue(err.response.data);
   }
 });
+
+export const forgotPassword = createAsyncThunk(
+  "/auth/forgot-password",
+  async ({ payload, reset }, { rejectWithValue }) => {
+    try {
+      const response = await api.forgotPassword(payload);
+      successPopUp({
+        msg: "Password reset link has been sent to your email",
+      });
+      reset({ email: "" });
+      return response.data;
+    } catch (err) {
+      errorPopUp({ msg: err.response.data.error });
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const resetPassword = createAsyncThunk(
+  "/auth/reset-password",
+  async ({ payload, token }, { rejectWithValue }) => {
+    try {
+      const response = await api.resetPassword({ payload, token });
+      successPopUp({
+        msg: "Password reset succesful, please log in",
+        callback: () => location.replace("/login"),
+      });
+      return response.data;
+    } catch (err) {
+      errorPopUp({ msg: err.response.data.error });
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const verifyResetToken = createAsyncThunk(
+  "/auth/reset-password/:token",
+  async ({ token }, { rejectWithValue }) => {
+    try {
+      const response = await api.verifyResetToken(token);
+      return response.data;
+    } catch (err) {
+      location.replace("/login");
+      errorPopUp({ msg: err.response.data.error });
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
 
 //RETURN USER OBJECT IF LOGGED IN
 export const authenticatedUser = () => {
@@ -57,9 +104,13 @@ const authSlice = createSlice({
   name: "auth",
   initialState: {
     user: null,
+    resetTokenData: null,
     error: "",
     loading: false,
     signupLoading: false,
+    forgotLoading: false,
+    resetLoading: false,
+    verifyLoading: false,
   },
 
   reducers: {
@@ -95,6 +146,37 @@ const authSlice = createSlice({
     },
     [signup.rejected]: (state, action) => {
       state.signupLoading = false;
+    },
+
+    [forgotPassword.pending]: (state) => {
+      state.forgotLoading = true;
+    },
+    [forgotPassword.fulfilled]: (state, action) => {
+      state.forgotLoading = false;
+    },
+    [forgotPassword.rejected]: (state, action) => {
+      state.forgotLoading = false;
+    },
+
+    [resetPassword.pending]: (state) => {
+      state.resetLoading = true;
+    },
+    [resetPassword.fulfilled]: (state, action) => {
+      state.resetLoading = false;
+    },
+    [resetPassword.rejected]: (state, action) => {
+      state.resetLoading = false;
+    },
+
+    [verifyResetToken.pending]: (state) => {
+      state.verifyLoading = true;
+    },
+    [verifyResetToken.fulfilled]: (state, action) => {
+      state.verifyLoading = false;
+      state.resetTokenData = action.payload;
+    },
+    [verifyResetToken.rejected]: (state, action) => {
+      state.verifyLoading = false;
     },
   },
 });

@@ -5,9 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 const PageTransition = ({ children }) => {
   const router = useRouter();
   return (
-    <AnimatePresence exitBeforeEnter initial={true}>
+    <AnimatePresence key={router.pathname} exitBeforeEnter initial={true}>
       <motion.div
-        key={router.route}
+        key={router.pathname}
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 40 }}
