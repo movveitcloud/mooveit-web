@@ -19,7 +19,7 @@ const NewListingLayout = ({ children }) => {
               </a>
             </Link>
             {pathname === "/onboarding" && (
-              <p className="text-[#222222] cursor-pointer" onClick={() => router.replace("/dashboard")}>
+              <p className="text-[#222222] cursor-pointer" onClick={() => router.replace("/listings")}>
                 Skip
               </p>
             )}

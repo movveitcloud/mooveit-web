@@ -84,11 +84,11 @@ const MobileNavBar = ({ pageLink, setMenuOpen }) => {
             Become a Partner
           </a>
         </Link>
-        <Link href="/signin">
+        <Link href="/login">
           <a
             className="btn bg-white hover:bg-white text-primary text-sm w-full font-normal"
             onClick={() => setMenuOpen(false)}>
-            Sign In
+            Log In
           </a>
         </Link>
       </div>

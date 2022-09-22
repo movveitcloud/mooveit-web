@@ -1,17 +1,13 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { AuthLayout, FormInput, FormPassword } from "../../components";
+import { signup } from "../../redux/features/auth.slice";
 
 const Signup = () => {
-  const router = useRouter();
-  const initialState = {
-    firstName: "",
-    email: "",
-    lastName: "",
-    password: "",
-    role: "",
-  };
+  const [active, setActive] = useState("partner");
+  const { signupLoading } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -19,22 +15,17 @@ const Signup = () => {
     formState: { errors },
   } = useForm();
 
-  const [active, setActive] = useState("partner");
-  const [formDetails, setFormDetails] = useState(initialState);
-  const [loading, setLoading] = useState(false);
-
   const onSubmit = (data, e) => {
     e.preventDefault();
-    setFormDetails({ ...formDetails, ...data, role: active });
-    reset(initialState);
-    active == "partner" ? router.push("/onboarding") : router.push("/dashboard");
+    const payload = { ...data, role: active };
+    dispatch(signup({ payload, reset }));
   };
 
   return (
     <AuthLayout title="Sign Up">
       <div className="text-center">
         <h1 className="font-semibold text-2xl md:text-3xl text-black">Create an account</h1>
-        <div className="bg-white rounded-xl my-10 flex gap-5 items-center justify-center w-fit py-3 px-5 mx-auto shadow">
+        <div className="bg-white rounded-2xl my-10 flex gap-5 items-center justify-center w-fit p-3 mx-auto shadow">
           <span
             className={`${active == "customer" && "bg-primary text-white py-2 px-5 rounded-xl "} cursor-pointer`}
             onClick={() => setActive("customer")}>
@@ -75,11 +66,9 @@ const Signup = () => {
               errorMessage="Please add your last name"
             />
           </div>
-
           <FormPassword register={register} name="password" errors={errors} errorMessage="Please add a password" />
-
-          <button className={`${loading && "loading"}  btn btn-block btn-primary mt-5`} type="submit">
-            {loading ? "" : active == "partner" ? "Become a partner" : "Create account"}
+          <button className={`${signupLoading && "loading"}  btn btn-block btn-primary mt-8`} type="submit">
+            {signupLoading ? "" : active == "partner" ? "Become a partner" : "Create account"}
           </button>
         </form>
       </div>

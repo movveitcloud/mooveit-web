@@ -3,14 +3,14 @@ import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 
-const FormPassword = ({ name, register, errors, errorMessage }) => {
+const FormPassword = ({ name, register, errors, errorMessage, label }) => {
   const [inputType, setInputType] = useState("password");
   const router = useRouter();
   // const pathname = router.pathname;
 
   return (
-    <div className="flex flex-col mb-4 w-full">
-      <label className="text-base text-gray-800 mb-2 inline-block text-left">Password</label>
+    <div className="flex flex-col w-full">
+      <label className="text-base text-gray-800 mb-2 inline-block text-left">{label || "Password"}</label>
       <div className="relative">
         <input
           className={`${
@@ -20,7 +20,7 @@ const FormPassword = ({ name, register, errors, errorMessage }) => {
           {...register(name, {
             required: true,
             pattern: {
-              value: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/i,
+              //value: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/i,
               message: "Password must contain at least 6 characters, 1 uppercase, 1 lowercase and 1 special character",
             },
           })}
