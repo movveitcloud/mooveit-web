@@ -27,7 +27,7 @@ const TitleBar = ({ pageTitle, pathname, menuOpen, setMenuOpen }) => {
           />
         </div>
         <div className="flex items-center gap-6">
-          <button className="btn btn-primary px-8" onClick={handleClick}>
+          <button className="btn btn-primary px-8 font-normal" onClick={handleClick}>
             {isPartner ? "Create Listing" : "Become a Partner"}
           </button>
           <div className="flex justify-center items-center border border-accent rounded p-3 cursor-pointer">
