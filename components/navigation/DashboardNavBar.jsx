@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { dashboardNavLinks, navLinks } from "../../helpers/data";
-import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/solid";
 import { useDispatch, useSelector } from "react-redux";
-import { authenticatedUser, isLoggedIn, logout } from "../../redux/features/auth.slice";
+import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/solid";
 import { LogoutIcon } from "@heroicons/react/outline";
+import { authenticatedUser, logout } from "../../redux/features/auth.slice";
+import { dashboardNavLinks } from "../../helpers/data";
 
 const DashboardNavbar = ({ pathname }) => {
   const [userData, setUserData] = useState(null);
@@ -59,7 +58,9 @@ const DashboardNavbar = ({ pathname }) => {
             <h2 className="text-[#222222]">
               {userData?.firstName} {userData?.lastName}
             </h2>
-            <h2 className="text-xs text-[#AAAAAA]">{userData?.email}</h2>
+            <h2 className="text-xs text-[#AAAAAA]">{`${userData?.email.slice(0, 22)}${
+              userData?.email.length > 22 ? "..." : ""
+            }`}</h2>
           </div>
         </div>
         <ChevronDownIcon className="w-4" />

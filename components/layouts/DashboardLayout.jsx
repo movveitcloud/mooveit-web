@@ -31,7 +31,10 @@ const DashboardLayout = ({ children, name, userInfo }) => {
     if (!user) {
       router.push("/login");
     }
-    if (user) {
+    if (user && !user.isVerified) {
+      router.push("/verify");
+    }
+    if (user && user.isVerified) {
       authorizeUser(user.role);
     }
     getPageTitle();
@@ -55,7 +58,7 @@ const DashboardLayout = ({ children, name, userInfo }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1 }}
-              className="p-3 lg:py-6 lg:px-8 max-h-screen">
+              className="p-3 lg:py-6 lg:px-8">
               {hasPermission && children}
             </motion.div>
           </div>

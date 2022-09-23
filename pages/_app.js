@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
         <ToastContainer
           theme="colored"
           position="bottom-center"
-          autoClose={4000}
+          autoClose={6000}
           hideProgressBar={false}
           newestOnTop={false}
           draggable={false}
