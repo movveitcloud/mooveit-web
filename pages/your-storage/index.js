@@ -1,7 +1,8 @@
 import React from "react";
+import { DashboardLayout } from "../../components";
 
 const YourStorage = () => {
-  return <div>YourStorage</div>;
+  return <DashboardLayout>YourStorage</DashboardLayout>;
 };
 
 export default YourStorage;

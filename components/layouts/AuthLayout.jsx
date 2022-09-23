@@ -1,12 +1,20 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
-import { isLoggedIn } from "../../redux/features/auth.slice";
+import { authenticatedUser, isLoggedIn } from "../../redux/features/auth.slice";
 import { Meta } from "../index";
 
 const AuthLayout = ({ children, title }) => {
+  const user = authenticatedUser();
   const router = useRouter();
   const pathname = router.pathname;
+
+  useEffect(() => {
+    if (user) {
+      router.replace(`${user.role == "partner" ? "/listings" : "/your-storage"}`);
+    }
+  }, []);
+
   return (
     <>
       <Meta title={title} />
