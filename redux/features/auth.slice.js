@@ -11,7 +11,8 @@ export const login = createAsyncThunk("/auth/login", async ({ payload, reset }, 
     const user = JSON.parse(bytes ? bytes.toString(crypto.enc.Utf8) : null);
     successPopUp({
       msg: `Welcome back, ${user.firstName}`,
-      callback: () => location.replace(`${user.role == "partner" ? "/listings" : "/your-storage"}`),
+      callback: () =>
+        location.replace(`${user.isVerified ? (user.role == "partner" ? "/listings" : "/your-storage") : "/verify"}`),
     });
     reset({ email: "", password: "" });
     return response.data;
@@ -28,7 +29,7 @@ export const signup = createAsyncThunk("/auth/register", async ({ payload, reset
     const user = JSON.parse(bytes ? bytes.toString(crypto.enc.Utf8) : null);
     successPopUp({
       msg: "Registration successful",
-      callback: () => location.replace(`${user.role == "partner" ? "/onboarding" : "/your-storage"}`),
+      callback: () => location.replace("/verify"),
     });
     reset({ email: "", firstName: "", lastName: "", password: "" });
     return response.data;
@@ -86,6 +87,35 @@ export const verifyResetToken = createAsyncThunk(
   }
 );
 
+export const verifyEmail = createAsyncThunk("/auth/verify/:token", async ({ token }, { rejectWithValue }) => {
+  try {
+    const response = await api.verifyEmail(token);
+    const bytes = response.data.response ? crypto.AES.decrypt(response.data.response, ENCRYPTION_KEY) : "";
+    const user = JSON.parse(bytes ? bytes.toString(crypto.enc.Utf8) : null);
+    setTimeout(() => {
+      location.replace(`${user.isVerified ? (user.role == "partner" ? "/onboarding" : "/your-storage") : "/verify"}`);
+    }, 5000);
+    return response.data;
+  } catch (err) {
+    errorPopUp({ msg: err.response.data.error });
+    location.replace("/");
+    return rejectWithValue(err.response.data);
+  }
+});
+
+export const resendVerifyEmail = createAsyncThunk("/auth/verify", async ({ payload }, { rejectWithValue }) => {
+  try {
+    const response = await api.resendVerifyEmail(payload);
+    successPopUp({
+      msg: "Email verification link was sent successfully",
+    });
+    return response.data;
+  } catch (err) {
+    errorPopUp({ msg: err.response.data.error });
+    return rejectWithValue(err.response.data);
+  }
+});
+
 //RETURN USER OBJECT IF LOGGED IN
 export const authenticatedUser = () => {
   if (typeof window === "undefined") {
@@ -105,12 +135,15 @@ const authSlice = createSlice({
   initialState: {
     user: null,
     resetTokenData: null,
+    verifyEmailData: null,
     error: "",
     loading: false,
     signupLoading: false,
     forgotLoading: false,
     resetLoading: false,
     verifyLoading: false,
+    verifyEmailLoading: false,
+    resendEmailVerifyLoading: false,
   },
 
   reducers: {
@@ -177,6 +210,29 @@ const authSlice = createSlice({
     },
     [verifyResetToken.rejected]: (state, action) => {
       state.verifyLoading = false;
+    },
+
+    [verifyEmail.pending]: (state) => {
+      state.verifyEmailLoading = true;
+    },
+    [verifyEmail.fulfilled]: (state, action) => {
+      state.verifyEmailLoading = false;
+      localStorage.setItem("user", JSON.stringify({ ...action.payload }));
+      state.verifyEmailData = action.payload;
+      state.user = action.payload;
+    },
+    [verifyEmail.rejected]: (state, action) => {
+      state.verifyEmailLoading = false;
+    },
+
+    [resendVerifyEmail.pending]: (state) => {
+      state.resendEmailVerifyLoading = true;
+    },
+    [resendVerifyEmail.fulfilled]: (state, action) => {
+      state.resendEmailVerifyLoading = false;
+    },
+    [resendVerifyEmail.rejected]: (state, action) => {
+      state.resendEmailVerifyLoading = false;
     },
   },
 });

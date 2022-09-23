@@ -1,4 +1,14 @@
-import { LightBulbIcon, LockClosedIcon, UserGroupIcon, VideoCameraIcon } from "@heroicons/react/outline";
+import {
+  CalendarIcon,
+  ClockIcon,
+  CubeIcon,
+  LightBulbIcon,
+  LockClosedIcon,
+  UserGroupIcon,
+  VideoCameraIcon,
+  ViewGridIcon,
+} from "@heroicons/react/outline";
+import { CubeIcon as CubeIconSolid, CalendarIcon as CalendarIconSolid } from "@heroicons/react/solid";
 
 export const navLinks = [
   { path: "/how-it-works", title: "How it Works" },
@@ -29,6 +39,46 @@ export const navLinks = [
     ],
   },
   { path: "/support", title: "Support" },
+];
+
+export const dashboardNavLinks = [
+  {
+    name: "listings",
+    path: "/listings",
+    title: "Listings",
+    icon: <CubeIcon className="w-full" />,
+    iconActive: <CubeIconSolid className="w-full" />,
+    permission: ["partner"],
+  },
+  {
+    name: "your-storage",
+    path: "/your-storage",
+    title: "Your Storage",
+    icon: <ClockIcon className="w-full" />,
+    permission: ["customer"],
+  },
+  {
+    name: "bookings",
+    path: "/bookings",
+    title: "Bookings",
+    icon: <CalendarIcon className="w-full" />,
+    iconActive: <CalendarIconSolid className="w-full" />,
+    permission: ["customer", "partner"],
+  },
+  {
+    name: "account",
+    path: "/account",
+    title: "Account Details",
+    icon: <ClockIcon className="w-full" />,
+    permission: ["customer", "partner"],
+  },
+  {
+    name: "support",
+    path: "/support",
+    title: "Support",
+    icon: <ClockIcon className="w-full" />,
+    permission: ["customer", "partner"],
+  },
 ];
 
 export const footerLinks = [
