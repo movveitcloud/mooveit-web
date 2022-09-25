@@ -49,7 +49,7 @@ const TitleBar = ({ pageTitle, pathname, menuOpen, setMenuOpen }) => {
               exit={{ x: -100 }}
               className="fixed top-0 left-0 bg-white h-screen"
               onClick={(e) => e.stopPropagation()}>
-              <DashboardNavbar setMenuOpen={setMenuOpen} pathname={pathname} />
+              <DashboardNavbar pathname={pathname} />
             </motion.div>
           </AnimatePresence>
         </div>

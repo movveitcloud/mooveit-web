@@ -8,20 +8,20 @@ import "react-toastify/dist/ReactToastify.css";
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      <PageTransition>
-        <ToastContainer
-          theme="colored"
-          position="bottom-center"
-          autoClose={6000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          draggable={false}
-          pauseOnVisibilityChange
-          closeOnClick
-          pauseOnHover
-        />
-        <Component {...pageProps} />
-      </PageTransition>
+      {/* <PageTransition> */}
+      <ToastContainer
+        theme="colored"
+        position="bottom-center"
+        autoClose={6000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        draggable={false}
+        pauseOnVisibilityChange
+        closeOnClick
+        pauseOnHover
+      />
+      <Component {...pageProps} />
+      {/* </PageTransition> */}
     </Provider>
   );
 }

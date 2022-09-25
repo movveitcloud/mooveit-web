@@ -22,7 +22,8 @@ const DashboardLayout = ({ children, name, userInfo }) => {
   const authorizeUser = (role) => {
     //BOUNCE UNAUTHORIZED USERS
     const item = dashboardNavLinks?.find((a) => router?.asPath.includes(a.path));
-    if (!item?.permission.includes(role))
+    //  const sub =  dashboardNavLinks?.subMenus?.find((a) => router?.asPath.includes(a.path));
+    if (item && !item?.permission.includes(role))
       return router.replace(`${user.role == "partner" ? "/listings" : "/your-storage"}`);
     setHasPermission(true);
   };

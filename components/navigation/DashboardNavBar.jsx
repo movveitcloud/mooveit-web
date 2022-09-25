@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/solid";
+import { ChevronDownIcon } from "@heroicons/react/solid";
 import { LogoutIcon } from "@heroicons/react/outline";
 import { authenticatedUser, logout } from "../../redux/features/auth.slice";
 import { dashboardNavLinks } from "../../helpers/data";
+import DashboardNavAccordion from "./DashboardNavAccordion";
 
 const DashboardNavbar = ({ pathname }) => {
   const [userData, setUserData] = useState(null);
@@ -31,20 +31,30 @@ const DashboardNavbar = ({ pathname }) => {
 
         <div className="flex flex-col mt-8">
           {dashboardNavLinks?.map(
-            ({ path, title, icon, iconActive, permission }, i) =>
-              permission.includes(userData?.role) && (
-                <Link key={i} href={path}>
-                  <a
-                    className={`flex gap-5 items-center px-7 lg:px-10 py-2 mb-2 w-full hover:text-primary ${
-                      pathname?.includes(path)
-                        ? "text-primary font-semibold border-r-2 border-primary"
-                        : "text-[#222222]"
-                    }`}>
-                    <p className="w-6">{pathname?.includes(path) ? iconActive : icon}</p>
-                    <h2 className="text-sm">{title}</h2>
-                  </a>
-                </Link>
-              )
+            ({ path, title, icon, iconActive, permission, subMenus }, i) =>
+              permission.includes(userData?.role) &&
+              (subMenus ? (
+                <DashboardNavAccordion
+                  key={title}
+                  path={path}
+                  pathname={pathname}
+                  title={title}
+                  icon={icon}
+                  iconActive={iconActive}
+                  subMenus={subMenus}
+                  userData={userData}
+                />
+              ) : (
+                <a
+                  key={i}
+                  href={path}
+                  className={`flex gap-5 items-center px-7 lg:px-10 py-2 mb-2 w-full hover:text-primary cursor-pointer ${
+                    pathname?.includes(path) ? "text-primary font-semibold border-r-2 border-primary" : "text-[#959595]"
+                  }`}>
+                  <p className="w-6">{pathname?.includes(path) ? iconActive : icon}</p>
+                  <h2 className="text-sm">{title}</h2>
+                </a>
+              ))
           )}
         </div>
       </div>
