@@ -61,10 +61,10 @@ const VerifyEmail = () => {
             onClick={handleSubmit}>
             {resendEmailVerifyLoading ? "" : "resend verification link"}
           </button>
-          <p className="text-[#959595]">
+          {/* <p className="text-[#959595]">
             Didn't receive the email?
             <button className="btn-link text-[#222222] hover:text-primary ml-1">Click to resend </button>
-          </p>
+          </p> */}
         </div>
       </div>
     )
