@@ -18,7 +18,9 @@ const DashboardNavAccordion = ({ path, title, icon, iconActive, subMenus, pathna
       <a
         href={path}
         className={`flex gap-5 items-center px-7 lg:px-10 py-2 mb-2 w-full hover:text-primary cursor-pointer ${
-          subMenus?.find((a) => pathname.includes(a.path)) ? "text-primary font-semibold" : "text-[#959595]"
+          subMenus?.find((a) => pathname.includes(a.path))
+            ? "text-primary font-semibold border-r-2 border-primary"
+            : "text-[#959595]"
         }`}
         onClick={() => setActive(!active)}>
         <p className="w-6">{pathname?.includes(path) ? iconActive : icon}</p>
@@ -40,7 +42,7 @@ const DashboardNavAccordion = ({ path, title, icon, iconActive, subMenus, pathna
                   key={path}
                   href={path}
                   className={`text-sm px-7 lg:px-10 py-[6px] ml-5 mb-[6px] w-full hover:text-primary cursor-pointer ${
-                    pathname?.includes(path) ? "text-primary border-r-2 border-primary" : "text-[#959595]"
+                    pathname?.includes(path) ? "text-primary" : "text-[#959595]"
                   }`}
                   onClick={() => setActive(!active)}>
                   {title}
