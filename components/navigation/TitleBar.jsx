@@ -27,7 +27,7 @@ const TitleBar = ({ pageTitle, pathname, menuOpen, setMenuOpen }) => {
           />
         </div>
         <div className="flex items-center gap-6">
-          <button className="btn btn-primary px-8" onClick={handleClick}>
+          <button className="btn btn-primary px-8 font-normal" onClick={handleClick}>
             {isPartner ? "Create Listing" : "Become a Partner"}
           </button>
           <div className="flex justify-center items-center border border-accent rounded p-3 cursor-pointer">
@@ -49,7 +49,7 @@ const TitleBar = ({ pageTitle, pathname, menuOpen, setMenuOpen }) => {
               exit={{ x: -100 }}
               className="fixed top-0 left-0 bg-white h-screen"
               onClick={(e) => e.stopPropagation()}>
-              <DashboardNavbar setMenuOpen={setMenuOpen} pathname={pathname} />
+              <DashboardNavbar pathname={pathname} />
             </motion.div>
           </AnimatePresence>
         </div>

@@ -4,11 +4,16 @@ import {
   CubeIcon,
   LightBulbIcon,
   LockClosedIcon,
+  UserCircleIcon,
   UserGroupIcon,
   VideoCameraIcon,
   ViewGridIcon,
 } from "@heroicons/react/outline";
-import { CubeIcon as CubeIconSolid, CalendarIcon as CalendarIconSolid } from "@heroicons/react/solid";
+import {
+  CubeIcon as CubeIconSolid,
+  CalendarIcon as CalendarIconSolid,
+  UserCircleIcon as UserCircleIconSolid,
+} from "@heroicons/react/solid";
 
 export const navLinks = [
   { path: "/how-it-works", title: "How it Works" },
@@ -54,7 +59,8 @@ export const dashboardNavLinks = [
     name: "your-storage",
     path: "/your-storage",
     title: "Your Storage",
-    icon: <ClockIcon className="w-full" />,
+    icon: <CubeIcon className="w-full" />,
+    iconActive: <CubeIconSolid className="w-full" />,
     permission: ["customer"],
   },
   {
@@ -67,10 +73,28 @@ export const dashboardNavLinks = [
   },
   {
     name: "account",
-    path: "/account",
+    path: null,
     title: "Account Details",
-    icon: <ClockIcon className="w-full" />,
+    icon: <UserCircleIcon className="w-full" />,
+    iconActive: <UserCircleIconSolid className="w-full" />,
     permission: ["customer", "partner"],
+    subMenus: [
+      {
+        path: "/profile",
+        title: "Personal Details",
+        permission: ["customer", "partner"],
+      },
+      {
+        path: "/reviews",
+        title: "Reviews",
+        permission: ["customer", "partner"],
+      },
+      {
+        path: "/professional-partner",
+        title: "Professional Partner",
+        permission: ["customer", "partner"],
+      },
+    ],
   },
   {
     name: "support",
