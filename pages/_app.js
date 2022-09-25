@@ -1,6 +1,6 @@
 import { Provider } from "react-redux";
 import { store } from "../redux/store";
-import { PageTransition } from "../components";
+import { Meta, PageTransition } from "../components";
 import { ToastContainer } from "react-toastify";
 import "../styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -20,6 +20,7 @@ function MyApp({ Component, pageProps }) {
         closeOnClick
         pauseOnHover
       />
+      <Meta />
       <Component {...pageProps} />
       {/* </PageTransition> */}
     </Provider>
