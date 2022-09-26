@@ -1,6 +1,7 @@
 import {
   CalendarIcon,
   ClockIcon,
+  CreditCardIcon,
   CubeIcon,
   LightBulbIcon,
   LockClosedIcon,
@@ -13,6 +14,7 @@ import {
   CubeIcon as CubeIconSolid,
   CalendarIcon as CalendarIconSolid,
   UserCircleIcon as UserCircleIconSolid,
+  CreditCardIcon as CreditCardIconSolid,
 } from "@heroicons/react/solid";
 
 export const navLinks = [
@@ -97,10 +99,11 @@ export const dashboardNavLinks = [
     ],
   },
   {
-    name: "support",
-    path: "/support",
-    title: "Support",
-    icon: <ClockIcon className="w-full" />,
+    name: "payments",
+    path: "/payments",
+    title: "Payments",
+    icon: <CreditCardIcon className="w-full" />,
+    iconActive: <CreditCardIconSolid className="w-full" />,
     permission: ["customer", "partner"],
   },
 ];
