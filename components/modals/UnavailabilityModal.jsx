@@ -1,0 +1,58 @@
+import { XIcon } from "@heroicons/react/outline";
+import React from "react";
+
+const UnavailabilityModal = ({ formDetails, handleChange }) => {
+  return (
+    <>
+      <input type="checkbox" id="unavailability" className="modal-toggle" />
+      <label htmlFor="unavailability" className="modal">
+        <label className="modal-box p-8 relative w-[80%] md:w-[60%] max-w-[600px] rounded-xl z-20">
+          <h2 className="font-semibold uppercase text-lg text-primary">Add an Unavailability Period</h2>{" "}
+          <label
+            htmlFor="unavailability"
+            className="btn btn-sm btn-circle bg-accent text-primary hover:text-white border-accent hover:bg-primary hover:border-none absolute right-6 top-6"
+            // onClick={closeModal}
+          >
+            <XIcon className="w-4" />
+          </label>
+          <div className="mt-8 mb-10 space-y-5">
+            <div>
+              <h3 className="mb-3">Reason</h3>
+              <div className="items-center border border-[#222222] rounded-lg px-4 py-3">
+                <input
+                  type="text"
+                  name="unavailabilityReason"
+                  value={formDetails.unavailabilityReason}
+                  onChange={handleChange}
+                  placeholder="Holiday, using space e.t.c"
+                  className="w-full bg-transparent h-full pr-6 outline-none placeholder:text-[#959595]"
+                />
+              </div>
+            </div>
+            <div>
+              <h3 className="mb-3">Date & Time</h3>
+              <div className="items-center border border-[#222222] rounded-lg px-4 py-3">
+                <input
+                  type="text"
+                  name="unavailabilityReason"
+                  value={formDetails.unavailabilityReason}
+                  onChange={handleChange}
+                  placeholder="Holiday, using space e.t.c"
+                  className="w-full bg-transparent h-full pr-6 outline-none placeholder:text-[#959595]"
+                />
+              </div>
+              <p className="text-xs text-[#959595] mt-3 text-justify">
+                Making the listing unavailable means that Renters will not be able to book the space during this period.
+                Any upcoming or ongoing bookings you may have for this space will not be impacted by this action. Please
+                contact us if you can no longer honour these bookings
+              </p>
+            </div>
+          </div>
+          <button className="btn btn-primary w-full font-normal">Save</button>
+        </label>
+      </label>
+    </>
+  );
+};
+
+export default UnavailabilityModal;

@@ -24,6 +24,9 @@ export { default as ListingCard } from "./shared/ListingCard";
 export { default as Accordion } from "./shared/Accordion";
 export { default as PageTransition } from "./shared/PageTransition";
 
+//MODALS
+export { default as UnavailabilityModal } from "./modals/UnavailabilityModal";
+
 //HOME
 export { default as HowItWorks } from "./home/HowItWorks";
 export { default as HowCards } from "./home/HowCards";
@@ -42,3 +45,6 @@ export { default as StepperControls } from "./listings/StepperControls";
 export { default as Address } from "./listings/Address";
 export { default as Type } from "./listings/Type";
 export { default as Services } from "./listings/Services";
+export { default as Access } from "./listings/Access";
+export { default as BookingDetails } from "./listings/BookingDetails";
+export { default as Calendar } from "./listings/Calendar";
