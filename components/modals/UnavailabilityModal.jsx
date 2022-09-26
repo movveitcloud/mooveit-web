@@ -1,5 +1,6 @@
-import { XIcon } from "@heroicons/react/outline";
 import React from "react";
+import { XIcon } from "@heroicons/react/outline";
+import Calendar from "react-calendar";
 
 const UnavailabilityModal = ({ formDetails, handleChange }) => {
   return (
@@ -34,10 +35,10 @@ const UnavailabilityModal = ({ formDetails, handleChange }) => {
               <div className="items-center border border-[#222222] rounded-lg px-4 py-3">
                 <input
                   type="text"
-                  name="unavailabilityReason"
-                  value={formDetails.unavailabilityReason}
+                  name="unavailabilityDate"
+                  value={formDetails.unavailabilityDate}
                   onChange={handleChange}
-                  placeholder="Holiday, using space e.t.c"
+                  placeholder="24/08/22 (4:15pm) -- 31/08/22 (4:15pm)"
                   className="w-full bg-transparent h-full pr-6 outline-none placeholder:text-[#959595]"
                 />
               </div>
