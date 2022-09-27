@@ -230,3 +230,18 @@ export const arrivalNoticeOpts = [
   { name: "3 days", value: "3days" },
   { name: "7 days", value: "7days" },
 ];
+export const storageSize = [
+  { name: "9 sq ft - 3ft High locker", value: "9 sq ft - 3ft High locker" },
+  { name: "25 sq ft - Small Garden Shed Size", value: "25 sq ft - Small Garden Shed Size" },
+  { name: "35 sq ft - Standard Garden Shed Size", value: "35 sq ft - Standard Garden Shed Size" },
+  { name: "50 sq ft - Transit Van Size", value: "50 sq ft - Transit Van Size" },
+  { name: "75 sq ft - Luton Van Size", value: "75 sq ft - Luton Van Size" },
+  {
+    name: "125 sq ft - Large Single Garage or 7 Tonne Lorry",
+    value: "125 sq ft - Large Single Garage or 7 Tonne Lorry",
+  },
+  {
+    name: "150 sq ft - One and Half garages or 2 Luton Van Loads",
+    value: "150 sq ft - One and Half garages or 2 Luton Van Loads",
+  },
+];
