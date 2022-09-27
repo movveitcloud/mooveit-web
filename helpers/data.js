@@ -202,7 +202,34 @@ export const storageFeatures = [
   { label: "Padlock", value: "padlock", icon: <LockClosedIcon className="text-[#222222] w-4" /> },
   { label: "Onsite Staff", value: "onsiteStaff", icon: <UserGroupIcon className="text-[#222222] w-4" /> },
 ];
-
+export const whenAccessListing = [
+  { name: "Any Time", value: "anyTime" },
+  { name: "Prior Notice Only", value: "priorNotice" },
+  { name: "Specific Time", value: "specificTime" },
+  { name: "Drop Off Only", value: "dropOff" },
+];
+export const howAccessListing = [
+  { name: "Key", value: "key" },
+  { name: "Pin Code", value: "pinCode" },
+  { name: "Fingerprint Scanner", value: "fingerprint" },
+  { name: "Access is granted at any time", value: "anytime" },
+];
+export const spaceDuration = [
+  { name: "No Minimum", value: "noMinimum" },
+  { name: "1 month", value: "1month" },
+  { name: "2 months", value: "2months" },
+  { name: "3 months", value: "3months" },
+  { name: "6 months", value: "6months" },
+  { name: "12 months", value: "12months" },
+  { name: "more than 12 months", value: "moreThan12months" },
+];
+export const arrivalNoticeOpts = [
+  { name: "No Notice", value: "noNotice" },
+  { name: "1 day", value: "1day" },
+  { name: "2 days", value: "2days" },
+  { name: "3 days", value: "3days" },
+  { name: "7 days", value: "7days" },
+];
 export const storageSize = [
   { name: "9 sq ft - 3ft High locker", value: "9 sq ft - 3ft High locker" },
   { name: "25 sq ft - Small Garden Shed Size", value: "25 sq ft - Small Garden Shed Size" },
