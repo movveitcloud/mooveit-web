@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { CheckCircleIcon } from "@heroicons/react/outline";
@@ -7,6 +7,8 @@ import { authenticatedUser, verifyEmail } from "../../redux/features/auth.slice"
 import { PageLoading } from "../../components";
 
 const AccountVerify = () => {
+  const [timer, setTimer] = useState(5);
+  const [count, setCount] = useState(false);
   const { verifyEmailData, verifyEmailLoading } = useSelector((state) => state.auth);
   const user = authenticatedUser();
   const dispatch = useDispatch();
@@ -22,13 +24,25 @@ const AccountVerify = () => {
       router.replace(user.role == "partner" ? "/listings" : "/your-storage");
       return;
     }
-    if (token !== undefined && !user) {
-      router.replace("/");
-    }
+    // if (token !== undefined && !user) {
+    //   router.replace("/");
+    // }
     if (token !== undefined && user) {
-      dispatch(verifyEmail({ token }));
+      dispatch(verifyEmail({ token, setCount }));
     }
   }, [token]);
+
+  // useEffect(() => {
+  //   const redirect = setInterval(() => {
+  //     if (timer > 2) {
+  //       setTimer(timer - 1);
+  //     }
+  //   }, 1000);
+
+  //   return () => {
+  //     clearInterval(redirect);
+  //   };
+  // }, [count]);
 
   if (verifyEmailLoading) {
     return <PageLoading loading={verifyEmailLoading} />;
