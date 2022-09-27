@@ -22,9 +22,9 @@ const AccountVerify = () => {
       router.replace(user.role == "partner" ? "/listings" : "/your-storage");
       return;
     }
-    if (token !== undefined && !user) {
-      router.replace("/");
-    }
+    // if (token !== undefined && !user) {
+    //   router.replace("/");
+    // }
     if (token !== undefined && user) {
       dispatch(verifyEmail({ token }));
     }

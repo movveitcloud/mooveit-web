@@ -20,7 +20,7 @@ const FormPassword = ({ name, register, errors, errorMessage, label }) => {
           {...register(name, {
             required: true,
             pattern: {
-              //value: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/i,
+              value: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/i,
               message: "Password must contain at least 6 characters, 1 uppercase, 1 lowercase and 1 special character",
             },
           })}
