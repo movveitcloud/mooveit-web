@@ -83,7 +83,9 @@ const Pricing = ({ formDetails, handleChange }) => {
                   £{" "}
                   <input
                     type="text"
-                    defaultValue="100"
+                    name="monthlyRate"
+                    value={formDetails?.monthlyRate}
+                    onChange={handleChange}
                     className="bg-transparent w-[50px] outline-none"
                     disabled={isElastic}
                   />
@@ -93,6 +95,7 @@ const Pricing = ({ formDetails, handleChange }) => {
                 </span>
               </div>
             </div>
+
             <div>
               <h3 className="uppercase text-sm mb-2">Hourly rate</h3>
               <div className="flex gap-2 items-center">
@@ -105,7 +108,9 @@ const Pricing = ({ formDetails, handleChange }) => {
                   £{" "}
                   <input
                     type="text"
-                    defaultValue="100"
+                    name="hourlyRate"
+                    value={formDetails?.hourlyRate}
+                    onChange={handleChange}
                     className="bg-transparent w-[50px] outline-none"
                     disabled={isElastic}
                   />

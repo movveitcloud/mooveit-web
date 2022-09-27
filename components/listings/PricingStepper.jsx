@@ -4,6 +4,8 @@ import Pricing from "./Pricing";
 
 const initialState = {
   priceType: "elastic",
+  monthlyRate: "100",
+  hourlyRate: "2.40",
   consent: false,
 };
 
