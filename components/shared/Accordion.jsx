@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/outline";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
-const Accordion = ({ title, children }) => {
+const Accordion = ({ title, open, children }) => {
   const [active, setActive] = useState(false);
   const arrowIcon = active ? <ChevronUpIcon className="w-4" /> : <ChevronDownIcon className="w-4" />;
+
+  useEffect(() => {
+    if (open) {
+      setActive(true);
+    }
+  }, []);
 
   return (
     <div className="mb-8 bg-white rounded-xl h-full">

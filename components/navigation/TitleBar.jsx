@@ -16,9 +16,9 @@ const TitleBar = ({ pageTitle, pathname, menuOpen, setMenuOpen }) => {
   };
 
   return (
-    <div className="py-5 p-3 lg:px-8 lg:py-5 w-full border-b">
+    <div className="py-5 px-4 lg:px-8 lg:py-5 w-full border-b">
       <div className="flex justify-between items-center gap-4">
-        <div className="flex flex-row flex-grow gap-3 items-center">
+        <div className="hidden sm:flex flex-row flex-grow gap-3 items-center">
           <SearchIcon className="text-primary w-5" />
           <input
             type="text"
@@ -30,7 +30,7 @@ const TitleBar = ({ pageTitle, pathname, menuOpen, setMenuOpen }) => {
           <button className="btn btn-primary px-8 font-normal" onClick={handleClick}>
             {isPartner ? "Create Listing" : "Become a Partner"}
           </button>
-          <div className="flex justify-center items-center border border-accent rounded p-3 cursor-pointer">
+          <div className="justify-center items-center border border-accent rounded p-3 cursor-pointer  hidden sm:flex">
             <BellIcon className="w-6 text-[#222222]" />
           </div>
         </div>

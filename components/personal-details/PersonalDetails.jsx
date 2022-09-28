@@ -21,7 +21,7 @@ const PersonalDetails = ({ formDetails, setFormDetails, handleChange }) => {
   };
 
   return (
-    <Accordion title="personal details">
+    <Accordion title="personal details" open>
       <div className="space-y-6">
         <div className="w-[100px] h-[100px] relative cursor-pointer" onClick={() => profilePic.current.click()}>
           <img
@@ -42,30 +42,30 @@ const PersonalDetails = ({ formDetails, setFormDetails, handleChange }) => {
           </div>
         </div>
 
-        <div className="flex gap-6">
+        <div className="flex gap-3 sm:gap-6">
           <div className="w-full">
             <h3 className="mb-3">First Name</h3>
-            <div className="items-center border border-[#959595] rounded-lg px-4 py-3 w-full">
+            <div className="items-center border border-[#959595] rounded-lg px-3 sm:px-4 py-3 w-full">
               <input
                 type="text"
                 name="firstName"
                 value={formDetails.firstName}
                 onChange={handleChange}
                 placeholder="Enter first name"
-                className="w-full bg-transparent h-full pr-6 outline-none placeholder:text-[#959595]"
+                className="w-full bg-transparent h-full outline-none placeholder:text-[#959595]"
               />
             </div>
           </div>
           <div className="w-full">
             <h3 className="mb-3">Last Name</h3>
-            <div className="items-center border border-[#959595] rounded-lg px-4 py-3">
+            <div className="items-center border border-[#959595] rounded-lg px-3 sm:px-4 py-3">
               <input
                 type="text"
                 name="lastName"
                 value={formDetails.lastName}
                 onChange={handleChange}
                 placeholder="Enter last name"
-                className="w-full bg-transparent h-full pr-6 outline-none placeholder:text-[#959595]"
+                className="w-full bg-transparent h-full outline-none placeholder:text-[#959595]"
               />
             </div>
           </div>
@@ -73,7 +73,7 @@ const PersonalDetails = ({ formDetails, setFormDetails, handleChange }) => {
 
         <div className="w-full">
           <h3 className="mb-3">Email</h3>
-          <div className="items-center border border-[#959595] rounded-lg px-4 py-3 hover:cursor-not-allowed">
+          <div className="items-center border border-[#959595] rounded-lg px-3 sm:px-4 py-3 hover:cursor-not-allowed">
             <input
               type="email"
               name="email"
@@ -81,21 +81,21 @@ const PersonalDetails = ({ formDetails, setFormDetails, handleChange }) => {
               onChange={handleChange}
               disabled
               placeholder="Enter email address"
-              className="w-full bg-transparent h-full pr-6 outline-none placeholder:text-[#959595] cursor-not-allowed disabled:text-[#959595]"
+              className="w-full bg-transparent h-full outline-none placeholder:text-[#959595] cursor-not-allowed disabled:text-[#959595]"
             />
           </div>
         </div>
 
         <div className="w-full">
           <h3 className="mb-3">Phone Number</h3>
-          <div className="items-center border border-[#959595] rounded-lg px-4 py-3">
+          <div className="items-center border border-[#959595] rounded-lg px-3 sm:px-4 py-3">
             <input
               type="text"
               name="phone"
               value={formDetails.phone}
               onChange={handleChange}
               placeholder="Enter phone number"
-              className="w-full bg-transparent h-full pr-6 outline-none placeholder:text-[#959595]"
+              className="w-full bg-transparent h-full outline-none placeholder:text-[#959595]"
             />
           </div>
         </div>

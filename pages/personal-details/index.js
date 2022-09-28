@@ -49,7 +49,7 @@ const PersonalDetailsPage = () => {
   }, []);
 
   return (
-    <DashboardLayout>
+    <DashboardLayout name="Personal Details">
       <div className="w-[95%] sm:w-[90%] md:w-[80%] xl:w-[75%] max-w-[960px] mx-auto text-sm">
         <PersonalDetails formDetails={formDetails} setFormDetails={setFormDetails} handleChange={handleChange} />
         <Security formDetails={formDetails} setFormDetails={setFormDetails} handleChange={handleChange} />

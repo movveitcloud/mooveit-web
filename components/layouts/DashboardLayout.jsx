@@ -65,7 +65,7 @@ const DashboardLayout = ({ children, name, userInfo }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1 }}
-              className="p-3 lg:py-6 lg:px-8">
+              className="px-3 sm:px-8 py-6">
               {hasPermission && children}
             </motion.div>
           </div>
