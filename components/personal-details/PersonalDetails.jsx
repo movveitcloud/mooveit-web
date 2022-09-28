@@ -8,10 +8,10 @@ const PersonalDetails = ({ formDetails, setFormDetails, handleChange }) => {
 
   const handleImageUpload = (e) => {
     const [file] = e.target.files;
-    const maxAllowedSize = 0.2 * 1024 * 1024;
+    const maxAllowedSize = 0.2 * 1024 * 1024; //200KB calculation
 
     if (file) {
-      if (file.size > maxAllowedSize) return errorPopUp({ msg: "image should be less than 200KB" });
+      if (file.size > maxAllowedSize) return errorPopUp({ msg: "image should not be more than 200KB" });
       const reader = new FileReader();
       reader.onload = (e) => {
         setFormDetails({ ...formDetails, profilePicture: e.target.result });
@@ -71,9 +71,9 @@ const PersonalDetails = ({ formDetails, setFormDetails, handleChange }) => {
           </div>
         </div>
 
-        <div className="w-full hover:cursor-not-allowed">
+        <div className="w-full">
           <h3 className="mb-3">Email</h3>
-          <div className="items-center border border-[#959595] rounded-lg px-4 py-3">
+          <div className="items-center border border-[#959595] rounded-lg px-4 py-3 hover:cursor-not-allowed">
             <input
               type="email"
               name="email"
@@ -81,7 +81,7 @@ const PersonalDetails = ({ formDetails, setFormDetails, handleChange }) => {
               onChange={handleChange}
               disabled
               placeholder="Enter email address"
-              className="w-full bg-transparent h-full pr-6 outline-none placeholder:text-[#959595] cursor-not-allowed"
+              className="w-full bg-transparent h-full pr-6 outline-none placeholder:text-[#959595] cursor-not-allowed disabled:text-[#959595]"
             />
           </div>
         </div>

@@ -34,6 +34,7 @@ const PersonalDetailsPage = () => {
   const getData = () => {
     setFormDetails({
       ...formDetails,
+      profilePicture: user.profilePic || "",
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
@@ -49,19 +50,19 @@ const PersonalDetailsPage = () => {
 
   return (
     <DashboardLayout>
-      <div className="w-[70%] mx-auto text-sm">
+      <div className="w-[95%] sm:w-[90%] md:w-[80%] xl:w-[75%] max-w-[960px] mx-auto text-sm">
         <PersonalDetails formDetails={formDetails} setFormDetails={setFormDetails} handleChange={handleChange} />
         <Security formDetails={formDetails} setFormDetails={setFormDetails} handleChange={handleChange} />
         <Communication formDetails={formDetails} setFormDetails={setFormDetails} handleChange={handleChange} />
 
-        <div className="flex justify-end">
+        <div className="flex justify-end my-8">
           <div className="flex gap-4">
             <button
-              className="btn btn-outline btn-primary hover:btn-accent w-[175px] font-normal text-sm"
+              className="btn btn-outline btn-primary hover:btn-accent md:w-[175px] font-normal normal-case"
               onClick={getData}>
               Discard Changes
             </button>
-            <button className="btn btn-primary w-[175px] font-normal text-sm" onClick={handleUpdate}>
+            <button className="btn btn-primary md:w-[175px] font-normal normal-case" onClick={handleUpdate}>
               Save
             </button>
           </div>
