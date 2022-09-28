@@ -3,6 +3,7 @@ import { authenticatedUser } from "../../redux/features/auth.slice";
 import { Communication, DashboardLayout, PersonalDetails, Security } from "../../components";
 
 const initialState = {
+  profilePicture: "",
   firstName: "",
   lastName: "",
   email: "",

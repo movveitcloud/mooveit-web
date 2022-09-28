@@ -1,16 +1,43 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { PencilIcon } from "@heroicons/react/solid";
+import { errorPopUp } from "../../helpers/toastify";
 import Accordion from "../shared/Accordion";
 
-const PersonalDetails = ({ formDetails, handleChange }) => {
-  const uploadImage = () => {};
+const PersonalDetails = ({ formDetails, setFormDetails, handleChange }) => {
+  const profilePic = useRef(null);
+
+  const handleImageUpload = (e) => {
+    const [file] = e.target.files;
+    const maxAllowedSize = 0.2 * 1024 * 1024;
+
+    if (file) {
+      if (file.size > maxAllowedSize) return errorPopUp({ msg: "image should be less than 200KB" });
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setFormDetails({ ...formDetails, profilePicture: e.target.result });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   return (
     <Accordion title="personal details">
       <div className="space-y-6">
-        <div className="w-[100px] h-[100px] relative cursor-pointer" onClick={uploadImage}>
-          <img src="/dummyAvatar.png" alt="avatar" className="object-cover w-full h-full rounded-lg" />
-          <div className="flex items-center justify-center absolute bottom-3 right-0 w-8 h-8 bg-accent rounded-full">
+        <div className="w-[100px] h-[100px] relative cursor-pointer" onClick={() => profilePic.current.click()}>
+          <img
+            src={formDetails.profilePicture || "/dummyAvatar.svg"}
+            alt="avatar"
+            className="object-cover w-full h-full rounded-full"
+          />
+          <input
+            type="file"
+            className="hidden"
+            accept="image/*"
+            multiple={false}
+            ref={profilePic}
+            onChange={handleImageUpload}
+          />
+          <div className="flex items-center justify-center absolute bottom-3 -right-1 w-8 h-8 bg-accent rounded-full">
             <PencilIcon className="w-4 text-primary" />
           </div>
         </div>
