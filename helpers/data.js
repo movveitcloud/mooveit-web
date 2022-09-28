@@ -82,7 +82,7 @@ export const dashboardNavLinks = [
     permission: ["customer", "partner"],
     subMenus: [
       {
-        path: "/profile",
+        path: "/personal-details",
         title: "Personal Details",
         permission: ["customer", "partner"],
       },
