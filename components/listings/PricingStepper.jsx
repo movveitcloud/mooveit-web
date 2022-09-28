@@ -3,7 +3,7 @@ import Link from "next/link";
 import Pricing from "./Pricing";
 
 const initialState = {
-  priceType: "elastic",
+  priceType: "custom",
   monthlyRate: "100",
   hourlyRate: "2.40",
   consent: false,

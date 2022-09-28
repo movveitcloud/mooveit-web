@@ -11,9 +11,9 @@ const Pricing = ({ formDetails, handleChange }) => {
 
   return (
     <Accordion title="Pricing">
-      <div className="flex gap-8">
+      <div className="flex gap-8" data-tip={name}>
         <div
-          className={`p-6 rounded rounded-tr-2xl w-full cursor-pointer border border-primary ${
+          className={`p-6 rounded rounded-tr-2xl w-full border border-[#e2e2e2] ${
             isElastic ? "bg-primary text-white" : "bg-none"
           }`}
           onClick={() => elastic.current.click()}>
@@ -25,7 +25,7 @@ const Pricing = ({ formDetails, handleChange }) => {
               ref={elastic}
               onChange={handleChange}
               value="elastic"
-              defaultChecked
+              disabled
               className={`radio radio-sm ${isCustom && "radio-primary"}`}
             />
           </div>
@@ -58,13 +58,14 @@ const Pricing = ({ formDetails, handleChange }) => {
           }`}
           onClick={() => custom.current.click()}>
           <div className="flex justify-between items-center gap-3">
-            <h2 className="font-semibold text-lg">Custom</h2>
+            <h2 className="font-semibold text-lg">Set Pricing</h2>
             <input
               type="radio"
               name="priceType"
               ref={custom}
               onChange={handleChange}
               value="custom"
+              defaultChecked
               className={`radio radio-sm ${isElastic && "radio-primary"}`}
             />
           </div>
