@@ -23,6 +23,7 @@ export { default as StorageListingCTA } from "./shared/StorageListingCTA";
 export { default as ListingCard } from "./shared/ListingCard";
 export { default as Accordion } from "./shared/Accordion";
 export { default as PageTransition } from "./shared/PageTransition";
+export { default as Switch } from "./shared/Switch";
 
 //MODALS
 export { default as UnavailabilityModal } from "./modals/UnavailabilityModal";
@@ -48,3 +49,8 @@ export { default as Services } from "./listings/Services";
 export { default as Access } from "./listings/Access";
 export { default as BookingDetails } from "./listings/BookingDetails";
 export { default as Calendar } from "./listings/Calendar";
+
+//PERSONAL-DETAILS
+export { default as PersonalDetails } from "./personal-details/PersonalDetails";
+export { default as Security } from "./personal-details/Security";
+export { default as Communication } from "./personal-details/Communication";
