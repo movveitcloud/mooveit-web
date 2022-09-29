@@ -35,8 +35,8 @@ const Dimensions = ({ formDetails, handleChange }) => {
           <h3 className="my-3">How many storage spaces of this size & type do you have?</h3>
           <div className="flex items-center ">
             <span
-              onClick={() => setCount(count === 1 ? 1 : -count)}
-              className="bg-[#D5D5D5] text-white h-3 w-3 text-center rounded-sm justify-center flex items-center cursor-pointer">
+              onClick={() => setCount(count === 1 ? 1 : count - 1)}
+              className="bg-[#D5D5D5] text-white h-5 w-5 text-center rounded-sm justify-center flex items-center cursor-pointer">
               -
             </span>
             <span className="ml-3 items-center border border-[#959595] rounded-[5px] px-4 py-2 flex text-[.8rem] text-[#959595]">
@@ -44,7 +44,7 @@ const Dimensions = ({ formDetails, handleChange }) => {
             </span>
             <span
               onClick={() => setCount(count + 1)}
-              className="bg-primary text-white ml-3 p-[3px] h-3 w-3 text-center rounded-sm justify-center flex items-center cursor-pointer">
+              className="bg-primary text-white ml-3 p-[3px] h-5 w-5 text-center rounded-sm justify-center flex items-center cursor-pointer">
               +
             </span>
           </div>
