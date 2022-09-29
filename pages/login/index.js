@@ -20,7 +20,7 @@ const Login = () => {
     const payload = { ...data };
     dispatch(login({ payload, reset }));
   };
-  console.log(authenticatedUser());
+
   return (
     <AuthLayout title="Log In">
       <div className="text-center">

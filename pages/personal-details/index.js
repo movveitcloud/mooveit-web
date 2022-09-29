@@ -21,7 +21,6 @@ const PersonalDetailsPage = () => {
   const [formDetails, setFormDetails] = useState(initialState);
   const { firstName, lastName, email, phone } = formDetails;
   const user = authenticatedUser();
-  console.log(user);
 
   const handleChange = (e) => {
     const { type, name, value, checked } = e.target;

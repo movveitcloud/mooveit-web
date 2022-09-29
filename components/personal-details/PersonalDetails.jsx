@@ -26,7 +26,7 @@ const PersonalDetails = ({ formDetails, setFormDetails, handleChange }) => {
         <div className="w-[100px] h-[100px] relative cursor-pointer" onClick={() => profilePic.current.click()}>
           <img
             src={formDetails.profilePicture || "/dummyAvatar.svg"}
-            alt="avatar"
+            alt="profile picture"
             className="object-cover w-full h-full rounded-full"
           />
           <input
