@@ -6,7 +6,7 @@ import Description from "./Description";
 
 const SpaceDetailsStepper = () => {
   const [formDetails, setFormDetails] = useState({
-    streetView: "",
+    streetView: false,
     storageSize: "",
     storageFloor: "",
     storageTitle: "",

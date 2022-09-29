@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Accordion from "../shared/Accordion";
 import { useRef } from "react";
+import { UploadIcon } from "@heroicons/react/outline";
 
 const Media = ({ formDetails, handleChange }) => {
   const [file, setFile] = useState(null);
+  const [preview, setPreview] = useState([]);
+  const [, refresh] = useState();
   const fileRef = useRef(null);
 
   const uploadFile = () => {
@@ -11,25 +14,58 @@ const Media = ({ formDetails, handleChange }) => {
     setFile(fileRef.current.files[0]);
   };
 
+  const onSelectFile = (e) => {
+    let arrayofFiles = [];
+    const files = [...e.target.files];
+    files?.forEach((file) => {
+      const newArr = URL.createObjectURL(file);
+      arrayofFiles = [...arrayofFiles, newArr];
+    });
+    setPreview([...preview, ...arrayofFiles]);
+  };
+
+  const removeImageFromArray = {};
+
+  useEffect(() => {
+    refresh();
+  }, [file]);
+
   return (
     <Accordion title="Media">
       <div className="space-y-6">
         <div className="bg-[#EEEEEE] px-5 py-5 text-center">
-          <div className="mx-auto flex justify-center item-center rounded-full mb-[.6rem] w-16 h-16">
-            <img src="/upload.svg" alt="icon" className="w-8 m-auto" />
+          {preview?.length === 0 ? (
+            <>
+              <div className="mx-auto flex justify-center item-center rounded-full mb-[.6rem] w-16 h-16">
+                <UploadIcon className="w-6 text-[#959595]" />
+              </div>
+              <p className="text-center text-sm mx-auto text-[#959595]">Upload pictures/videos of your listing</p>
+            </>
+          ) : (
+            ""
+          )}
+          <div className="flex flex-wrap">
+            {preview?.map((img, index) => (
+              <div key={index} className="w-[32%] h-[200px] mb-3 rounded-sm mr-2">
+                <img src={img} id={index} alt="pic1" className="w-full h-full object-cover rounded-sm" />
+                {/* <button
+                  id={index}
+                  key={index}
+                  onClick={(e) => {
+                    removeImageFromArray(e);
+                  }}>
+                  X
+                </button> */}
+              </div>
+            ))}
           </div>
-          <p className="text-center mx-auto text-[#959595]">
-            Upload pictures/
-            <br />
-            videos of your listing
-          </p>
           <button
             onClick={() => uploadFile()}
             className="border-[#222222] px-[1.5rem] mb-3 py-[.3rem] border text-sm rounded-[5px] text-[#222222] mt-[1rem]">
-            UPLOAD
+            Upload
           </button>
           <div className="text-center hidden">
-            <input type="file" name="space" ref={fileRef} />
+            <input accept="image/*" type="file" multiple name="file" onChange={onSelectFile} ref={fileRef} />
           </div>
         </div>
       </div>
