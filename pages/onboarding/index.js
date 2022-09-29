@@ -16,8 +16,8 @@ const Onboarding = () => {
             <div className="space-y-3">
               {ListingSteps?.map((step, i) => (
                 <div className="flex gap-4 items-center text-[#222222]" key={i}>
-                  <div className="flex justify-center items-center w-8 h-8 rounded-full bg-[#CFE8A9] ">
-                    <p className="text-sm">{i + 1}</p>
+                  <div className="flex justify-center items-center w-8 h-8 rounded-full bg-accent">
+                    <p className="text-sm text-primary">{i + 1}</p>
                   </div>
                   <p className="">{step}</p>
                 </div>

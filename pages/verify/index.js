@@ -22,7 +22,7 @@ const VerifyEmail = () => {
   };
 
   useEffect(() => {
-    if (!user) {
+    if (typeof window !== "undefined" && !user) {
       router.replace("login");
     }
     if (user && user.isVerified) {

@@ -3,9 +3,10 @@ import { useRouter } from "next/router";
 import { dashboardNavLinks } from "../../helpers/data";
 import { motion } from "framer-motion";
 import { authenticatedUser } from "../../redux/features/auth.slice";
-import { DashboardNavbar, Meta, TitleBar } from "../index";
+import { DashboardNavbar, Meta, TitleBar, PageLoading } from "../index";
 
 const DashboardLayout = ({ children, name, userInfo }) => {
+  const [loading, setLoading] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [pageReady, setPageReady] = useState(false);
   const [pageTitle, setPageTitle] = useState("");
@@ -40,7 +41,12 @@ const DashboardLayout = ({ children, name, userInfo }) => {
     }
     getPageTitle();
     setPageReady(true);
+    setLoading(false);
   }, []);
+
+  // if (loading) {
+  //   return <PageLoading loading={loading} />;
+  // }
 
   return (
     <>
@@ -59,7 +65,7 @@ const DashboardLayout = ({ children, name, userInfo }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1 }}
-              className="p-3 lg:py-6 lg:px-8">
+              className="px-3 sm:px-8 py-6">
               {hasPermission && children}
             </motion.div>
           </div>

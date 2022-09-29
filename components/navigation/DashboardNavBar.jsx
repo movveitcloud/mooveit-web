@@ -48,7 +48,7 @@ const DashboardNavbar = ({ pathname }) => {
                 <a
                   key={i}
                   href={path}
-                  className={`flex gap-5 items-center px-7 lg:px-10 py-2 mb-2 w-full hover:text-primary cursor-pointer ${
+                  className={`flex gap-5 items-center px-7 lg:pl-10 lg:pr-5 py-2 mb-2 w-full hover:text-primary cursor-pointer ${
                     pathname?.includes(path) ? "text-primary font-semibold border-r-2 border-primary" : "text-[#959595]"
                   }`}>
                   <p className="w-6">{pathname?.includes(path) ? iconActive : icon}</p>

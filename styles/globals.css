@@ -7,5 +7,6 @@
 body 
   {
     @apply font-manrope;
-    @apply bg-[#f9f9f9]
+    @apply bg-[#f9f9f9];
+    @apply text-[#222222];
   }

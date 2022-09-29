@@ -4,6 +4,7 @@ import { Meta, PageTransition } from "../components";
 import { ToastContainer } from "react-toastify";
 import "../styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
+import "react-calendar/dist/Calendar.css";
 
 function MyApp({ Component, pageProps }) {
   return (
