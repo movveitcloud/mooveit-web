@@ -14,7 +14,7 @@ const Search = () => {
         <SearchBar showMap={showMap} setShowMap={setShowMap} />
         {showMap && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="my-16">
-            <img src="dummyMap.png" alt="map view" className="w-full " />
+            <img src="mapview.png" alt="map view" className="w-full " />
           </motion.div>
         )}
         {!showMap && (
