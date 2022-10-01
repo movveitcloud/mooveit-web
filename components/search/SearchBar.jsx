@@ -20,7 +20,7 @@ const initialState = {
   storageSize: "",
 };
 
-const SearchBar = ({ showMap, setShowMap }) => {
+const SearchBar = ({ showMap, setShowMap, mapContainer, cardContainer }) => {
   const [formDetails, setFormDetails] = useState(initialState);
 
   const handleChange = (e) => {
@@ -32,8 +32,13 @@ const SearchBar = ({ showMap, setShowMap }) => {
     });
   };
 
+  const toggleView = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setShowMap(!showMap);
+  };
+
   return (
-    <div className="text-sm">
+    <div className="sticky top-0 text-sm z-50">
       <div className="bg-primary flex">
         <div className="max-w-[90%] lg:max-w-[85%] mx-auto justify-center p-5">
           <div className="flex items-center gap-2 px-10 py-4  bg-white rounded-lg w-full">
@@ -79,9 +84,7 @@ const SearchBar = ({ showMap, setShowMap }) => {
 
           <div>
             <div className="flex gap-8">
-              <button
-                className="btn btn-primary px-5 font-normal text-sm flex items-center gap-2"
-                onClick={() => setShowMap(!showMap)}>
+              <button className="btn btn-primary px-5 font-normal text-sm flex items-center gap-2" onClick={toggleView}>
                 <MapIcon className="w-4" />
                 {showMap ? "Hide Map" : "Show Map"}
               </button>
