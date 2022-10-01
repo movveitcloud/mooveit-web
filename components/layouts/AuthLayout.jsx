@@ -30,7 +30,7 @@ const AuthLayout = ({ children, title }) => {
               <div className="flex items-center text-black gap-3">
                 <span className="hidden md:flex">Already have an account?</span>
                 <Link href="/login">
-                  <a className="underline underline-offset-2">Login Here</a>
+                  <a className="underline underline-offset-2 hover:text-primary">Login Here</a>
                 </Link>
               </div>
             )}
@@ -38,7 +38,7 @@ const AuthLayout = ({ children, title }) => {
               <div className="flex items-center text-black gap-3">
                 <span className="hidden md:flex">Don't have an account?</span>
                 <Link href="/signup">
-                  <a className="underline underline-offset-2">Sign Up</a>
+                  <a className="underline underline-offset-2 hover:text-primary">Sign Up</a>
                 </Link>
               </div>
             )}
@@ -46,7 +46,7 @@ const AuthLayout = ({ children, title }) => {
               <div className="flex items-center text-black gap-3">
                 <span className="hidden md:flex">Remembered your password?</span>
                 <Link href="/login">
-                  <a className="underline underline-offset-2">Login Here</a>
+                  <a className="underline underline-offset-2 hover:text-primary">Login Here</a>
                 </Link>
               </div>
             )}

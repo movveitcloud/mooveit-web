@@ -36,6 +36,9 @@ export { default as FindStorage } from "./home/FindStorage";
 export { default as FindStorageCard } from "./home/FindStorageCard";
 export { default as HeroSection } from "./home/HeroSection";
 
+//SEARCH
+export { default as SearchBar } from "./search/SearchBar";
+
 //LISTINGS
 export { default as Steppers } from "./listings/Steppers";
 export { default as BasicInformationStepper } from "./listings/BasicInformationStepper";
