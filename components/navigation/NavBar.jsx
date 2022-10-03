@@ -41,10 +41,10 @@ const NavBar = () => {
 
         <div className="hidden lg:flex items-center gap-4">
           <Link href="/signup" className="">
-            <a className="text-primary"> Become a Partner</a>
+            <a className="hover:text-primary"> Become a Partner</a>
           </Link>
-          <Link href="/signin">
-            <a className="btn btn-primary text-sm w-[125px] font-normal">Sign In</a>
+          <Link href="/login">
+            <a className="btn btn-primary text-sm w-[125px] font-normal">Log In</a>
           </Link>
         </div>
 
