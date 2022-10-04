@@ -48,9 +48,9 @@ const HeroSection = () => {
                   className="w-full bg-transparent h-full pr-6 outline-none text-base placeholder:text-[#959595]"
                 />
               </div>
-              <button className="btn btn-primary w-full md:w-[220px] font-normal flex  flex-row gap-2" onClick={handleSearch}>
+              <button className="btn btn-primary w-full md:w-[220px] font-normal flex  flex-nowrap  flex-row gap-2" onClick={handleSearch}>
                 <SearchIcon className="w-5" />
-                <span>Search Listings</span>
+                <span className="leading-5">Search Listings</span>
               </button>
             </div>
 

@@ -40,24 +40,24 @@ const SearchBar = ({ showMap, setShowMap, mapContainer, cardContainer }) => {
   return (
     <div className="sticky top-0 text-sm z-50">
       <div className="bg-primary flex">
-        <div className="md:max-w-[90%] max-w-full lg:max-w-[85%] mx-auto justify-center p-5">
-          <div className="flex items-center gap-2 px-10 py-4  bg-white rounded-lg w-full">
-            <div className="flex items-center gap-3">
+        <div className="md:max-w-[90%] max-w-full lg:max-w-[85%] mx-auto justify-center p-5 ">
+          <div className="flex flex-col md:flex-row items-center gap-2 px-10 py-4  bg-white rounded-lg w-full">
+            <div className="flex  items-center gap-1 md:gap-3">
               <div className="flex items-center gap-1 md:gap-2 border-r">
                 <LocationMarkerIcon className="w-5" />
-                <input type="text" className="bg-transparent  outline-none w-full" placeholder="LONDON, UK" />
+                <input type="text" className="bg-transparent text-[0.6rem] md:text-[0.9em]  outline-none w-full" placeholder="LONDON, UK" />
               </div>
               <div className="flex items-center gap-1 md:gap-2 border-r">
                 <ClockIcon className="w-5" />
-                <input type="text" className="bg-transparent outline-none w-full" placeholder="ANY TIME" />
+                <input type="text" className="bg-transparent text-[0.6rem] md:text-[0.9em] outline-none w-full" placeholder="ANY TIME" />
               </div>
               <div className="flex items-center gap-1 md:gap-2">
                 <UserIcon className="w-5" />
-                <input type="text" className="bg-transparent outline-none w-full" placeholder="ANY PARTNER" />
+                <input type="text" className="bg-transparent outline-none w-full text-[0.6rem] md:text-[0.9em]" placeholder="ANY PARTNER" />
               </div>
             </div>
-            <div className="hidden md:inline">
-            <button className=" btn btn-accent btn-sm px-5 font-normal text-sm h-8 flex items-center gap-2 normal-case">
+            <div className="w-full md:w-auto ">
+            <button className=" btn btn-accent btn-sm px-5 font-normal text-sm w-full md:w-auto h-8 flex flex-nowrap items-center gap-2 normal-case text-[0.7rem] md:text-[0.9em]">
               <SearchIcon className="w-4" /> Search
             </button>
             </div>
@@ -88,14 +88,14 @@ const SearchBar = ({ showMap, setShowMap, mapContainer, cardContainer }) => {
 
           <div className="mx-auto md:m-0">
           
-            <div className="flex   justify-center gap-8">
-              <button className="btn btn-primary px-5 font-normal text-sm flex items-center gap-2" onClick={toggleView}>
-                <MapIcon className="w-4" />
+            <div className="flex   justify-center gap-8 ">
+              <button className="btn btn-primary px-5 font-normal text-sm flex  items-center gap-2 text-[0.8rem] md:text-[1em]" onClick={toggleView}>
+                <MapIcon className="w-4  " />
                 {showMap ? "Hide Map" : "Show Map"}
               </button>
               <label
                 htmlFor="filter"
-                className="btn btn-outline btn-primary hover:btn-accent px-5 font-normal text-sm flex items-center gap-2">
+                className="btn btn-outline btn-primary hover:btn-accent px-5 font-normal text-sm flex items-center gap-2 text-[0.8rem] md:text-[1em]">
                 <FilterIcon className="w-4" />
                 Apply Filters
               </label>
