@@ -1,12 +1,22 @@
-import { LocationMarkerIcon, MapIcon, SearchIcon } from "@heroicons/react/outline";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { LocationMarkerIcon, MapIcon, SearchIcon } from "@heroicons/react/outline";
+import { errorPopUp } from "../../helpers/toastify";
 
 const HeroSection = () => {
+  const [searchTerm, setSearchTerm] = useState("");
   const router = useRouter();
 
-  const handleSearch = () => {
-    router.push("/search");
+  const handleChange = (e) => {
+    // if (e.key === "Enter") {
+    //   console.log("enter pressed");
+    // }
+    setSearchTerm(e.target.value);
+  };
+  const handleSearch = (e) => {
+    if (!searchTerm) return errorPopUp({ msg: "Please enter a location" });
+    router.push({ pathname: "/search", query: { s: searchTerm } });
   };
 
   return (
@@ -32,6 +42,8 @@ const HeroSection = () => {
                 <MapIcon className="text-primary w-6" />
                 <input
                   type="text"
+                  value={searchTerm}
+                  onChange={handleChange}
                   placeholder="Enter postcode or location"
                   className="w-full bg-transparent h-full pr-6 outline-none text-base placeholder:text-[#959595]"
                 />

@@ -1,10 +1,10 @@
 import { toast } from "react-toastify";
 
-export const errorPopUp = ({ msg, callback }) => {
+export const errorPopUp = ({ msg, callback, duration }) => {
   toast.error(msg, {
-    onClose: callback ? callback : "",
+    onClose: callback || "",
     position: "bottom-center",
-    autoClose: 1500,
+    autoClose: duration || 1500,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -13,11 +13,11 @@ export const errorPopUp = ({ msg, callback }) => {
   });
 };
 
-export const successPopUp = ({ msg, callback }) => {
+export const successPopUp = ({ msg, callback, duration }) => {
   toast.success(msg, {
-    onClose: callback ? callback : "",
+    onClose: callback || "",
     position: "bottom-center",
-    autoClose: 1500,
+    autoClose: duration || 1500,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,

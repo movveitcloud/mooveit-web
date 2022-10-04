@@ -11,6 +11,7 @@ export const login = createAsyncThunk("/auth/login", async ({ payload, reset }, 
     const user = JSON.parse(bytes ? bytes.toString(crypto.enc.Utf8) : null);
     successPopUp({
       msg: `Welcome back, ${user.firstName}`,
+      duration: 500,
       callback: () =>
         location.replace(`${user.isVerified ? (user.role == "partner" ? "/listings" : "/your-storage") : "/verify"}`),
     });
@@ -29,6 +30,7 @@ export const signup = createAsyncThunk("/auth/register", async ({ payload, reset
     const user = JSON.parse(bytes ? bytes.toString(crypto.enc.Utf8) : null);
     successPopUp({
       msg: "Registration successful",
+      duration: 500,
       callback: () => location.replace("/verify"),
     });
     reset({ email: "", firstName: "", lastName: "", password: "" });

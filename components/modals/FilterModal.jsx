@@ -29,7 +29,7 @@ const FilterModal = ({ formDetails, handleChange }) => {
                     onChange={handleChange}
                     className="radio radio-primary radio-sm"
                   />
-                  <p className="">Per hour</p>
+                  <p>Per hour</p>
                 </div>
                 <div className="flex gap-2 items-center">
                   <input
@@ -39,7 +39,7 @@ const FilterModal = ({ formDetails, handleChange }) => {
                     onChange={handleChange}
                     className="radio radio-primary radio-sm"
                   />
-                  <p className="">Per month</p>
+                  <p>Per month</p>
                 </div>
               </div>
 
