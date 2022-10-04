@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { XIcon } from "@heroicons/react/outline";
-import Calendar from "react-calendar";
+import ListingInputContext from "../../context/listingInputContext";
 
-const UnavailabilityModal = ({ formDetails, handleChange }) => {
+const UnavailabilityModal = () => {
+  const { formDetails, handleChange } = useContext(ListingInputContext);
+
   return (
     <>
       <input type="checkbox" id="unavailability" className="modal-toggle" />

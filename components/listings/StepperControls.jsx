@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useRouter } from "next/router";
+import ListingInputContext from "../../context/listingInputContext";
 
-const StepperControls = ({ activeStepper, setActveStepper }) => {
+const StepperControls = () => {
+  const { activeStepper, setActiveStepper } = useContext(ListingInputContext);
   const router = useRouter();
 
   const handleSaveExit = () => {
     router.replace("/listings");
   };
   const handleNextBtn = () => {
-    if (activeStepper < 3) setActveStepper(activeStepper + 1);
+    if (activeStepper < 3) setActiveStepper(activeStepper + 1);
   };
 
   return (

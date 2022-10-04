@@ -1,5 +1,5 @@
 import { EyeIcon } from "@heroicons/react/outline";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   AvailabilityStepper,
   BasicInformationStepper,
@@ -9,9 +9,10 @@ import {
   StepperControls,
   Steppers,
 } from "../../components";
+import ListingInputContext from "../../context/listingInputContext";
 
 const NewListing = () => {
-  const [activeStepper, setActiveStepper] = useState(0);
+  const { activeStepper } = useContext(ListingInputContext);
 
   return (
     <NewListingLayout>
@@ -19,7 +20,7 @@ const NewListing = () => {
         <div className="py-5">
           <div className="sticky top-0 bg-[#F9F9F9]">
             <div className="w-[60%] mx-auto">
-              <Steppers activeStepper={activeStepper} setActiveStepper={setActiveStepper} />
+              <Steppers />
             </div>
             <div className="absolute right-10 top-5 border border-primary text-primary text-sm hover:bg-primary hover:text-white p-4 rounded-md cursor-pointer">
               <EyeIcon className="w-4 mx-auto" />
@@ -35,7 +36,7 @@ const NewListing = () => {
               {activeStepper == 3 && <PricingStepper />}
             </div>
             <div className="my-16">
-              <StepperControls activeStepper={activeStepper} setActveStepper={setActiveStepper} />
+              <StepperControls />
             </div>
           </div>
         </div>
