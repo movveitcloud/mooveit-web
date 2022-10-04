@@ -2,14 +2,17 @@ import { MapIcon } from "@heroicons/react/outline";
 import React from "react";
 import Accordion from "../shared/Accordion";
 
-const Address = ({ formDetails, setFormDetails }) => {
+const Address = ({ formDetails, setFormDetails, handleChange }) => {
   return (
     <Accordion title="address">
       <div className="flex flex-row flex-grow gap-4 items-center border border-[#959595] rounded-lg px-4 py-3">
         <MapIcon className="text-[#959595] w-6" />
         <input
           type="text"
+          name="address"
           placeholder="Enter postcode or location"
+          value={formDetails.address}
+          onChange={handleChange}
           className="w-full bg-transparent h-full pr-6 outline-none placeholder:text-[#959595]"
         />
       </div>
