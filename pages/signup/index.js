@@ -24,7 +24,7 @@ const Signup = () => {
   return (
     <AuthLayout title="Sign Up">
       <div className="text-center">
-        <h1 className="font-semibold text-2xl md:text-3xl text-black">Create an account</h1>
+        <h1 className="py-6 font-semibold text-2xl md:text-3xl text-black">Create an account</h1>
         <div className="bg-white rounded-2xl my-10 flex gap-5 items-center justify-center w-fit p-3 mx-auto shadow">
           <span
             className={`${active == "customer" && "bg-primary text-white py-2 px-5 rounded-xl "} cursor-pointer`}
@@ -48,7 +48,7 @@ const Signup = () => {
             errorMessage="Please add an email address"
           />
 
-          <div className="flex flex-col md:flex-row md:gap-5">
+          <div className="flex flex-col xl:flex-row xl:gap-1 ">
             <FormInput
               label="First Name"
               name="firstName"
@@ -67,7 +67,7 @@ const Signup = () => {
             />
           </div>
           <FormPassword register={register} name="password" errors={errors} errorMessage="Please add a password" />
-          <button className={`${signupLoading && "loading"}  btn btn-block btn-primary mt-8`} type="submit">
+          <button className={`${signupLoading && "loading"}  btn btn-block btn-primary mt-8 mb-6`} type="submit">
             {signupLoading ? "" : active == "partner" ? "Become a partner" : "Create account"}
           </button>
         </form>

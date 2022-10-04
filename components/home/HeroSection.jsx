@@ -27,7 +27,7 @@ const HeroSection = () => {
         <div className="p-8 w-[80%] sm:w-[90%] absolute -bottom-[10%]  sm:-bottom-[25%]  mx-auto rounded-2xl bg-white">
           <h2 className="text-[#222222] text-base mb-4">Find a Storage Unit Near You</h2>
           <div className="space-y-5 text-center text-sm text-[#222222]">
-            <div className="p-6 bg-[#DDDDDD66] flex flex-row gap-4 rounded-2xl">
+            <div className="p-6 bg-[#DDDDDD66] flex flex-col md:flex-row gap-4 rounded-2xl">
               <div className="flex flex-row flex-grow gap-4 items-center">
                 <MapIcon className="text-primary w-6" />
                 <input
@@ -36,7 +36,7 @@ const HeroSection = () => {
                   className="w-full bg-transparent h-full pr-6 outline-none text-base placeholder:text-[#959595]"
                 />
               </div>
-              <button className="btn btn-primary w-[220px] font-normal flex flex-row gap-2" onClick={handleSearch}>
+              <button className="btn btn-primary w-full md:w-[220px] font-normal flex  flex-row gap-2" onClick={handleSearch}>
                 <SearchIcon className="w-5" />
                 <span>Search Listings</span>
               </button>
