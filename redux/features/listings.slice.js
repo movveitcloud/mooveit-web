@@ -36,7 +36,6 @@ export const updateListing = createAsyncThunk(
 const listingsSlice = createSlice({
   name: "listing",
   initialState: {
-    formDetails: {},
     loading: false,
     updateLoading: false,
   },

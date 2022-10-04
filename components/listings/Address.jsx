@@ -1,8 +1,12 @@
 import { MapIcon } from "@heroicons/react/outline";
 import React from "react";
+import { useContext } from "react";
+import ListingInputContext from "../../context/listingInputContext";
 import Accordion from "../shared/Accordion";
 
-const Address = ({ formDetails, setFormDetails, handleChange }) => {
+const Address = () => {
+  const { formDetails, handleChange } = useContext(ListingInputContext);
+
   return (
     <Accordion title="address">
       <div className="flex flex-row flex-grow gap-4 items-center border border-[#959595] rounded-lg px-4 py-3">

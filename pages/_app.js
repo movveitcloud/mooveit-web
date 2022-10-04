@@ -5,24 +5,27 @@ import { ToastContainer } from "react-toastify";
 import "../styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import "react-calendar/dist/Calendar.css";
+import { ListingInputContextProvider } from "../context/listingInputContext";
 
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       {/* <PageTransition> */}
-      <ToastContainer
-        theme="colored"
-        position="bottom-center"
-        autoClose={6000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        draggable={false}
-        pauseOnVisibilityChange
-        closeOnClick
-        pauseOnHover
-      />
-      <Meta />
-      <Component {...pageProps} />
+      <ListingInputContextProvider>
+        <ToastContainer
+          theme="colored"
+          position="bottom-center"
+          autoClose={6000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          draggable={false}
+          pauseOnVisibilityChange
+          closeOnClick
+          pauseOnHover
+        />
+        <Meta />
+        <Component {...pageProps} />
+      </ListingInputContextProvider>
       {/* </PageTransition> */}
     </Provider>
   );

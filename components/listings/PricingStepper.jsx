@@ -1,29 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
 import Pricing from "./Pricing";
-
-const initialState = {
-  priceType: "custom",
-  monthlyRate: "100",
-  hourlyRate: "2.40",
-  consent: false,
-};
+import ListingInputContext from "../../context/listingInputContext";
 
 const PricingStepper = () => {
-  const [formDetails, setFormDetails] = useState(initialState);
-
-  const handleChange = (e) => {
-    const { type, name, value, checked } = e.target;
-    const val = type === "checkbox" ? checked : value;
-    setFormDetails({
-      ...formDetails,
-      [name]: val,
-    });
-  };
+  const { formDetails, handleChange } = useContext(ListingInputContext);
 
   return (
     <div className="space-y-6">
-      <Pricing formDetails={formDetails} setFormDetails={setFormDetails} handleChange={handleChange} />
+      <Pricing />
       <div className="flex gap-5 items-center">
         <p className="">
           I agree with MovveIT's{" "}

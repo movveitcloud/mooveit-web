@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useRef } from "react";
 import Select from "react-select";
+import ListingInputContext from "../../context/listingInputContext";
 import { storageFeatures, storageFloors, storageKinds } from "../../helpers/data";
 import Accordion from "../shared/Accordion";
 
-const Type = ({ formDetails, handleChange }) => {
+const Type = () => {
   const [selectedOption, setSelectedOption] = useState(null);
+  const { formDetails, handleChange } = useContext(ListingInputContext);
   const multiRef = useRef(null);
-
-  //console.log(multiRef.current, "refffff");
 
   return (
     <Accordion title="type">

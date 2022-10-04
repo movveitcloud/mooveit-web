@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import ListingInputContext from "../../context/listingInputContext";
 import Accordion from "../shared/Accordion";
 
-const Services = ({ formDetails, handleChange }) => {
+const Services = () => {
+  const { formDetails, handleChange } = useContext(ListingInputContext);
+
   return (
     <Accordion title="services">
       <div className="space-y-5">

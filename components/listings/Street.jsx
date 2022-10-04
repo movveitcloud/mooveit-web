@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import ListingInputContext from "../../context/listingInputContext";
 import Accordion from "../shared/Accordion";
 
-const StreetView = ({ formDetails, handleChange }) => {
-  const [show, setShow] = useState(false);
+const StreetView = () => {
+  const { formDetails, handleChange } = useContext(ListingInputContext);
+
   return (
     <Accordion title="Street View">
       <div className="space-y-5">
@@ -14,7 +16,6 @@ const StreetView = ({ formDetails, handleChange }) => {
 
         <div className="flex gap-5 items-center">
           <p className="font-normal">Enable Street View</p>
-
           <input
             type="checkbox"
             name="streetView"

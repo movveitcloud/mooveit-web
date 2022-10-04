@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { useRef } from "react";
+import React, { useContext } from "react";
+import ListingInputContext from "../../context/listingInputContext";
 import Accordion from "../shared/Accordion";
 
-const Dimensions = ({ formDetails, handleChange }) => {
+const Dimensions = () => {
+  const { formDetails, handleChange } = useContext(ListingInputContext);
+
   return (
     <Accordion title="Description">
       <div className="space-y-6">

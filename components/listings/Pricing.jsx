@@ -1,9 +1,11 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { PlusIcon, MinusIcon } from "@heroicons/react/solid";
 import { formatMoney } from "../../helpers/utils";
 import Accordion from "../shared/Accordion";
+import ListingInputContext from "../../context/listingInputContext";
 
-const Pricing = ({ formDetails, handleChange }) => {
+const Pricing = () => {
+  const { formDetails, handleChange } = useContext(ListingInputContext);
   const elastic = useRef(null);
   const custom = useRef(null);
   const isElastic = formDetails?.priceType == "elastic";
@@ -11,7 +13,7 @@ const Pricing = ({ formDetails, handleChange }) => {
 
   return (
     <Accordion title="Pricing">
-      <div className="flex gap-8" data-tip={name}>
+      <div className="flex gap-8">
         <div
           className={`p-6 rounded rounded-tr-2xl w-full border border-[#e2e2e2] ${
             isElastic ? "bg-primary text-white" : "bg-none"
