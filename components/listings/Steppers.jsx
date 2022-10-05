@@ -1,4 +1,9 @@
-const Steppers = ({ activeStepper, setActiveStepper }) => {
+import { useContext } from "react";
+import ListingInputContext from "../../context/listingInputContext";
+
+const Steppers = () => {
+  const { activeStepper, setActiveStepper } = useContext(ListingInputContext);
+
   const items = ["Basic Information", "Space Details", "Availability", "Pricing"];
 
   return (

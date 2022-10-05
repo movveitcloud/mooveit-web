@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import { useRef } from "react";
+import React, { useContext, useState } from "react";
+import ListingInputContext from "../../context/listingInputContext";
 import { storageSize } from "../../helpers/data";
 import Accordion from "../shared/Accordion";
 
-const Dimensions = ({ formDetails, handleChange }) => {
+const Dimensions = () => {
+  const { formDetails, handleChange } = useContext(ListingInputContext);
   const [count, setCount] = useState(1);
-
-  //console.log(multiRef.current, "refffff");
 
   return (
     <Accordion title="Dimensions">

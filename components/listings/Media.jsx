@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Accordion from "../shared/Accordion";
 import { useRef } from "react";
 import { UploadIcon } from "@heroicons/react/outline";
+import ListingInputContext from "../../context/listingInputContext";
 
-const Media = ({ formDetails, handleChange }) => {
+const Media = () => {
+  const { formDetails, handleChange } = useContext(ListingInputContext);
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState([]);
   const [, refresh] = useState();

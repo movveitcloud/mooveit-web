@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import ListingInputContext from "../../context/listingInputContext";
 import { howAccessListing, whenAccessListing } from "../../helpers/data";
 import Accordion from "../shared/Accordion";
 
-const Access = ({ formDetails, handleChange }) => {
+const Access = () => {
+  const { formDetails, handleChange } = useContext(ListingInputContext);
+
   return (
     <Accordion title="access">
       <div className="space-y-6">

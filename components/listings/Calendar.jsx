@@ -1,9 +1,11 @@
-import { MapIcon } from "@heroicons/react/outline";
-import React from "react";
+import React, { useContext } from "react";
+import ListingInputContext from "../../context/listingInputContext";
 import UnavailabilityModal from "../modals/UnavailabilityModal";
 import Accordion from "../shared/Accordion";
 
-const Calendar = ({ formDetails, setFormDetails, handleChange }) => {
+const Calendar = () => {
+  const { formDetails, setFormDetails, handleChange } = useContext(ListingInputContext);
+
   return (
     <Accordion title="calendar">
       <div className="flex justify-between items-center mb-8">
@@ -15,7 +17,7 @@ const Calendar = ({ formDetails, setFormDetails, handleChange }) => {
         </label>
       </div>
       <div className="w-full h-48 bg-[#eeeeee] rounded"></div>
-      <UnavailabilityModal formDetails={formDetails} setFormDetails={setFormDetails} handleChange={handleChange} />
+      <UnavailabilityModal />
     </Accordion>
   );
 };
