@@ -33,9 +33,9 @@ const Footer = () => {
               </button>
             </div>
 
-            <div className="flex gap-6 items-center">
+            <div className="flex  md:gap-6 items-center">
               {mediaLinks?.map(({ path, title, icon }, i) => (
-                <a key={title} target="_blank" href={path} className="cursor-pointer " rel="noreferrer">
+                <a key={title} target="_blank" href={path} className="cursor-pointer mr-2 md:mr-0 " rel="noreferrer">
                   <img
                     src={icon}
                     alt={`MooveIt ${title}`}
