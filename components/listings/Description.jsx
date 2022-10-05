@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useRef } from "react";
 import Accordion from "../shared/Accordion";
 
 const Dimensions = ({ formDetails, handleChange }) => {

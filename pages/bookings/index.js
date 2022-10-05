@@ -1,8 +1,12 @@
 import React from "react";
-import { DashboardLayout } from "../../components";
+import { DashboardLayout, AllBookings } from "../../components";
 
 const Bookings = () => {
-  return <DashboardLayout>bookings</DashboardLayout>;
+  return (
+    <DashboardLayout>
+      <AllBookings />
+    </DashboardLayout>
+  );
 };
 
 export default Bookings;
