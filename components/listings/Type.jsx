@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useRef } from "react";
 import Select from "react-select";
-import ListingInputContext from "../../context/listingInputContext";
+import { ListingInputContext } from "../../context";
 import { storageFeatures, storageFloors, storageKinds } from "../../helpers/data";
 import Accordion from "../shared/Accordion";
 

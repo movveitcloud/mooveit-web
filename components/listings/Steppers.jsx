@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import ListingInputContext from "../../context/listingInputContext";
+import { ListingInputContext } from "../../context";
 
 const Steppers = () => {
   const { activeStepper, setActiveStepper } = useContext(ListingInputContext);

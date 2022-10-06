@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { useRouter } from "next/router";
-import ListingInputContext from "../../context/listingInputContext";
 import { useDispatch, useSelector } from "react-redux";
 import { createListing, updateListing } from "../../redux/features/listings.slice";
+import { ListingInputContext } from "../../context";
 
 const StepperControls = ({ disabled, payload }) => {
   const { activeStepper, setActiveStepper, formDetails, data } = useContext(ListingInputContext);
