@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Accordion from "../shared/Accordion";
 import { useRef } from "react";
 import { UploadIcon } from "@heroicons/react/outline";
-import ListingInputContext from "../../context/listingInputContext";
+import { ListingInputContext } from "../../context";
 
 const Media = () => {
   const { formDetails, setFormDetails, handleChange } = useContext(ListingInputContext);
@@ -24,7 +24,7 @@ const Media = () => {
       arrayofFiles = [...arrayofFiles, newArr];
     });
     setPreview([...preview, ...arrayofFiles]);
-    setFormDetails({ ...formDetails, media: [...formDetails.media, ...preview] });
+    setFormDetails({ ...formDetails, media: [...preview] });
   };
 
   const removeImageFromArray = {};

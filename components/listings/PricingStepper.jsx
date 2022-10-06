@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import Link from "next/link";
 import Pricing from "./Pricing";
-import ListingInputContext from "../../context/listingInputContext";
 import StepperControls from "./StepperControls";
+import { ListingInputContext } from "../../context";
 
 const PricingStepper = () => {
   const { formDetails, handleChange } = useContext(ListingInputContext);

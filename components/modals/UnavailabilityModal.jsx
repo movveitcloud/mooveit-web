@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { XIcon } from "@heroicons/react/outline";
-import ListingInputContext from "../../context/listingInputContext";
+import { ListingInputContext } from "../../context";
 
 const UnavailabilityModal = () => {
   const { formDetails, handleChange } = useContext(ListingInputContext);
