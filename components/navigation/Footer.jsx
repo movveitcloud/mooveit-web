@@ -10,10 +10,10 @@ const Footer = () => {
       <div className="bg-primary">
         <div className="max-w-[90%] lg:max-w-[85%] mx-auto py-10 lg:py-20 grid grid-cols-1 md:grid-cols-2 lg:flex gap-6 lg:gap-8 justify-between">
           {footerLinks?.map(({ heading, subMenus }, i) => (
-            <div className="w-full flex flex-col" key={heading}>
+            <div className="w-full flex flex-col" key={heading + i}>
               <h3 className="text-base text-white uppercase mb-2">{heading}</h3>
               {subMenus.map(({ path, title }, i) => (
-                <Link href={path} key={title}>
+                <Link href={path} key={title + path}>
                   <a className="mt-4 cursor-pointer text-sm text-white">{title}</a>
                 </Link>
               ))}
@@ -33,9 +33,9 @@ const Footer = () => {
               </button>
             </div>
 
-            <div className="flex gap-6 items-center">
+            <div className="flex  md:gap-6 items-center">
               {mediaLinks?.map(({ path, title, icon }, i) => (
-                <a key={title} target="_blank" href={path} className="cursor-pointer " rel="noreferrer">
+                <a key={title} target="_blank" href={path} className="cursor-pointer mr-2 md:mr-0 " rel="noreferrer">
                   <img
                     src={icon}
                     alt={`MooveIt ${title}`}

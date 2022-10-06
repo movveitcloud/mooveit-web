@@ -1,11 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { Meta, Steppers } from "../index";
+import { Meta } from "../index";
+import { authenticatedUser } from "../../redux/features/auth.slice";
+import { dashboardNavLinks } from "../../helpers/data";
 
 const NewListingLayout = ({ children }) => {
+  const [hasPermission, setHasPermission] = useState(false);
+  const user = authenticatedUser();
   const router = useRouter();
   const pathname = router.pathname;
+
+  const authorizeUser = (role) => {
+    //BOUNCE UNAUTHORIZED USERS
+    const item = dashboardNavLinks?.find((a) => router?.asPath.includes(a.path));
+    if (!item?.permission.includes(role) && pathname !== "/onboarding")
+      return router.replace(`${user.role == "partner" ? "/listings" : "/your-storage"}`);
+    setHasPermission(true);
+  };
+
+  useEffect(() => {
+    if (!user) {
+      router.push("/login");
+    }
+    if (user && !user.isVerified) {
+      router.push("/verify");
+    }
+    if (user && user.isVerified) {
+      authorizeUser(user.role);
+    }
+  }, []);
 
   return (
     <>
@@ -19,7 +43,7 @@ const NewListingLayout = ({ children }) => {
               </a>
             </Link>
             {pathname === "/onboarding" && (
-              <p className="text-[#222222] cursor-pointer" onClick={() => router.replace("/dashboard")}>
+              <p className="text-[#222222] cursor-pointer" onClick={() => router.replace("/listings")}>
                 Skip
               </p>
             )}
@@ -31,7 +55,7 @@ const NewListingLayout = ({ children }) => {
           </nav>
         </div>
 
-        <div className="h-full flex-grow">{children}</div>
+        <div className="h-full flex-grow">{hasPermission && children}</div>
       </div>
     </>
   );

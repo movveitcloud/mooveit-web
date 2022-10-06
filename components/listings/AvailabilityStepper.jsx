@@ -1,7 +1,14 @@
 import React from "react";
+import { Calendar, Access, BookingDetails } from "../index";
 
 const AvailabilityStepper = () => {
-  return <div>AvailabilityStepper</div>;
+  return (
+    <>
+      <Calendar />
+      <Access />
+      <BookingDetails />
+    </>
+  );
 };
 
 export default AvailabilityStepper;

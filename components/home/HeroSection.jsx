@@ -1,7 +1,24 @@
-import { LocationMarkerIcon, MapIcon, SearchIcon } from "@heroicons/react/outline";
+import { useState } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
+import { LocationMarkerIcon, MapIcon, SearchIcon } from "@heroicons/react/outline";
+import { errorPopUp } from "../../helpers/toastify";
 
 const HeroSection = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const router = useRouter();
+
+  const handleChange = (e) => {
+    // if (e.key === "Enter") {
+    //   console.log("enter pressed");
+    // }
+    setSearchTerm(e.target.value);
+  };
+  const handleSearch = (e) => {
+    if (!searchTerm) return errorPopUp({ msg: "Please enter a location" });
+    router.push({ pathname: "/search", query: { s: searchTerm } });
+  };
+
   return (
     <main className="bg-[#f9f9f9] mb-[10%]">
       <div className="flex justify-center h-[600px] rounded-2xl max-w-[90%] lg:max-w-[85%] mx-auto bg-[url('/hero-bg.png')] bg-cover relative">
@@ -17,30 +34,33 @@ const HeroSection = () => {
           </Link>
         </div>
 
-        <div className="p-8 w-[80%] sm:w-[90%] absolute -bottom-[10%]  sm:-bottom-[25%]  mx-auto rounded-2xl bg-white">
+        <div className="p-8 w-[80%] sm:w-[90%] absolute -bottom-[19%]  sm:-bottom-[25%]  mx-auto rounded-2xl bg-white">
           <h2 className="text-[#222222] text-base mb-4">Find a Storage Unit Near You</h2>
           <div className="space-y-5 text-center text-sm text-[#222222]">
-            <div className="p-6 bg-[#DDDDDD66] flex flex-row gap-4 rounded-2xl">
-              <div className="flex flex-row flex-grow gap-4 items-center">
-                <MapIcon className="text-primary w-6" />
+            <div className="p-6 bg-[#DDDDDD66] flex flex-col md:flex-row md:gap-4 rounded-2xl">
+              <div className="flex flex-row flex-grow md:gap-4  items-center mb-2 md:mb-0">
+                <MapIcon className="text-primary w-5 md:w-6 mr-1" />
                 <input
                   type="text"
+                  value={searchTerm}
+                  onChange={handleChange}
                   placeholder="Enter postcode or location"
-                  className="w-full bg-transparent h-full pr-6 outline-none text-base placeholder:text-[#959595]"
+                  
+                  className="w-full bg-transparent h-full pr-6 outline-none text-base placeholder:text-[#959595] placeholder:text-[8px] md:placeholder:text-base"
                 />
               </div>
-              <button className="btn btn-primary w-[220px] font-normal flex flex-row gap-2">
-                <SearchIcon className="w-5" />
-                <span>Search Listings</span>
+              <button className="btn btn-primary w-full md:w-[220px] text-[0.6rem] md:text-[0.9rem] font-normal flex  flex-nowrap  flex-row md:gap-2" onClick={handleSearch}>
+                <SearchIcon className="w-4 md:w-5 mr-1" />
+                <span className="leading-5">Search Listings</span>
               </button>
             </div>
 
             <p className="text-[#959595] text-base">OR</p>
 
-            <button className="w-full p-6 bg-accent flex flex-row  justify-center rounded-2xl">
-              <div className="flex flex-row gap-4 items-center">
-                <LocationMarkerIcon className="text-[#222222] w-6" />
-                <p className="text-[#222222] text-base">Use Live Location</p>
+            <button className="w-full p-6 bg-accent flex flex-row  justify-center rounded-2xl active:scale-[95%] transition-transform ">
+              <div className="flex flex-row  md:gap-4 items-center">
+                <LocationMarkerIcon className="text-primary w-5 md:w-6 mr-1" />
+                <p className="text-primary text-base text-[0.8rem] md:text-base">Use Live Location</p>
               </div>
             </button>
           </div>
