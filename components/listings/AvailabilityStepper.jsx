@@ -1,5 +1,5 @@
 import React from "react";
-import { Calendar, Access, BookingDetails } from "../index";
+import { Calendar, Access, BookingDetails, StepperControls } from "../index";
 
 const AvailabilityStepper = () => {
   return (
@@ -7,6 +7,9 @@ const AvailabilityStepper = () => {
       <Calendar />
       <Access />
       <BookingDetails />
+      <div className="my-16">
+        <StepperControls />
+      </div>
     </>
   );
 };
