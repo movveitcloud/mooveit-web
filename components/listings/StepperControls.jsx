@@ -33,10 +33,10 @@ const StepperControls = ({ disabled, payload }) => {
   };
   const handleNextBtn = () => {
     if (activeStepper === 0) {
-      dispatch(createListing({ payload, activeStepper, setActiveStepper }));
+      // dispatch(createListing({ payload, activeStepper, setActiveStepper }));
     }
     if (activeStepper > 0 && activeStepper < 3) {
-      dispatch(updateListing({ payload, activeStepper, setActiveStepper, id: data._id }));
+      // dispatch(updateListing({ payload, activeStepper, setActiveStepper, id: data._id }));
     }
     if (activeStepper === 3) {
     }
