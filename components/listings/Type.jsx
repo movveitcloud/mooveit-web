@@ -6,8 +6,7 @@ import { storageFeatures, storageFloors, storageKinds } from "../../helpers/data
 import Accordion from "../shared/Accordion";
 
 const Type = () => {
-  const [selectedOption, setSelectedOption] = useState(null);
-  const { formDetails, handleChange } = useContext(ListingInputContext);
+  const { formDetails, setFormDetails, handleChange } = useContext(ListingInputContext);
   const multiRef = useRef(null);
 
   return (
@@ -57,11 +56,11 @@ const Type = () => {
           <h3 className="mb-3">What features does your storage have?</h3>
           {/* <div className="items-center border border-[#959595] rounded-lg px-4 py-3"> */}
           <Select
-            defaultValue={selectedOption}
-            onChange={setSelectedOption}
+            defaultValue={formDetails.storageFeatures}
+            // onChange={(value) => setFormDetails({ ...formDetails, storageFeatures: value.map(({ value }) => value) })}
+            onChange={(value) => setFormDetails({ ...formDetails, storageFeatures: value })}
             options={storageFeatures}
             isMulti
-            // menuPortalTarget={multiRef.current}
             menuPosition="fixed"
             className="text-black"
             placeholder="Select storage features"
