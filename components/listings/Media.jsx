@@ -48,8 +48,8 @@ const Media = () => {
           )}
           <div className="flex flex-wrap">
             {preview?.map((img, index) => (
-              <div key={index} className="w-[32%] h-[200px] mb-3 rounded-sm mr-2">
-                <img src={img} id={index} alt="pic1" className="w-full h-full object-cover rounded-sm" />
+              <div key={index} className="w-[32%] h-[200px] mb-3 rounded mr-2">
+                <img src={img} id={index} alt="pic1" className="w-full h-full object-cover rounded" />
                 {/* <button
                   id={index}
                   key={index}
