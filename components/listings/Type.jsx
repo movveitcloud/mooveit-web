@@ -56,7 +56,7 @@ const Type = () => {
           <h3 className="mb-3">What features does your storage have?</h3>
           {/* <div className="items-center border border-[#959595] rounded-lg px-4 py-3"> */}
           <Select
-            defaultValue={formDetails.storageFeatures}
+            value={formDetails.storageFeatures}
             // onChange={(value) => setFormDetails({ ...formDetails, storageFeatures: value.map(({ value }) => value) })}
             onChange={(value) => setFormDetails({ ...formDetails, storageFeatures: value })}
             options={storageFeatures}
