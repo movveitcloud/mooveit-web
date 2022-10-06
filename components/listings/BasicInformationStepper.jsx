@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import ListingInputContext from "../../context/listingInputContext";
+import { ListingInputContext } from "../../context";
 import { Address, Type, Services, StepperControls } from "../index";
 
 const BasicInformationStepper = () => {

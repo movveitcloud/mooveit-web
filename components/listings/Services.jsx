@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import ListingInputContext from "../../context/listingInputContext";
+import { ListingInputContext } from "../../context";
 import Accordion from "../shared/Accordion";
 
 const Services = () => {

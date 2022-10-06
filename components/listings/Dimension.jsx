@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import ListingInputContext from "../../context/listingInputContext";
+import { ListingInputContext } from "../../context";
 import { storageSize } from "../../helpers/data";
 import Accordion from "../shared/Accordion";
 

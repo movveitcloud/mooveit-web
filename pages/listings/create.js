@@ -9,7 +9,7 @@ import {
   StepperControls,
   Steppers,
 } from "../../components";
-import ListingInputContext from "../../context/listingInputContext";
+import { ListingInputContext } from "../../context";
 
 const NewListing = () => {
   const { activeStepper } = useContext(ListingInputContext);

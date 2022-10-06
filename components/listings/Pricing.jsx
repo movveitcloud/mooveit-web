@@ -2,7 +2,7 @@ import React, { useContext, useRef } from "react";
 import { PlusIcon, MinusIcon } from "@heroicons/react/solid";
 import { formatMoney } from "../../helpers/utils";
 import Accordion from "../shared/Accordion";
-import ListingInputContext from "../../context/listingInputContext";
+import { ListingInputContext } from "../../context";
 
 const Pricing = () => {
   const { formDetails, handleChange } = useContext(ListingInputContext);

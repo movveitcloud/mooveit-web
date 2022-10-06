@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "../styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import "react-calendar/dist/Calendar.css";
-import { ListingInputContextProvider } from "../context/listingInputContext";
+import { ListingInputContextProvider } from "../context/ListingInputContext";
 
 function MyApp({ Component, pageProps }) {
   return (
