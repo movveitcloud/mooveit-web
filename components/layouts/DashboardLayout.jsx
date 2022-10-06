@@ -3,7 +3,9 @@ import { useRouter } from "next/router";
 import { dashboardNavLinks } from "../../helpers/data";
 import { motion } from "framer-motion";
 import { authenticatedUser } from "../../redux/features/auth.slice";
-import { DashboardNavbar, Meta, TitleBar, PageLoading } from "../index";
+import Meta from "../navigation/Meta";
+import DashboardNavbar from "../navigation/DashboardNavbar";
+import TitleBar from "../navigation/TitleBar";
 
 const DashboardLayout = ({ children, name, userInfo }) => {
   const [loading, setLoading] = useState(true);

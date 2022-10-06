@@ -2,10 +2,10 @@ import React from "react";
 import { useRouter } from "next/router";
 import { MenuAlt3Icon } from "@heroicons/react/solid";
 import { motion, AnimatePresence } from "framer-motion";
-import DashboardNavbar from "./DashboardNavbar";
 import { BellIcon, SearchIcon } from "@heroicons/react/outline";
 import { authenticatedUser } from "../../redux/features/auth.slice";
 import { isPartner } from "../../helpers/utils";
+import DashboardNavbar from "./DashboardNavbar";
 
 const TitleBar = ({ pageTitle, pathname, menuOpen, setMenuOpen }) => {
   const router = useRouter();
