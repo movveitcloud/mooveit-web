@@ -29,15 +29,10 @@ const NewListing = () => {
           </div>
 
           <div className="w-[60%] mx-auto">
-            <div>
-              {activeStepper == 0 && <BasicInformationStepper />}
-              {activeStepper == 1 && <SpaceDetailsStepper />}
-              {activeStepper == 2 && <AvailabilityStepper />}
-              {activeStepper == 3 && <PricingStepper />}
-            </div>
-            <div className="my-16">
-              <StepperControls />
-            </div>
+            {activeStepper == 0 && <BasicInformationStepper />}
+            {activeStepper == 1 && <SpaceDetailsStepper />}
+            {activeStepper == 2 && <AvailabilityStepper />}
+            {activeStepper == 3 && <PricingStepper />}
           </div>
         </div>
       </div>

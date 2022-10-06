@@ -5,7 +5,7 @@ import { UploadIcon } from "@heroicons/react/outline";
 import ListingInputContext from "../../context/listingInputContext";
 
 const Media = () => {
-  const { formDetails, handleChange } = useContext(ListingInputContext);
+  const { formDetails, setFormDetails, handleChange } = useContext(ListingInputContext);
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState([]);
   const [, refresh] = useState();
@@ -24,6 +24,7 @@ const Media = () => {
       arrayofFiles = [...arrayofFiles, newArr];
     });
     setPreview([...preview, ...arrayofFiles]);
+    setFormDetails({ ...formDetails, media: [...formDetails.media, ...preview] });
   };
 
   const removeImageFromArray = {};
@@ -35,7 +36,7 @@ const Media = () => {
   return (
     <Accordion title="Media">
       <div className="space-y-6">
-        <div className="bg-[#EEEEEE] px-5 py-5 text-center">
+        <div className="bg-[#EEEEEE] px-5 py-5 text-center rounded-lg">
           {preview?.length === 0 ? (
             <>
               <div className="mx-auto flex justify-center item-center rounded-full mb-[.6rem] w-16 h-16">
