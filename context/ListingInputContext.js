@@ -14,10 +14,10 @@ const initialState = {
   //Space Details Stepper
   streetView: false,
   storageSize: "",
-  storageFloor: "",
+  storageNumber: 1,
+  media: [],
   storageTitle: "",
   description: "",
-  storageFeatures: [],
   calendar: "",
 
   //Availability Stepper

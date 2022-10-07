@@ -1,7 +1,7 @@
 import { MapIcon } from "@heroicons/react/outline";
 import React from "react";
 import { useContext } from "react";
-import ListingInputContext from "../../context/listingInputContext";
+import { ListingInputContext } from "../../context";
 import Accordion from "../shared/Accordion";
 
 const Address = () => {

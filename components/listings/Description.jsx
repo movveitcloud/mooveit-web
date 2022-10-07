@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import ListingInputContext from "../../context/listingInputContext";
+import { ListingInputContext } from "../../context";
 import Accordion from "../shared/Accordion";
 
 const Dimensions = () => {
@@ -14,7 +14,7 @@ const Dimensions = () => {
             <input
               name="storageTitle"
               value={formDetails.storageTitle}
-              className="w-full bg-transparent h-full outline-none cursor-pointer"
+              className="w-full bg-transparent h-full outline-none"
               onChange={handleChange}
               placeholder="Enter Storage Title"
             />
@@ -27,7 +27,7 @@ const Dimensions = () => {
               name="description"
               value={formDetails.description}
               placeholder="Talk about features, restrictions & anything your customers should know."
-              className="w-full bg-transparent h-full outline-none cursor-pointer"
+              className="w-full bg-transparent h-full outline-none"
               onChange={handleChange}
             />
           </div>
