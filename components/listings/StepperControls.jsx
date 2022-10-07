@@ -5,28 +5,10 @@ import { createListing, updateListing } from "../../redux/features/listings.slic
 import { ListingInputContext } from "../../context";
 
 const StepperControls = ({ disabled, payload }) => {
-  const { activeStepper, setActiveStepper, formDetails, data } = useContext(ListingInputContext);
+  const { activeStepper, setActiveStepper, data } = useContext(ListingInputContext);
   const { loading } = useSelector((state) => state.listing);
   const router = useRouter();
   const dispatch = useDispatch();
-
-  const {
-    //Availability Stepper
-    unavailabilityReason,
-    unavailabilityDate,
-    whenAccessListing,
-    howAccessListing,
-    packingPermit,
-    packingInstructions,
-    rentDuration,
-    arrivalNotice,
-
-    //Pricing Stepper
-    priceType,
-    monthlyRate,
-    hourlyRate,
-    consent,
-  } = formDetails;
 
   const handleSaveExit = () => {
     router.replace("/listings");

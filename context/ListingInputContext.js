@@ -21,6 +21,7 @@ const initialState = {
   calendar: "",
 
   //Availability Stepper
+  unavailabilityPeriods: [],
   unavailabilityReason: "",
   unavailabilityDate: "",
   whenAccessListing: "",
@@ -32,8 +33,8 @@ const initialState = {
 
   //Pricing Stepper
   priceType: "custom",
-  monthlyRate: "100",
-  hourlyRate: "2.40",
+  monthlyRate: 100,
+  hourlyRate: 2.4,
   consent: false,
 };
 

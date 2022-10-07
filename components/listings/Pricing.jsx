@@ -5,11 +5,20 @@ import Accordion from "../shared/Accordion";
 import { ListingInputContext } from "../../context";
 
 const Pricing = () => {
-  const { formDetails, handleChange } = useContext(ListingInputContext);
+  const { formDetails, setFormDetails, handleChange } = useContext(ListingInputContext);
   const elastic = useRef(null);
   const custom = useRef(null);
   const isElastic = formDetails?.priceType == "elastic";
   const isCustom = formDetails?.priceType == "custom";
+
+  const updatePrice = (type, data) => {
+    if (type === "increase") {
+      setFormDetails({ ...formDetails, [data]: formDetails[data] + 1 });
+    }
+    if (type === "reduce" && formDetails[data] > 0) {
+      setFormDetails({ ...formDetails, [data]: formDetails[data] - 1 });
+    }
+  };
 
   return (
     <Accordion title="Pricing">
@@ -79,22 +88,26 @@ const Pricing = () => {
               <div className="flex gap-2 items-center">
                 <span
                   className={`p-1 h-fit rounded ${isCustom ? "bg-white" : "bg-[#eeeeee]"}`}
-                  onClick={() => console.log("okkkk")}>
+                  onClick={() => updatePrice("reduce", "monthlyRate")}>
                   <MinusIcon className={` w-2 rounded ${isCustom ? "text-primary" : "text-white"}`} />
                 </span>
                 <span className={`text-sm p-2 rounded ${isCustom ? "bg-[#FFFFFF29]" : "bg-[#eeeeee]"}`}>
                   £{" "}
                   <input
-                    type="text"
+                    type="number"
+                    min={0}
                     name="monthlyRate"
                     value={formDetails?.monthlyRate}
                     onChange={handleChange}
-                    className="bg-transparent w-[50px] outline-none"
+                    className="bg-transparent w-[50px] outline-none appearance-none"
                     disabled={isElastic}
                   />
                 </span>
                 <span className={`p-1 h-fit rounded ${isCustom ? "bg-white" : "bg-[#eeeeee]"}`}>
-                  <PlusIcon className={`w-2 rounded ${isCustom ? "text-primary" : "text-white"}`} />
+                  <PlusIcon
+                    className={`w-2 rounded ${isCustom ? "text-primary" : "text-white"}`}
+                    onClick={() => updatePrice("increase", "monthlyRate")}
+                  />
                 </span>
               </div>
             </div>
@@ -105,12 +118,16 @@ const Pricing = () => {
                 <span
                   className={`p-1 h-fit rounded ${isCustom ? "bg-white" : "bg-[#eeeeee]"}`}
                   onClick={() => console.log("okkkk")}>
-                  <MinusIcon className={` w-2 rounded ${isCustom ? "text-primary" : "text-white"}`} />
+                  <MinusIcon
+                    className={` w-2 rounded ${isCustom ? "text-primary" : "text-white"}`}
+                    onClick={() => updatePrice("reduce", "hourlyRate")}
+                  />
                 </span>
                 <span className={`text-sm p-2 rounded ${isCustom ? "bg-[#FFFFFF29]" : "bg-[#eeeeee]"}`}>
                   £{" "}
                   <input
-                    type="text"
+                    type="number"
+                    min={0}
                     name="hourlyRate"
                     value={formDetails?.hourlyRate}
                     onChange={handleChange}
@@ -119,7 +136,10 @@ const Pricing = () => {
                   />
                 </span>
                 <span className={`p-1 h-fit rounded ${isCustom ? "bg-white" : "bg-[#eeeeee]"}`}>
-                  <PlusIcon className={`w-2 rounded ${isCustom ? "text-primary" : "text-white"}`} />
+                  <PlusIcon
+                    className={`w-2 rounded ${isCustom ? "text-primary" : "text-white"}`}
+                    onClick={() => updatePrice("increase", "hourlyRate")}
+                  />
                 </span>
               </div>
             </div>

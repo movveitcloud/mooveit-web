@@ -6,6 +6,9 @@ import { ListingInputContext } from "../../context";
 
 const PricingStepper = () => {
   const { formDetails, handleChange } = useContext(ListingInputContext);
+  const { monthlyRate, hourlyRate, consent } = formDetails;
+  const disableBtn = (!monthlyRate && !hourlyRate) || !consent;
+  const payload = { monthlyRate, hourlyRate, consent };
 
   return (
     <>
@@ -28,7 +31,7 @@ const PricingStepper = () => {
         </div>
       </div>
       <div className="my-16">
-        <StepperControls />
+        <StepperControls disabled={disableBtn} payload={payload} />
       </div>
     </>
   );
