@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FilterIcon } from "@heroicons/react/outline";
-import { BookingCards } from "../../components";
+import { BookingCards } from "..";
 
 const AllBookings = () => {
   const [activeItem, setActive] = useState(0);

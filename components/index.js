@@ -60,5 +60,5 @@ export { default as Security } from "./personal-details/Security";
 export { default as Communication } from "./personal-details/Communication";
 
 //BOOKINGS
-export { default as AllBookings } from "./PartnerBookings/AllBookings";
-export { default as BookingCards } from "./PartnerBookings/BookingCards";
+export { default as PartnerBookings } from "./bookings/PartnerBookings";
+export { default as BookingCards } from "./bookings/BookingCards";
