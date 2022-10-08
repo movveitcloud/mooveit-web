@@ -1,10 +1,10 @@
 import React from "react";
-import { DashboardLayout, AllBookings } from "../../components";
+import { DashboardLayout, PartnerBookings } from "../../components";
 
 const Bookings = () => {
   return (
     <DashboardLayout>
-      <AllBookings />
+      <PartnerBookings />
     </DashboardLayout>
   );
 };

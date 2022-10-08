@@ -50,7 +50,7 @@ export { default as Services } from "./listings/Services";
 export { default as Access } from "./listings/Access";
 export { default as BookingDetails } from "./listings/BookingDetails";
 export { default as Calendar } from "./listings/Calendar";
-export { default as ListingCards } from "./listings/ListingCards";
+export { default as ListingLocationCard } from "./listings/ListingLocationCards";
 export { default as Tab } from "./listings/Tabs";
 
 //PERSONAL-DETAILS
@@ -59,5 +59,5 @@ export { default as Security } from "./personal-details/Security";
 export { default as Communication } from "./personal-details/Communication";
 
 //BOOKINGS
-export { default as AllBookings } from "./Bookings/AllBookings";
-export { default as BookingCards } from "./Bookings/BookingCards";
+export { default as PartnerBookings } from "./bookings/PartnerBookings";
+export { default as BookingCards } from "./bookings/BookingCards";

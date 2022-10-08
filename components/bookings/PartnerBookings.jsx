@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FilterIcon } from "@heroicons/react/outline";
-import { BookingCards } from "../../components";
+import { BookingCards } from "..";
 
 const AllBookings = () => {
   const [activeItem, setActive] = useState(0);
@@ -14,13 +14,13 @@ const AllBookings = () => {
             <div
               className={`${
                 activeItem === i ? " bg-[#DCDCFF] text-[#4543A5]" : " bg-[#DDDDDD] text-[#959595]"
-              } btn border-0 hover:bg-[#DCDCFF] hover:text-[#4543A5] mt-2`}
+              } btn border-0 hover:bg-[#DCDCFF] hover:text-[#4543A5] mt-2 text-[.5rem] lg:text-[.8rem]`}
               onClick={() => setActive(i)}>
               {item}{" "}
               <span
                 className={`${
                   activeItem === i ? " text-white bg-[#4543A5]" : " bg-[#c1bfbf] text-white"
-                } rounded-md p-1 text-[.7rem] ml-4 `}>
+                } rounded-md p-1 text-[.5rem] lg:text-[.7rem] ml-4 `}>
                 22
               </span>
             </div>
@@ -32,7 +32,8 @@ const AllBookings = () => {
         </div>
       </div>
       {activeItem === 0 && (
-        <div className="flex w-full mt-12 gap-5">
+        <div className="flex w-full mt-12 flex-wrap gap-5">
+          <BookingCards />
           <BookingCards />
           <BookingCards />
           <BookingCards />
