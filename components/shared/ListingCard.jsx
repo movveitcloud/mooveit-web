@@ -6,7 +6,7 @@ import { storageFeats } from "../../helpers/data";
 const ListingCard = () => {
   return (
     <a
-      href="/"
+      href="#"
       className="bg-white w-full sm:w-[375px] rounded-lg p-5 hover:shadow hover:scale-105 transition-transform duration-500">
       <div className="w-full h-[200px]">
         <img
