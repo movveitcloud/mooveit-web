@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createListing, updateListing } from "../../redux/features/listings.slice";
 import { ListingInputContext } from "../../context";
 
-const StepperControls = ({ disabled, payload }) => {
+const StepperControls = ({ disabled, payload, publishModal }) => {
   const { activeStepper, setActiveStepper, data } = useContext(ListingInputContext);
   const { loading } = useSelector((state) => state.listing);
   const router = useRouter();
@@ -21,6 +21,8 @@ const StepperControls = ({ disabled, payload }) => {
       //dispatch(updateListing({ payload, activeStepper, setActiveStepper, id: data._id }));
     }
     if (activeStepper === 3) {
+      //dispatch(updateListing({ payload, activeStepper, setActiveStepper, id: data._id }));
+      publishModal.current.click(); //launch snippet/publish modal
     }
   };
 
