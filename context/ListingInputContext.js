@@ -27,9 +27,9 @@ const initialState = {
   whenAccessListing: "",
   howAccessListing: "",
   packingPermit: true,
-  packingInstructions: "",
-  rentDuration: "",
-  arrivalNotice: "",
+  packingInstruction: "",
+  bookingDuration: "",
+  bookingNotice: "",
 
   //Pricing Stepper
   priceType: "custom",

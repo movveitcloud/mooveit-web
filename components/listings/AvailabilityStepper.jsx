@@ -4,16 +4,16 @@ import { Calendar, Access, BookingDetails, StepperControls } from "../index";
 
 const AvailabilityStepper = () => {
   const { formDetails } = useContext(ListingInputContext);
-  const { whenAccessListing, howAccessListing, packingPermit, packingInstructions, rentDuration, arrivalNotice } =
+  const { whenAccessListing, howAccessListing, packingPermit, packingInstruction, bookingDuration, bookingNotice } =
     formDetails;
-  const disableBtn = !whenAccessListing || !howAccessListing || !rentDuration || !arrivalNotice;
+  const disableBtn = !whenAccessListing || !howAccessListing || !bookingDuration || !bookingNotice;
   const payload = {
     whenAccessListing,
     howAccessListing,
     packingPermit,
-    packingInstructions,
-    rentDuration,
-    arrivalNotice,
+    packingInstruction,
+    bookingDuration,
+    bookingNotice,
   };
 
   return (

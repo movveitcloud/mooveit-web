@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/outline";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
 
 const Accordion = ({ title, open, children }) => {
   const [active, setActive] = useState(false);

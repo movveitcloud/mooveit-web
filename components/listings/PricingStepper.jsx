@@ -3,6 +3,7 @@ import Link from "next/link";
 import Pricing from "./Pricing";
 import StepperControls from "./StepperControls";
 import { ListingInputContext } from "../../context";
+import PreviewModal from "../modals/PreviewModal";
 
 const PricingStepper = () => {
   const { formDetails, handleChange } = useContext(ListingInputContext);
@@ -30,6 +31,7 @@ const PricingStepper = () => {
           />
         </div>
       </div>
+      <PreviewModal />
       <div className="my-16">
         <StepperControls disabled={disableBtn} payload={payload} />
       </div>
