@@ -3,7 +3,7 @@ import { PencilIcon, LocationMarkerIcon } from "@heroicons/react/outline";
 
 const BookingCard = () => {
   return (
-    <div className="p-4 drop-shadow-md bg-white rounded-md w-full md:w-[48%] lg:w-[31%] mb-5">
+    <div className="p-4  hover:shadow hover:scale-105 transition-transform duration-500 bg-white rounded-md w-full md:w-[48%] lg:w-[31%] mb-5">
       <div className="h-[120px] rounnded-md">
         <img src="/listing.png" alt="listing view" className="h-full object-cover w-full rounded-md" />
       </div>

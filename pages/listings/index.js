@@ -1,29 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { DashboardLayout } from "../../components";
 import { authenticatedUser } from "../../redux/features/auth.slice";
 import { ListingLocationCard } from "../../components";
+import { listings } from "../../helpers/data";
 
 const Listings = () => {
+  const [activeItem, setActive] = useState(0);
+  const [selectedItem, setSelectedItem] = useState(0);
+  const items = ["Approved", "Pending", "Draft"];
+
+  const filterItem = () => {
+    const result =
+      activeItem == 0
+        ? listings.filter((listing) => listing?.type == "approved")
+        : activeItem == 1
+        ? listings.filter((listing) => listing?.type == "pending")
+        : activeItem == 2
+        ? listings.filter((listing) => listing?.type == "draft")
+        : listings;
+    setSelectedItem(result);
+  };
+
+  useEffect(() => {
+    filterItem();
+  }, [activeItem]);
+
   return (
     <DashboardLayout>
-      <div className="flex w-full justify-between flex-wrap">
-        <div className=" w-full lg:w-[48.5%] bg-white rounded-md pt-5 ">
-          <div className="flex px-6  mb-4">
-            <h4 className="mr-3 font-semibold"> Published listings</h4>
-            <span className="bg-accent rounded-[50%] text-[.7rem] px-2 py-1">3</span>
+      <div className="flex gap-5 flex-wrap mb-6">
+        {items.map((item, i) => (
+          <div
+            className={`${
+              activeItem === i ? " bg-[#DCDCFF] text-[#4543A5]" : " bg-[#DDDDDD] text-[#959595]"
+            } btn border-0 hover:bg-[#DCDCFF] hover:text-[#4543A5] mt-2 text-[.5rem] lg:text-[.8rem]`}
+            onClick={() => setActive(i)}>
+            {item}{" "}
           </div>
-          <ListingLocationCard />
-          <ListingLocationCard />
-          <ListingLocationCard />
-        </div>
-        <div className=" w-full lg:w-[48.5%] bg-white rounded-sm pt-5 ">
-          <div className="flex px-6  mb-4">
-            <h4 className="mr-3 font-semibold"> Drafts </h4>
-            <span className="bg-accent rounded-[50%] text-[.7rem] px-2 py-1">2</span>
-          </div>
-          <ListingLocationCard />
-          <ListingLocationCard />
-        </div>
+        ))}
+      </div>
+      <div className="flex w-full gap-5 flex-wrap">
+        {selectedItem && selectedItem?.map((item) => <ListingLocationCard data={item} />)}
       </div>
     </DashboardLayout>
   );
