@@ -24,7 +24,6 @@ const Media = () => {
       arrayofFiles = [...arrayofFiles, newArr];
     });
     setPreview([...preview, ...arrayofFiles]);
-    setFormDetails({ ...formDetails, media: [...preview] });
   };
 
   const removeImageFromArray = {};
