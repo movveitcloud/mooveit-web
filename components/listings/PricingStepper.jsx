@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import Link from "next/link";
 import Pricing from "./Pricing";
 import StepperControls from "./StepperControls";
@@ -8,6 +8,8 @@ import PreviewModal from "../modals/PreviewModal";
 const PricingStepper = () => {
   const { formDetails, handleChange } = useContext(ListingInputContext);
   const { monthlyRate, hourlyRate, consent } = formDetails;
+  const publishModal = useRef(null);
+
   const disableBtn = (!monthlyRate && !hourlyRate) || !consent;
   const payload = { monthlyRate, hourlyRate, consent };
 
@@ -31,9 +33,10 @@ const PricingStepper = () => {
           />
         </div>
       </div>
+      <label htmlFor="preview" className="hidden" ref={publishModal} />
       <PreviewModal />
       <div className="my-16">
-        <StepperControls disabled={disableBtn} payload={payload} />
+        <StepperControls disabled={disableBtn} payload={payload} publishModal={publishModal} />
       </div>
     </>
   );
