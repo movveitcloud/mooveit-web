@@ -62,3 +62,7 @@ export { default as Communication } from "./personal-details/Communication";
 //BOOKINGS
 export { default as PartnerBookings } from "./bookings/PartnerBookings";
 export { default as BookingCards } from "./bookings/BookingCards";
+
+//BOOK_LISTING
+export { default as BookNow } from "./book-listing/BookNow";
+export { default as MessagePartner } from "./book-listing/MessagePartner";
