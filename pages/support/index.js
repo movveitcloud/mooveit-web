@@ -1,8 +1,12 @@
 import React from "react";
-import { PageLayout } from "../../components";
+import { Landing, PageLayout,Location } from "../../components";
+
 
 const Support = () => {
-  return <PageLayout>Support</PageLayout>;
+  return <PageLayout>Support
+    <Landing/>
+    <Location/>
+  </PageLayout>;
 };
 
 export default Support;
