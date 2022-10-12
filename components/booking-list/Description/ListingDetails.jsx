@@ -1,11 +1,7 @@
 import React from 'react'
-import { useRouter } from "next/router";
-import Tabs from './Tabs';
 
 const ListingDetails = () => {
-    const router = useRouter();
-  const path = router.query.tab
-  console.log(path)
+    
   const contentArray=[
     {headingLeft:"Storage Type",contentLeft:"Warehouse",headingRight:"Storage Size",contentRight:"Warehouse"},
     {headingLeft:"Price",contentLeft:"$720/month | $4.20/month",headingRight:"Price",contentRight:"$720/month | $4.20/month"},
@@ -16,9 +12,6 @@ const ListingDetails = () => {
     
     <div className='m-0'>
        
-       
-       
-
         {contentArray.map(({headingLeft,contentLeft,headingRight,contentRight},i)=>{
             return(
                 <div className='flex justify-start gap-10 mb-8' key={i}>

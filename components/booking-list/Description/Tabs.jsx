@@ -20,7 +20,7 @@ const Tabs = () => {
       <div className="flex gap-5 w-full  ">
         {menuItems.map(({ name, link }, i) => (
           <Link
-            href={{ pathname:"/bookings", query: name !== "Listing Details" && { tab: link } }}
+            href={{ pathname:"/support", query: name !== "Listing Details" && { tab: link } }}
             key={i}>
                 <div>
             <a

@@ -1,5 +1,5 @@
 import React from 'react'
-import { LocationMarkerIcon, MapIcon, SearchIcon } from "@heroicons/react/outline";
+import { LocationMarkerIcon, MapIcon } from "@heroicons/react/outline";
 import GoogleMap from './GoogleMap';
 
 const Location = () => {
@@ -33,8 +33,8 @@ const Location = () => {
               <h3 className='text-[14px] mt-6 mb-4 font-bold'>
                     Nearest Landmarks
                 </h3>
-                {Landmarks.map((landmark)=>
-                <div className='flex mb-4'>
+                {Landmarks.map((landmark,i)=>
+                <div className='flex mb-4' key={i}>
                    <LocationMarkerIcon className="text-primary w-5 md:w-6 mr-1 " />
                    <p className='text-[12px] text-[#959595]'>{landmark}</p>
                   
