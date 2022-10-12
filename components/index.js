@@ -66,4 +66,5 @@ export { default as BookingCards } from "./bookings/BookingCards";
 export { default as ListingDetails} from "./booking-list/Description/ListingDetails"
 export { default as Landing} from "./booking-list/Description/Landing"
 export { default as Location} from "./booking-list/Location/Location"
+export { default as SimilarListings} from "./booking-list/SimilarListings"
 

@@ -11,8 +11,8 @@ const Tabs = () => {
   const menuItems = [
     { name: "Listing Details", link: undefined },
     { name: "Dimensions", link: "dimensions" },
-    { name: "Review", link: "review" },
     { name: "Street View", link: "streetview" },
+    { name: "Review", link: "review" }
   ];
 
   return (

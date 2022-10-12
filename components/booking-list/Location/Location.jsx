@@ -8,10 +8,10 @@ const Location = () => {
   ]
   return (
     <div className='bg-white w-full p-6'>
-        <h2 className='text-md'>Location</h2>
+        <h2 className='text-md font-bold'>Location</h2>
         <div className='md:flex justify-between align-top  gap-5 mt-6'>
-            <div className='bg-[#EEEEEE] md:w-1/3 p-6 '>
-                <h3 className='text-[14px]'>
+            <div className='bg-[#EEEEEE] md:w-1/3 p-6  rounded-md'>
+                <h3 className='text-[14px] font-bold'>
                     Need Directions?
                 </h3>
                 <div className="flex flex-row flex-grow md:gap-4 bg-[#E7E7E7] items-center mb-2 md:mb-0 p-4 mt-4 mb-4 rounded-md">
@@ -30,7 +30,7 @@ const Location = () => {
               
               </div>
 
-              <h3 className='text-[14px] mt-6 mb-4'>
+              <h3 className='text-[14px] mt-6 mb-4 font-bold'>
                     Nearest Landmarks
                 </h3>
                 {Landmarks.map((landmark)=>
@@ -40,7 +40,7 @@ const Location = () => {
                   
                 </div>)}
                  </div>
-            <div className='mt-5 md:w-2/3 md:mt-0  '>
+            <div className='mt-5 md:w-2/3 md:mt-0 rounded-md  '>
              
               <GoogleMap/>
             </div>
