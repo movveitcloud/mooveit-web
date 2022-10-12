@@ -9,11 +9,12 @@ import ListingDetails from './ListingDetails';
 const Landing = () => {
     const router = useRouter();
   const path = router.query.tab
-  console.log(path)
+  
   return (
     
     <div className='bg-white p-6 w-full'>
         <Tabs/>
+       
         {path === "listingdetails" || (path == undefined && <ListingDetails />)}
         {path === "dimensions" && <Dimensions />}
         {path === "review" && <Review />}
