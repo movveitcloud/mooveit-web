@@ -31,8 +31,6 @@ const UnavailabilityModal = () => {
     setPeriod(initialState);
   };
 
-  console.log(formDetails.unavailabilityPeriods, "periods");
-
   return (
     <>
       <input type="checkbox" id="unavailability" className="modal-toggle" />
