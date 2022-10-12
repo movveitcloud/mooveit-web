@@ -20,8 +20,8 @@ const Calendar = () => {
       <div className="w-full rounded">
         {/* modify this in place of calendar for now */}
         {formDetails?.unavailabilityPeriods?.map(
-          ({ unavailabilityReason, unavailabilityPeriodStart, unavailabilityPeriodEnd }) => (
-            <p>
+          ({ unavailabilityReason, unavailabilityPeriodStart, unavailabilityPeriodEnd }, i) => (
+            <p key={i}>
               {unavailabilityPeriodStart} - {unavailabilityPeriodEnd}
             </p>
           )
