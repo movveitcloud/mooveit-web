@@ -23,8 +23,8 @@ const Dimensions = () => {
           <h3 className="mb-3">How large is your storage?</h3>
           <div className="items-center border border-[#959595] rounded-lg px-4 py-3 mb-5">
             <select
-              name="storageType"
-              value={formDetails.storageType}
+              name="storageSize"
+              value={formDetails.storageSize}
               className="w-full bg-transparent h-full outline-none cursor-pointer"
               onChange={handleChange}>
               <option value="" disabled>

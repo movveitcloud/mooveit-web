@@ -21,19 +21,20 @@ const initialState = {
   calendar: "",
 
   //Availability Stepper
+  unavailabilityPeriods: [],
   unavailabilityReason: "",
   unavailabilityDate: "",
   whenAccessListing: "",
   howAccessListing: "",
   packingPermit: true,
-  packingInstructions: "",
-  rentDuration: "",
-  arrivalNotice: "",
+  packingInstruction: "",
+  bookingDuration: "",
+  bookingNotice: "",
 
   //Pricing Stepper
   priceType: "custom",
-  monthlyRate: "100",
-  hourlyRate: "2.40",
+  monthlyRate: 100,
+  hourlyRate: 2.4,
   consent: false,
 };
 

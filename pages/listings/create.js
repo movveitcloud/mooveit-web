@@ -9,6 +9,7 @@ import {
   StepperControls,
   Steppers,
 } from "../../components";
+import PreviewModal from "../../components/modals/PreviewModal";
 import { ListingInputContext } from "../../context";
 
 const NewListing = () => {
@@ -22,10 +23,15 @@ const NewListing = () => {
             <div className="w-[60%] mx-auto">
               <Steppers />
             </div>
-            <div className="absolute right-10 top-5 border border-primary text-primary text-sm hover:bg-primary hover:text-white p-4 rounded-md cursor-pointer">
-              <EyeIcon className="w-4 mx-auto" />
-              <p>Preview</p>
-            </div>
+            {activeStepper == 3 && (
+              <label
+                htmlFor="preview"
+                className="absolute right-10 top-5 border border-primary text-primary text-sm hover:bg-primary hover:text-white p-4 rounded-md cursor-pointer">
+                <EyeIcon className="w-4 mx-auto" />
+                <p>Preview</p>
+              </label>
+            )}
+            {/* <PreviewModal /> */}
           </div>
 
           <div className="w-[60%] mx-auto">

@@ -1,9 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { XIcon } from "@heroicons/react/outline";
 import { ListingInputContext } from "../../context";
 
+const initialState = { unavailabilityReason: "", unavailabilityPeriodStart: "", unavailabilityPeriodEnd: "" };
+
 const UnavailabilityModal = () => {
-  const { formDetails, handleChange } = useContext(ListingInputContext);
+  const [value, onChange] = useState([new Date(), new Date()]);
+  const [period, setPeriod] = useState(initialState);
+  // const { unavailabilityReason, unavailabilityPeriodStart, unavailabilityPeriodEnd } = period;
+  const { formDetails, setFormDetails } = useContext(ListingInputContext);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setPeriod({ ...period, [name]: value });
+  };
+
+  const addPeriod = () => {
+    const newPeriod = period;
+    setFormDetails({ ...formDetails, unavailabilityPeriods: [...formDetails.unavailabilityPeriods, newPeriod] });
+    setPeriod(initialState);
+  };
 
   return (
     <>
@@ -13,9 +29,7 @@ const UnavailabilityModal = () => {
           <h2 className="font-semibold uppercase text-lg text-primary">Add an Unavailability Period</h2>{" "}
           <label
             htmlFor="unavailability"
-            className="btn btn-sm btn-circle bg-accent text-primary hover:text-white border-accent hover:bg-primary hover:border-none absolute right-6 top-6"
-            // onClick={closeModal}
-          >
+            className="btn btn-sm btn-circle bg-accent text-primary hover:text-white border-accent hover:bg-primary hover:border-none absolute right-6 top-6">
             <XIcon className="w-4" />
           </label>
           <div className="mt-8 mb-10 space-y-5">
@@ -25,7 +39,7 @@ const UnavailabilityModal = () => {
                 <input
                   type="text"
                   name="unavailabilityReason"
-                  value={formDetails.unavailabilityReason}
+                  value={period.unavailabilityReason}
                   onChange={handleChange}
                   placeholder="Holiday, using space e.t.c"
                   className="w-full bg-transparent h-full pr-6 outline-none placeholder:text-[#959595]"
@@ -51,7 +65,9 @@ const UnavailabilityModal = () => {
               </p>
             </div>
           </div>
-          <button className="btn btn-primary w-full font-normal">Save</button>
+          <button className="btn btn-primary w-full font-normal" onClick={addPeriod}>
+            Save
+          </button>
         </label>
       </label>
     </>
