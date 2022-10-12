@@ -26,9 +26,9 @@ const Tabs = () => {
             <a
               className={`${
                 path == link
-                  ? "text-primary text-[14px]   border-x-0 border-t-0 rounded-none p-0  "
+                  ? "text-primary text-md  border-x-0 border-t-0 rounded-none p-0  "
                   : " text-[#959595]"
-              }  text-[14px]  cursor-pointer    `}>
+              }  text-md  cursor-pointer    `}>
               {name}
             </a>
             <div className={`${path == link ? "w-[4rem] mt-2 mb-8 h-[2px] bg-primary rounded-md" : ""}`} />
