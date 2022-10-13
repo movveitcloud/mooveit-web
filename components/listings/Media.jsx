@@ -24,15 +24,13 @@ const Media = () => {
       arrayofFiles = [...arrayofFiles, newArr];
     });
     setPreview([...preview, ...arrayofFiles]);
+    setFormDetails({ ...formDetails, media: preview });
   };
-
-  const removeImageFromArray = {};
 
   useEffect(() => {
     refresh();
   }, [file]);
 
-  console.log(preview);
   return (
     <Accordion title="Media">
       <div className="space-y-6">
