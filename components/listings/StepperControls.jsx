@@ -18,7 +18,7 @@ const StepperControls = ({ disabled, payload, publishModal }) => {
       // dispatch(createListing({ payload, activeStepper, setActiveStepper }));
     }
     if (activeStepper > 0 && activeStepper < 3) {
-      //dispatch(updateListing({ payload, activeStepper, setActiveStepper, id: data._id }));
+      // dispatch(updateListing({ payload, activeStepper, setActiveStepper, id: data._id }));
     }
     if (activeStepper === 3) {
       //dispatch(updateListing({ payload, activeStepper, setActiveStepper, id: data._id }));

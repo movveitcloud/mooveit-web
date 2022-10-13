@@ -12,6 +12,7 @@ const AllBookings = () => {
         <div className="flex gap-5 flex-wrap">
           {items.map((item, i) => (
             <div
+              key={i}
               className={`${
                 activeItem === i ? " bg-[#DCDCFF] text-[#4543A5]" : " bg-[#DDDDDD] text-[#959595]"
               } btn border-0 hover:bg-[#DCDCFF] hover:text-[#4543A5] mt-2 text-[.5rem] lg:text-[.8rem]`}
