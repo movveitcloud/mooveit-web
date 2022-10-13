@@ -9,7 +9,7 @@ const Tabs = ({ activeTab, setActiveTab }) => {
     <nav className="flex justify-between  w-full mb-0 ">
       <div className="flex gap-5 w-full  ">
         {menuItems.map((item, i) => (
-          <div>
+          <div key={i}>
             <a
               className={`${
                 activeTab === i ? "text-primary text-md border-x-0 border-t-0 rounded-none p-0 " : "text-[#959595]"
