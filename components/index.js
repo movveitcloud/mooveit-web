@@ -68,3 +68,6 @@ export { default as Landing} from "./booking-list/Description/Landing"
 export { default as Location} from "./booking-list/Location/Location"
 export { default as SimilarListings} from "./booking-list/SimilarListings"
 
+//BOOK_LISTING
+export { default as BookNow } from "./book-listing/BookNow";
+export { default as MessagePartner } from "./book-listing/MessagePartner";

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useRouter } from "next/router";
 import Tabs from './Tabs';
 import Dimensions from './Dimensions';
@@ -7,18 +7,17 @@ import StreetView from './StreetView';
 import ListingDetails from './ListingDetails';
 
 const Landing = () => {
-    const router = useRouter();
-  const path = router.query.tab
+const [activeTab, setActiveTab] = useState(0)
   
   return (
     
     <div className='bg-white p-6 w-full'>
-        <Tabs/>
+        <Tabs activeTab={activeTab} setActiveTab={setActiveTab}/>
        
-        {path === "listingdetails" || (path == undefined && <ListingDetails />)}
-        {path === "dimensions" && <Dimensions />}
-        {path === "review" && <Review />}
-        {path === "streetview" && <StreetView />}
+        {activeTab === 0 && <ListingDetails />}
+        {activeTab === 1 && <Dimensions />}
+        {activeTab === 2 && <Review />}
+        {activeTab === 3 && <StreetView />}
 
         </div>
   )
