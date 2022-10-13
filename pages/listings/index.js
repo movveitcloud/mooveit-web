@@ -45,7 +45,7 @@ const Listings = () => {
         ))}
       </div>
       <div className="flex w-full gap-5 flex-wrap">
-        {selectedItem && selectedItem?.map((item) => <ListingLocationCard data={item} key={item + i} />)}
+        {selectedItem && selectedItem?.map((item, i) => <ListingLocationCard data={item} key={item + i} />)}
       </div>
     </DashboardLayout>
   );
