@@ -17,7 +17,7 @@ const BookNow = () => {
   return (
     <BookContainer>
       <div className="space-y-5 md:space-y-6">
-        <h2 className="font-semibold capitalize text-base">Book Now</h2>
+        <h2 className="font-semibold capitalize">Book Now</h2>
         <div className="flex space-x-4">
           <button
             className={`py-2 px-6 rounded-lg text-xs md:text-sm uppercase transition-all duration-300 border ${

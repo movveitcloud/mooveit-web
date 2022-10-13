@@ -63,11 +63,12 @@ export { default as PartnerBookings } from "./bookings/PartnerBookings";
 export { default as BookingCards } from "./bookings/BookingCards";
 
 //BOOKING-LIST
-export { default as ListingDetails} from "./booking-list/Description/ListingDetails"
-export { default as Landing} from "./booking-list/Description/Landing"
-export { default as Location} from "./booking-list/Location/Location"
-export { default as SimilarListings} from "./booking-list/SimilarListings"
 
 //BOOK_LISTING
+export { default as BookListingMainCard } from "./book-listing/BookListingMainCard";
 export { default as BookNow } from "./book-listing/BookNow";
 export { default as MessagePartner } from "./book-listing/MessagePartner";
+export { default as ListingDetails } from "./book-listing/Description/ListingDetails";
+export { default as BookingDescription } from "./book-listing/Description/BookingDescription";
+export { default as Location } from "./book-listing/Location/Location";
+export { default as SimilarListings } from "./book-listing/SimilarListings";
