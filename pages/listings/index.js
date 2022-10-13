@@ -24,7 +24,6 @@ const Listings = () => {
   useEffect(() => {
     filterItem();
   }, [activeItem]);
-
   return (
     <DashboardLayout>
       <div className="flex gap-5 flex-wrap mb-6">
@@ -35,6 +34,12 @@ const Listings = () => {
             } btn border-0 hover:bg-[#DCDCFF] hover:text-[#4543A5] mt-2 text-[.5rem] lg:text-[.8rem]`}
             onClick={() => setActive(i)}>
             {item}{" "}
+            <span
+              className={`${
+                activeItem === i ? " text-white bg-[#4543A5]" : " bg-[#c1bfbf] text-white"
+              } rounded-md p-1 text-[.5rem] lg:text-[.7rem] ml-4 `}>
+              {selectedItem?.length}
+            </span>
           </div>
         ))}
       </div>
