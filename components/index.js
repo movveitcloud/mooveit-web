@@ -1,7 +1,6 @@
 //NAVIGATION
 export { default as NavBar } from "./navigation/NavBar";
 export { default as MobileNavbar } from "./navigation/MobileNavbar";
-export { default as TitleBar } from "./navigation/TitleBar";
 export { default as Meta } from "./navigation/Meta";
 export { default as Footer } from "./navigation/Footer";
 export { default as DashboardNavAccordion } from "./navigation/DashboardNavAccordion";
@@ -63,6 +62,13 @@ export { default as Communication } from "./personal-details/Communication";
 export { default as PartnerBookings } from "./bookings/PartnerBookings";
 export { default as BookingCards } from "./bookings/BookingCards";
 
+//BOOKING-LIST
+
 //BOOK_LISTING
+export { default as BookListingMainCard } from "./book-listing/BookListingMainCard";
 export { default as BookNow } from "./book-listing/BookNow";
 export { default as MessagePartner } from "./book-listing/MessagePartner";
+export { default as ListingDetails } from "./book-listing/Description/ListingDetails";
+export { default as BookingDescription } from "./book-listing/Description/BookingDescription";
+export { default as Location } from "./book-listing/Location/Location";
+export { default as SimilarListings } from "./book-listing/SimilarListings";

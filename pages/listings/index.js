@@ -29,11 +29,12 @@ const Listings = () => {
       <div className="flex gap-5 flex-wrap mb-6">
         {items.map((item, i) => (
           <div
+            key={i}
             className={`${
               activeItem === i ? " bg-[#DCDCFF] text-[#4543A5]" : " bg-[#DDDDDD] text-[#959595]"
             } btn border-0 hover:bg-[#DCDCFF] hover:text-[#4543A5] mt-2 text-[.5rem] lg:text-[.8rem]`}
             onClick={() => setActive(i)}>
-            {item}{" "}
+            {item}
             <span
               className={`${
                 activeItem === i ? " text-white bg-[#4543A5]" : " bg-[#c1bfbf] text-white"
@@ -44,7 +45,7 @@ const Listings = () => {
         ))}
       </div>
       <div className="flex w-full gap-5 flex-wrap">
-        {selectedItem && selectedItem?.map((item) => <ListingLocationCard data={item} />)}
+        {selectedItem && selectedItem?.map((item, i) => <ListingLocationCard data={item} key={item + i} />)}
       </div>
     </DashboardLayout>
   );

@@ -5,9 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { BellIcon, SearchIcon } from "@heroicons/react/outline";
 import { authenticatedUser } from "../../redux/features/auth.slice";
 import { isPartner } from "../../helpers/utils";
-import DashboardNavbar from "./DashboardNavbar";
+import DashboardNavigation from "./DashboardNavigation";
 
-const TitleBar = ({ pageTitle, pathname, menuOpen, setMenuOpen }) => {
+const TitleBarNav = ({ pageTitle, pathname, menuOpen, setMenuOpen }) => {
   const router = useRouter();
   const user = authenticatedUser();
 
@@ -49,7 +49,7 @@ const TitleBar = ({ pageTitle, pathname, menuOpen, setMenuOpen }) => {
               exit={{ x: -100 }}
               className="fixed top-0 left-0 bg-white h-screen"
               onClick={(e) => e.stopPropagation()}>
-              <DashboardNavbar pathname={pathname} />
+              <DashboardNavigation pathname={pathname} />
             </motion.div>
           </AnimatePresence>
         </div>
@@ -60,4 +60,4 @@ const TitleBar = ({ pageTitle, pathname, menuOpen, setMenuOpen }) => {
   );
 };
 
-export default TitleBar;
+export default TitleBarNav;

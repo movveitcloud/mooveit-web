@@ -6,7 +6,7 @@ import { authenticatedUser, logout } from "../../redux/features/auth.slice";
 import { dashboardNavLinks } from "../../helpers/data";
 import DashboardNavAccordion from "./DashboardNavAccordion";
 
-const DashboardNavbar = ({ pathname }) => {
+const DashboardNavigation = ({ pathname }) => {
   const [userData, setUserData] = useState(null);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
@@ -89,4 +89,4 @@ const DashboardNavbar = ({ pathname }) => {
   );
 };
 
-export default DashboardNavbar;
+export default DashboardNavigation;

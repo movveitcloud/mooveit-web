@@ -4,8 +4,8 @@ import { dashboardNavLinks } from "../../helpers/data";
 import { motion } from "framer-motion";
 import { authenticatedUser } from "../../redux/features/auth.slice";
 import Meta from "../navigation/Meta";
-import DashboardNavbar from "../navigation/DashboardNavbar";
-import TitleBar from "../navigation/TitleBar";
+import DashboardNavigation from "../navigation/DashboardNavigation";
+import TitleBarNav from "../navigation/TitleBarNav";
 
 const DashboardLayout = ({ children, name, userInfo }) => {
   const [loading, setLoading] = useState(true);
@@ -56,12 +56,17 @@ const DashboardLayout = ({ children, name, userInfo }) => {
       {pageReady && (
         <div className="h-screen flex justify-content items-center text-black">
           <aside className="hidden bg-white h-screen w-3/12 overflow-y-auto lg:block border-r">
-            <DashboardNavbar pathname={router.asPath} />
+            <DashboardNavigation pathname={router.asPath} />
           </aside>
 
           <div className="h-screen w-full mx-auto bg-[#fafafa] overflow-y-auto overflow-x-hidden">
             <div className="sticky top-0 z-[20] bg-white">
-              <TitleBar menuOpen={menuOpen} setMenuOpen={setMenuOpen} pageTitle={pageTitle} pathname={router?.asPath} />
+              <TitleBarNav
+                menuOpen={menuOpen}
+                setMenuOpen={setMenuOpen}
+                pageTitle={pageTitle}
+                pathname={router?.asPath}
+              />
             </div>
             <motion.div
               initial={{ opacity: 0 }}

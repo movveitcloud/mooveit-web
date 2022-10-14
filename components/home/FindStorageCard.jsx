@@ -8,7 +8,7 @@ const FindStorageCard = () => {
         <div className="md:w-[100px] w-full object-contain bg-[url(/side.png)] h-[200px] md:h-[100px] rounded-sm"></div>
         <div className="md:w-[60%] bg-white flex rounded-sm">
           <div className="my-auto ml-5 py-6">
-            <h5 className="text-[#222222] font-light mb-2">London</h5>
+            <h5 className="text-[#222222] font-light mb-2">Manchester</h5>
             <p className=" text-primary font-extralight text-[.7rem]">32 listings</p>
           </div>
         </div>
