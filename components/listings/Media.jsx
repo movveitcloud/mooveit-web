@@ -35,7 +35,7 @@ const Media = () => {
     <Accordion title="Media">
       <div className="space-y-6">
         <div className="bg-[#EEEEEE] px-5 py-5 text-center rounded-lg">
-          {preview?.length === 0 ? (
+          {formDetails?.media?.length === 0 ? (
             <>
               <div className="mx-auto flex justify-center item-center rounded-full mb-[.6rem] w-16 h-16">
                 <UploadIcon className="w-6 text-[#959595]" />
@@ -46,7 +46,7 @@ const Media = () => {
             ""
           )}
           <div className="flex flex-wrap">
-            {preview?.map((img, index) => (
+            {formDetails?.media?.map((img, index) => (
               <div key={index} className="w-[32%] h-[200px] mb-3 rounded mr-2">
                 <img src={img} id={index} alt="pic1" className="w-full h-full object-cover rounded" />
                 {/* <button
