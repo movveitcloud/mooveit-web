@@ -15,8 +15,8 @@ const Location = () => {
             <MapIcon className="text-primary w-5 md:w-6 mr-1" />
             <input
               type="text"
-              value={""}
-              onChange={""}
+              // value={""}
+              // onChange={""}
               placeholder="Enter postcode or location"
               className="w-full text-[#959595] bg-transparent h-full  pr-6 outline-none text-base placeholder:text-[#959595] placeholder:text-[10px] md:placeholder:text-[14px]"
             />
