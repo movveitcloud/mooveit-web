@@ -86,15 +86,20 @@ export const dashboardNavLinks = [
         title: "Personal Details",
         permission: ["customer", "partner"],
       },
+      // {
+      //   path: "/reviews",
+      //   title: "Reviews",
+      //   permission: ["customer", "partner"],
+      // },
+      // {
+      //   path: "/professional-partner",
+      //   title: "Professional Partner",
+      //   permission: ["customer", "partner"],
+      // },
       {
-        path: "/reviews",
-        title: "Reviews",
-        permission: ["customer", "partner"],
-      },
-      {
-        path: "/professional-partner",
-        title: "Professional Partner",
-        permission: ["customer", "partner"],
+        path: "/account-verification",
+        title: "Account Verification",
+        permission: ["partner"],
       },
     ],
   },

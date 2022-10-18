@@ -52,12 +52,52 @@ export const saveExit = createAsyncThunk(
   }
 );
 
+export const getListings = createAsyncThunk("/listing", async ({}, { rejectWithValue }) => {
+  try {
+    const response = await api.getListings();
+    return response.data;
+  } catch (err) {
+    errorPopUp({ msg: err.response.data.error });
+    return rejectWithValue(err.response.data);
+  }
+});
+
+export const getSingleListing = createAsyncThunk("/listing/listingId", async ({ id }, { rejectWithValue }) => {
+  try {
+    const response = await api.getSingleListing(id);
+    return response.data;
+  } catch (err) {
+    errorPopUp({ msg: err.response.data.error });
+    return rejectWithValue(err.response.data);
+  }
+});
+
+export const deleteListing = createAsyncThunk(
+  "/listing/deleteListing",
+  async ({ id, refreshListings, closeModal }, { rejectWithValue }) => {
+    try {
+      const response = await api.deleteListing(id);
+      closeModal.current.click();
+      refreshListings();
+      return response.data;
+    } catch (err) {
+      errorPopUp({ msg: err.response.data.error });
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 const listingsSlice = createSlice({
   name: "listing",
   initialState: {
     data: null,
+    listings: [],
+    singleListing: {},
     loading: false,
     exitLoading: false,
+    listingLoading: false,
+    singleListingLoading: false,
+    deleteLoading: false,
   },
 
   reducers: {},
@@ -90,10 +130,42 @@ const listingsSlice = createSlice({
     },
     [saveExit.fulfilled]: (state, action) => {
       state.exitLoading = false;
-      state.data = action.payload.data;
+      state.data = null;
     },
     [saveExit.rejected]: (state, action) => {
       state.exitLoading = false;
+    },
+
+    [getListings.pending]: (state) => {
+      state.listingLoading = true;
+    },
+    [getListings.fulfilled]: (state, action) => {
+      state.listingLoading = false;
+      state.listings = action.payload.data;
+    },
+    [getListings.rejected]: (state, action) => {
+      state.listingLoading = false;
+    },
+
+    [getSingleListing.pending]: (state) => {
+      state.singleListingLoading = true;
+    },
+    [getSingleListing.fulfilled]: (state, action) => {
+      state.singleListingLoading = false;
+      state.singleListing = action.payload.data;
+    },
+    [getSingleListing.rejected]: (state, action) => {
+      state.singleListingLoading = false;
+    },
+
+    [deleteListing.pending]: (state) => {
+      state.deleteLoading = true;
+    },
+    [deleteListing.fulfilled]: (state, action) => {
+      state.deleteLoading = false;
+    },
+    [deleteListing.rejected]: (state, action) => {
+      state.deleteLoading = false;
     },
   },
 });
