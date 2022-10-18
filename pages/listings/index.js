@@ -1,29 +1,36 @@
 import React, { useState, useEffect } from "react";
-import { DashboardLayout } from "../../components";
-import { authenticatedUser } from "../../redux/features/auth.slice";
-import { ListingLocationCard } from "../../components";
-import { listings } from "../../helpers/data";
+import { useDispatch, useSelector } from "react-redux";
+import { getListings } from "../../redux/features/listings.slice";
+import Skeleton from "react-loading-skeleton";
+import { DashboardLayout, ListingLocationCard } from "../../components";
 
 const Listings = () => {
+  const { listings, listingLoading } = useSelector((state) => state.listing);
+  const dispatch = useDispatch();
+  const [filteredArray, setFilteredArray] = useState([]);
   const [activeItem, setActive] = useState(0);
-  const [selectedItem, setSelectedItem] = useState(0);
-  const items = ["Approved", "Pending", "Draft"];
+  const items = ["Published", "Pending", "Draft"];
 
   const filterItem = () => {
     const result =
       activeItem == 0
-        ? listings.filter((listing) => listing?.type == "approved")
+        ? listings?.filter((listing) => listing?.status == "approved")
         : activeItem == 1
-        ? listings.filter((listing) => listing?.type == "pending")
+        ? listings.filter((listing) => listing?.status == "pending" && listing.completed)
         : activeItem == 2
-        ? listings.filter((listing) => listing?.type == "draft")
-        : listings;
-    setSelectedItem(result);
+        ? listings.filter((listing) => listing?.status == "pending" && !listing.completed)
+        : [];
+    setFilteredArray(result);
   };
 
   useEffect(() => {
     filterItem();
-  }, [activeItem]);
+  }, [activeItem, listings]);
+
+  useEffect(() => {
+    dispatch(getListings());
+  }, []);
+
   return (
     <DashboardLayout>
       <div className="flex gap-5 flex-wrap mb-6">
@@ -38,15 +45,35 @@ const Listings = () => {
             <span
               className={`${
                 activeItem === i ? " text-white bg-[#4543A5]" : " bg-[#c1bfbf] text-white"
-              } rounded-md p-1 text-[.5rem] lg:text-[.7rem] ml-4 `}>
-              {selectedItem?.length}
+              } rounded-full py-1 px-2 text-[.5rem] lg:text-[.7rem] ml-4 `}>
+              {i == 0
+                ? listings?.filter((listing) => listing?.status == "approved").length
+                : i == 1
+                ? listings.filter((listing) => listing?.status == "pending" && listing.completed).length
+                : listings.filter((listing) => listing?.status == "pending" && !listing.completed).length}
             </span>
           </div>
         ))}
       </div>
-      <div className="flex w-full gap-5 flex-wrap">
-        {selectedItem && selectedItem?.map((item, i) => <ListingLocationCard data={item} key={item + i} />)}
-      </div>
+
+      {listingLoading ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div>
+            <Skeleton height={225} />
+            <Skeleton height={25} />
+          </div>
+          <div>
+            <Skeleton height={225} />
+            <Skeleton height={25} />
+          </div>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {[...filteredArray]?.reverse()?.map((item, i) => (
+            <ListingLocationCard data={item} key={item + i} />
+          ))}
+        </div>
+      )}
     </DashboardLayout>
   );
 };
