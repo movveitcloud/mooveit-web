@@ -8,8 +8,6 @@ import DeleteListingModal from "../modals/DeleteListingModal";
 const ListingLocationCard = ({ data }) => {
   const router = useRouter();
 
-  console.log(data._id, "item id");
-
   return (
     <AnimatePresence key={data?._id} exitBeforeEnter initial={true}>
       <motion.div
@@ -32,7 +30,7 @@ const ListingLocationCard = ({ data }) => {
               onClick={() => router.push(`/listings/edit/${data._id}`)}>
               <PencilAltIcon className="w-5 tooltip tooltip-primary" />
             </span>
-            <label htmlFor={data._id} className="tooltip tooltip-primary cursor-pointer" data-tip="Delete">
+            <label htmlFor={data._id} className="tooltip tooltip-error text-white cursor-pointer" data-tip="Delete">
               <TrashIcon className="w-5 text-red-500 tooltip tooltip-info" />
             </label>
             {/* <p className="text-sm">Edit</p> */}

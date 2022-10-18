@@ -15,8 +15,6 @@ const DeleteListingModal = ({ id }) => {
     dispatch(deleteListing({ id, refreshListings, closeModal }));
   };
 
-  console.log(id, "modal id");
-
   return (
     <>
       <input type="checkbox" id={id} className="modal-toggle" />
@@ -29,10 +27,12 @@ const DeleteListingModal = ({ id }) => {
 
             <div className="flex justify-center text-sm">
               <div className="flex gap-4">
-                <label className="btn btn-accent w-[100px] modal-button" htmlFor={id}>
+                <label className="btn btn-primary w-[100px] modal-button" htmlFor={id}>
                   No
                 </label>
-                <p className={`${deleteLoading && "loading"} btn btn-primary w-[100px]`} onClick={handleDelete}>
+                <p
+                  className={`${deleteLoading && "loading"} btn btn-error hover:bg-[#ef4444da] w-[100px]`}
+                  onClick={handleDelete}>
                   {deleteLoading ? "" : "Yes"}
                 </p>
               </div>
