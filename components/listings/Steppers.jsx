@@ -13,10 +13,7 @@ const Steppers = () => {
           <li
             key={i}
             data-content={i < activeStepper ? "✓" : i + 1}
-            className={`${
-              i <= activeStepper ? "step-accent text-primary" : "step-info text-[#959595]"
-            } step cursor-pointer`}
-            onClick={() => setActiveStepper(i)}>
+            className={`${i <= activeStepper ? "step-accent text-primary" : "step-info text-[#959595]"} step`}>
             {item}
           </li>
         );

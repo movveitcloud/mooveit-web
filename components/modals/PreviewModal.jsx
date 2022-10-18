@@ -1,11 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { XIcon } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import { ListingInputContext } from "../../context";
 import ListingCard from "../shared/ListingCard";
 
 const PreviewModal = () => {
-  const [success, setSuccess] = useState(false);
+  const { setFormDetails, initialState, setActiveStepper } = useContext(ListingInputContext);
+  const { data } = useSelector((state) => state.listing);
+  const [success, setSuccess] = useState(true);
   const router = useRouter();
+
+  const handleProceed = () => {
+    router.push("/listings");
+    setFormDetails(initialState);
+    setActiveStepper(0);
+  };
 
   return (
     <>
@@ -20,9 +30,17 @@ const PreviewModal = () => {
               </div>
               <h2 className="text-2xl md:text-3xl text-black font-semibold">Your listing is almost live!</h2>
               <p className="text-[#959595] mt-1">Please wait up to 24 hours for your details to be verified.</p>
-              <button className="btn btn-primary btn-wide w-6xl mt-5" onClick={() => router.push("/listings")}>
-                proceed to dashboard
-              </button>
+              <div className="w-[256px] mt-5 space-y-2">
+                <a
+                  href={`/book/${data._id}`}
+                  target="_blank"
+                  className="btn btn-outline btn-primary hover:btn-accent w-full">
+                  preview
+                </a>
+                <button className="btn btn-primary w-full" onClick={handleProceed}>
+                  proceed to dashboard
+                </button>
+              </div>
             </div>
           ) : (
             <>

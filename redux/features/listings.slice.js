@@ -19,13 +19,31 @@ export const createListing = createAsyncThunk(
 
 export const updateListing = createAsyncThunk(
   "/listings/:id",
-  async ({ payload, id, setActiveStepper, activeStepper }, { rejectWithValue }) => {
+  async ({ payload, id, setActiveStepper, activeStepper, publishModal }, { rejectWithValue }) => {
     try {
-      const response = await api.createListing(payload);
+      const response = await api.updateListing({ payload, id });
       if (activeStepper < 3) {
         setActiveStepper(activeStepper + 1);
       } else {
+        publishModal.current.click(); //launch snippet/publish modal
       }
+      console.log(response.data);
+      return response.data;
+    } catch (err) {
+      errorPopUp({ msg: err.response.data.error });
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const saveExit = createAsyncThunk(
+  "/listings/id",
+  async ({ payload, id, router, setFormDetails, initialState, setActiveStepper }, { rejectWithValue }) => {
+    try {
+      const response = await api.updateListing({ payload, id });
+      router.push("/listings");
+      setActiveStepper(0);
+      setFormDetails(initialState);
       return response.data;
     } catch (err) {
       errorPopUp({ msg: err.response.data.error });
@@ -39,7 +57,7 @@ const listingsSlice = createSlice({
   initialState: {
     data: null,
     loading: false,
-    updateLoading: false,
+    exitLoading: false,
   },
 
   reducers: {},
@@ -50,20 +68,32 @@ const listingsSlice = createSlice({
     },
     [createListing.fulfilled]: (state, action) => {
       state.loading = false;
-      state.data = action.payload;
+      state.data = action.payload.data;
     },
     [createListing.rejected]: (state, action) => {
       state.loading = false;
     },
 
     [updateListing.pending]: (state) => {
-      state.updateLoading = true;
+      state.loading = true;
     },
     [updateListing.fulfilled]: (state, action) => {
-      state.updateLoading = false;
+      state.loading = false;
+      state.data = action.payload.data;
     },
     [updateListing.rejected]: (state, action) => {
-      state.updateLoading = false;
+      state.loading = false;
+    },
+
+    [saveExit.pending]: (state) => {
+      state.exitLoading = true;
+    },
+    [saveExit.fulfilled]: (state, action) => {
+      state.exitLoading = false;
+      state.data = action.payload.data;
+    },
+    [saveExit.rejected]: (state, action) => {
+      state.exitLoading = false;
     },
   },
 });

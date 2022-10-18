@@ -6,7 +6,7 @@ import BookContainer from "./BookContainer";
 const BookNow = () => {
   const today = new Date();
   const min = format(new Date(), "yyyy-MM-dd hh:mm");
-  const initialState = { type: "hourly", startDate: today, endDate: "" };
+  const initialState = { type: "hourly", startDate: today, endDate: today };
   const [bookingDetails, setbookingDetails] = useState(initialState);
   const { type, startDate, endDate } = bookingDetails;
   const bookingStartDate = useRef();
@@ -16,6 +16,11 @@ const BookNow = () => {
     const { name, value } = e.target;
     setbookingDetails({ ...bookingDetails, [name]: value });
   };
+
+  // const totalHours = (date1, date2) => {
+  //   let diff = date2.getTime() - date1.getTime();
+  //   return diff;
+  // };
 
   return (
     <BookContainer>
