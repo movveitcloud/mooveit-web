@@ -34,6 +34,7 @@ const PreviewModal = () => {
                 <a
                   href={`/book/${data._id}`}
                   target="_blank"
+                  rel="noreferrer"
                   className="btn btn-outline btn-primary hover:btn-accent w-full">
                   preview
                 </a>
