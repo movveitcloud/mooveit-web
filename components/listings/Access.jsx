@@ -14,8 +14,8 @@ const Access = () => {
           <h3 className="mb-3">When can your customers access your listing??</h3>
           <div className="items-center border border-[#959595] rounded-lg px-4 py-3">
             <select
-              name="whenAccessListing"
-              value={formDetails.whenAccessListing}
+              name="storageAccessPeriod"
+              value={formDetails.storageAccessPeriod}
               className="w-full bg-transparent h-full outline-none cursor-pointer"
               onChange={handleChange}>
               <option value="" disabled>
@@ -34,8 +34,8 @@ const Access = () => {
           <h3 className="mb-3">How can customers access your listing?</h3>
           <div className="items-center border border-[#959595] rounded-lg px-4 py-3">
             <select
-              name="howAccessListing"
-              value={formDetails.howAccessListing}
+              name="storageAccessType"
+              value={formDetails.storageAccessType}
               className="w-full bg-transparent h-full outline-none cursor-pointer"
               onChange={handleChange}>
               <option value="" disabled>
@@ -51,15 +51,16 @@ const Access = () => {
         </div>
 
         <div className="flex gap-5 items-center">
-          <p className="font-semibold">Packing Permit Required</p>
-          <Switch name="packingPermit" handleChange={handleChange} formDetails={formDetails} />
+          <p className="font-semibold">Parking Permit Required</p>
+          <Switch name="parkingPermit" handleChange={handleChange} formDetails={formDetails} />
         </div>
 
         <div>
           <h3 className="mb-3">Parking Instructions</h3>
           <div className="items-center border border-[#959595] rounded-lg px-4 py-3">
             <textarea
-              name="packingInstruction"
+              name="parkingInstruction"
+              value={formDetails.parkingInstruction}
               onChange={handleChange}
               placeholder="Include any details your customer has to know about parking here"
               className="w-full outline-none rounded"

@@ -24,7 +24,7 @@ const Media = () => {
       arrayofFiles = [...arrayofFiles, newArr];
     });
     setPreview([...preview, ...arrayofFiles]);
-    setFormDetails({ ...formDetails, media: preview });
+    setFormDetails({ ...formDetails, image: preview });
   };
 
   const removeItem = (e) => {
@@ -32,7 +32,7 @@ const Media = () => {
     let newPreview = [...preview];
     newPreview.splice(index, 1);
     setPreview([...newPreview]);
-    setFormDetails({ ...formDetails, media: preview });
+    setFormDetails({ ...formDetails, image: preview });
   };
 
   useEffect(() => {
@@ -54,7 +54,7 @@ const Media = () => {
             ""
           )}
           <div className="flex flex-wrap">
-            {formDetails.media?.map((img, index) => (
+            {formDetails.image?.map((img, index) => (
               <div key={index} className="w-full md:w-[32%] h-[200px] mb-[2.5rem] rounded-md mr-2">
                 <img src={img} id={index} alt="pic1" className="w-full h-full mb-2 object-cover rounded" />
                 <button

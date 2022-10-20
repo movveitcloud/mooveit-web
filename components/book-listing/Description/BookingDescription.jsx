@@ -17,7 +17,7 @@ const BookingDescription = () => {
       {activeTab === 0 && <ListingDetails />}
       {activeTab === 1 && <Dimensions />}
       {activeTab === 2 && <Review />}
-      {activeTab === 3 && <StreetView />}
+      {/* {activeTab === 3 && <StreetView />} */}
     </BookContainer>
   );
 };

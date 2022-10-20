@@ -19,10 +19,12 @@ export const createListing = createAsyncThunk(
 
 export const updateListing = createAsyncThunk(
   "/listings/:id",
-  async ({ payload, id, setActiveStepper, activeStepper, publishModal }, { rejectWithValue }) => {
+  async ({ payload, id, setActiveStepper, activeStepper, publishModal, edit }, { rejectWithValue }) => {
     try {
       const response = await api.updateListing({ payload, id });
-      if (activeStepper < 3) {
+      if (edit) {
+        successPopUp({ msg: "Listing was succesfully updated" });
+      } else if (activeStepper < 3) {
         setActiveStepper(activeStepper + 1);
       } else {
         publishModal.current.click(); //launch snippet/publish modal

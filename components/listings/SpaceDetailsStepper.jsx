@@ -8,15 +8,15 @@ import { ListingInputContext } from "../../context";
 
 const SpaceDetailsStepper = () => {
   const { formDetails } = useContext(ListingInputContext);
-  const { storageSize, streetView, storageTitle, description, media } = formDetails;
+  const { storageSize, streetView, storageTitle, description, image } = formDetails;
   const disableBtn = !storageSize || !storageTitle || !description;
-  //  || media.length == 0;
-  const payload = { streetView, storageSize, image: media, storageTitle, description };
+  //  || image.length == 0;
+  const payload = { streetView, storageSize, image, storageTitle, description };
 
   return (
     <>
       <Dimensions />
-      <StreetView />
+      {/* <StreetView /> */}
       <Media />
       <Description />
       <div className="my-16">
