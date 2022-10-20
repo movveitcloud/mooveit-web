@@ -30,9 +30,9 @@ const MessagePartner = () => {
           </div>
         </div>
 
-        <button className="btn btn-primary btn-outline w-full flex gap-2 text-sm normal-case">
+        {/* <button className="btn btn-primary btn-outline w-full flex gap-2 text-sm normal-case">
           <ChatAltIcon className="w-4" /> Message Partner
-        </button>
+        </button> */}
       </div>
     </BookContainer>
   );
