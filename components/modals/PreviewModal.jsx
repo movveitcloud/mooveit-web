@@ -32,8 +32,9 @@ const PreviewModal = () => {
               <p className="text-[#959595] mt-1">Please wait up to 24 hours for your details to be verified.</p>
               <div className="w-[256px] mt-5 space-y-2">
                 <a
-                  href={`/book/${data._id}`}
+                  href={`/book/${data?._id}`}
                   target="_blank"
+                  rel="noreferrer"
                   className="btn btn-outline btn-primary hover:btn-accent w-full">
                   preview
                 </a>

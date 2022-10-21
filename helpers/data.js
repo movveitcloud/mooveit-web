@@ -250,10 +250,3 @@ export const storageSize = [
     value: "150 sq ft - One and Half garages or 2 Luton Van Loads",
   },
 ];
-
-export const listings = [
-  { name: "Blocks D4-D6, Crowley lane", type: "draft" },
-  { name: "Blocks D1, Canada lane", type: "approved" },
-  { name: "Blocks D4-D6, Crowley lane", type: "approved" },
-  { name: "Blocks D4-D6, Cresent lane", type: "pending" },
-];

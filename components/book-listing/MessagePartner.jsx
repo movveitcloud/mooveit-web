@@ -1,9 +1,11 @@
 import { CalendarIcon, ChatAltIcon } from "@heroicons/react/outline";
 import { BadgeCheckIcon } from "@heroicons/react/solid";
 import React from "react";
+import { useSelector } from "react-redux";
 import BookContainer from "./BookContainer";
 
 const MessagePartner = () => {
+  const { userListing, userListingLoading } = useSelector((state) => state.listing);
   return (
     <BookContainer>
       <div className="space-y-5 md:space-y-6">
@@ -14,7 +16,7 @@ const MessagePartner = () => {
           </span>
           <div className="md:space-y-1">
             <div className="flex space-x-2">
-              <h3 className="font-semibold">Annie Radar</h3>
+              <h3 className="font-semibold">{`${userListing?.user?.firstName} ${userListing?.user?.lastName}`} </h3>
               <BadgeCheckIcon className="w-4 text-primary" />
             </div>
             <div className="flex flex-col md:flex-row space-y-1 md:space-x-4">
@@ -30,9 +32,9 @@ const MessagePartner = () => {
           </div>
         </div>
 
-        <button className="btn btn-primary btn-outline w-full flex gap-2 text-sm normal-case">
+        {/* <button className="btn btn-primary btn-outline w-full flex gap-2 text-sm normal-case">
           <ChatAltIcon className="w-4" /> Message Partner
-        </button>
+        </button> */}
       </div>
     </BookContainer>
   );

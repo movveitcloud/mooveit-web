@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { LocationMarkerIcon, PencilAltIcon, PencilIcon } from "@heroicons/react/outline";
+import { EyeIcon, LocationMarkerIcon, PencilAltIcon, PencilIcon } from "@heroicons/react/outline";
 import { AnimatePresence, motion } from "framer-motion";
 import { TrashIcon } from "@heroicons/react/solid";
 import DeleteListingModal from "../modals/DeleteListingModal";
@@ -24,6 +24,14 @@ const ListingLocationCard = ({ data }) => {
             <h4 className="capitalize text-sm">{data?.address}</h4>
           </div>
           <div className="flex gap-4 items-center text-primary">
+            <a
+              href={`/book/${data._id}`}
+              target="_blank"
+              rel="noreferrer"
+              className="tooltip tooltip-primary cursor-pointer"
+              data-tip="View">
+              <EyeIcon className="w-5 tooltip tooltip-primary" />
+            </a>
             <span
               className="tooltip tooltip-primary cursor-pointer"
               data-tip="Edit"
