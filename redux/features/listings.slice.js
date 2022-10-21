@@ -74,6 +74,16 @@ export const getSingleListing = createAsyncThunk("/listing/listingId", async ({ 
   }
 });
 
+export const getUserListing = createAsyncThunk("/users/listing/listingId", async ({ id }, { rejectWithValue }) => {
+  try {
+    const response = await api.getUserListing(id);
+    return response.data;
+  } catch (err) {
+    // errorPopUp({ msg: err.response.data.error });
+    return rejectWithValue(err.response.data);
+  }
+});
+
 export const deleteListing = createAsyncThunk(
   "/listing/deleteListing",
   async ({ id, refreshListings, closeModal }, { rejectWithValue }) => {
@@ -95,10 +105,13 @@ const listingsSlice = createSlice({
     data: null,
     listings: [],
     singleListing: {},
+    userListing: {},
     loading: false,
     exitLoading: false,
+    listingError: null,
     listingLoading: false,
     singleListingLoading: false,
+    userListingLoading: false,
     deleteLoading: false,
   },
 
@@ -158,6 +171,18 @@ const listingsSlice = createSlice({
     },
     [getSingleListing.rejected]: (state, action) => {
       state.singleListingLoading = false;
+    },
+
+    [getUserListing.pending]: (state) => {
+      state.userListingLoading = true;
+    },
+    [getUserListing.fulfilled]: (state, action) => {
+      state.userListingLoading = false;
+      state.userListing = action.payload.data;
+    },
+    [getUserListing.rejected]: (state, action) => {
+      state.listingError = action.payload.error;
+      state.userListingLoading = false;
     },
 
     [deleteListing.pending]: (state) => {

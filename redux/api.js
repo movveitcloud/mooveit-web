@@ -23,4 +23,5 @@ export const createListing = (payload) => API.post("/listings", payload);
 export const updateListing = ({ payload, id }) => API.patch(`/listings/${id}`, payload);
 export const getListings = () => API.get("/listings");
 export const getSingleListing = (id) => API.get(`/listings/${id}`);
+export const getUserListing = (id) => API.get(`/users/listings/${id}`);
 export const deleteListing = (id) => API.delete(`/listings/${id}`);
