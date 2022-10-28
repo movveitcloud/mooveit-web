@@ -26,7 +26,7 @@ const DashboardNavigation = ({ pathname }) => {
     <div className="flex flex-col justify-between h-full relative py-6 overflow-y-auto">
       <div>
         <div className="flex justify-between items-center gap-2 p-3 mx-5 lg:mx-8">
-          <img src="/logo.png" alt="Mooveit" className="max-h-8" />
+          <img src="/logo.png" alt="Mooveit" className="max-h-7" />
         </div>
 
         <div className="flex flex-col mt-8">

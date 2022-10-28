@@ -90,36 +90,39 @@ const BookListingMainCard = () => {
             ))}
           </div>
 
-          {userListing?.delivery ||
-            (userListing?.packing && (
-              <div className="flex flex-row gap-6">
-                {userListing?.delivery && (
-                  <p className="flex flex-row items-center gap-2">
-                    <span className="rounded-full p-[6px] bg-accent">
-                      <TruckIcon className="text-primary w-4" />
-                    </span>
-                    <span className="text-[12px]">Delivery</span>
-                  </p>
-                )}
-                {userListing?.packing && (
-                  <p className="flex flex-row items-center gap-2">
-                    <span className="rounded-full p-[6px] bg-accent">
-                      <ArchiveIcon className="text-primary w-4" />
-                    </span>
-                    <span className="text-[12px]">Pack & Move</span>
-                  </p>
-                )}
-              </div>
-            ))}
+          {(userListing?.delivery || userListing?.packing) && (
+            <div className="flex flex-row gap-6">
+              {userListing?.delivery && (
+                <p className="flex flex-row items-center gap-2">
+                  <span className="rounded-full p-[6px] bg-accent">
+                    <TruckIcon className="text-primary w-4" />
+                  </span>
+                  <span className="text-[12px]">Delivery</span>
+                </p>
+              )}
+              {userListing?.packing && (
+                <p className="flex flex-row items-center gap-2">
+                  <span className="rounded-full p-[6px] bg-accent">
+                    <ArchiveIcon className="text-primary w-4" />
+                  </span>
+                  <span className="text-[12px]">Pack & Move</span>
+                </p>
+              )}
+            </div>
+          )}
         </div>
 
         <div className="flex flex-row space-x-6 items-center mt-2">
-          <p className="text-primary font-semibold text-xl">
-            {formatMoney(1200)} <span className="text-[#959595] font-normal text-sm">/month</span>
-          </p>
-          <p className="text-primary font-semibold text-xl">
-            {formatMoney(2.56)} <span className="text-[#959595] font-normal text-sm">/hour</span>
-          </p>
+          {userListing?.monthlyRate && (
+            <p className="text-primary font-semibold text-xl">
+              {formatMoney(userListing?.monthlyRate)} <span className="text-[#959595] font-normal text-sm">/month</span>
+            </p>
+          )}
+          {userListing?.hourlyRate && (
+            <p className="text-primary font-semibold text-xl">
+              {formatMoney(userListing?.hourlyRate)} <span className="text-[#959595] font-normal text-sm">/hour</span>
+            </p>
+          )}
         </div>
       </div>
     </BookContainer>
