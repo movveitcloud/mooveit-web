@@ -32,14 +32,6 @@ const Address = () => {
     zoom: 15,
   };
 
-  const createMapOptions = function (maps) {
-    return {
-      panControl: false,
-      mapTypeControl: false,
-      scrollwheel: false,
-    };
-  };
-
   return (
     <Accordion title="address">
       <div className="flex flex-row flex-grow gap-4 items-center border border-[#959595] rounded-lg px-4 py-3">
@@ -89,7 +81,6 @@ const Address = () => {
       <div className="w-full h-[250px] mt-8">
         <GoogleMapReact
           bootstrapURLKeys={{ key: process.env.PLACES_KEY }}
-          options={createMapOptions}
           defaultCenter={defaultProps.center}
           center={formDetails.coordinates}
           defaultZoom={defaultProps.zoom}>
