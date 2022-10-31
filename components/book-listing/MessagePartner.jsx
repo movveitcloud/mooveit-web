@@ -19,7 +19,7 @@ const MessagePartner = () => {
               <h3 className="font-semibold">{`${userListing?.user?.firstName} ${userListing?.user?.lastName}`} </h3>
               <BadgeCheckIcon className="w-4 text-primary" />
             </div>
-            <div className="flex flex-col md:flex-row space-y-1 md:space-x-4">
+            <div className="flex flex-col md:flex-row space-y-1 md:space-x-4 md:space-y-0">
               <div className="flex space-x-2">
                 <CalendarIcon className="w-3 md:w-4 text-primary" />
                 <p className="text-[#959595] text-xs md:text-sm">214 bookings</p>
