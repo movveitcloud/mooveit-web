@@ -5,6 +5,7 @@ const ListingInputContext = createContext();
 const initialState = {
   //Basic Information Stepper
   address: "",
+  coordinates: {},
   storageType: "",
   storageFloor: "",
   storageFeaturesArray: [],
@@ -34,8 +35,8 @@ const initialState = {
 
   //Pricing Stepper
   priceType: "custom",
-  monthlyRate: 100,
-  hourlyRate: 2.4,
+  monthlyRate: 0,
+  hourlyRate: 0,
   consent: false,
 };
 

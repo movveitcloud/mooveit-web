@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArchiveIcon, ClockIcon, LocationMarkerIcon, MapIcon, TruckIcon } from "@heroicons/react/outline";
 import { formatMoney } from "../../helpers/utils";
 import { storageFeats } from "../../helpers/data";
+import { StarIcon } from "@heroicons/react/solid";
 
 const ListingCard = () => {
   return (
@@ -63,12 +64,8 @@ const ListingCard = () => {
             <p className="text-primary font-semibold text-xl">
               {formatMoney(1200)} <span className="text-[#959595] font-normal text-xs">/month</span>
             </p>
-            <div className="rating rating-sm">
-              <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-              <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-              <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-              <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-              <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+            <div className="flex items-center">
+              <StarIcon className="w-5 text-accent" /> <p className="text-sm">4.76</p>
             </div>
           </div>
         </div>

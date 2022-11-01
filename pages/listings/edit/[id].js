@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   Access,
   Address,
@@ -10,11 +10,9 @@ import {
   Media,
   Pricing,
   Services,
-  StreetView,
   Type,
 } from "../../../components";
 import { useRouter } from "next/router";
-import axios from "axios";
 import { ListingInputContext } from "../../../context";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleListing, updateListing } from "../../../redux/features/listings.slice";
@@ -101,8 +99,6 @@ const EditListing = () => {
       setFormDetails(initialState);
     };
   }, [singleListing]);
-
-  console.log(singleListing, "list");
 
   return (
     <DashboardLayout>

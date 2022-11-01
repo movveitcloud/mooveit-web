@@ -38,13 +38,13 @@ const Listings = () => {
           <div
             key={i}
             className={`${
-              activeItem === i ? " bg-[#DCDCFF] text-[#4543A5]" : " bg-[#DDDDDD] text-[#959595]"
-            } btn border-0 hover:bg-[#DCDCFF] hover:text-[#4543A5] mt-2 text-[.5rem] lg:text-[.8rem]`}
+              activeItem === i ? " bg-accent text-primary" : " bg-[#DDDDDD] text-[#959595]"
+            } btn border-0 hover:bg-accent hover:text-primary mt-2 text-[.5rem] lg:text-[.8rem]`}
             onClick={() => setActive(i)}>
             {item}
             <span
               className={`${
-                activeItem === i ? " text-white bg-[#4543A5]" : " bg-[#c1bfbf] text-white"
+                activeItem === i ? " text-white bg-primary" : " bg-[#c1bfbf] text-white"
               } rounded-full py-1 px-2 text-[.5rem] lg:text-[.7rem] ml-4 `}>
               {i == 0
                 ? listings?.filter((listing) => listing?.status == "approved").length
