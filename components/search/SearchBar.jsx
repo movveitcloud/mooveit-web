@@ -11,8 +11,10 @@ import {
 } from "@heroicons/react/outline";
 import FilterModal from "../modals/FilterModal";
 import Switch from "../shared/Switch";
+import PlacesAutocomplete from "react-places-autocomplete";
 
 const initialState = {
+  address: "",
   moving: false,
   packing: false,
   priceRange: "hour",
@@ -22,6 +24,18 @@ const initialState = {
 
 const SearchBar = ({ showMap, setShowMap, mapContainer, cardContainer }) => {
   const [formDetails, setFormDetails] = useState(initialState);
+
+  const handleAddressChange = (address) => {
+    setFormDetails({ ...formDetails, address });
+  };
+
+  const handleSelect = (address) => {
+    setFormDetails({ ...formDetails, address });
+    // geocodeByAddress(address)
+    //   .then((results) => getLatLng(results[0]))
+    //   .then((latLng) => setFormDetails({ ...formDetails, coordinates: latLng, address }))
+    //   .catch((error) => console.error("Error", error));
+  };
 
   const handleChange = (e) => {
     const { type, name, value, checked } = e.target;
@@ -45,11 +59,52 @@ const SearchBar = ({ showMap, setShowMap, mapContainer, cardContainer }) => {
             <div className="flex  items-center gap-1 md:gap-3 mb-2 md:mb-0">
               <div className="flex items-center  md:gap-2 border-r">
                 <LocationMarkerIcon className="w-5 mr-1 md:mr-0" />
-                <input
+                {/* <input
                   type="text"
                   className="bg-transparent text-[0.6rem] md:text-[0.9em]  outline-none w-full"
                   placeholder="LONDON, UK"
-                />
+                /> */}
+                <div className="w-full">
+                  <PlacesAutocomplete
+                    value={formDetails.address}
+                    onChange={handleAddressChange}
+                    onSelect={handleSelect}
+                    debounce={400}
+                    shouldFetchSuggestions={formDetails.address.length > 5}>
+                    {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                      <div className="relative">
+                        <input
+                          {...getInputProps({
+                            placeholder: "Enter location",
+                            className: "w-full border-none outline-none",
+                          })}
+                        />
+                        <div className="absolute left-0 right-0 top-10 p-3 z-50">
+                          {loading && <div>Loading...</div>}
+                          {suggestions.map((suggestion) => {
+                            const className = suggestion.active
+                              ? "suggestion-item--active py-2"
+                              : "suggestion-item py-2";
+                            // inline style for demonstration purpose
+                            const style = suggestion.active
+                              ? { backgroundColor: "#fafafa", cursor: "pointer" }
+                              : { backgroundColor: "#ffffff", cursor: "pointer" };
+                            return (
+                              <div
+                                key={suggestion.description}
+                                {...getSuggestionItemProps(suggestion, {
+                                  className,
+                                  style,
+                                })}>
+                                <span>{suggestion.description}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  </PlacesAutocomplete>
+                </div>
               </div>
               <div className="flex items-center  md:gap-2 border-r">
                 <ClockIcon className="w-5 mr-1 md:mr-0" />
