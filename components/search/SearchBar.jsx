@@ -79,12 +79,10 @@ const SearchBar = ({ showMap, setShowMap, mapContainer, cardContainer }) => {
                             className: "w-full border-none outline-none",
                           })}
                         />
-                        <div className="absolute left-0 right-0 top-10 p-3 z-50">
+                        <div className="absolute left-0 right-0 top-7 z-50">
                           {loading && <div>Loading...</div>}
                           {suggestions.map((suggestion) => {
-                            const className = suggestion.active
-                              ? "suggestion-item--active py-2"
-                              : "suggestion-item py-2";
+                            const className = suggestion.active ? "suggestion-item--active p-2" : "suggestion-item p-2";
                             // inline style for demonstration purpose
                             const style = suggestion.active
                               ? { backgroundColor: "#fafafa", cursor: "pointer" }

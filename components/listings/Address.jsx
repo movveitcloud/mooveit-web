@@ -32,6 +32,8 @@ const Address = () => {
     zoom: 15,
   };
 
+  // console.log(formDetails.address)
+
   return (
     <Accordion title="address">
       <div className="flex flex-row flex-grow gap-4 items-center border border-[#959595] rounded-lg px-4 py-3">
