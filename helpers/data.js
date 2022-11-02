@@ -86,15 +86,20 @@ export const dashboardNavLinks = [
         title: "Personal Details",
         permission: ["customer", "partner"],
       },
+      // {
+      //   path: "/reviews",
+      //   title: "Reviews",
+      //   permission: ["customer", "partner"],
+      // },
+      // {
+      //   path: "/professional-partner",
+      //   title: "Professional Partner",
+      //   permission: ["customer", "partner"],
+      // },
       {
-        path: "/reviews",
-        title: "Reviews",
-        permission: ["customer", "partner"],
-      },
-      {
-        path: "/professional-partner",
-        title: "Professional Partner",
-        permission: ["customer", "partner"],
+        path: "/account-verification",
+        title: "Account Verification",
+        permission: ["partner"],
       },
     ],
   },
@@ -154,19 +159,19 @@ export const mediaLinks = [
 export const storageFeats = [
   {
     name: "Video Surveillance",
-    icon: <VideoCameraIcon className="text-[#222222] w-4" />,
+    icon: <VideoCameraIcon className="w-4" />,
   },
   {
     name: "People",
-    icon: <UserGroupIcon className="text-[#222222] w-4" />,
+    icon: <UserGroupIcon className="w-4" />,
   },
   {
     name: "Electricity",
-    icon: <LightBulbIcon className="text-[#222222] w-4" />,
+    icon: <LightBulbIcon className="w-4" />,
   },
   {
     name: "Security",
-    icon: <LockClosedIcon className="text-[#222222] w-4" />,
+    icon: <LockClosedIcon className="w-4" />,
   },
 ];
 
@@ -231,11 +236,11 @@ export const arrivalNoticeOpts = [
   { name: "7 days", value: "7days" },
 ];
 export const storageSize = [
-  { name: "9 sq ft - 3ft High locker", value: "9 sq ft - 3ft High locker" },
-  { name: "25 sq ft - Small Garden Shed Size", value: "25 sq ft - Small Garden Shed Size" },
-  { name: "35 sq ft - Standard Garden Shed Size", value: "35 sq ft - Standard Garden Shed Size" },
-  { name: "50 sq ft - Transit Van Size", value: "50 sq ft - Transit Van Size" },
-  { name: "75 sq ft - Luton Van Size", value: "75 sq ft - Luton Van Size" },
+  { name: "9 sq ft - 3ft High locker", value: "9-3" },
+  { name: "25 sq ft - Small Garden Shed Size", value: "25" },
+  { name: "35 sq ft - Standard Garden Shed Size", value: "35" },
+  { name: "50 sq ft - Transit Van Size", value: "50" },
+  { name: "75 sq ft - Luton Van Size", value: "75" },
   {
     name: "125 sq ft - Large Single Garage or 7 Tonne Lorry",
     value: "125 sq ft - Large Single Garage or 7 Tonne Lorry",
@@ -244,11 +249,4 @@ export const storageSize = [
     name: "150 sq ft - One and Half garages or 2 Luton Van Loads",
     value: "150 sq ft - One and Half garages or 2 Luton Van Loads",
   },
-];
-
-export const listings = [
-  { name: "Blocks D4-D6, Crowley lane", type: "draft" },
-  { name: "Blocks D1, Canada lane", type: "approved" },
-  { name: "Blocks D4-D6, Crowley lane", type: "approved" },
-  { name: "Blocks D4-D6, Cresent lane", type: "pending" },
 ];

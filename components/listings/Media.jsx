@@ -24,14 +24,20 @@ const Media = () => {
       arrayofFiles = [...arrayofFiles, newArr];
     });
     setPreview([...preview, ...arrayofFiles]);
-    setFormDetails({ ...formDetails, media: [...preview] });
+    setFormDetails({ ...formDetails, image: preview });
   };
 
-  const removeImageFromArray = {};
+  const removeItem = (e) => {
+    const index = e.target.id;
+    let newPreview = [...preview];
+    newPreview.splice(index, 1);
+    setPreview([...newPreview]);
+    setFormDetails({ ...formDetails, image: preview });
+  };
 
   useEffect(() => {
     refresh();
-  }, [file]);
+  }, [file, preview]);
 
   return (
     <Accordion title="Media">
@@ -48,17 +54,18 @@ const Media = () => {
             ""
           )}
           <div className="flex flex-wrap">
-            {preview?.map((img, index) => (
-              <div key={index} className="w-[32%] h-[200px] mb-3 rounded mr-2">
-                <img src={img} id={index} alt="pic1" className="w-full h-full object-cover rounded" />
-                {/* <button
+            {formDetails.image?.map((img, index) => (
+              <div key={index} className="w-full md:w-[32%] h-[200px] mb-[2.5rem] rounded-md mr-2">
+                <img src={img} id={index} alt="pic1" className="w-full h-full mb-2 object-cover rounded" />
+                <button
                   id={index}
                   key={index}
+                  className="text-red-600 hover:text-primary"
                   onClick={(e) => {
-                    removeImageFromArray(e);
+                    removeItem(e, index);
                   }}>
                   X
-                </button> */}
+                </button>
               </div>
             ))}
           </div>

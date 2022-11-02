@@ -5,8 +5,10 @@ const ListingInputContext = createContext();
 const initialState = {
   //Basic Information Stepper
   address: "",
+  coordinates: {},
   storageType: "",
   storageFloor: "",
+  storageFeaturesArray: [],
   storageFeatures: [],
   delivery: false,
   packing: false,
@@ -15,25 +17,26 @@ const initialState = {
   streetView: false,
   storageSize: "",
   storageNumber: 1,
-  media: [],
+  image: [],
   storageTitle: "",
   description: "",
   calendar: "",
 
   //Availability Stepper
+  unavailabilityPeriods: [],
   unavailabilityReason: "",
   unavailabilityDate: "",
-  whenAccessListing: "",
-  howAccessListing: "",
-  packingPermit: true,
-  packingInstructions: "",
-  rentDuration: "",
-  arrivalNotice: "",
+  storageAccessPeriod: "",
+  storageAccessType: "",
+  parkingPermit: false,
+  parkingInstruction: "",
+  bookingDuration: "",
+  bookingNotice: "",
 
   //Pricing Stepper
   priceType: "custom",
-  monthlyRate: "100",
-  hourlyRate: "2.40",
+  monthlyRate: 0,
+  hourlyRate: 0,
   consent: false,
 };
 

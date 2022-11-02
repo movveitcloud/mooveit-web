@@ -16,7 +16,17 @@ const Calendar = () => {
           Add Period
         </label>
       </div>
-      <div className="w-full h-48 bg-[#eeeeee] rounded"></div>
+      <div className="attention"></div>
+      <div className="w-full rounded">
+        {/* modify this in place of calendar for now */}
+        {formDetails?.unavailabilityPeriods?.map(
+          ({ unavailabilityReason, unavailabilityPeriodStart, unavailabilityPeriodEnd }, i) => (
+            <p key={i}>
+              {unavailabilityPeriodStart} - {unavailabilityPeriodEnd}
+            </p>
+          )
+        )}
+      </div>
       <UnavailabilityModal />
     </Accordion>
   );

@@ -13,8 +13,8 @@ const BookingDetails = () => {
           <h3 className="mb-3">What's the shortest period you're willing to rent a space for?</h3>
           <div className="items-center border border-[#959595] rounded-lg px-4 py-3">
             <select
-              name="rentDuration"
-              value={formDetails.rentDuration}
+              name="bookingDuration"
+              value={formDetails.bookingDuration}
               className="w-full bg-transparent h-full outline-none cursor-pointer"
               onChange={handleChange}>
               <option value="" disabled>
@@ -33,8 +33,8 @@ const BookingDetails = () => {
           <h3 className="mb-3">How much notice do you need before a customer arrives?</h3>
           <div className="items-center border border-[#959595] rounded-lg px-4 py-3">
             <select
-              name="arrivalNotice"
-              value={formDetails.arrivalNotice}
+              name="bookingNotice"
+              value={formDetails.bookingNotice}
               className="w-full bg-transparent h-full outline-none cursor-pointer"
               onChange={handleChange}>
               <option value="" disabled>
