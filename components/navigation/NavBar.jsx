@@ -57,7 +57,7 @@ const NavBar = () => {
             <ul tabIndex={0} className="menu dropdown-content capitalize p-2 shadow bg-base-100 rounded-lg w-48 mt-4">
               <li>
                 <Link href={isPartner ? "/listings" : "/your-storage"}>
-                  <a className="flex gap-2 items-center">
+                  <a className="flex gap-2 items-center border-b">
                     <ViewGridIcon className="w-5" />
                     <span>Dashboard</span>
                   </a>
