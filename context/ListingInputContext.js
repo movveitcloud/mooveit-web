@@ -5,6 +5,7 @@ const ListingInputContext = createContext();
 const initialState = {
   //Basic Information Stepper
   address: "",
+  formattedAddress: {},
   coordinates: {},
   storageType: "",
   storageFloor: "",

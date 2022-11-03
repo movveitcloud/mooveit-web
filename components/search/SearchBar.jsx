@@ -70,6 +70,7 @@ const SearchBar = ({ showMap, setShowMap, mapContainer, cardContainer }) => {
                     onChange={handleAddressChange}
                     onSelect={handleSelect}
                     debounce={400}
+                    searchOptions={{ types: ["locality", "country"] }}
                     shouldFetchSuggestions={formDetails.address.length > 5}>
                     {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                       <div className="relative">

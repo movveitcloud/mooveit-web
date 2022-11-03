@@ -21,7 +21,10 @@ const ListingLocationCard = ({ data }) => {
         <div className="flex mt-4 justify-between">
           <div className="flex gap-2 items-center text-[#959595] cursor-pointer">
             <LocationMarkerIcon className="w-4" />
-            <h4 className="capitalize text-sm">{data?.address}</h4>
+            <h4 className="capitalize text-sm tooltip tooltip-primary" data-tip={data?.address}>{`${data?.address.slice(
+              0,
+              50
+            )}${data?.address.length > 50 ? "..." : ""}`}</h4>
           </div>
           <div className="flex gap-4 items-center text-primary">
             <a

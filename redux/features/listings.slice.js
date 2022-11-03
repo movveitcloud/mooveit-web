@@ -99,17 +99,29 @@ export const deleteListing = createAsyncThunk(
   }
 );
 
+export const getFeaturedListings = createAsyncThunk("/users/featured-listing", async ({}, { rejectWithValue }) => {
+  try {
+    const response = await api.getFeaturedListings();
+    return response.data;
+  } catch (err) {
+    errorPopUp({ msg: err.response.data.error });
+    return rejectWithValue(err.response.data);
+  }
+});
+
 const listingsSlice = createSlice({
   name: "listing",
   initialState: {
     data: null,
     listings: [],
+    featuredListings: [],
     singleListing: {},
     userListing: {},
     loading: false,
     exitLoading: false,
     listingError: null,
     listingLoading: false,
+    featuredLoading: false,
     singleListingLoading: false,
     userListingLoading: false,
     deleteLoading: false,
@@ -160,6 +172,17 @@ const listingsSlice = createSlice({
     },
     [getListings.rejected]: (state, action) => {
       state.listingLoading = false;
+    },
+
+    [getFeaturedListings.pending]: (state) => {
+      state.featuredLoading = true;
+    },
+    [getFeaturedListings.fulfilled]: (state, action) => {
+      state.featuredLoading = false;
+      state.featuredListings = action.payload.data;
+    },
+    [getFeaturedListings.rejected]: (state, action) => {
+      state.featuredLoading = false;
     },
 
     [getSingleListing.pending]: (state) => {

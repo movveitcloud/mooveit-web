@@ -7,7 +7,7 @@ const Search = () => {
   const [showMap, setShowMap] = useState(false);
   const router = useRouter();
   const query = router.query.s;
-  // console.log(router);
+  console.log(query, "query");
   return (
     <PageLayout>
       <div>

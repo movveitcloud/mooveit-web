@@ -32,6 +32,8 @@ const EditListing = () => {
   serviceOptions.map((item) => formDetails[item] && services.push(item));
   const {
     address,
+    formattedAddress,
+    coordinates,
     storageType,
     storageFloor,
     storageFeatures,
@@ -60,6 +62,8 @@ const EditListing = () => {
   const saveChanges = () => {
     const payload = {
       address,
+      formattedAddress,
+      coordinates,
       storageType,
       storageFloor,
       storageFeatures,

@@ -10,7 +10,7 @@ import {
   TruckIcon,
 } from "@heroicons/react/outline";
 
-import { storageFeats } from "../../helpers/data";
+import { storageFeats, storageFeatures } from "../../helpers/data";
 import { formatMoney } from "../../helpers/utils";
 import BookContainer from "./BookContainer";
 
@@ -29,6 +29,10 @@ const BookListingMainCard = () => {
     if (currentIndex < images.length - 1) {
       setCurrentIndex(currentIndex + 1);
     }
+  };
+  const getFeatures = () => {
+    const filter = storageFeatures.filter((p) => userListing?.storageFeatures?.includes(p.value));
+    return filter;
   };
 
   return (
@@ -83,8 +87,8 @@ const BookListingMainCard = () => {
 
           {/*storage features */}
           <div className="flex flex-row items-center gap-2">
-            {storageFeats.map(({ name, icon }) => (
-              <span key={name} className="tooltip tooltip-primary" data-tip={name}>
+            {getFeatures()?.map(({ label, value, icon }) => (
+              <span key={value} className="tooltip tooltip-primary cursor-pointer" data-tip={label}>
                 {icon}
               </span>
             ))}
