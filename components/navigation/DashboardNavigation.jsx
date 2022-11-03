@@ -5,6 +5,7 @@ import { LogoutIcon } from "@heroicons/react/outline";
 import { authenticatedUser, logout } from "../../redux/features/auth.slice";
 import { dashboardNavLinks } from "../../helpers/data";
 import DashboardNavAccordion from "./DashboardNavAccordion";
+import Link from "next/link";
 
 const DashboardNavigation = ({ pathname }) => {
   const [userData, setUserData] = useState(null);
@@ -26,7 +27,11 @@ const DashboardNavigation = ({ pathname }) => {
     <div className="flex flex-col justify-between h-full relative py-6 overflow-y-auto">
       <div>
         <div className="flex justify-between items-center gap-2 p-3 mx-5 lg:mx-8">
-          <img src="/logo.png" alt="Mooveit" className="max-h-7" />
+          <Link href="/">
+            <a>
+              <img src="/logo.png" alt="Mooveit" className="max-h-7" />
+            </a>
+          </Link>
         </div>
 
         <div className="flex flex-col mt-8">
