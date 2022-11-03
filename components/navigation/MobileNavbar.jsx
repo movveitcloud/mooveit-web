@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ChevronDownIcon, CubeIcon, XIcon } from "@heroicons/react/outline";
+import { ChevronDownIcon, ViewGridIcon, XIcon } from "@heroicons/react/outline";
 import { navLinks } from "../../helpers/data";
 import { authenticatedUser } from "../../redux/features/auth.slice";
 import { isPartner } from "../../helpers/utils";
@@ -90,7 +90,7 @@ const MobileNavBar = ({ pageLink, setMenuOpen }) => {
       {pageReady && authenticatedUser() ? (
         <Link href={isPartner ? "/listings" : "/your-storage"}>
           <a className="btn btn-accent w-full capitalize rounded-btn flex gap-2 items-center">
-            <CubeIcon className="w-5" />
+            <ViewGridIcon className="w-5" />
             <span>Dashboard</span>
           </a>
         </Link>

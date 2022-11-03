@@ -7,7 +7,7 @@ import { navLinks } from "../../helpers/data";
 import MenuItem from "./MenuItem";
 import MobileNavbar from "./MobileNavbar";
 import { authenticatedUser, logout } from "../../redux/features/auth.slice";
-import { CubeIcon, LogoutIcon, UserIcon } from "@heroicons/react/outline";
+import { LogoutIcon, UserIcon, ViewGridIcon } from "@heroicons/react/outline";
 import { isPartner } from "../../helpers/utils";
 import { useDispatch } from "react-redux";
 
@@ -50,7 +50,7 @@ const NavBar = () => {
 
         {pageReady && authenticatedUser() ? (
           <div className="hidden lg:block dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-primary w-[130px] rounded-btn flex gap-2 items-center capitalize">
+            <label tabIndex={0} className="btn btn-accent w-[130px] rounded-btn flex gap-2 items-center capitalize">
               <UserIcon className="w-5" />
               <span>{authenticatedUser().firstName}</span>
             </label>
@@ -58,7 +58,7 @@ const NavBar = () => {
               <li>
                 <Link href={isPartner ? "/listings" : "/your-storage"}>
                   <a className="flex gap-2 items-center">
-                    <CubeIcon className="w-5" />
+                    <ViewGridIcon className="w-5" />
                     <span>Dashboard</span>
                   </a>
                 </Link>
