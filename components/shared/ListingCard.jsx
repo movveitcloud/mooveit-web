@@ -22,14 +22,16 @@ const ListingCard = ({ item, preview }) => {
           />
         </div>
         <div className="">
-          <h3 className="text-[#222222] font-bold py-3">{`${item?.storageTitle.slice(0, 38)}${
-            item?.storageTitle.length > 38 ? "..." : ""
+          <h3 className="text-[#222222] font-bold py-3">{`${item?.storageTitle?.slice(0, 38)}${
+            item?.storageTitle?.length > 38 ? "..." : ""
           }`}</h3>
           <p className="flex flex-row items-center gap-2 text-primary">
             <LocationMarkerIcon className="w-4" />
             <span
               className="text-sm uppercase tooltip tooltip-primary"
-              data-tip={item?.address}>{`${item?.address.slice(0, 38)}${item?.address.length > 38 ? "..." : ""}`}</span>
+              data-tip={item?.address}>{`${item?.address?.slice(0, 38)}${
+              item?.address?.length > 38 ? "..." : ""
+            }`}</span>
           </p>
 
           <div className="py-3 space-y-4">

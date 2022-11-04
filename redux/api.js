@@ -25,4 +25,5 @@ export const getListings = () => API.get("/listings");
 export const getFeaturedListings = () => API.get("/users/featured-listing");
 export const getSingleListing = (id) => API.get(`/listings/${id}`);
 export const getUserListing = (id) => API.get(`/users/listings/${id}`);
+export const getSearchListings = (payload) => API.get("/users/listings", { params: payload });
 export const deleteListing = (id) => API.delete(`/listings/${id}`);

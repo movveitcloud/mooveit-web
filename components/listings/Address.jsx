@@ -18,8 +18,8 @@ const Address = () => {
 
   const handleSelect = (address, placeId, suggestion) => {
     const formattedAddress = {
-      street: suggestion.formattedSuggestion.mainText,
-      area: suggestion.formattedSuggestion.secondaryText,
+      street: suggestion?.formattedSuggestion?.mainText,
+      area: suggestion?.formattedSuggestion?.secondaryText,
     };
     setFormDetails({ ...formDetails, address, formattedAddress });
 
@@ -36,8 +36,6 @@ const Address = () => {
     },
     zoom: 15,
   };
-
-  console.log(formDetails);
 
   return (
     <Accordion title="address">

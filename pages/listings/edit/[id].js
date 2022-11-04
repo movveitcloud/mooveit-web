@@ -62,7 +62,10 @@ const EditListing = () => {
   const saveChanges = () => {
     const payload = {
       address,
-      formattedAddress,
+      formattedAddress: {
+        street: formattedAddress?.street?.toLowerCase(),
+        area: formattedAddress?.area?.toLowerCase(),
+      },
       coordinates,
       storageType,
       storageFloor,

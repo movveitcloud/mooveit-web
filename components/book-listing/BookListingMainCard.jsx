@@ -65,11 +65,9 @@ const BookListingMainCard = () => {
 
       <div className="">
         <h3 className="md:text-lg font-bold my-3 capitalize">{userListing?.storageTitle}</h3>
-        <p className="flex flex-row items-center gap-1 md:gap-2 text-primary">
-          <LocationMarkerIcon className="w-4" />
-          <span className="uppercase font-light text-sm md:text-base">
-            {userListing?.address || "65-69 Lots Road, Chelsea, SW10 0RN"}
-          </span>
+        <p className="flex flex-row items-start gap-1 md:gap-2 text-primary">
+          <LocationMarkerIcon className="w-4 min-w-[16px]" />
+          <span className="uppercase font-light text-sm md:text-base">{userListing?.address}</span>
         </p>
 
         <div className="py-3 space-y-4 md:space-y-5">

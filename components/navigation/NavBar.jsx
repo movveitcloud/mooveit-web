@@ -54,7 +54,9 @@ const NavBar = () => {
               <UserIcon className="w-5" />
               <span>{authenticatedUser().firstName}</span>
             </label>
-            <ul tabIndex={0} className="menu dropdown-content capitalize p-2 shadow bg-base-100 rounded-lg w-48 mt-4">
+            <ul
+              tabIndex={0}
+              className="menu dropdown-content capitalize p-2 shadow bg-base-100 rounded-lg w-48 mt-4 z-50">
               <li>
                 <Link href={isPartner ? "/listings" : "/your-storage"}>
                   <a className="flex gap-2 items-center border-b">
