@@ -15,7 +15,7 @@ export const signup = (payload) => API.post("/auth/register", payload);
 export const forgotPassword = (payload) => API.post("/auth/forgot-password", payload);
 export const resetPassword = ({ payload, token }) => API.patch(`/auth/reset-password/${token}`, payload);
 export const verifyResetToken = (token) => API.get(`/auth/reset-password/${token}`);
-export const verifyEmail = (token) => API.get(`/auth/verify/${token}`);
+export const verifyEmail = (payload) => API.post("/auth/verify", payload);
 export const resendVerifyEmail = (payload) => API.post("/auth/verify", payload);
 
 //LISTINGS
