@@ -22,7 +22,7 @@ const Pricing = () => {
 
   return (
     <Accordion title="Pricing">
-      <div className="flex gap-8">
+      <div className="flex flex-row-reverse gap-8">
         <div
           className={`p-6 rounded rounded-tr-2xl w-full border border-[#e2e2e2] ${
             isElastic ? "bg-primary text-white" : "bg-none"
@@ -127,6 +127,7 @@ const Pricing = () => {
                     type="number"
                     min={0}
                     name="hourlyRate"
+                    // defaultValue={formDetails?.monthlyRate / (24 * 30)}
                     value={formDetails?.hourlyRate}
                     onChange={handleChange}
                     className="bg-transparent w-[50px] outline-none"
