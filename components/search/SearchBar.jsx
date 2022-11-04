@@ -11,8 +11,10 @@ import {
 } from "@heroicons/react/outline";
 import FilterModal from "../modals/FilterModal";
 import Switch from "../shared/Switch";
+import PlacesAutocomplete from "react-places-autocomplete";
 
 const initialState = {
+  address: "",
   moving: false,
   packing: false,
   priceRange: "hour",
@@ -22,6 +24,18 @@ const initialState = {
 
 const SearchBar = ({ showMap, setShowMap, mapContainer, cardContainer }) => {
   const [formDetails, setFormDetails] = useState(initialState);
+
+  const handleAddressChange = (address) => {
+    setFormDetails({ ...formDetails, address });
+  };
+
+  const handleSelect = (address) => {
+    setFormDetails({ ...formDetails, address });
+    // geocodeByAddress(address)
+    //   .then((results) => getLatLng(results[0]))
+    //   .then((latLng) => setFormDetails({ ...formDetails, coordinates: latLng, address }))
+    //   .catch((error) => console.error("Error", error));
+  };
 
   const handleChange = (e) => {
     const { type, name, value, checked } = e.target;
@@ -38,18 +52,58 @@ const SearchBar = ({ showMap, setShowMap, mapContainer, cardContainer }) => {
   };
 
   return (
-    <div className="sticky top-0 text-sm z-50">
+    <div className="sticky top-0 text-sm z-40">
       <div className="bg-primary flex">
         <div className="md:max-w-[90%] max-w-full lg:max-w-[85%] mx-auto justify-center p-5 ">
           <div className="flex flex-col md:flex-row items-center md:gap-2 px-10 py-4  bg-white rounded-lg w-full">
             <div className="flex  items-center gap-1 md:gap-3 mb-2 md:mb-0">
               <div className="flex items-center  md:gap-2 border-r">
                 <LocationMarkerIcon className="w-5 mr-1 md:mr-0" />
-                <input
+                {/* <input
                   type="text"
                   className="bg-transparent text-[0.6rem] md:text-[0.9em]  outline-none w-full"
                   placeholder="LONDON, UK"
-                />
+                /> */}
+                <div className="w-full">
+                  <PlacesAutocomplete
+                    value={formDetails.address}
+                    onChange={handleAddressChange}
+                    onSelect={handleSelect}
+                    debounce={400}
+                    searchOptions={{ types: ["locality", "country"] }}
+                    shouldFetchSuggestions={formDetails.address.length > 5}>
+                    {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                      <div className="relative">
+                        <input
+                          {...getInputProps({
+                            placeholder: "Enter location",
+                            className: "w-full border-none outline-none",
+                          })}
+                        />
+                        <div className="absolute left-0 right-0 top-7 z-50">
+                          {loading && <div>Loading...</div>}
+                          {suggestions.map((suggestion) => {
+                            const className = suggestion.active ? "suggestion-item--active p-2" : "suggestion-item p-2";
+                            // inline style for demonstration purpose
+                            const style = suggestion.active
+                              ? { backgroundColor: "#fafafa", cursor: "pointer" }
+                              : { backgroundColor: "#ffffff", cursor: "pointer" };
+                            return (
+                              <div
+                                key={suggestion.description}
+                                {...getSuggestionItemProps(suggestion, {
+                                  className,
+                                  style,
+                                })}>
+                                <span>{suggestion.description}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  </PlacesAutocomplete>
+                </div>
               </div>
               <div className="flex items-center  md:gap-2 border-r">
                 <ClockIcon className="w-5 mr-1 md:mr-0" />

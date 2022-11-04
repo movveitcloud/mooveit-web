@@ -38,13 +38,13 @@ const Listings = () => {
           <div
             key={i}
             className={`${
-              activeItem === i ? " bg-[#DCDCFF] text-[#4543A5]" : " bg-[#DDDDDD] text-[#959595]"
-            } btn border-0 hover:bg-[#DCDCFF] hover:text-[#4543A5] mt-2 text-[.5rem] lg:text-[.8rem]`}
+              activeItem === i ? " bg-accent text-primary" : " bg-[#DDDDDD] text-[#959595]"
+            } btn border-0 hover:bg-accent hover:text-primary mt-2 text-[.5rem] lg:text-[.8rem]`}
             onClick={() => setActive(i)}>
             {item}
             <span
               className={`${
-                activeItem === i ? " text-white bg-[#4543A5]" : " bg-[#c1bfbf] text-white"
+                activeItem === i ? " text-white bg-primary" : " bg-[#c1bfbf] text-white"
               } rounded-full py-1 px-2 text-[.5rem] lg:text-[.7rem] ml-4 `}>
               {i == 0
                 ? listings?.filter((listing) => listing?.status == "approved").length
@@ -65,6 +65,19 @@ const Listings = () => {
           <div>
             <Skeleton height={225} />
             <Skeleton height={25} />
+          </div>
+        </div>
+      ) : filteredArray.length === 0 ? (
+        <div className="flex justify-center">
+          <div className="bg-white rounded-lg w-full md:w-[60%] flex justify-center mt-8">
+            <div className="px-4 py-24 flex flex-col space-y-4 items-center">
+              <img src="emptyStorage.svg" alt="empty storage icon" className="w-16 md:w-20" />
+              <p className="text-center text-[#AAAAAA]">
+                You do not have any{" "}
+                <span>{activeItem === 0 ? "published listing" : activeItem === 1 ? "pending listing" : "draft"}</span>{" "}
+                <br /> at this time.
+              </p>
+            </div>
           </div>
         </div>
       ) : (

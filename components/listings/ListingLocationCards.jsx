@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { LocationMarkerIcon, PencilAltIcon, PencilIcon } from "@heroicons/react/outline";
+import { EyeIcon, LocationMarkerIcon, PencilAltIcon, PencilIcon } from "@heroicons/react/outline";
 import { AnimatePresence, motion } from "framer-motion";
 import { TrashIcon } from "@heroicons/react/solid";
 import DeleteListingModal from "../modals/DeleteListingModal";
@@ -21,9 +21,20 @@ const ListingLocationCard = ({ data }) => {
         <div className="flex mt-4 justify-between">
           <div className="flex gap-2 items-center text-[#959595] cursor-pointer">
             <LocationMarkerIcon className="w-4" />
-            <h4 className="capitalize text-sm">{data?.address}</h4>
+            <h4 className="capitalize text-sm tooltip tooltip-primary" data-tip={data?.address}>{`${data?.address.slice(
+              0,
+              50
+            )}${data?.address.length > 50 ? "..." : ""}`}</h4>
           </div>
           <div className="flex gap-4 items-center text-primary">
+            <a
+              href={`/book/${data._id}`}
+              target="_blank"
+              rel="noreferrer"
+              className="tooltip tooltip-primary cursor-pointer"
+              data-tip="View">
+              <EyeIcon className="w-5 tooltip tooltip-primary" />
+            </a>
             <span
               className="tooltip tooltip-primary cursor-pointer"
               data-tip="Edit"

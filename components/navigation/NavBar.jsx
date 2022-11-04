@@ -1,19 +1,28 @@
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import { MenuAlt3Icon } from "@heroicons/react/solid";
 import { AnimatePresence, motion } from "framer-motion";
 import { navLinks } from "../../helpers/data";
 import MenuItem from "./MenuItem";
 import MobileNavbar from "./MobileNavbar";
+import { authenticatedUser, logout } from "../../redux/features/auth.slice";
+import { LogoutIcon, UserIcon, ViewGridIcon } from "@heroicons/react/outline";
+import { isPartner } from "../../helpers/utils";
+import { useDispatch } from "react-redux";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [pageReady, setPageReady] = useState(false);
   const [scroll, setScroll] = useState(false);
+  const dispatch = useDispatch();
   const router = useRouter();
   const pageLink = router.pathname;
 
+  const handleLogout = () => {
+    dispatch(logout());
+    router.reload();
+  };
   useEffect(() => {
     setPageReady(true);
   }, []);
@@ -24,7 +33,7 @@ const NavBar = () => {
         <div className="flex flex-row gap-10 items-center ">
           <Link href="/">
             <a>
-              <img src="/logo.png" alt="Mooveit" className="max-h-8" />
+              <img src="/logo.png" alt="Mooveit" className="max-h-7" />
             </a>
           </Link>
 
@@ -39,14 +48,41 @@ const NavBar = () => {
           </nav>
         </div>
 
-        <div className="hidden lg:flex items-center gap-4">
-          <Link href="/signup" className="">
-            <a className="hover:text-primary"> Become a Partner</a>
-          </Link>
-          <Link href="/login">
-            <a className="btn btn-primary text-sm w-[125px] font-normal">Log In</a>
-          </Link>
-        </div>
+        {pageReady && authenticatedUser() ? (
+          <div className="hidden lg:block dropdown dropdown-end">
+            <label tabIndex={0} className="btn btn-accent w-[130px] rounded-btn flex gap-2 items-center capitalize">
+              <UserIcon className="w-5" />
+              <span>{authenticatedUser().firstName}</span>
+            </label>
+            <ul
+              tabIndex={0}
+              className="menu dropdown-content capitalize p-2 shadow bg-base-100 rounded-lg w-48 mt-4 z-50">
+              <li>
+                <Link href={isPartner ? "/listings" : "/your-storage"}>
+                  <a className="flex gap-2 items-center border-b">
+                    <ViewGridIcon className="w-5" />
+                    <span>Dashboard</span>
+                  </a>
+                </Link>
+              </li>
+              <li onClick={handleLogout}>
+                <p className="flex gap-2 items-center text-red-500">
+                  <LogoutIcon className="w-5" />
+                  <span>Log Out</span>
+                </p>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <div className="hidden lg:flex items-center gap-4">
+            <Link href="/signup" className="">
+              <a className="hover:text-primary"> Become a Partner</a>
+            </Link>
+            <Link href="/login">
+              <a className="btn btn-primary text-sm w-[125px] font-normal">Log In</a>
+            </Link>
+          </div>
+        )}
 
         {/* mobile menu start */}
         <MenuAlt3Icon className="lg:hidden w-8 text-primary cursor-pointer" onClick={() => setMenuOpen(true)} />

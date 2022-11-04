@@ -115,9 +115,7 @@ const Pricing = () => {
             <div>
               <h3 className="uppercase text-sm mb-2">Hourly rate</h3>
               <div className="flex gap-2 items-center">
-                <span
-                  className={`p-1 h-fit rounded ${isCustom ? "bg-white" : "bg-[#eeeeee]"}`}
-                  onClick={() => console.log("okkkk")}>
+                <span className={`p-1 h-fit rounded ${isCustom ? "bg-white" : "bg-[#eeeeee]"}`}>
                   <MinusIcon
                     className={` w-2 rounded ${isCustom ? "text-primary" : "text-white"}`}
                     onClick={() => updatePrice("reduce", "hourlyRate")}

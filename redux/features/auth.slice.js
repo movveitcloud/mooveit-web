@@ -89,18 +89,21 @@ export const verifyResetToken = createAsyncThunk(
   }
 );
 
-export const verifyEmail = createAsyncThunk("/auth/verify/:token", async ({ token }, { rejectWithValue }) => {
+export const verifyEmail = createAsyncThunk("/auth/verify/:otp", async ({ payload }, { rejectWithValue }) => {
   try {
-    const response = await api.verifyEmail(token);
+    const response = await api.verifyEmail(payload);
     const bytes = response.data.response ? crypto.AES.decrypt(response.data.response, ENCRYPTION_KEY) : "";
     const user = JSON.parse(bytes ? bytes.toString(crypto.enc.Utf8) : null);
-    setTimeout(() => {
-      location.replace(`${user.isVerified ? (user.role == "partner" ? "/onboarding" : "/your-storage") : "/verify"}`);
-    }, 5000);
+    if (user) {
+      successPopUp({
+        msg: `Email verified successfully`,
+        duration: 500,
+        callback: () => location.replace(`${user.role == "partner" ? "/listings" : "/your-storage"}`),
+      });
+    }
     return response.data;
   } catch (err) {
     errorPopUp({ msg: err.response.data.error });
-    location.replace("/");
     return rejectWithValue(err.response.data);
   }
 });
@@ -220,7 +223,6 @@ const authSlice = createSlice({
     [verifyEmail.fulfilled]: (state, action) => {
       state.verifyEmailLoading = false;
       localStorage.setItem("user", JSON.stringify({ ...action.payload }));
-      state.verifyEmailData = action.payload;
       state.user = action.payload;
     },
     [verifyEmail.rejected]: (state, action) => {

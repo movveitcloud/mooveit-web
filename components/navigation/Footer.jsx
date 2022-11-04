@@ -22,7 +22,7 @@ const Footer = () => {
 
           <div className="w-full">
             <h3 className="text-base text-white uppercase">Get in Touch</h3>
-            <div className="flex items-center gap-2 bg-[#7270bb] text-white text-sm rounded-2xl px-4 py-1 my-6">
+            <div className="flex items-center gap-2 bg-[#373737] text-white text-sm rounded-2xl px-4 py-1 my-6">
               <input
                 type="email"
                 className="flex-1 bg-transparent py-3 placeholder:text-white outline-none"
@@ -48,9 +48,9 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="bg-[#222222]">
+      <div className="bg-accent">
         <div className="max-w-[90%] lg:max-w-[85%] mx-auto py-8 px-4">
-          <h4 className="text-white text-sm text-center">
+          <h4 className="text-accent-content text-sm text-center">
             &copy; MooveIT Technologies UK Pty {year} | All rights reserved
           </h4>
         </div>

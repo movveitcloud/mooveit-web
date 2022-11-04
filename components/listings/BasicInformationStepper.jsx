@@ -4,13 +4,26 @@ import { Address, Type, Services, StepperControls } from "../index";
 
 const BasicInformationStepper = () => {
   const { formDetails } = useContext(ListingInputContext);
-  const { address, storageType, storageFloor, storageFeatures } = formDetails;
-  const disableBtn = !address || !storageType || !storageFloor;
-  // || storageFeatures.length == 0;
+  const { address, formattedAddress, coordinates, storageType, storageFloor, storageFeatures, packing, delivery } =
+    formDetails;
+  const disableBtn = !address || !storageType || !storageFloor || storageFeatures.length == 0;
   const serviceOptions = ["delivery", "packing"];
   const services = [];
   serviceOptions.map((item) => formDetails[item] && services.push(item));
-  const payload = { address, storageType, storageFloor, storageFeatures, services };
+  const payload = {
+    address,
+    formattedAddress: {
+      street: formattedAddress?.street?.toLowerCase(),
+      area: formattedAddress?.area?.toLowerCase(),
+    },
+    coordinates,
+    storageType,
+    storageFloor,
+    storageFeatures,
+    services,
+    packing,
+    delivery,
+  };
 
   return (
     <>

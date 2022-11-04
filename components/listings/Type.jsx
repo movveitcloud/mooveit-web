@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import { useRef } from "react";
+import React, { useContext } from "react";
 import Select from "react-select";
 import { ListingInputContext } from "../../context";
 import { storageFeatures, storageFloors, storageKinds } from "../../helpers/data";
@@ -7,7 +6,10 @@ import Accordion from "../shared/Accordion";
 
 const Type = () => {
   const { formDetails, setFormDetails, handleChange } = useContext(ListingInputContext);
-  const multiRef = useRef(null);
+
+  const handleUpdate = (value) => {
+    setFormDetails({ ...formDetails, storageFeatures: [...value]?.map((item) => item.value) });
+  };
 
   return (
     <Accordion title="type">
@@ -56,9 +58,8 @@ const Type = () => {
           <h3 className="mb-3">What features does your storage have?</h3>
           {/* <div className="items-center border border-[#959595] rounded-lg px-4 py-3"> */}
           <Select
-            value={formDetails.storageFeatures}
-            // onChange={(value) => setFormDetails({ ...formDetails, storageFeatures: value.map(({ value }) => value) })}
-            onChange={(value) => setFormDetails({ ...formDetails, storageFeatures: value })}
+            value={storageFeatures.filter((item) => formDetails.storageFeatures.includes(item.value))}
+            onChange={(value) => handleUpdate(value)}
             options={storageFeatures}
             isMulti
             menuPosition="fixed"

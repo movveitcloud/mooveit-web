@@ -46,7 +46,7 @@ const PageLayout = ({ children, name }) => {
       </div>
       {showScroll && (
         <button
-          className="hidden md:block fixed bottom-6 right-6 p-3 bg-accent hover:bg-primary border hover:border-accent active:scale-90 text-primary hover:text-white rounded text-sm transition-all duration-300"
+          className="hidden md:block fixed bottom-6 right-6 p-3 bg-accent hover:bg-primary shadow active:scale-90 text-primary hover:text-white rounded text-sm transition-all duration-300"
           onClick={scrollToTop}>
           <ArrowNarrowUpIcon className="w-5" />
         </button>

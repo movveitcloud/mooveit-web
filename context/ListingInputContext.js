@@ -1,12 +1,15 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 const ListingInputContext = createContext();
 
 const initialState = {
   //Basic Information Stepper
   address: "",
+  formattedAddress: {},
+  coordinates: {},
   storageType: "",
   storageFloor: "",
+  storageFeaturesArray: [],
   storageFeatures: [],
   delivery: false,
   packing: false,
@@ -15,7 +18,7 @@ const initialState = {
   streetView: false,
   storageSize: "",
   storageNumber: 1,
-  media: [],
+  image: [],
   storageTitle: "",
   description: "",
   calendar: "",
@@ -24,23 +27,24 @@ const initialState = {
   unavailabilityPeriods: [],
   unavailabilityReason: "",
   unavailabilityDate: "",
-  whenAccessListing: "",
-  howAccessListing: "",
-  packingPermit: true,
-  packingInstruction: "",
+  storageAccessPeriod: "",
+  storageAccessType: "",
+  parkingPermit: false,
+  parkingInstruction: "",
   bookingDuration: "",
   bookingNotice: "",
 
   //Pricing Stepper
   priceType: "custom",
-  monthlyRate: 100,
-  hourlyRate: 2.4,
+  monthlyRate: 0,
+  hourlyRate: 0,
   consent: false,
 };
 
 export const ListingInputContextProvider = ({ children }) => {
   const [formDetails, setFormDetails] = useState(initialState);
   const [activeStepper, setActiveStepper] = useState(0);
+  const [preview, setPreview] = useState([]);
 
   const handleChange = (e) => {
     const { type, name, value, checked } = e.target;
@@ -60,6 +64,8 @@ export const ListingInputContextProvider = ({ children }) => {
         setActiveStepper,
         setFormDetails,
         handleChange,
+        preview,
+        setPreview,
       }}>
       {children}
     </ListingInputContext.Provider>

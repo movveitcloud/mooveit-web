@@ -1,7 +1,7 @@
 import React from "react";
 
 const Tabs = ({ activeTab, setActiveTab }) => {
-  const menuItems = ["Listing Details", "Dimensions", "Street View", "Review"];
+  const menuItems = ["Listing Details", "Dimensions", "Review"];
 
   return (
     <nav>

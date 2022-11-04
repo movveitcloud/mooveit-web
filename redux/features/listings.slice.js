@@ -8,7 +8,7 @@ export const createListing = createAsyncThunk(
     try {
       const response = await api.createListing(payload);
       setActiveStepper(activeStepper + 1);
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
     } catch (err) {
       errorPopUp({ msg: err.response.data.error });
@@ -19,15 +19,17 @@ export const createListing = createAsyncThunk(
 
 export const updateListing = createAsyncThunk(
   "/listings/:id",
-  async ({ payload, id, setActiveStepper, activeStepper, publishModal }, { rejectWithValue }) => {
+  async ({ payload, id, setActiveStepper, activeStepper, publishModal, edit }, { rejectWithValue }) => {
     try {
       const response = await api.updateListing({ payload, id });
-      if (activeStepper < 3) {
+      if (edit) {
+        successPopUp({ msg: "Listing was succesfully updated" });
+      } else if (activeStepper < 3) {
         setActiveStepper(activeStepper + 1);
       } else {
         publishModal.current.click(); //launch snippet/publish modal
       }
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
     } catch (err) {
       errorPopUp({ msg: err.response.data.error });
@@ -72,6 +74,16 @@ export const getSingleListing = createAsyncThunk("/listing/listingId", async ({ 
   }
 });
 
+export const getUserListing = createAsyncThunk("/users/listing/listingId", async ({ id }, { rejectWithValue }) => {
+  try {
+    const response = await api.getUserListing(id);
+    return response.data;
+  } catch (err) {
+    // errorPopUp({ msg: err.response.data.error });
+    return rejectWithValue(err.response.data);
+  }
+});
+
 export const deleteListing = createAsyncThunk(
   "/listing/deleteListing",
   async ({ id, refreshListings, closeModal }, { rejectWithValue }) => {
@@ -87,16 +99,46 @@ export const deleteListing = createAsyncThunk(
   }
 );
 
+export const getFeaturedListings = createAsyncThunk("/users/featured-listing", async ({}, { rejectWithValue }) => {
+  try {
+    const response = await api.getFeaturedListings();
+    return response.data;
+  } catch (err) {
+    errorPopUp({ msg: err.response.data.error });
+    return rejectWithValue(err.response.data);
+  }
+});
+
+export const getSearchListings = createAsyncThunk(
+  "/users/listings:search",
+  async ({ payload }, { rejectWithValue }) => {
+    try {
+      const response = await api.getSearchListings(payload);
+      return response.data;
+    } catch (err) {
+      errorPopUp({ msg: err.response.data.error });
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 const listingsSlice = createSlice({
   name: "listing",
   initialState: {
     data: null,
     listings: [],
+    featuredListings: [],
+    searchListings: [],
     singleListing: {},
+    userListing: {},
     loading: false,
     exitLoading: false,
+    listingError: null,
     listingLoading: false,
+    featuredLoading: false,
+    searchLoading: false,
     singleListingLoading: false,
+    userListingLoading: false,
     deleteLoading: false,
   },
 
@@ -147,6 +189,28 @@ const listingsSlice = createSlice({
       state.listingLoading = false;
     },
 
+    [getFeaturedListings.pending]: (state) => {
+      state.featuredLoading = true;
+    },
+    [getFeaturedListings.fulfilled]: (state, action) => {
+      state.featuredLoading = false;
+      state.featuredListings = action.payload.data;
+    },
+    [getFeaturedListings.rejected]: (state, action) => {
+      state.featuredLoading = false;
+    },
+
+    [getSearchListings.pending]: (state) => {
+      state.searchLoading = true;
+    },
+    [getSearchListings.fulfilled]: (state, action) => {
+      state.searchLoading = false;
+      state.searchListings = action.payload.data;
+    },
+    [getSearchListings.rejected]: (state, action) => {
+      state.searchLoading = false;
+    },
+
     [getSingleListing.pending]: (state) => {
       state.singleListingLoading = true;
     },
@@ -156,6 +220,18 @@ const listingsSlice = createSlice({
     },
     [getSingleListing.rejected]: (state, action) => {
       state.singleListingLoading = false;
+    },
+
+    [getUserListing.pending]: (state) => {
+      state.userListingLoading = true;
+    },
+    [getUserListing.fulfilled]: (state, action) => {
+      state.userListingLoading = false;
+      state.userListing = action.payload.data;
+    },
+    [getUserListing.rejected]: (state, action) => {
+      state.listingError = action.payload.error;
+      state.userListingLoading = false;
     },
 
     [deleteListing.pending]: (state) => {

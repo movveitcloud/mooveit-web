@@ -243,17 +243,10 @@ export const storageSize = [
   { name: "75 sq ft - Luton Van Size", value: "75" },
   {
     name: "125 sq ft - Large Single Garage or 7 Tonne Lorry",
-    value: "125 sq ft - Large Single Garage or 7 Tonne Lorry",
+    value: "125",
   },
   {
     name: "150 sq ft - One and Half garages or 2 Luton Van Loads",
-    value: "150 sq ft - One and Half garages or 2 Luton Van Loads",
+    value: "150",
   },
-];
-
-export const listings = [
-  { name: "Blocks D4-D6, Crowley lane", type: "draft" },
-  { name: "Blocks D1, Canada lane", type: "approved" },
-  { name: "Blocks D4-D6, Crowley lane", type: "approved" },
-  { name: "Blocks D4-D6, Cresent lane", type: "pending" },
 ];
