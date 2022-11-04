@@ -55,8 +55,6 @@ export const ListingInputContextProvider = ({ children }) => {
     });
   };
 
-  console.log(formDetails, "data");
-
   return (
     <ListingInputContext.Provider
       value={{

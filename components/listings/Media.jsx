@@ -25,9 +25,6 @@ const Media = () => {
     files = [...files, e.target.files];
 
     files?.forEach(async (file, i) => {
-      console.log(file);
-      console.log(files, 32);
-      console.log(e.target.files, 33);
       const formData = new FormData();
       if (formData) {
         formData.append("id", data._id);
@@ -47,20 +44,14 @@ const Media = () => {
         });
         setFormDetails({ ...formDetails, image: response.data.data });
       } catch (error) {}
-      for (var pair of formData.entries()) {
-        console.log(pair[0] + ", " + pair[1]);
-      }
     });
   };
   const removeItem = (e) => {
     const index = e.target.id;
-    let newPreview = [...preview];
+    let newPreview = [...formDetails.image];
     newPreview.splice(index, 1);
-    setPreview([...newPreview]);
-    setFormDetails({ ...formDetails, image: preview });
+    setFormDetails({ ...formDetails, image: newPreview });
   };
-
-  console.log(preview, formDetails);
 
   useEffect(() => {
     refresh();
