@@ -10,7 +10,7 @@ import {
   TruckIcon,
 } from "@heroicons/react/outline";
 
-import { storageFeats } from "../../helpers/data";
+import { storageFeatures } from "../../helpers/data";
 import { formatMoney } from "../../helpers/utils";
 import BookContainer from "./BookContainer";
 
@@ -30,11 +30,15 @@ const BookListingMainCard = () => {
       setCurrentIndex(currentIndex + 1);
     }
   };
+  const getFeatures = () => {
+    const filter = storageFeatures.filter((p) => userListing?.storageFeatures?.includes(p.value));
+    return filter;
+  };
 
   return (
     <BookContainer>
       <div className="w-full h-[200px] md:h-[400px] relative overflow-hidden flex rounded-lg">
-        {images.map((img, i) => (
+        {userListing?.media?.map((img, i) => (
           <img
             key={i}
             src={img}
@@ -50,7 +54,7 @@ const BookListingMainCard = () => {
             <ChevronLeftIcon className="w-4" />
           </div>
         )}
-        {currentIndex < images.length - 1 && (
+        {currentIndex < userListing?.media?.length - 1 && (
           <div
             className="absolute right-3 md:right-5 -translate-y-[50%] top-[50%] w-6 h-6 flex justify-center items-center rounded-full bg-[#DDDDDD99] hover:bg-[#ddddddaf] shadow text-white cursor-pointer select-none active:scale-90 transition-all duration-200"
             onClick={nextImage}>
@@ -61,11 +65,9 @@ const BookListingMainCard = () => {
 
       <div className="">
         <h3 className="md:text-lg font-bold my-3 capitalize">{userListing?.storageTitle}</h3>
-        <p className="flex flex-row items-center gap-1 md:gap-2 text-primary">
-          <LocationMarkerIcon className="w-4" />
-          <span className="uppercase font-light text-sm md:text-base">
-            {userListing?.address || "65-69 Lots Road, Chelsea, SW10 0RN"}
-          </span>
+        <p className="flex flex-row items-start gap-1 md:gap-2 text-primary">
+          <LocationMarkerIcon className="w-4 min-w-[16px]" />
+          <span className="uppercase font-light text-sm md:text-base">{userListing?.address}</span>
         </p>
 
         <div className="py-3 space-y-4 md:space-y-5">
@@ -83,8 +85,8 @@ const BookListingMainCard = () => {
 
           {/*storage features */}
           <div className="flex flex-row items-center gap-2">
-            {storageFeats.map(({ name, icon }) => (
-              <span key={name} className="tooltip tooltip-primary" data-tip={name}>
+            {getFeatures()?.map(({ label, value, icon }) => (
+              <span key={value} className="tooltip tooltip-primary cursor-pointer" data-tip={label}>
                 {icon}
               </span>
             ))}

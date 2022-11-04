@@ -16,11 +16,16 @@ const Address = () => {
     setFormDetails({ ...formDetails, address });
   };
 
-  const handleSelect = (address) => {
-    setFormDetails({ ...formDetails, address });
+  const handleSelect = (address, placeId, suggestion) => {
+    const formattedAddress = {
+      street: suggestion?.formattedSuggestion?.mainText,
+      area: suggestion?.formattedSuggestion?.secondaryText,
+    };
+    setFormDetails({ ...formDetails, address, formattedAddress });
+
     geocodeByAddress(address)
       .then((results) => getLatLng(results[0]))
-      .then((latLng) => setFormDetails({ ...formDetails, coordinates: latLng, address }))
+      .then((latLng) => setFormDetails({ ...formDetails, coordinates: latLng, address, formattedAddress }))
       .catch((error) => console.error("Error", error));
   };
 

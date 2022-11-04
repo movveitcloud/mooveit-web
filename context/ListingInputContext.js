@@ -1,10 +1,11 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 const ListingInputContext = createContext();
 
 const initialState = {
   //Basic Information Stepper
   address: "",
+  formattedAddress: {},
   coordinates: {},
   storageType: "",
   storageFloor: "",
@@ -43,6 +44,7 @@ const initialState = {
 export const ListingInputContextProvider = ({ children }) => {
   const [formDetails, setFormDetails] = useState(initialState);
   const [activeStepper, setActiveStepper] = useState(0);
+  const [preview, setPreview] = useState([]);
 
   const handleChange = (e) => {
     const { type, name, value, checked } = e.target;
@@ -62,6 +64,8 @@ export const ListingInputContextProvider = ({ children }) => {
         setActiveStepper,
         setFormDetails,
         handleChange,
+        preview,
+        setPreview,
       }}>
       {children}
     </ListingInputContext.Provider>

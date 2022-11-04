@@ -2,25 +2,36 @@ import React from "react";
 import Link from "next/link";
 import { ArchiveIcon, ClockIcon, LocationMarkerIcon, MapIcon, TruckIcon } from "@heroicons/react/outline";
 import { formatMoney } from "../../helpers/utils";
-import { storageFeats } from "../../helpers/data";
+import { storageFeatures } from "../../helpers/data";
 import { StarIcon } from "@heroicons/react/solid";
 
-const ListingCard = () => {
+const ListingCard = ({ item }) => {
+  const getFeatures = () => {
+    const filter = storageFeatures.filter((p) => item?.storageFeatures.includes(p.value));
+    return filter;
+  };
+
   return (
-    <Link href="/book/fwfwf">
-      <a className="bg-white w-full sm:w-[375px] rounded-lg p-5 hover:shadow md:hover:scale-105 transition-transform duration-500">
+    <Link href={`/book/${item?._id}`}>
+      <a className="bg-white w-full sm:w-[375px] rounded-lg p-5 hover:shadow transition-shadow duration-500 h-full">
         <div className="w-full h-[200px]">
           <img
-            src="/listingdummy.png"
+            src={item?.media[0]}
             alt="Listing"
             className="object-cover w-full h-full rounded-lg hover:shadow-md transition-all duration-200"
           />
         </div>
         <div className="">
-          <h3 className="text-[#222222] font-bold py-3">Access Self Storage - Chelsea</h3>
+          <h3 className="text-[#222222] font-bold py-3">{`${item?.storageTitle?.slice(0, 38)}${
+            item?.storageTitle?.length > 38 ? "..." : ""
+          }`}</h3>
           <p className="flex flex-row items-center gap-2 text-primary">
             <LocationMarkerIcon className="w-4" />
-            <span className="text-sm uppercase">65-69 Lots Road, Chelsea, SW10 0RN</span>
+            <span
+              className="text-sm uppercase tooltip tooltip-primary"
+              data-tip={item?.address}>{`${item?.address?.slice(0, 38)}${
+              item?.address?.length > 38 ? "..." : ""
+            }`}</span>
           </p>
 
           <div className="py-3 space-y-4">
@@ -31,42 +42,48 @@ const ListingCard = () => {
               </p>
               <p className="flex flex-row items-center gap-2 text-[#107E7E]">
                 <MapIcon className="text-[#222222] w-4" />
-                <span className="text-[#222222] text-[12px] uppercase">72 SQ. FT</span>
+                <span className="text-[#222222] text-[12px] uppercase">{`${item?.storageSize} SQ. FT`}</span>
               </p>
             </div>
 
             {/*storage features */}
             <div className="flex flex-row items-center gap-2">
-              {storageFeats.map(({ name, icon }) => (
-                <span key={name} className="tooltip tooltip-primary" data-tip={name}>
+              {getFeatures()?.map(({ value, label, icon }) => (
+                <span key={value} className="tooltip tooltip-primary" data-tip={label}>
                   {icon}
                 </span>
               ))}
             </div>
 
-            <div className="flex flex-row gap-3">
-              <p className="flex flex-row items-center gap-2 text-[#107E7E]">
-                <span className="rounded-full p-[6px] bg-accent">
-                  <TruckIcon className="text-primary w-4" />
-                </span>
-                <span className="text-[#222222] text-[12px]">Delivery</span>
-              </p>
-              <p className="flex flex-row items-center gap-2 text-[#107E7E]">
-                <span className="rounded-full p-[6px] bg-accent">
-                  <ArchiveIcon className="text-primary w-4" />
-                </span>
-                <span className="text-[#222222] text-[12px]">Pack & Move</span>
-              </p>
-            </div>
+            {(item?.delivery || item?.packing) && (
+              <div className="flex flex-row gap-3">
+                {item?.delivery && (
+                  <p className="flex flex-row items-center gap-2 text-[#107E7E]">
+                    <span className="rounded-full p-[6px] bg-accent">
+                      <TruckIcon className="text-primary w-4" />
+                    </span>
+                    <span className="text-[#222222] text-[12px]">Delivery</span>
+                  </p>
+                )}
+                {item?.packing && (
+                  <p className="flex flex-row items-center gap-2 text-[#107E7E]">
+                    <span className="rounded-full p-[6px] bg-accent">
+                      <ArchiveIcon className="text-primary w-4" />
+                    </span>
+                    <span className="text-[#222222] text-[12px]">Pack & Move</span>
+                  </p>
+                )}
+              </div>
+            )}
           </div>
 
           <div className="flex flex-row justify-between items-center mt-2">
             <p className="text-primary font-semibold text-xl">
-              {formatMoney(1200)} <span className="text-[#959595] font-normal text-xs">/month</span>
+              {formatMoney(item?.monthlyRate)} <span className="text-[#959595] font-normal text-xs">/month</span>
             </p>
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
               <StarIcon className="w-5 text-accent" /> <p className="text-sm">4.76</p>
-            </div>
+            </div> */}
           </div>
         </div>
       </a>

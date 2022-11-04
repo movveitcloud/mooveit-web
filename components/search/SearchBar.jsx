@@ -52,7 +52,7 @@ const SearchBar = ({ showMap, setShowMap, mapContainer, cardContainer }) => {
   };
 
   return (
-    <div className="sticky top-0 text-sm z-50">
+    <div className="sticky top-0 text-sm z-40">
       <div className="bg-primary flex">
         <div className="md:max-w-[90%] max-w-full lg:max-w-[85%] mx-auto justify-center p-5 ">
           <div className="flex flex-col md:flex-row items-center md:gap-2 px-10 py-4  bg-white rounded-lg w-full">
@@ -70,6 +70,7 @@ const SearchBar = ({ showMap, setShowMap, mapContainer, cardContainer }) => {
                     onChange={handleAddressChange}
                     onSelect={handleSelect}
                     debounce={400}
+                    searchOptions={{ types: ["locality", "country"] }}
                     shouldFetchSuggestions={formDetails.address.length > 5}>
                     {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                       <div className="relative">
@@ -79,12 +80,10 @@ const SearchBar = ({ showMap, setShowMap, mapContainer, cardContainer }) => {
                             className: "w-full border-none outline-none",
                           })}
                         />
-                        <div className="absolute left-0 right-0 top-10 p-3 z-50">
+                        <div className="absolute left-0 right-0 top-7 z-50">
                           {loading && <div>Loading...</div>}
                           {suggestions.map((suggestion) => {
-                            const className = suggestion.active
-                              ? "suggestion-item--active py-2"
-                              : "suggestion-item py-2";
+                            const className = suggestion.active ? "suggestion-item--active p-2" : "suggestion-item p-2";
                             // inline style for demonstration purpose
                             const style = suggestion.active
                               ? { backgroundColor: "#fafafa", cursor: "pointer" }

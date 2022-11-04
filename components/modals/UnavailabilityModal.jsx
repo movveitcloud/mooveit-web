@@ -7,10 +7,12 @@ const initialState = { unavailabilityReason: "", unavailabilityPeriodStart: "", 
 const UnavailabilityModal = () => {
   const [value, onChange] = useState([new Date(), new Date()]);
   const [period, setPeriod] = useState(initialState);
-  // const { unavailabilityReason, unavailabilityPeriodStart, unavailabilityPeriodEnd } = period;
+  const { unavailabilityReason, unavailabilityPeriodStart, unavailabilityPeriodEnd } = period;
   const { formDetails, setFormDetails } = useContext(ListingInputContext);
   const startDate = useRef();
   const endDate = useRef();
+
+  const disableBtn = !unavailabilityReason || !unavailabilityPeriodStart || !unavailabilityPeriodEnd;
 
   const disablePastDate = () => {
     const today = new Date();
@@ -94,9 +96,15 @@ const UnavailabilityModal = () => {
               </p>
             </div>
           </div>
-          <button className="btn btn-primary w-full font-normal" onClick={addPeriod}>
-            Save
-          </button>
+          {disableBtn ? (
+            <button className="btn w-full disabled:bg-[#DDDDDD] disabled:text-white" disabled={disableBtn}>
+              Add Period
+            </button>
+          ) : (
+            <label htmlFor="unavailability" className="btn btn-primary w-full font-normal" onClick={addPeriod}>
+              Add Period
+            </label>
+          )}
         </label>
       </label>
     </>

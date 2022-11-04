@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   FindStorage,
   HeroSection,
@@ -10,6 +10,16 @@ import {
 } from "../components";
 
 const Home = () => {
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {});
+    }
+  }
+
+  useEffect(() => {
+    getLocation();
+  }, []);
+
   return (
     <PageLayout>
       <HeroSection />
