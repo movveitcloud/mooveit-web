@@ -14,7 +14,6 @@ import {
   SimilarListings,
 } from "../../../components";
 import { BeatLoader } from "react-spinners";
-import { AtSymbolIcon } from "@heroicons/react/solid";
 import { EmojiSadIcon } from "@heroicons/react/outline";
 
 const BookListing = () => {

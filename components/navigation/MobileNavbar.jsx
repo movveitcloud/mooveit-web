@@ -1,8 +1,17 @@
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ChevronDownIcon, XIcon } from "@heroicons/react/outline";
+import { ChevronDownIcon, ViewGridIcon, XIcon } from "@heroicons/react/outline";
 import { navLinks } from "../../helpers/data";
+import { authenticatedUser } from "../../redux/features/auth.slice";
+import { isPartner } from "../../helpers/utils";
 
 const MobileNavBar = ({ pageLink, setMenuOpen }) => {
+  const [pageReady, setPageReady] = useState(false);
+
+  useEffect(() => {
+    setPageReady(true);
+  }, []);
+
   return (
     <aside className="flex flex-col gap-6 py-8 px-4">
       <div className="px-2 flex justify-between items-center  mt-2 mb-4">
@@ -78,20 +87,29 @@ const MobileNavBar = ({ pageLink, setMenuOpen }) => {
         </ul>
       </nav>
 
-      <div className="flex flex-col gap-4">
-        <Link href="/signup" className="">
-          <a className="text-white" onClick={() => setMenuOpen(false)}>
-            Become a Partner
+      {pageReady && authenticatedUser() ? (
+        <Link href={isPartner ? "/listings" : "/your-storage"}>
+          <a className="btn btn-accent w-full capitalize rounded-btn flex gap-2 items-center">
+            <ViewGridIcon className="w-5" />
+            <span>Dashboard</span>
           </a>
         </Link>
-        <Link href="/login">
-          <a
-            className="btn bg-white hover:bg-white text-primary text-sm w-full font-normal"
-            onClick={() => setMenuOpen(false)}>
-            Log In
-          </a>
-        </Link>
-      </div>
+      ) : (
+        <div className="flex flex-col gap-4">
+          <Link href="/signup" className="">
+            <a className="text-white" onClick={() => setMenuOpen(false)}>
+              Become a Partner
+            </a>
+          </Link>
+          <Link href="/login">
+            <a
+              className="btn bg-white hover:bg-white text-primary text-sm w-full font-normal"
+              onClick={() => setMenuOpen(false)}>
+              Log In
+            </a>
+          </Link>
+        </div>
+      )}
     </aside>
   );
 };

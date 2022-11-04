@@ -99,17 +99,44 @@ export const deleteListing = createAsyncThunk(
   }
 );
 
+export const getFeaturedListings = createAsyncThunk("/users/featured-listing", async ({}, { rejectWithValue }) => {
+  try {
+    const response = await api.getFeaturedListings();
+    return response.data;
+  } catch (err) {
+    errorPopUp({ msg: err.response.data.error });
+    return rejectWithValue(err.response.data);
+  }
+});
+
+export const getSearchListings = createAsyncThunk(
+  "/users/listings:search",
+  async ({ payload }, { rejectWithValue }) => {
+    try {
+      const response = await api.getSearchListings(payload);
+      return response.data;
+    } catch (err) {
+      errorPopUp({ msg: err.response.data.error });
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 const listingsSlice = createSlice({
   name: "listing",
   initialState: {
     data: null,
     listings: [],
+    featuredListings: [],
+    searchListings: [],
     singleListing: {},
     userListing: {},
     loading: false,
     exitLoading: false,
     listingError: null,
     listingLoading: false,
+    featuredLoading: false,
+    searchLoading: false,
     singleListingLoading: false,
     userListingLoading: false,
     deleteLoading: false,
@@ -160,6 +187,28 @@ const listingsSlice = createSlice({
     },
     [getListings.rejected]: (state, action) => {
       state.listingLoading = false;
+    },
+
+    [getFeaturedListings.pending]: (state) => {
+      state.featuredLoading = true;
+    },
+    [getFeaturedListings.fulfilled]: (state, action) => {
+      state.featuredLoading = false;
+      state.featuredListings = action.payload.data;
+    },
+    [getFeaturedListings.rejected]: (state, action) => {
+      state.featuredLoading = false;
+    },
+
+    [getSearchListings.pending]: (state) => {
+      state.searchLoading = true;
+    },
+    [getSearchListings.fulfilled]: (state, action) => {
+      state.searchLoading = false;
+      state.searchListings = action.payload.data;
+    },
+    [getSearchListings.rejected]: (state, action) => {
+      state.searchLoading = false;
     },
 
     [getSingleListing.pending]: (state) => {

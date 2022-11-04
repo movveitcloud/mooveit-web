@@ -10,7 +10,7 @@ import {
   TruckIcon,
 } from "@heroicons/react/outline";
 
-import { storageFeats } from "../../helpers/data";
+import { storageFeats, storageFeatures } from "../../helpers/data";
 import { formatMoney } from "../../helpers/utils";
 import BookContainer from "./BookContainer";
 
@@ -29,6 +29,10 @@ const BookListingMainCard = () => {
     if (currentIndex < images.length - 1) {
       setCurrentIndex(currentIndex + 1);
     }
+  };
+  const getFeatures = () => {
+    const filter = storageFeatures.filter((p) => userListing?.storageFeatures?.includes(p.value));
+    return filter;
   };
 
   return (
@@ -61,11 +65,9 @@ const BookListingMainCard = () => {
 
       <div className="">
         <h3 className="md:text-lg font-bold my-3 capitalize">{userListing?.storageTitle}</h3>
-        <p className="flex flex-row items-center gap-1 md:gap-2 text-primary">
-          <LocationMarkerIcon className="w-4" />
-          <span className="uppercase font-light text-sm md:text-base">
-            {userListing?.address || "65-69 Lots Road, Chelsea, SW10 0RN"}
-          </span>
+        <p className="flex flex-row items-start gap-1 md:gap-2 text-primary">
+          <LocationMarkerIcon className="w-4 min-w-[16px]" />
+          <span className="uppercase font-light text-sm md:text-base">{userListing?.address}</span>
         </p>
 
         <div className="py-3 space-y-4 md:space-y-5">
@@ -83,8 +85,8 @@ const BookListingMainCard = () => {
 
           {/*storage features */}
           <div className="flex flex-row items-center gap-2">
-            {storageFeats.map(({ name, icon }) => (
-              <span key={name} className="tooltip tooltip-primary" data-tip={name}>
+            {getFeatures()?.map(({ label, value, icon }) => (
+              <span key={value} className="tooltip tooltip-primary cursor-pointer" data-tip={label}>
                 {icon}
               </span>
             ))}

@@ -52,7 +52,7 @@ const SearchBar = ({ showMap, setShowMap, mapContainer, cardContainer }) => {
   };
 
   return (
-    <div className="sticky top-0 text-sm z-50">
+    <div className="sticky top-0 text-sm z-40">
       <div className="bg-primary flex">
         <div className="md:max-w-[90%] max-w-full lg:max-w-[85%] mx-auto justify-center p-5 ">
           <div className="flex flex-col md:flex-row items-center md:gap-2 px-10 py-4  bg-white rounded-lg w-full">
@@ -70,6 +70,7 @@ const SearchBar = ({ showMap, setShowMap, mapContainer, cardContainer }) => {
                     onChange={handleAddressChange}
                     onSelect={handleSelect}
                     debounce={400}
+                    searchOptions={{ types: ["locality", "country"] }}
                     shouldFetchSuggestions={formDetails.address.length > 5}>
                     {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                       <div className="relative">
