@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ApiError } from "next/dist/server/api-utils";
 
 const API = axios.create({ baseURL: process.env.BASE_URL });
 
@@ -27,3 +28,4 @@ export const getSingleListing = (id) => API.get(`/listings/${id}`);
 export const getUserListing = (id) => API.get(`/users/listings/${id}`);
 export const getSearchListings = (payload) => API.get("/users/listings", { params: payload });
 export const deleteListing = (id) => API.delete(`/listings/${id}`);
+export const imageUpload = ({ payload, id }) => API.patch(`/listings/${id}/upload`, payload);
