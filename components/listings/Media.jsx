@@ -23,13 +23,13 @@ const Media = () => {
   const onSelectFile = async (e) => {
     let files = [];
     files = [...files, e.target.files];
-
     files?.forEach(async (file, i) => {
+      console.log(file, e.target.files);
       const formData = new FormData();
       if (formData) {
         formData.append("id", data._id);
         formData.append("key", "media");
-        formData.append("media", file[i]);
+        formData.append("media", file);
       }
       try {
         const headers = {
