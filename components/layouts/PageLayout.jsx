@@ -24,6 +24,7 @@ const PageLayout = ({ children, name }) => {
   useEffect(() => {
     getPageTitle();
   }, [router.pathname]);
+  
   useEffect(() => {
     if (typeof window !== "undefined") {
       window.addEventListener("scroll", () => setShowScroll(window.pageYOffset > 400));
