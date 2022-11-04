@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <script
-        async
+        defer
         src={`https://maps.googleapis.com/maps/api/js?key=${process.env.PLACES_KEY}&libraries=places`}></script>
       <Provider store={store}>
         <ListingInputContextProvider>
