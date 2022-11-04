@@ -8,6 +8,7 @@ export const createListing = createAsyncThunk(
     try {
       const response = await api.createListing(payload);
       setActiveStepper(activeStepper + 1);
+      // console.log(response.data);
       return response.data;
     } catch (err) {
       errorPopUp({ msg: err.response.data.error });
@@ -28,6 +29,7 @@ export const updateListing = createAsyncThunk(
       } else {
         publishModal.current.click(); //launch snippet/publish modal
       }
+      // console.log(response.data);
       return response.data;
     } catch (err) {
       errorPopUp({ msg: err.response.data.error });
