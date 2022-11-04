@@ -24,7 +24,6 @@ const Search = () => {
     }
   }, [query]);
 
-  console.log(query);
   return (
     <PageLayout>
       <div>

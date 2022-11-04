@@ -111,7 +111,7 @@ const EditListing = () => {
     <DashboardLayout>
       {singleListingLoading ? (
         <div className="h-[500px] flex justify-center items-center">
-          <BeatLoader loading={singleListingLoading} color="#4543A5" />
+          <BeatLoader loading={singleListingLoading} color="#EDCC5B" />
         </div>
       ) : (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
@@ -120,7 +120,7 @@ const EditListing = () => {
               <ArrowNarrowLeftIcon className="w-4" />
               Back
             </button>
-            <h2 className="font-bold text-xl">{singleListing?.address}</h2>
+            <h2 className="font-bold text-xl">{singleListing?.storageTitle}</h2>
           </div>
           <div className="w-[80%] mx-auto">
             <>
