@@ -8,7 +8,6 @@ import axios from "axios";
 
 const Media = () => {
   const { formDetails, setFormDetails } = useContext(ListingInputContext);
-  const [file, setFile] = useState(null);
   const [preview, setPreview] = useState([]);
   const [, refresh] = useState();
   const fileRef = useRef(null);
@@ -16,7 +15,7 @@ const Media = () => {
 
   const uploadFile = () => {
     fileRef.current.click();
-    setFile(fileRef.current.files[0]);
+    // setFile(fileRef.current.files);
   };
   const API = axios.create({ baseURL: process.env.BASE_URL });
 
@@ -24,12 +23,11 @@ const Media = () => {
     let files = [];
     files = [...files, e.target.files];
     files?.forEach(async (file, i) => {
-      console.log(file, e.target.files);
       const formData = new FormData();
       if (formData) {
         formData.append("id", data._id);
         formData.append("key", "media");
-        formData.append("media", file);
+        formData.append("media", file[i]);
       }
       try {
         const headers = {
@@ -55,7 +53,7 @@ const Media = () => {
 
   useEffect(() => {
     refresh();
-  }, [file, preview]);
+  }, [formDetails, preview]);
 
   return (
     <Accordion title="Media">
@@ -73,12 +71,12 @@ const Media = () => {
           )}
           <div className="flex flex-wrap">
             {formDetails?.image?.map((img, index) => (
-              <div key={index} className="w-full md:w-[32%] h-[200px] mb-[2.5rem] rounded-md mr-2">
+              <div key={index} className="w-full relative md:w-[32%] h-[200px] mb-[2.5rem] rounded-md mr-2">
                 <img src={img} id={index} alt="pic1" name="media" className="w-full h-full mb-2 object-cover rounded" />
                 <button
                   id={index}
                   key={index}
-                  className="text-red-600 hover:text-primary"
+                  className="text-red-600 absolute right-2 top-2 hover:text-primary font-bold"
                   onClick={(e) => {
                     removeItem(e, index);
                   }}>
