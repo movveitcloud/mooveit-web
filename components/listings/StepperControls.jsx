@@ -30,8 +30,6 @@ const StepperControls = ({ disabled, payload, publishModal }) => {
     }
   };
 
-  console.log(data, "data");
-
   return (
     <div className={`flex ${activeStepper > 0 ? "justify-between" : "justify-end"} `}>
       {activeStepper > 0 && (

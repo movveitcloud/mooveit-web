@@ -29,8 +29,6 @@ const BookListing = () => {
     }
   }, [query]);
 
-  console.log(userListing);
-
   return (
     <PageLayout>
       {userListingLoading ? (
