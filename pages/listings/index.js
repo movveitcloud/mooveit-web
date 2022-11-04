@@ -57,7 +57,11 @@ const Listings = () => {
       </div>
 
       {listingLoading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div>
+            <Skeleton height={225} />
+            <Skeleton height={25} />
+          </div>
           <div>
             <Skeleton height={225} />
             <Skeleton height={25} />
@@ -81,7 +85,7 @@ const Listings = () => {
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {[...filteredArray]?.reverse()?.map((item, i) => (
             <ListingLocationCard data={item} key={item + i} />
           ))}

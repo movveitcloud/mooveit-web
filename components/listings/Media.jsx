@@ -17,6 +17,7 @@ const Media = () => {
   const uploadFile = () => {
     fileRef.current.click();
     setFile(fileRef.current.files[0]);
+    console.log("upload na!!");
   };
   const API = axios.create({ baseURL: process.env.BASE_URL });
 
