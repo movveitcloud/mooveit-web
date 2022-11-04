@@ -35,8 +35,6 @@ const BookListingMainCard = () => {
     return filter;
   };
 
-  console.log(userListing);
-
   return (
     <BookContainer>
       <div className="w-full h-[200px] md:h-[400px] relative overflow-hidden flex rounded-lg">
