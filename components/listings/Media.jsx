@@ -6,7 +6,7 @@ import { ListingInputContext } from "../../context";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-const Media = () => {
+const Media = ({ edit, id }) => {
   const { formDetails, setFormDetails } = useContext(ListingInputContext);
   const [preview, setPreview] = useState([]);
   const [, refresh] = useState();
@@ -19,16 +19,19 @@ const Media = () => {
   };
   const API = axios.create({ baseURL: process.env.BASE_URL });
 
+  const listingId = edit ? id : data?._id;
+
   const onSelectFile = async (e) => {
     let files = [];
     files = [...files, e.target.files];
     files?.forEach(async (file, i) => {
       const formData = new FormData();
       if (formData) {
-        formData.append("id", data._id);
+        formData.append("id", listingId);
         formData.append("key", "media");
         formData.append("media", file[i]);
       }
+
       try {
         const headers = {
           Authorization: `Bearer ${JSON.parse(localStorage.getItem("user")).token}`,
@@ -36,7 +39,7 @@ const Media = () => {
         };
         const response = await API({
           method: "patch",
-          url: `/listings/${data._id}/upload`,
+          url: `/listings/${listingId}/upload`,
           headers: headers,
           data: formData,
         });
@@ -44,6 +47,7 @@ const Media = () => {
       } catch (error) {}
     });
   };
+
   const removeItem = (e) => {
     const index = e.target.id;
     let newPreview = [...formDetails.image];
