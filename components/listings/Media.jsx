@@ -6,7 +6,7 @@ import { ListingInputContext } from "../../context";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-const Media = ({ edit, id }) => {
+const Media = ({ edit, id, incomplete }) => {
   const { formDetails, setFormDetails } = useContext(ListingInputContext);
   const [preview, setPreview] = useState([]);
   const [, refresh] = useState();
@@ -60,7 +60,7 @@ const Media = ({ edit, id }) => {
   }, [formDetails, preview]);
 
   return (
-    <Accordion title="Media">
+    <Accordion title="Media" incomplete={incomplete}>
       <div className="space-y-6">
         <div className="bg-[#EEEEEE] px-5 py-5 text-center rounded-lg">
           {formDetails?.image?.length === 0 ? (

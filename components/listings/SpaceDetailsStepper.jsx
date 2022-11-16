@@ -9,8 +9,7 @@ import { ListingInputContext } from "../../context";
 const SpaceDetailsStepper = () => {
   const { formDetails } = useContext(ListingInputContext);
   const { storageSize, streetView, storageTitle, description, image } = formDetails;
-  const disableBtn = !storageSize || !storageTitle || !description;
-  //  || image.length == 0;
+  const disableBtn = !storageSize || !storageTitle || !description || image.length == 0;
   const payload = { streetView, storageSize, image, storageTitle, description };
 
   return (

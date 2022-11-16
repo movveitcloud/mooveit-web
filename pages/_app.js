@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }) {
         <ListingInputContextProvider>
           <ToastContainer
             theme="colored"
-            position="bottom-center"
+            position="top-right"
             autoClose={6000}
             hideProgressBar={false}
             newestOnTop={false}

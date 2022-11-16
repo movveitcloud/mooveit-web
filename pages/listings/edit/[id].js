@@ -88,7 +88,7 @@ const EditListing = () => {
       monthlyRate,
       hourlyRate,
     };
-    dispatch(updateListing({ payload, id: query, edit: true }));
+    dispatch(updateListing({ payload, id: query, edit: true, router }));
   };
 
   useEffect(() => {
@@ -124,22 +124,22 @@ const EditListing = () => {
           </div>
           <div className="w-[80%] mx-auto">
             <>
-              <Address />
-              <Type />
+              <Address incomplete={!address} />
+              <Type incomplete={!storageType || !storageFloor || storageFeatures.length == 0} />
               <Services />
             </>
             <>
-              <Dimension />
+              <Dimension incomplete={!storageSize} />
               {/* <StreetView /> */}
-              <Media edit={true} id={singleListing?._id} />
-              <Description />
+              <Media edit={true} id={singleListing?._id} incomplete={image?.length == 0} />
+              <Description incomplete={!storageTitle || !description} />
             </>
             <>
               <Calendar />
-              <Access />
-              <BookingDetails />
+              <Access incomplete={!storageAccessPeriod || !storageAccessType} />
+              <BookingDetails incomplete={!bookingDuration || !bookingNotice} />
             </>
-            <Pricing />
+            <Pricing incomplete={(!monthlyRate || monthlyRate == 0) && (!hourlyRate || hourlyRate == 0)} />
 
             <div className="flex justify-end">
               <div className="flex gap-4">

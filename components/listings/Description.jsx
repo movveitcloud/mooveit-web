@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import { ListingInputContext } from "../../context";
 import Accordion from "../shared/Accordion";
 
-const Dimensions = () => {
+const Dimensions = ({ incomplete }) => {
   const { formDetails, handleChange } = useContext(ListingInputContext);
 
   return (
-    <Accordion title="Description">
+    <Accordion title="Description" incomplete={incomplete}>
       <div className="space-y-6">
         <div>
           <h3 className="mb-3">Storage Title</h3>
