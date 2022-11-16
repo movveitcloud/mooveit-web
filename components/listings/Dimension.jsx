@@ -3,7 +3,7 @@ import { ListingInputContext } from "../../context";
 import { storageSize } from "../../helpers/data";
 import Accordion from "../shared/Accordion";
 
-const Dimensions = () => {
+const Dimensions = ({ incomplete }) => {
   const { formDetails, setFormDetails, handleChange } = useContext(ListingInputContext);
   const { storageNumber } = formDetails;
 
@@ -17,7 +17,7 @@ const Dimensions = () => {
   };
 
   return (
-    <Accordion title="Dimensions">
+    <Accordion title="Dimensions" incomplete={incomplete}>
       <div className="space-y-6">
         <div className="mb-5">
           <h3 className="mb-3">How large is your storage?</h3>

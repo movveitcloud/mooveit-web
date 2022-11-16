@@ -28,7 +28,7 @@ const PreviewModal = () => {
               <p className="text-6xl text-center">🎉</p>
             </div>
             <h2 className="text-2xl md:text-3xl text-black font-semibold">Your listing is almost live!</h2>
-            <p className="text-[#959595] mt-1">Please wait up to 24 hours for your details to be verified.</p>
+            <p className="text-[#959595] mt-1">Please wait up to 24 hours for your liting to be approved.</p>
             <div className="w-[256px] mt-5 space-y-2">
               <a
                 href={`/book/${data?._id}`}

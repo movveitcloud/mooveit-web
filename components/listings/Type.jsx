@@ -4,7 +4,7 @@ import { ListingInputContext } from "../../context";
 import { storageFeatures, storageFloors, storageKinds } from "../../helpers/data";
 import Accordion from "../shared/Accordion";
 
-const Type = () => {
+const Type = ({ incomplete }) => {
   const { formDetails, setFormDetails, handleChange } = useContext(ListingInputContext);
 
   const handleUpdate = (value) => {
@@ -12,7 +12,7 @@ const Type = () => {
   };
 
   return (
-    <Accordion title="type">
+    <Accordion title="type" incomplete={incomplete}>
       <div className="space-y-6">
         <div>
           <h3 className="mb-3">What kind of storage do you have?</h3>

@@ -5,7 +5,7 @@ import UnavailabilityModal from "../modals/UnavailabilityModal";
 import { format } from "date-fns";
 import Accordion from "../shared/Accordion";
 
-const Calendar = () => {
+const Calendar = ({ incomplete }) => {
   const { formDetails, setFormDetails, handleChange } = useContext(ListingInputContext);
 
   const deleteReason = (reason) => {
@@ -14,7 +14,7 @@ const Calendar = () => {
   };
 
   return (
-    <Accordion title="calendar">
+    <Accordion title="calendar" incomplete={incomplete}>
       <div className="flex justify-between items-center mb-8">
         <h3 className="">Add an unavailability period </h3>
         <label

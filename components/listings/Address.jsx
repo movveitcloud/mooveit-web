@@ -9,7 +9,7 @@ import Accordion from "../shared/Accordion";
 
 const Marker = () => <LocationMarkerIcon className="w-8 text-red-500" />;
 
-const Address = () => {
+const Address = ({ incomplete }) => {
   const { formDetails, setFormDetails } = useContext(ListingInputContext);
 
   const handleChange = (address) => {
@@ -38,7 +38,7 @@ const Address = () => {
   };
 
   return (
-    <Accordion title="address">
+    <Accordion title="address" incomplete={incomplete}>
       <div className="flex flex-row flex-grow gap-4 items-center border border-[#959595] rounded-lg px-4 py-3">
         <MapIcon className="text-[#959595] w-6" />
         <div className="w-full">

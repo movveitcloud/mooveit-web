@@ -3,11 +3,11 @@ import { ListingInputContext } from "../../context";
 import Accordion from "../shared/Accordion";
 import Switch from "../shared/Switch";
 
-const Services = () => {
+const Services = ({ incomplete }) => {
   const { formDetails, handleChange } = useContext(ListingInputContext);
 
   return (
-    <Accordion title="services">
+    <Accordion title="services" incomplete={incomplete}>
       <div className="space-y-5">
         <h3 className="">Does your listing cover these services</h3>
         <div className="flex gap-5 items-center">

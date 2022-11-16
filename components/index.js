@@ -25,6 +25,7 @@ export { default as Switch } from "./shared/Switch";
 
 //MODALS
 export { default as UnavailabilityModal } from "./modals/UnavailabilityModal";
+export { default as PendingModal } from "./modals/PendingModal";
 
 //HOME
 export { default as HowItWorks } from "./home/HowItWorks";
