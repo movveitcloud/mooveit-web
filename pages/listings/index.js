@@ -18,7 +18,9 @@ const Listings = () => {
         : activeItem == 1
         ? listings.filter((listing) => listing?.status == "pending" && listing.completed)
         : activeItem == 2
-        ? listings.filter((listing) => listing?.status == "pending" && !listing.completed)
+        ? listings.filter(
+            (listing) => (listing?.status == "pending" && !listing.completed) || listing?.status == "disapproved"
+          )
         : [];
     setFilteredArray(result);
   };
@@ -50,7 +52,9 @@ const Listings = () => {
                 ? listings?.filter((listing) => listing?.status == "approved").length
                 : i == 1
                 ? listings.filter((listing) => listing?.status == "pending" && listing.completed).length
-                : listings.filter((listing) => listing?.status == "pending" && !listing.completed).length}
+                : listings.filter(
+                    (listing) => (listing?.status == "pending" && !listing.completed) || listing?.status == "pending"
+                  ).length}
             </span>
           </div>
         ))}

@@ -19,17 +19,21 @@ export const createListing = createAsyncThunk(
 
 export const updateListing = createAsyncThunk(
   "/listings/:id",
-  async ({ payload, id, setActiveStepper, activeStepper, publishModal, edit, router }, { rejectWithValue }) => {
+  async (
+    { payload, id, setActiveStepper, activeStepper, publishModal, edit, router, fieldsComplete, status, pendingModal },
+    { rejectWithValue }
+  ) => {
     try {
       const response = await api.updateListing({ payload, id });
       if (edit) {
-        successPopUp({ msg: "Listing was succesfully updated", callback: () => router.push("/listings") });
+        if (fieldsComplete && status == "pending") {
+          pendingModal.current.click();
+        } else successPopUp({ msg: "Listing was succesfully updated", callback: () => router.push("/listings") });
       } else if (activeStepper < 3) {
         setActiveStepper(activeStepper + 1);
       } else {
         publishModal.current.click(); //launch snippet/publish modal
       }
-      // console.log(response.data);
       return response.data;
     } catch (err) {
       errorPopUp({ msg: err.response.data.error });

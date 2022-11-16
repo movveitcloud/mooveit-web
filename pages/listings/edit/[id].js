@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import {
   Access,
   Address,
@@ -8,6 +8,7 @@ import {
   Description,
   Dimension,
   Media,
+  PendingModal,
   Pricing,
   Services,
   Type,
@@ -21,10 +22,11 @@ import { motion } from "framer-motion";
 import { ArrowNarrowLeftIcon } from "@heroicons/react/outline";
 
 const EditListing = () => {
-  const { activeStepper, setFormDetails, formDetails, initialState } = useContext(ListingInputContext);
+  const { setFormDetails, formDetails, initialState } = useContext(ListingInputContext);
   const { singleListing, singleListingLoading, loading } = useSelector((state) => state.listing);
   const router = useRouter();
   const dispatch = useDispatch();
+  const pendingModal = useRef(null);
   const query = router.query.id;
 
   const serviceOptions = ["delivery", "packing"];
@@ -59,6 +61,24 @@ const EditListing = () => {
     setFormDetails({ ...singleListing });
   };
 
+  const fieldsComplete =
+    address &&
+    storageType &&
+    storageFloor &&
+    storageFeatures.length > 0 &&
+    storageSize &&
+    image?.length > 0 &&
+    storageTitle &&
+    description &&
+    storageAccessPeriod &&
+    storageAccessType &&
+    bookingDuration &&
+    bookingNotice &&
+    monthlyRate &&
+    hourlyRate
+      ? true
+      : false;
+
   const saveChanges = () => {
     const payload = {
       address,
@@ -88,7 +108,18 @@ const EditListing = () => {
       monthlyRate,
       hourlyRate,
     };
-    dispatch(updateListing({ payload, id: query, edit: true, router }));
+
+    dispatch(
+      updateListing({
+        payload,
+        id: query,
+        edit: true,
+        router,
+        fieldsComplete,
+        status: singleListing?.status,
+        pendingModal,
+      })
+    );
   };
 
   useEffect(() => {
@@ -158,27 +189,10 @@ const EditListing = () => {
           </div>
         </motion.div>
       )}
+      <label htmlFor="pending" className="hidden" ref={pendingModal} />
+      <PendingModal />
     </DashboardLayout>
   );
 };
 
 export default EditListing;
-
-// export const getServerSideProps = async ({ params: { id } }) => {
-//   try {
-//     const baseURL = process.env.BASE_URL;
-//     const { data, errors } = await axios(`${baseURL}/listings/${id}`);
-
-//     if (!data) {
-//       return { notFound: true };
-//     }
-
-//     return {
-//       props: {
-//         data: data.data,
-//       },
-//     };
-//   } catch (error) {
-//     return { notFound: true };
-//   }
-// };
