@@ -4,11 +4,11 @@ import { howAccessListing, whenAccessListing } from "../../helpers/data";
 import Accordion from "../shared/Accordion";
 import Switch from "../shared/Switch";
 
-const Access = () => {
+const Access = ({ incomplete }) => {
   const { formDetails, handleChange } = useContext(ListingInputContext);
 
   return (
-    <Accordion title="access">
+    <Accordion title="access" incomplete={incomplete}>
       <div className="space-y-6">
         <div>
           <h3 className="mb-3">When can your customers access your listing??</h3>

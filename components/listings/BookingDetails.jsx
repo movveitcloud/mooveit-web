@@ -3,11 +3,11 @@ import { ListingInputContext } from "../../context";
 import { arrivalNoticeOpts, spaceDuration } from "../../helpers/data";
 import Accordion from "../shared/Accordion";
 
-const BookingDetails = () => {
+const BookingDetails = ({ incomplete }) => {
   const { formDetails, handleChange } = useContext(ListingInputContext);
 
   return (
-    <Accordion title="booking details">
+    <Accordion title="booking details" incomplete={incomplete}>
       <div className="space-y-6">
         <div>
           <h3 className="mb-3">What's the shortest period you're willing to rent a space for?</h3>
