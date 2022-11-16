@@ -78,7 +78,7 @@ const EditListing = () => {
     hourlyRate
       ? true
       : false;
-
+  console.log(singleListing);
   const saveChanges = () => {
     const payload = {
       address,
@@ -116,7 +116,7 @@ const EditListing = () => {
         edit: true,
         router,
         fieldsComplete,
-        status: singleListing?.status,
+        status: singleListing?.completed,
         pendingModal,
       })
     );

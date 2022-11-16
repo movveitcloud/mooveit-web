@@ -26,7 +26,7 @@ export const updateListing = createAsyncThunk(
     try {
       const response = await api.updateListing({ payload, id });
       if (edit) {
-        if (fieldsComplete && status == "pending") {
+        if (fieldsComplete && !status) {
           pendingModal.current.click();
         } else successPopUp({ msg: "Listing was succesfully updated", callback: () => router.push("/listings") });
       } else if (activeStepper < 3) {
