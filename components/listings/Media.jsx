@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import Accordion from "../shared/Accordion";
 import { useRef } from "react";
-import { UploadIcon } from "@heroicons/react/outline";
+import { UploadIcon, XCircleIcon, PlusCircleIcon } from "@heroicons/react/outline";
 import { ListingInputContext } from "../../context";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -76,24 +76,41 @@ const Media = ({ edit, id, incomplete }) => {
           <div className="flex flex-wrap">
             {formDetails?.image?.map((img, index) => (
               <div key={index} className="w-full relative md:w-[32%] h-[200px] mb-[2.5rem] rounded-md mr-2">
-                <img src={img} id={index} alt="pic1" name="media" className="w-full h-full mb-2 object-cover rounded" />
-                <button
+                <img
+                  src={img}
+                  id={index}
+                  alt="pic1"
+                  name="media"
+                  className="w-[98%] h-full mb-2 object-cover rounded"
+                />
+                <XCircleIcon
                   id={index}
                   key={index}
-                  className="text-red-600 absolute right-2 top-2 hover:text-primary font-bold"
+                  className="text-red-600 absolute -right-2 w-5 -top-3 hover:text-primary font-bold"
                   onClick={(e) => {
                     removeItem(e, index);
-                  }}>
-                  X
-                </button>
+                  }}
+                />
               </div>
             ))}
+            {formDetails?.image?.length > 0 && (
+              <div className="w-full flex items-center  md:w-[32%] h-[200px] mb-[2.5rem] rounded-md mr-2">
+                <PlusCircleIcon
+                  className="text-[#5e5c5c] mx-auto  w-20 hover:text-primary font-bold"
+                  onClick={() => uploadFile()}
+                />
+              </div>
+            )}
           </div>
-          <button
-            onClick={() => uploadFile()}
-            className="border-[#222222] px-[1.5rem] mb-3 py-[.3rem] border text-sm rounded-[5px] text-[#222222] mt-[1rem]">
-            Upload
-          </button>
+          {formDetails?.image?.length > 0 ? (
+            ""
+          ) : (
+            <button
+              onClick={() => uploadFile()}
+              className="border-[#222222] px-[1.5rem] mb-3 py-[.3rem] border text-sm rounded-[5px] text-[#222222] mt-[1rem]">
+              Upload
+            </button>
+          )}
           <div className="text-center hidden">
             <input accept="image/*" type="file" multiple name="file" onChange={onSelectFile} ref={fileRef} />
           </div>
