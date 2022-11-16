@@ -10,7 +10,7 @@ import {
   TruckIcon,
 } from "@heroicons/react/outline";
 
-import { storageFeats, storageFeatures } from "../../helpers/data";
+import { storageFeatures } from "../../helpers/data";
 import { formatMoney } from "../../helpers/utils";
 import BookContainer from "./BookContainer";
 
@@ -38,7 +38,7 @@ const BookListingMainCard = () => {
   return (
     <BookContainer>
       <div className="w-full h-[200px] md:h-[400px] relative overflow-hidden flex rounded-lg">
-        {images.map((img, i) => (
+        {userListing?.media?.map((img, i) => (
           <img
             key={i}
             src={img}
@@ -54,7 +54,7 @@ const BookListingMainCard = () => {
             <ChevronLeftIcon className="w-4" />
           </div>
         )}
-        {currentIndex < images.length - 1 && (
+        {currentIndex < userListing?.media?.length - 1 && (
           <div
             className="absolute right-3 md:right-5 -translate-y-[50%] top-[50%] w-6 h-6 flex justify-center items-center rounded-full bg-[#DDDDDD99] hover:bg-[#ddddddaf] shadow text-white cursor-pointer select-none active:scale-90 transition-all duration-200"
             onClick={nextImage}>

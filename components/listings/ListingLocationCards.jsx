@@ -16,15 +16,15 @@ const ListingLocationCard = ({ data }) => {
         transition={{ duration: 0.4 }}
         className="p-4 bg-white rounded-md w-full hover:shadow">
         <div className="w-full h-[200px]">
-          <img src="/listing.png" alt="listing view" className="w-full h-full object-cover rounded-md" />
+          <img src={data?.media[0]} alt="listing view" className="w-full h-full object-cover rounded-md" />
         </div>
         <div className="flex mt-4 justify-between">
           <div className="flex gap-2 items-center text-[#959595] cursor-pointer">
             <LocationMarkerIcon className="w-4" />
             <h4 className="capitalize text-sm tooltip tooltip-primary" data-tip={data?.address}>{`${data?.address.slice(
               0,
-              50
-            )}${data?.address.length > 50 ? "..." : ""}`}</h4>
+              23
+            )}${data?.address.length > 23 ? "..." : ""}`}</h4>
           </div>
           <div className="flex gap-4 items-center text-primary">
             <a

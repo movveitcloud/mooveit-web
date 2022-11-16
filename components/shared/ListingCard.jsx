@@ -2,21 +2,21 @@ import React from "react";
 import Link from "next/link";
 import { ArchiveIcon, ClockIcon, LocationMarkerIcon, MapIcon, TruckIcon } from "@heroicons/react/outline";
 import { formatMoney } from "../../helpers/utils";
-import { storageFeats, storageFeatures } from "../../helpers/data";
+import { storageFeatures } from "../../helpers/data";
 import { StarIcon } from "@heroicons/react/solid";
 
-const ListingCard = ({ item, preview }) => {
+const ListingCard = ({ item }) => {
   const getFeatures = () => {
     const filter = storageFeatures.filter((p) => item?.storageFeatures.includes(p.value));
     return filter;
   };
 
   return (
-    <Link href={preview ? "" : `/book/${item?._id}`}>
+    <Link href={`/book/${item?._id}`}>
       <a className="bg-white w-full sm:w-[375px] rounded-lg p-5 hover:shadow transition-shadow duration-500 h-full">
         <div className="w-full h-[200px]">
           <img
-            src="/listingdummy.png"
+            src={item?.media[0]}
             alt="Listing"
             className="object-cover w-full h-full rounded-lg hover:shadow-md transition-all duration-200"
           />
@@ -81,9 +81,9 @@ const ListingCard = ({ item, preview }) => {
             <p className="text-primary font-semibold text-xl">
               {formatMoney(item?.monthlyRate)} <span className="text-[#959595] font-normal text-xs">/month</span>
             </p>
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
               <StarIcon className="w-5 text-accent" /> <p className="text-sm">4.76</p>
-            </div>
+            </div> */}
           </div>
         </div>
       </a>
