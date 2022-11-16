@@ -100,7 +100,7 @@ const EditListing = () => {
     // singleListing?.services?.map(
     //   (item) => serviceOptions.includes(item) && setFormDetails({ ...formDetails, ...singleListing, [item]: true })
     // );
-    setFormDetails({ ...formDetails, ...singleListing });
+    setFormDetails({ ...formDetails, ...singleListing, image: singleListing?.media });
 
     return () => {
       setFormDetails(initialState);
@@ -131,7 +131,7 @@ const EditListing = () => {
             <>
               <Dimension />
               {/* <StreetView /> */}
-              <Media />
+              <Media edit={true} id={singleListing?._id} />
               <Description />
             </>
             <>
