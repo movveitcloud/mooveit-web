@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import Accordion from "../shared/Accordion";
 import { useRef } from "react";
-import { UploadIcon, XCircleIcon, PlusCircleIcon } from "@heroicons/react/outline";
+import { UploadIcon, XIcon, PlusCircleIcon } from "@heroicons/react/outline";
 import { ListingInputContext } from "../../context";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -81,22 +81,24 @@ const Media = ({ edit, id, incomplete }) => {
                   id={index}
                   alt="pic1"
                   name="media"
-                  className="w-[98%] h-full mb-2 object-cover rounded"
+                  className="w-[95%] h-full mb-2 object-cover rounded"
                 />
-                <XCircleIcon
-                  id={index}
-                  key={index}
-                  className="text-red-600 absolute -right-2 w-5 -top-3 hover:text-primary font-bold"
-                  onClick={(e) => {
-                    removeItem(e, index);
-                  }}
-                />
+                <span className="bg-black p-2  hover:bg-red-500 cursor-pointer  rounded-[50%] absolute  -right-0  -top-2 ">
+                  <XIcon
+                    id={index}
+                    key={index}
+                    className="text-white w-4  font-bold"
+                    onClick={(e) => {
+                      removeItem(e, index);
+                    }}
+                  />
+                </span>
               </div>
             ))}
             {formDetails?.image?.length > 0 && (
               <div className="w-full flex items-center  md:w-[32%] h-[200px] mb-[2.5rem] rounded-md mr-2">
                 <PlusCircleIcon
-                  className="text-[#5e5c5c] mx-auto  w-20 hover:text-primary font-bold"
+                  className="text-[#989797] mx-auto  w-14 hover:text-primary font-bold"
                   onClick={() => uploadFile()}
                 />
               </div>
