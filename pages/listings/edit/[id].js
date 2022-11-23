@@ -78,6 +78,7 @@ const EditListing = () => {
     hourlyRate
       ? true
       : false;
+
   console.log(singleListing);
   const saveChanges = () => {
     const payload = {
@@ -107,6 +108,7 @@ const EditListing = () => {
       bookingNotice,
       monthlyRate,
       hourlyRate,
+      completed: fieldsComplete,
     };
 
     dispatch(

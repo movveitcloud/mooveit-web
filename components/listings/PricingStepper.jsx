@@ -11,7 +11,7 @@ const PricingStepper = () => {
   const publishModal = useRef(null);
 
   const disableBtn = !monthlyRate || monthlyRate == 0 || !hourlyRate || hourlyRate == 0 || !consent;
-  const payload = { monthlyRate, hourlyRate, consent };
+  const payload = { monthlyRate, hourlyRate, consent, completed: true };
 
   return (
     <>
