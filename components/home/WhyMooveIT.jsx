@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const WhyMooveIT = () => {
@@ -20,7 +21,18 @@ const WhyMooveIT = () => {
             <button className="btn btn-accent w-[175px] text-xs mt-8 font-light text-[#222222]">Search Listings</button>
           </div>
         </div>
-        <div className="w-full hidden md:block md:w-[50%] bg-primary bg-[url(/side.png)] bg-cover bg-no-repeat"></div>
+        <div className="relative hidden md:block md:w-[50%] bg-primary bg-[url(/side.png)]">
+          <Image
+            src="/side.png"
+            alt="movveit"
+            // placeholder="blur"
+            // blurDataURL="/fallback.png"
+            className=""
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center"
+          />
+        </div>
       </div>
     </section>
   );
