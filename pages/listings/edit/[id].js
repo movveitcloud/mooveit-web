@@ -79,7 +79,6 @@ const EditListing = () => {
       ? true
       : false;
 
-  console.log(singleListing);
   const saveChanges = () => {
     const payload = {
       address,
