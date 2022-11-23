@@ -21,7 +21,7 @@ const WhyMooveIT = () => {
             <button className="btn btn-accent w-[175px] text-xs mt-8 font-light text-[#222222]">Search Listings</button>
           </div>
         </div>
-        <div className="relative hidden md:block md:w-[50%] bg-primary bg-[url(/side.png)]">
+        <div className="relative hidden md:block md:w-[50%] bg-primary">
           <Image
             src="/side.png"
             alt="movveit"
@@ -30,7 +30,6 @@ const WhyMooveIT = () => {
             className=""
             layout="fill"
             objectFit="cover"
-            objectPosition="center"
           />
         </div>
       </div>
