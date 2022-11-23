@@ -52,9 +52,7 @@ const Listings = () => {
                 ? listings?.filter((listing) => listing?.status == "approved").length
                 : i == 1
                 ? listings.filter((listing) => listing?.status == "pending" && listing.completed).length
-                : listings.filter(
-                    (listing) => (listing?.status == "pending" && !listing.completed) || listing?.status == "pending"
-                  ).length}
+                : listings.filter((listing) => listing?.status == "pending" && !listing.completed).length}
             </span>
           </div>
         ))}

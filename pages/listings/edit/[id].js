@@ -170,7 +170,7 @@ const EditListing = () => {
               <Access incomplete={!storageAccessPeriod || !storageAccessType} />
               <BookingDetails incomplete={!bookingDuration || !bookingNotice} />
             </>
-            <Pricing incomplete={(!monthlyRate || monthlyRate == 0) && (!hourlyRate || hourlyRate == 0)} />
+            <Pricing incomplete={!monthlyRate || monthlyRate == 0 || !hourlyRate || hourlyRate == 0} />
 
             <div className="flex justify-end">
               <div className="flex gap-4">
