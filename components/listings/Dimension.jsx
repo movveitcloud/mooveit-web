@@ -24,9 +24,14 @@ const Dimensions = ({ incomplete }) => {
           <div className="items-center border border-[#959595] rounded-lg px-4 py-3 mb-5">
             <select
               name="storageSize"
-              value={formDetails.storageSize}
+              value={formDetails.storageSize.name}
               className="w-full bg-transparent h-full outline-none cursor-pointer"
-              onChange={handleChange}>
+              onChange={(e) =>
+                setFormDetails({
+                  ...formDetails,
+                  storageSize: { name: e.target.value },
+                })
+              }>
               <option value="" disabled>
                 Select storage size
               </option>

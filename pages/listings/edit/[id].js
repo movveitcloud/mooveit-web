@@ -66,7 +66,7 @@ const EditListing = () => {
     storageType &&
     storageFloor &&
     storageFeatures.length > 0 &&
-    storageSize &&
+    storageSize?.name?.length > 0 &&
     image?.length > 0 &&
     storageTitle &&
     description &&
@@ -161,7 +161,7 @@ const EditListing = () => {
               <Services />
             </>
             <>
-              <Dimension incomplete={!storageSize} />
+              <Dimension incomplete={storageSize?.name?.length == 0} />
               {/* <StreetView /> */}
               <Media edit={true} id={singleListing?._id} incomplete={image?.length == 0} />
               <Description incomplete={!storageTitle || !description} />
