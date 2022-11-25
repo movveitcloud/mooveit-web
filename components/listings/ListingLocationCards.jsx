@@ -28,7 +28,7 @@ const ListingLocationCard = ({ data }) => {
           </div>
           <div className="flex gap-4 items-center text-primary">
             <a
-              href={`/book/${data._id}`}
+              href={`/book/${data._id}?mode=preview`}
               target="_blank"
               rel="noreferrer"
               className="tooltip tooltip-primary cursor-pointer"
