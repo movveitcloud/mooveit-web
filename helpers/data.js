@@ -1,6 +1,5 @@
 import {
   CalendarIcon,
-  ClockIcon,
   CreditCardIcon,
   CubeIcon,
   LightBulbIcon,
@@ -8,7 +7,6 @@ import {
   UserCircleIcon,
   UserGroupIcon,
   VideoCameraIcon,
-  ViewGridIcon,
 } from "@heroicons/react/outline";
 import {
   CubeIcon as CubeIconSolid,

@@ -7,7 +7,7 @@ import { StarIcon } from "@heroicons/react/solid";
 
 const ListingCard = ({ item }) => {
   const getFeatures = () => {
-    const filter = storageFeatures.filter((p) => item?.storageFeatures.includes(p.value));
+    const filter = storageFeatures.filter((p) => item?.storageFeatures?.includes(p.value));
     return filter;
   };
 
@@ -16,7 +16,7 @@ const ListingCard = ({ item }) => {
       <a className="bg-white w-full sm:w-[375px] rounded-lg p-5 hover:shadow transition-shadow duration-500 h-full">
         <div className="w-full h-[200px]">
           <img
-            src={item?.media[0]}
+            src={item?.media?.[0]}
             alt="Listing"
             className="object-cover w-full h-full rounded-lg hover:shadow-md transition-all duration-200"
           />
@@ -42,7 +42,7 @@ const ListingCard = ({ item }) => {
               </p>
               <p className="flex flex-row items-center gap-2 text-[#107E7E]">
                 <MapIcon className="text-[#222222] w-4" />
-                <span className="text-[#222222] text-[12px] uppercase">{`${item?.storageSize} SQ. FT`}</span>
+                <span className="text-[#222222] text-[12px] uppercase">{`${item?.storageSize?.name} SQ. FT`}</span>
               </p>
             </div>
 
