@@ -83,19 +83,17 @@ const Address = ({ incomplete }) => {
       </div>
 
       {/* map */}
-      {formDetails.coordinates.lat && (
-        <div className="w-full h-[250px] mt-8">
-          <GoogleMapReact
-            bootstrapURLKeys={{ key: process.env.PLACES_KEY }}
-            defaultCenter={defaultProps.center}
-            center={formDetails?.coordinates}
-            defaultZoom={defaultProps.zoom}>
-            {formDetails.coordinates.lat && (
-              <Marker lat={formDetails.coordinates.lat} lng={formDetails.coordinates.lng} />
-            )}
-          </GoogleMapReact>
-        </div>
-      )}
+      <div className="w-full h-[250px] mt-8 ">
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: process.env.PLACES_KEY }}
+          defaultCenter={defaultProps.center}
+          center={formDetails?.coordinates}
+          defaultZoom={defaultProps.zoom}>
+          {formDetails.coordinates.lat && (
+            <Marker lat={formDetails.coordinates.lat} lng={formDetails.coordinates.lng} />
+          )}
+        </GoogleMapReact>
+      </div>
     </Accordion>
   );
 };
