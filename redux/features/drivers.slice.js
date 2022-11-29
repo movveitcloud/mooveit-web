@@ -18,7 +18,8 @@ export const createDriver = createAsyncThunk(
   async ({ payload, refreshDrivers }, { rejectWithValue }) => {
     try {
       const response = await api.createDriver(payload);
-      successPopUp({ msg: "Driver was successfuly created", callback: refreshDrivers ? () => refreshDrivers() : "" });
+      refreshDrivers();
+      successPopUp({ msg: "Driver was successfuly created" });
       return response.data;
     } catch (err) {
       errorPopUp({ msg: err.response.data.error });

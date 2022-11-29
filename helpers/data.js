@@ -258,9 +258,3 @@ export const storageSize = [
     value: "150",
   },
 ];
-
-export const dummyDrivers = [
-  { firstName: "Joshua", lastName: "Alexandar", email: "josh@alexandar.com", _id: 1234 },
-  { firstName: "Joshua", lastName: "Alexandar", email: "josh@alexandar.com", _id: 1235 },
-  { firstName: "Juliet", lastName: "Ijeli", email: "josh@alexandar.com", _id: 1236 },
-];

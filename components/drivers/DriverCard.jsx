@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const DriverCard = ({ data, data: { firstName, lastName, email, role, _id } }) => {
+const DriverCard = ({ data, data: { firstName, lastName, email, phone, _id } }) => {
   const [userData, setUserData] = useState(data);
 
   return (
@@ -51,7 +51,8 @@ const DriverCard = ({ data, data: { firstName, lastName, email, role, _id } }) =
         <p className="mb- font-bold">
           {firstName} {lastName}
         </p>
-        <p className="text-[#353C44] text-sm mb-1">{email}</p>
+        <p className="text-[#353C44] text-sm">{email}</p>
+        <p className="text-[#353C44] text-sm my-1">{phone}</p>
       </div>
       {/* update the url below to enable fetching users by slug */}
       <Link href={`#`}>

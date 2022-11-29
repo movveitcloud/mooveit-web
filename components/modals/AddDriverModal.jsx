@@ -80,7 +80,7 @@ const AddDriverModal = ({ setFilteredDrivers }) => {
     <>
       <input type="checkbox" id="addDriver" className="modal-toggle" />
       <label htmlFor="addDriver" className="modal" ref={addDriverRef}>
-        <label className="modal-box p-8  w-[80%] md:w-[60%] max-w-[600px] rounded-xl z-50">
+        <label htmlFor="" className="modal-box p-8  w-[80%] md:w-[65%] max-w-[700px] rounded-xl z-50">
           <h2 className="font-semibold text-lg text-primary mb-6">Add a Driver</h2>{" "}
           <label
             htmlFor="addDriver"
