@@ -117,7 +117,7 @@ export const dashboardNavLinks = [
     title: "Drivers",
     icon: <TruckIcon className="w-full" />,
     iconActive: <TruckIconSolid className="w-full" />,
-    permission: ["customer", "partner"],
+    permission: ["partner"],
   },
 ];
 
