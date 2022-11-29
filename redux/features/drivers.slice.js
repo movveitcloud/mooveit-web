@@ -28,27 +28,35 @@ export const createDriver = createAsyncThunk(
   }
 );
 
-export const updateDriver = createAsyncThunk("/drivers/:update", async ({ payload, id }, { rejectWithValue }) => {
-  try {
-    const response = await api.updateDriver({ payload, id });
-    successPopUp({ msg: "Driver was successfuly updated" });
-    return response.data;
-  } catch (err) {
-    errorPopUp({ msg: err.response.data.error });
-    return rejectWithValue(err.response.data);
+export const updateDriver = createAsyncThunk(
+  "/drivers/:update",
+  async ({ payload, id, refreshDrivers }, { rejectWithValue }) => {
+    try {
+      const response = await api.updateDriver({ payload, id });
+      refreshDrivers();
+      successPopUp({ msg: "Driver was successfuly updated" });
+      return response.data;
+    } catch (err) {
+      errorPopUp({ msg: err.response.data.error });
+      return rejectWithValue(err.response.data);
+    }
   }
-});
+);
 
-export const deleteDriver = createAsyncThunk("/drivers/:delete", async ({ id }, { rejectWithValue }) => {
-  try {
-    const response = await api.deleteDriver(id);
-    successPopUp({ msg: "Driver was successfuly deleted" });
-    return response.data;
-  } catch (err) {
-    errorPopUp({ msg: err.response.data.error });
-    return rejectWithValue(err.response.data);
+export const deleteDriver = createAsyncThunk(
+  "/drivers/:delete",
+  async ({ id, refreshDrivers }, { rejectWithValue }) => {
+    try {
+      const response = await api.deleteDriver(id);
+      refreshDrivers();
+      successPopUp({ msg: "Driver was successfuly deleted" });
+      return response.data;
+    } catch (err) {
+      errorPopUp({ msg: err.response.data.error });
+      return rejectWithValue(err.response.data);
+    }
   }
-});
+);
 
 const driverSlice = createSlice({
   name: "drivers",
