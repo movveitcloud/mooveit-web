@@ -17,7 +17,7 @@ const Login = () => {
 
   const onSubmit = (data, e) => {
     e.preventDefault();
-    const payload = { ...data };
+    const payload = { email: data.email.trim().toLowerCase(), password: data.password.trim() };
     dispatch(login({ payload, reset }));
   };
 

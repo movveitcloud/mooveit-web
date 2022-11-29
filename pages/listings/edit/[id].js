@@ -42,6 +42,7 @@ const EditListing = () => {
     packing,
     delivery,
     storageSize,
+    storageNumber,
     streetView,
     storageTitle,
     description,
@@ -66,7 +67,7 @@ const EditListing = () => {
     storageType &&
     storageFloor &&
     storageFeatures.length > 0 &&
-    storageSize &&
+    storageSize?.name?.length > 0 &&
     image?.length > 0 &&
     storageTitle &&
     description &&
@@ -95,6 +96,7 @@ const EditListing = () => {
       services,
       streetView,
       storageSize,
+      storageNumber,
       image,
       storageTitle,
       description,
@@ -139,6 +141,8 @@ const EditListing = () => {
     };
   }, [singleListing]);
 
+  console.log(singleListing);
+
   return (
     <DashboardLayout>
       {singleListingLoading ? (
@@ -161,7 +165,7 @@ const EditListing = () => {
               <Services />
             </>
             <>
-              <Dimension incomplete={!storageSize} />
+              <Dimension incomplete={!storageSize?.name} />
               {/* <StreetView /> */}
               <Media edit={true} id={singleListing?._id} incomplete={image?.length == 0} />
               <Description incomplete={!storageTitle || !description} />

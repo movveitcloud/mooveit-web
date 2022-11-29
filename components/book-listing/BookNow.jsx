@@ -2,15 +2,21 @@ import React, { useRef, useState } from "react";
 import { CalendarIcon, TruckIcon } from "@heroicons/react/outline";
 import { format } from "date-fns";
 import BookContainer from "./BookContainer";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const BookNow = () => {
   const today = new Date();
   const min = format(new Date(), "yyyy-MM-dd hh:mm");
   const initialState = { type: "hourly", startDate: today, endDate: today };
+
   const [bookingDetails, setbookingDetails] = useState(initialState);
+  const { userListing } = useSelector((state) => state.listing);
   const { type, startDate, endDate } = bookingDetails;
   const bookingStartDate = useRef();
   const bookingEndDate = useRef();
+  const preview = userListing?.status !== "approved";
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -91,7 +97,7 @@ const BookNow = () => {
 
         <div className="flex justify-between text-sm">
           <p className="font-semibold">
-            Price <span className="text-[#959595] font-normal">(per hour)</span>
+            Price <span className="text-[#959595] font-normal">{`(per ${type == "hourly" ? "hour" : "month"})`}</span>
           </p>
           <p className="">- -</p>
         </div>
@@ -99,7 +105,10 @@ const BookNow = () => {
           <p className="font-semibold">Total</p>
           <p className="text-xl text-primary">- -</p>
         </div>
-        <button className="btn btn-primary w-full flex gap-2 text-sm normal-case">
+        <button
+          className={`btn btn-primary w-full flex gap-2 text-sm normal-case disabled:btn-accent ${
+            preview ? "btn-disabled bg-primary bg-opacity-50 text-[#ccc]" : ""
+          }`}>
           <TruckIcon className="w-4" /> Book Now
         </button>
       </div>
