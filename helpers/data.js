@@ -1,20 +1,20 @@
 import {
   CalendarIcon,
-  ClockIcon,
   CreditCardIcon,
   CubeIcon,
   LightBulbIcon,
   LockClosedIcon,
+  TruckIcon,
   UserCircleIcon,
   UserGroupIcon,
   VideoCameraIcon,
-  ViewGridIcon,
 } from "@heroicons/react/outline";
 import {
   CubeIcon as CubeIconSolid,
   CalendarIcon as CalendarIconSolid,
   UserCircleIcon as UserCircleIconSolid,
   CreditCardIcon as CreditCardIconSolid,
+  TruckIcon as TruckIconSolid,
 } from "@heroicons/react/solid";
 
 export const navLinks = [
@@ -109,6 +109,14 @@ export const dashboardNavLinks = [
     title: "Payments",
     icon: <CreditCardIcon className="w-full" />,
     iconActive: <CreditCardIconSolid className="w-full" />,
+    permission: ["customer", "partner"],
+  },
+  {
+    name: "drivers",
+    path: "/drivers",
+    title: "Drivers",
+    icon: <TruckIcon className="w-full" />,
+    iconActive: <TruckIconSolid className="w-full" />,
     permission: ["customer", "partner"],
   },
 ];

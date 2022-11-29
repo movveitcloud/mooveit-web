@@ -29,3 +29,9 @@ export const getUserListing = (id) => API.get(`/users/listings/${id}`);
 export const getSearchListings = (payload) => API.get("/users/listings", { params: payload });
 export const deleteListing = (id) => API.delete(`/listings/${id}`);
 export const imageUpload = ({ payload, id }) => API.patch(`/listings/${id}/upload`, payload);
+
+//DRIVERS
+export const getDrivers = () => API.get("/drivers");
+export const createDriver = (payload) => API.post("/drivers", payload);
+export const updateDriver = ({ payload, id }) => API.patch(`/drivers/${id}`, payload);
+export const deleteDriver = (id) => API.delete(`/drivers/${id}`);
