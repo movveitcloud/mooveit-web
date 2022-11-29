@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
@@ -54,7 +55,18 @@ const AuthLayout = ({ children, title }) => {
         </div>
 
         <div className="flex flex-grow">
-          <div className="hidden md:w-[60%] md:flex bg-[url('/auth-image.png')] bg-cover bg-no-repeat bg-red-300" />
+          <div className="relative hidden md:w-[60%] md:flex bg-secondary">
+            <Image
+              src="/auth-image.png"
+              alt="movveit authentication"
+              // placeholder="blur"
+              // blurDataURL="/fallback.png"
+              className="rounded-lg"
+              layout="fill"
+              objectFit="cover"
+              objectPosition="top"
+            />
+          </div>
           <div className="w-full md:w-[40%] flex flex-col  justify-center px-8 md:px-16">{children}</div>
         </div>
       </div>

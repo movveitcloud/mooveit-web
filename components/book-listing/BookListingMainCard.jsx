@@ -79,7 +79,7 @@ const BookListingMainCard = () => {
             </p>
             <p className="flex flex-row items-center gap-2">
               <MapIcon className="w-4" />
-              <span className="text-[12px] uppercase">{`${userListing?.storageSize} SQ. FT`}</span>
+              <span className="text-[12px] uppercase">{`${userListing?.storageSize?.name} SQ. FT`}</span>
             </p>
           </div>
 

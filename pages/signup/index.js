@@ -24,18 +24,25 @@ const Signup = () => {
   return (
     <AuthLayout title="Sign Up">
       <div className="text-center">
-        <h1 className="py-6 font-semibold text-2xl md:text-3xl text-black">Create an account</h1>
-        <div className="bg-white rounded-2xl my-10 flex gap-5 items-center justify-center w-fit p-3 mx-auto shadow">
-          <span
-            className={`${active == "customer" && "bg-primary text-white py-2 px-5 rounded-xl "} cursor-pointer`}
-            onClick={() => setActive("customer")}>
-            Customer
-          </span>
-          <span
-            className={`${active == "partner" && "bg-primary text-white py-2 px-5 rounded-xl "} cursor-pointer`}
-            onClick={() => setActive("partner")}>
-            Partner
-          </span>
+        <h1 className="py-3 font-semibold text-2xl md:text-3xl text-black">Create an account</h1>
+        <div className="flex justify-center my-3 md:my-6">
+          <div className="flex space-x-4 bg-white p-4 rounded-xl shadow">
+            <button
+              className={`py-2 px-6 rounded-lg text-sm transition-all duration-300 border ${
+                active == "customer" ? "bg-primary text-white border-primary" : "border-[#ccc]"
+              }`}
+              onClick={() => setActive("customer")}>
+              Customer
+            </button>
+            <hr className="bg-[#ccc] h-full w-[1px]" />
+            <button
+              className={`py-2 px-6 rounded-lg text-sm transition-all duration-300 border ${
+                active == "partner" ? "bg-primary text-white border-primary" : "border-[#ccc]"
+              }`}
+              onClick={() => setActive("partner")}>
+              Partner
+            </button>
+          </div>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -48,7 +55,7 @@ const Signup = () => {
             errorMessage="Please add an email address"
           />
 
-          <div className="flex flex-col xl:flex-row xl:gap-1 ">
+          <div className="flex flex-col xl:flex-row xl:gap-2 ">
             <FormInput
               label="First Name"
               name="firstName"
