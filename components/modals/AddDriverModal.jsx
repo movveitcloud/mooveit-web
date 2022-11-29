@@ -16,7 +16,7 @@ const InputField = ({ formDetails, name, type, handleChange, placeholder, label 
           value={formDetails[name]}
           onChange={handleChange}
           placeholder={placeholder}
-          className="w-full bg-transparent h-full outline-none placeholder:text-[#959595]"
+          className="w-full bg-transparent text-sm md:text-base h-full outline-none placeholder:text-[#959595]"
         />
       </div>
     </div>
@@ -111,7 +111,7 @@ const AddDriverModal = ({ setFilteredDrivers }) => {
               </div>
             </div> */}
 
-            <div className="flex gap-3 sm:gap-6">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-6">
               <InputField
                 name="firstName"
                 placeholder="Enter first name"
@@ -128,7 +128,7 @@ const AddDriverModal = ({ setFilteredDrivers }) => {
               />
             </div>
 
-            <div className="flex gap-3 sm:gap-6">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-6">
               <InputField
                 name="email"
                 type="email"
@@ -147,7 +147,7 @@ const AddDriverModal = ({ setFilteredDrivers }) => {
               />
             </div>
 
-            <div className="flex gap-3 sm:gap-6">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-6">
               <InputField
                 name="vehicleNo"
                 placeholder="Vehicle plate number"
