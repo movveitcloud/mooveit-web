@@ -4,6 +4,7 @@ import {
   CubeIcon,
   LightBulbIcon,
   LockClosedIcon,
+  TruckIcon,
   UserCircleIcon,
   UserGroupIcon,
   VideoCameraIcon,
@@ -13,6 +14,7 @@ import {
   CalendarIcon as CalendarIconSolid,
   UserCircleIcon as UserCircleIconSolid,
   CreditCardIcon as CreditCardIconSolid,
+  TruckIcon as TruckIconSolid,
 } from "@heroicons/react/solid";
 
 export const navLinks = [
@@ -107,6 +109,14 @@ export const dashboardNavLinks = [
     title: "Payments",
     icon: <CreditCardIcon className="w-full" />,
     iconActive: <CreditCardIconSolid className="w-full" />,
+    permission: ["customer", "partner"],
+  },
+  {
+    name: "drivers",
+    path: "/drivers",
+    title: "Drivers",
+    icon: <TruckIcon className="w-full" />,
+    iconActive: <TruckIconSolid className="w-full" />,
     permission: ["customer", "partner"],
   },
 ];
@@ -247,4 +257,10 @@ export const storageSize = [
     name: "150 sq ft - One and Half garages or 2 Luton Van Loads",
     value: "150",
   },
+];
+
+export const dummyDrivers = [
+  { firstName: "Joshua", lastName: "Alexandar", email: "josh@alexandar.com", _id: 1234 },
+  { firstName: "Joshua", lastName: "Alexandar", email: "josh@alexandar.com", _id: 1235 },
+  { firstName: "Juliet", lastName: "Ijeli", email: "josh@alexandar.com", _id: 1236 },
 ];

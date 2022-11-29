@@ -26,6 +26,8 @@ export { default as Switch } from "./shared/Switch";
 //MODALS
 export { default as UnavailabilityModal } from "./modals/UnavailabilityModal";
 export { default as PendingModal } from "./modals/PendingModal";
+export { default as AddDriverModal } from "./modals/AddDriverModal";
+export { default as DriverProfileModal } from "./modals/DriverProfileModal";
 
 //HOME
 export { default as HowItWorks } from "./home/HowItWorks";
@@ -70,6 +72,9 @@ export { default as BookingCards } from "./bookings/BookingCards";
 
 //CHECKOUT
 export { default as ListingCardCheckout } from "./checkout/ListingCardCheckout";
+
+//DRIVERS
+export { default as DriverCard } from "./drivers/DriverCard";
 
 //BOOK_LISTING
 export { default as BookListingMainCard } from "./book-listing/BookListingMainCard";
