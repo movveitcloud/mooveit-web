@@ -53,7 +53,6 @@ const BookListingMainCard = () => {
                   src={img}
                   alt={img}
                   className="object-cover min-w-full w-full h-full transition-all duration-700 select-none"
-                  // style={{ transform: `translate(-${currentIndex * 100}%)` }}
                 />
               )}
             </div>
@@ -91,7 +90,7 @@ const BookListingMainCard = () => {
             </p>
             <p className="flex flex-row items-center gap-2">
               <MapIcon className="w-4" />
-              <span className="text-[12px] uppercase">{`${userListing?.storageSize?.name} SQ. FT`}</span>
+              <span className="text-[12px] uppercase">{`${userListing?.storageSize?.name || ""} SQ. FT`}</span>
             </p>
           </div>
 
@@ -127,15 +126,19 @@ const BookListingMainCard = () => {
         </div>
 
         <div className="flex flex-row space-x-6 items-center mt-2">
-          {userListing?.monthlyRate && (
+          {userListing?.monthlyRate ? (
             <p className="text-primary font-semibold text-xl">
               {formatMoney(userListing?.monthlyRate)} <span className="text-[#959595] font-normal text-sm">/month</span>
             </p>
+          ) : (
+            ""
           )}
-          {userListing?.hourlyRate && (
+          {userListing?.hourlyRate ? (
             <p className="text-primary font-semibold text-xl">
               {formatMoney(userListing?.hourlyRate)} <span className="text-[#959595] font-normal text-sm">/hour</span>
             </p>
+          ) : (
+            ""
           )}
         </div>
       </div>
