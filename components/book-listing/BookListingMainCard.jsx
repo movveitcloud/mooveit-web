@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import {
   ArchiveIcon,
@@ -9,7 +9,6 @@ import {
   MapIcon,
   TruckIcon,
 } from "@heroicons/react/outline";
-
 import { storageFeatures } from "../../helpers/data";
 import { formatMoney } from "../../helpers/utils";
 import BookContainer from "./BookContainer";
@@ -17,8 +16,7 @@ import BookContainer from "./BookContainer";
 const BookListingMainCard = () => {
   const { userListing, userListingLoading } = useSelector((state) => state.listing);
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const images = ["/listingdummy.png", "/listingdummy2.png", "/listingdummy3.png"];
+  const videoRef = useRef(null);
 
   const prevImage = () => {
     if (currentIndex > 0) {
@@ -26,7 +24,7 @@ const BookListingMainCard = () => {
     }
   };
   const nextImage = () => {
-    if (currentIndex < images.length - 1) {
+    if (currentIndex < userListing?.media.length - 1) {
       setCurrentIndex(currentIndex + 1);
     }
   };
@@ -35,18 +33,32 @@ const BookListingMainCard = () => {
     return filter;
   };
 
+  const getFileType = (file) => {
+    return file.substring(file.lastIndexOf(".") + 1).toLowerCase();
+  };
+
   return (
     <BookContainer>
       <div className="w-full h-[200px] md:h-[400px] relative overflow-hidden flex rounded-lg">
-        {userListing?.media?.map((img, i) => (
-          <img
-            key={i}
-            src={img}
-            alt={img}
-            className="object-cover min-w-full w-full h-full transition-all duration-700 select-none"
-            style={{ transform: `translate(-${currentIndex * 100}%)` }}
-          />
-        ))}
+        {userListing?.media?.map((img, i) => {
+          return (
+            <div
+              key={i}
+              className="min-w-full w-full h-full transition-all duration-700 select-none"
+              style={{ transform: `translate(-${currentIndex * 100}%)` }}>
+              {getFileType(img) === "mov" || getFileType(img) === "mp4" ? (
+                <video src={img} controls className="object-cover w-full h-full mb-2 rounded"></video>
+              ) : (
+                <img
+                  src={img}
+                  alt={img}
+                  className="object-cover min-w-full w-full h-full transition-all duration-700 select-none"
+                  // style={{ transform: `translate(-${currentIndex * 100}%)` }}
+                />
+              )}
+            </div>
+          );
+        })}
         {currentIndex > 0 && (
           <div
             className="absolute left-3 md:left-5 -translate-y-[50%] top-[50%] w-6 h-6 flex justify-center items-center rounded-full bg-[#DDDDDD99] hover:bg-[#ddddddaf] shadow text-white cursor-pointer select-none active:scale-90 transition-all duration-200"

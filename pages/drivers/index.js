@@ -2,15 +2,8 @@ import React, { useEffect, useState } from "react";
 import { PlusIcon, SearchIcon } from "@heroicons/react/outline";
 import { useDispatch, useSelector } from "react-redux";
 import { PulseLoader } from "react-spinners";
-import { AddDriverModal, DashboardLayout, DriverCard, PendingModal } from "../../components";
-import { dummyDrivers } from "../../helpers/data";
+import { AddDriverModal, DashboardLayout, DriverCard } from "../../components";
 import { getDrivers } from "../../redux/features/drivers.slice";
-
-const initialState = {
-  email: "",
-  firstName: "",
-  lastName: "",
-};
 
 const Drivers = () => {
   const [filteredDrivers, setFilteredDrivers] = useState([]);
