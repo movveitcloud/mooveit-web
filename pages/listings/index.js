@@ -9,18 +9,25 @@ const Listings = () => {
   const dispatch = useDispatch();
   const [filteredArray, setFilteredArray] = useState([]);
   const [activeItem, setActive] = useState(0);
-  const items = ["Published", "Pending", "Draft"];
+  const items = ["Published", "Pending", "Draft", "Rejected"];
+
+  const approvedListings = listings?.filter((listing) => listing?.status == "approved");
+  const pendingListings = listings?.filter((listing) => listing?.status == "pending" && listing.completed);
+  const draftListings = listings?.filter((listing) => listing?.status == "pending" && !listing.completed);
+  const disapprovedListings = listings?.filter((listing) => listing?.status == "disapproved");
+
+  const displayTabs = disapprovedListings?.length > 0 ? 4 : 3;
 
   const filterItem = () => {
     const result =
       activeItem == 0
-        ? listings?.filter((listing) => listing?.status == "approved")
+        ? approvedListings
         : activeItem == 1
-        ? listings.filter((listing) => listing?.status == "pending" && listing.completed)
+        ? pendingListings
         : activeItem == 2
-        ? listings.filter(
-            (listing) => (listing?.status == "pending" && !listing.completed) || listing?.status == "disapproved"
-          )
+        ? draftListings
+        : activeItem == 3
+        ? disapprovedListings
         : [];
     setFilteredArray(result);
   };
@@ -36,7 +43,7 @@ const Listings = () => {
   return (
     <DashboardLayout>
       <div className="flex gap-5 flex-wrap mb-6">
-        {items.map((item, i) => (
+        {items.slice(0, displayTabs).map((item, i) => (
           <div
             key={i}
             className={`${
@@ -49,12 +56,12 @@ const Listings = () => {
                 activeItem === i ? " text-white bg-primary" : " bg-[#c1bfbf] text-white"
               } rounded-full py-1 px-2 text-[.5rem] lg:text-[.7rem] ml-4 `}>
               {i == 0
-                ? listings?.filter((listing) => listing?.status == "approved").length
+                ? approvedListings?.length
                 : i == 1
-                ? listings.filter((listing) => listing?.status == "pending" && listing.completed).length
-                : listings.filter(
-                    (listing) => (listing?.status == "pending" && !listing.completed) || listing?.status == "pending"
-                  ).length}
+                ? pendingListings?.length
+                : i == 2
+                ? draftListings?.length
+                : disapprovedListings?.length}
             </span>
           </div>
         ))}

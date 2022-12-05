@@ -1,5 +1,3 @@
-import React from "react";
-
 const Switch = ({ name, handleChange, formDetails }) => {
   return (
     <input

@@ -16,7 +16,7 @@ const initialState = {
 
   //Space Details Stepper
   streetView: false,
-  storageSize: "",
+  storageSize: { name: "" },
   storageNumber: 1,
   image: [],
   storageTitle: "",

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { ApiError } from "next/dist/server/api-utils";
 
 const API = axios.create({ baseURL: process.env.BASE_URL });
 
@@ -26,6 +25,15 @@ export const getListings = () => API.get("/listings");
 export const getFeaturedListings = () => API.get("/users/featured-listing");
 export const getSingleListing = (id) => API.get(`/listings/${id}`);
 export const getUserListing = (id) => API.get(`/users/listings/${id}`);
-export const getSearchListings = (payload) => API.get("/users/listings", { params: payload });
+export const getSearchListings = (payload) => API.post("/users/listings", payload);
 export const deleteListing = (id) => API.delete(`/listings/${id}`);
 export const imageUpload = ({ payload, id }) => API.patch(`/listings/${id}/upload`, payload);
+
+//DRIVERS
+export const getDrivers = () => API.get("/drivers");
+export const createDriver = (payload) => API.post("/drivers", payload);
+export const updateDriver = ({ payload, id }) => API.patch(`/drivers/${id}`, payload);
+export const deleteDriver = (id) => API.delete(`/drivers/${id}`);
+
+//CONFIGURATIONS
+export const getConfigurations = () => API.get("/admin/configurations");

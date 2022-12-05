@@ -19,9 +19,9 @@ const Search = () => {
   };
 
   useEffect(() => {
-    if (query) {
-      dispatch(getSearchListings({ payload: { area: query.toLowerCase() } }));
-    }
+    // if (query) {
+    dispatch(getSearchListings({ payload: { area: query ? query.toLowerCase() : "" } }));
+    // }
   }, [query]);
 
   return (
@@ -38,28 +38,31 @@ const Search = () => {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="max-w-[90%] lg:max-w-[85%] mx-auto my-16 grid md:grid-cols-2 xl:grid-cols-3 gap-10 place-items-center">
+              className="max-w-[90%] lg:max-w-[85%] mx-auto my-16">
               {searchLoading ? (
-                <>
+                <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-10 place-items-center">
                   <ListingSkelenton />
                   <ListingSkelenton />
                   <ListingSkelenton />
-                </>
+                </div>
+              ) : searchListings.length === 0 ? (
+                <div className="flex justify-center">
+                  <div className="bg-white rounded-lg w-full md:w-[60%] flex justify-center mt-8">
+                    <div className="px-4 py-24 flex flex-col space-y-4 items-center">
+                      <img src="emptyStorage.svg" alt="empty storage icon" className="w-16 md:w-20" />
+                      <p className="text-center text-[#AAAAAA]">Oops we couldn't find any listing</p>
+                    </div>
+                  </div>
+                </div>
               ) : (
-                //  : searchListings.length === 0 ? (
-                //   <div className="flex justify-center">
-                //     <div className="bg-white rounded-lg w-full md:w-[60%] flex justify-center mt-8">
-                //       <div className="px-4 py-24 flex flex-col space-y-4 items-center">
-                //         <img src="emptyStorage.svg" alt="empty storage icon" className="w-16 md:w-20" />
-                //         <p className="text-center text-[#AAAAAA]">Oops we couldn't find any listing within this area</p>
-                //       </div>
-                //     </div>
-                //   </div>
-                // )
-                [...searchListings]
-                  ?.reverse()
-                  .slice(0, count)
-                  ?.map((item, i) => <ListingCard item={item} key={i} />)
+                <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-10 place-items-center">
+                  {[...searchListings]
+                    ?.reverse()
+                    .slice(0, count)
+                    ?.map((item, i) => (
+                      <ListingCard item={item} key={i} />
+                    ))}
+                </div>
               )}
             </motion.div>
 

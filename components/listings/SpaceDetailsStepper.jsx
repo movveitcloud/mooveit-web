@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import Dimensions from "./Dimension";
-import StreetView from "./Street";
 import Media from "./Media";
 import Description from "./Description";
 import StepperControls from "./StepperControls";
@@ -8,14 +7,13 @@ import { ListingInputContext } from "../../context";
 
 const SpaceDetailsStepper = () => {
   const { formDetails } = useContext(ListingInputContext);
-  const { storageSize, streetView, storageTitle, description, image } = formDetails;
-  const disableBtn = !storageSize || !storageTitle || !description || image.length == 0;
-  const payload = { streetView, storageSize, image, storageTitle, description };
+  const { storageSize, storageTitle, storageNumber, description, image } = formDetails;
+  const disableBtn = !storageSize?.name || !storageTitle || !description || image.length == 0;
+  const payload = { storageSize, storageNumber, storageTitle, description };
 
   return (
     <>
       <Dimensions />
-      {/* <StreetView /> */}
       <Media />
       <Description />
       <div className="my-16">

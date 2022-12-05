@@ -4,6 +4,7 @@ import Link from "next/link";
 import { LocationMarkerIcon, MapIcon, SearchIcon } from "@heroicons/react/outline";
 import { errorPopUp } from "../../helpers/toastify";
 import PlacesAutocomplete from "react-places-autocomplete";
+import Image from "next/image";
 
 const HeroSection = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -27,8 +28,18 @@ const HeroSection = () => {
 
   return (
     <main className="bg-[#f9f9f9] mb-[10%]">
-      <div className="flex justify-center h-[600px] rounded-2xl max-w-[90%] lg:max-w-[85%] mx-auto bg-[url('/hero-bg.png')] bg-cover relative">
-        <div className="text-center space-y-3 sm:space-y-5 my-24 max-w-[80%] md:max-w-2xl mx-auto">
+      <div className="flex justify-center h-[600px] rounded-2xl max-w-[90%] bg-primary lg:max-w-[85%] mx-auto  relative">
+        <Image
+          src="/hero-bg.png"
+          alt="movveit"
+          // placeholder="blur"
+          // blurDataURL="/fallback.png"
+          className="rounded-2xl z-0"
+          layout="fill"
+          objectFit="cover"
+          objectPosition="center"
+        />
+        <div className="text-center space-y-3 sm:space-y-5 my-24 max-w-[80%] md:max-w-2xl mx-auto z-10">
           <h1 className="font-semibold text-white text-2xl sm:text-4xl md:text-5xl lg:text-6xl">
             Find Storage Around <span className="sm:mt-3 block">You Easily</span>
           </h1>
