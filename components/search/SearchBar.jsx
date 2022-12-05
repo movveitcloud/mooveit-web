@@ -15,27 +15,21 @@ import PlacesAutocomplete from "react-places-autocomplete";
 
 const initialState = {
   address: "",
-  moving: false,
+  delivery: false,
   packing: false,
-  priceRange: "hour",
+  type: "hour",
   storageType: "",
   storageSize: "",
+  minPrice: "",
+  maxPrice: "",
+  area: "",
 };
 
-const SearchBar = ({ showMap, setShowMap, mapContainer, cardContainer }) => {
+const SearchBar = ({ showMap, setShowMap }) => {
   const [formDetails, setFormDetails] = useState(initialState);
 
-  const handleAddressChange = (address) => {
-    setFormDetails({ ...formDetails, address });
-  };
-
-  const handleSelect = (address) => {
-    setFormDetails({ ...formDetails, address });
-    // geocodeByAddress(address)
-    //   .then((results) => getLatLng(results[0]))
-    //   .then((latLng) => setFormDetails({ ...formDetails, coordinates: latLng, address }))
-    //   .catch((error) => console.error("Error", error));
-  };
+  const handleAddressChange = (address) => setFormDetails({ ...formDetails, address });
+  const handleSelect = (address) => setFormDetails({ ...formDetails, address });
 
   const handleChange = (e) => {
     const { type, name, value, checked } = e.target;
@@ -71,7 +65,7 @@ const SearchBar = ({ showMap, setShowMap, mapContainer, cardContainer }) => {
                     onSelect={handleSelect}
                     debounce={400}
                     searchOptions={{ types: ["locality", "country"] }}
-                    shouldFetchSuggestions={formDetails.address.length > 5}>
+                    shouldFetchSuggestions={formDetails?.address?.length > 5}>
                     {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                       <div className="relative">
                         <input
@@ -105,14 +99,14 @@ const SearchBar = ({ showMap, setShowMap, mapContainer, cardContainer }) => {
                   </PlacesAutocomplete>
                 </div>
               </div>
-              <div className="flex items-center  md:gap-2 border-r">
+              {/* <div className="flex items-center  md:gap-2 border-r">
                 <ClockIcon className="w-5 mr-1 md:mr-0" />
                 <input
                   type="text"
                   className="bg-transparent text-[0.6rem] md:text-[0.9em] outline-none w-full"
                   placeholder="ANY TIME"
                 />
-              </div>
+              </div> */}
               <div className="flex items-center  md:gap-2">
                 <UserIcon className="w-5 mr-1 md:mr-0" />
                 <input
@@ -133,13 +127,13 @@ const SearchBar = ({ showMap, setShowMap, mapContainer, cardContainer }) => {
 
       <div className="bg-white">
         <div className="max-w-[90%] lg:max-w-[85%] mx-auto flex justify-between p-5">
-          <div className="md:flex gap-8 hidden ">
+          <div className="md:flex gap-8 hidden">
             <div className="flex gap-4 items-center">
               <div className="flex items-center gap-2">
                 <TruckIcon className="w-6 text-[#222222]" />
                 <p className="font-[500]">Delivery</p>
               </div>
-              <Switch name="moving" handleChange={handleChange} formDetails={formDetails} />
+              <Switch name="delivery" handleChange={handleChange} formDetails={formDetails} />
             </div>
             <div className="flex gap-4 items-center">
               <div className="flex items-center gap-2">
@@ -151,22 +145,27 @@ const SearchBar = ({ showMap, setShowMap, mapContainer, cardContainer }) => {
           </div>
 
           <div className="mx-auto md:m-0">
-            <div className="flex   justify-center md:gap-8  ">
+            <div className="flex justify-center md:gap-8">
               <button
-                className="btn btn-primary px-5 font-normal text-sm flex  items-center md:gap-2 text-[0.8rem] md:text-[1em] mr-8 md:mr-0"
+                className="btn btn-primary px-6 font-normal text-sm flex normal-case items-center md:gap-2 text-[0.8rem] md:text-[1em] mr-8 md:mr-0"
                 onClick={toggleView}>
                 <MapIcon className="w-4 mr-2 md:mr-0 " />
                 {showMap ? "Hide Map" : "Show Map"}
               </button>
               <label
                 htmlFor="filter"
-                className="btn btn-outline btn-primary hover:btn-accent px-5 font-normal text-sm flex items-center md:gap-2 text-[0.8rem] md:text-[1em]">
+                className="btn btn-outline btn-primary hover:btn-accent px-6 font-normal normal-case text-sm flex items-center md:gap-2 text-[0.8rem] md:text-[1em]">
                 <FilterIcon className="w-4 mr-2 md:mr-0" />
-                Apply Filters
+                Filters
               </label>
             </div>
           </div>
-          <FilterModal formDetails={formDetails} handleChange={handleChange} />
+          <FilterModal
+            formDetails={formDetails}
+            initialState={initialState}
+            setFormDetails={setFormDetails}
+            handleChange={handleChange}
+          />
         </div>
       </div>
       <div className="flex justify-center gap-8  bg-primary  md:hidden">
@@ -176,7 +175,7 @@ const SearchBar = ({ showMap, setShowMap, mapContainer, cardContainer }) => {
               <TruckIcon className="w-6 text-[#222222] mr-2" />
               <p className="font-[500]">Moving</p>
             </div>
-            <Switch name="moving" handleChange={handleChange} formDetails={formDetails} />
+            <Switch name="delivery" handleChange={handleChange} formDetails={formDetails} />
           </div>
           <div className="flex  items-center">
             <div className="flex items-center mr-4 ">

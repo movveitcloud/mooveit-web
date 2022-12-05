@@ -12,11 +12,11 @@ const Listings = () => {
   const items = ["Published", "Pending", "Draft", "Rejected"];
 
   const approvedListings = listings?.filter((listing) => listing?.status == "approved");
-  const pendingListings = listings.filter((listing) => listing?.status == "pending" && listing.completed);
-  const draftListings = listings.filter((listing) => listing?.status == "pending" && !listing.completed);
-  const disapprovedListings = listings.filter((listing) => listing?.status == "disapproved");
+  const pendingListings = listings?.filter((listing) => listing?.status == "pending" && listing.completed);
+  const draftListings = listings?.filter((listing) => listing?.status == "pending" && !listing.completed);
+  const disapprovedListings = listings?.filter((listing) => listing?.status == "disapproved");
 
-  const displayTabs = disapprovedListings.length > 0 ? 4 : 3;
+  const displayTabs = disapprovedListings?.length > 0 ? 4 : 3;
 
   const filterItem = () => {
     const result =
@@ -56,12 +56,12 @@ const Listings = () => {
                 activeItem === i ? " text-white bg-primary" : " bg-[#c1bfbf] text-white"
               } rounded-full py-1 px-2 text-[.5rem] lg:text-[.7rem] ml-4 `}>
               {i == 0
-                ? approvedListings.length
+                ? approvedListings?.length
                 : i == 1
-                ? pendingListings.length
+                ? pendingListings?.length
                 : i == 2
-                ? draftListings.length
-                : disapprovedListings.length}
+                ? draftListings?.length
+                : disapprovedListings?.length}
             </span>
           </div>
         ))}
