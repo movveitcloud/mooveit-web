@@ -1,15 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import { ListingInputContext } from "../../context";
 import { storageFeatures, storageFloors, storageKinds } from "../../helpers/data";
+import { getConfigurations } from "../../redux/features/config.slice";
 import Accordion from "../shared/Accordion";
 
 const Type = ({ incomplete }) => {
+  const { configurations, loading } = useSelector((state) => state.configurations);
   const { formDetails, setFormDetails, handleChange } = useContext(ListingInputContext);
+  const dispatch = useDispatch();
 
   const handleUpdate = (value) => {
     setFormDetails({ ...formDetails, storageFeatures: [...value]?.map((item) => item.value) });
   };
+
+  // useEffect(() => {
+  //   dispatch(getConfigurations());
+  // }, []);
+
+  // console.log(configurations?.storageFeatures);
 
   return (
     <Accordion title="type" incomplete={incomplete}>

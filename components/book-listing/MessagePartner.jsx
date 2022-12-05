@@ -1,4 +1,4 @@
-import { CalendarIcon, ChatAltIcon } from "@heroicons/react/outline";
+import { CalendarIcon, ChatAltIcon, LightningBoltIcon } from "@heroicons/react/outline";
 import { BadgeCheckIcon } from "@heroicons/react/solid";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -6,6 +6,7 @@ import BookContainer from "./BookContainer";
 
 const MessagePartner = () => {
   const { userListing, userListingLoading } = useSelector((state) => state.listing);
+
   return (
     <BookContainer>
       <div className="space-y-5 md:space-y-6">
@@ -22,10 +23,10 @@ const MessagePartner = () => {
             <div className="flex flex-col md:flex-row space-y-1 md:space-x-4 md:space-y-0">
               <div className="flex space-x-2">
                 <CalendarIcon className="w-3 md:w-4 text-primary" />
-                <p className="text-[#959595] text-xs md:text-sm">214 bookings</p>
+                <p className="text-[#959595] text-xs md:text-sm">214 listings</p>
               </div>
               <div className="flex space-x-2">
-                <CalendarIcon className="w-3 md:w-4 text-primary" />
+                <LightningBoltIcon className="w-3 md:w-4 text-primary" />
                 <p className="text-[#959595] text-xs md:text-sm">Responsive Partner</p>
               </div>
             </div>

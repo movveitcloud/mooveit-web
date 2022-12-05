@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserListing } from "../../redux/features/listings.slice";
 import { motion } from "framer-motion";
-import { BookingDescription, BookListingMainCard, ListingCardCheckout, Meta, PageLayout } from "../../components";
+import { BookListingMainCard, ListingCardCheckout, Meta, PageLayout } from "../../components";
 import { BeatLoader } from "react-spinners";
 import { EmojiSadIcon } from "@heroicons/react/outline";
 
@@ -18,8 +18,6 @@ const Checkout = () => {
       dispatch(getUserListing({ id: query }));
     }
   }, [query]);
-
-  console.log(userListing);
 
   return (
     <PageLayout>

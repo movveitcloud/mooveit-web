@@ -2,11 +2,11 @@ import { useState } from "react";
 import { LocationMarkerIcon } from "@heroicons/react/outline";
 import { formatMoney } from "../../helpers/utils";
 
-const PriceItem = ({ name, price }) => {
+const PriceItem = ({ name, amount, total }) => {
   return (
-    <div className="flex justify-between text-sm">
-      <p className="font-semibold">{name}</p>
-      <p className="text-lg text-primary">{formatMoney(price)}</p>
+    <div className={`flex justify-between ${total ? "font-bold text-lg" : "font-[500] text-sm"}`}>
+      <p>{name}</p>
+      <p className={`text-primary`}>{formatMoney(amount)}</p>
     </div>
   );
 };
@@ -15,6 +15,16 @@ const ListingCardCheckout = ({ item }) => {
   const initialState = { type: "hourly" };
   const [bookingDetails, setbookingDetails] = useState(initialState);
   const { type } = bookingDetails;
+
+  const period = 400;
+  const pricePerPeriod = type === "hourly" ? 4.9 : 300;
+
+  const price = pricePerPeriod * period;
+  const movingPrice = 0;
+  const packingPrice = 0;
+  const subTotal = price + movingPrice + packingPrice;
+  const taxes = (7.5 / 100) * subTotal;
+  const total = subTotal + taxes;
 
   return (
     <div className="bg-white w-full sm:w-[375px] rounded-lg p-5 hover:shadow transition-shadow duration-500 h-full">
@@ -38,21 +48,21 @@ const ListingCardCheckout = ({ item }) => {
         </p>
       </div>
 
-      <div className="mt-4 space-y-2">
+      <div className="mt-4 space-y-3">
         <div className="flex justify-between text-sm">
           <p className="font-semibold">
             Price <span className="text-[#959595] font-normal">{`(per ${type == "hourly" ? "hour" : "month"})`}</span>
           </p>
-          <p className="text-lg text-primary">{formatMoney(4.2)}</p>
+          <p className="text-lg text-primary">{formatMoney(pricePerPeriod)}</p>
         </div>
-        <PriceItem name="x12 hours" price={340} />
-        <PriceItem name="Moving" price={96.2} />
 
+        <PriceItem name={`x${period} ${type == "hourly" ? "hours" : "months"}`} amount={price} />
+        <PriceItem name="Moving" amount={movingPrice} />
+        <PriceItem name="Packing" amount={packingPrice} />
         <hr className="border-dashed" />
-
-        <PriceItem name="Subtotal" price={300} />
-        <PriceItem name="Tax" price={24} />
-        <PriceItem name="Total" price={200} />
+        <PriceItem name="Subtotal" amount={subTotal} />
+        <PriceItem name="Tax" amount={taxes} />
+        <PriceItem name="Total" amount={total} total />
       </div>
     </div>
   );
