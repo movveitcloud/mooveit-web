@@ -17,15 +17,17 @@ const DashboardNavAccordion = ({ path, title, icon, iconActive, subMenus, pathna
       {/* ACCORDION TITLE */}
       <a
         href={path}
-        className={`flex gap-5 items-center px-7 lg:px-10 py-2 mb-2 w-full hover:text-primary cursor-pointer ${
+        className={`flex gap-7 items-center pr-5 py-2 mb-2 w-full hover:text-primary cursor-pointer ${
           subMenus?.find((a) => pathname.includes(a.path))
             ? "text-primary font-semibold border-r-2 border-primary"
             : "text-[#959595]"
         }`}
         onClick={() => setActive(!active)}>
-        <p className="w-6">{pathname?.includes(path) ? iconActive : icon}</p>
-        <h2 className="text-sm">{title}</h2>
-        {arrowIcon}
+        <div className="flex gap-4">
+          <p className="w-6">{pathname?.includes(path) ? iconActive : icon}</p>
+          <h2 className="text-sm">{title}</h2>
+        </div>
+        <span className="min-w-fit">{arrowIcon}</span>
       </a>
 
       {/* ACCORDION CONTENT */}
@@ -41,7 +43,7 @@ const DashboardNavAccordion = ({ path, title, icon, iconActive, subMenus, pathna
                 <a
                   key={path}
                   href={path}
-                  className={`text-sm px-7 lg:px-10 py-[6px] ml-5 mb-[6px] w-full hover:text-primary cursor-pointer ${
+                  className={`text-sm px-4 py-[6px] ml-3 mb-[6px] w-full hover:text-primary cursor-pointer ${
                     pathname?.includes(path) ? "text-primary" : "text-[#959595]"
                   }`}
                   onClick={() => setActive(!active)}>
