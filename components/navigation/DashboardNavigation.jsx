@@ -6,6 +6,7 @@ import { authenticatedUser, logout } from "../../redux/features/auth.slice";
 import { dashboardNavLinks } from "../../helpers/data";
 import DashboardNavAccordion from "./DashboardNavAccordion";
 import Link from "next/link";
+import Image from "next/image";
 
 const DashboardNavigation = ({ pathname }) => {
   const [userData, setUserData] = useState(null);
@@ -65,10 +66,21 @@ const DashboardNavigation = ({ pathname }) => {
       </div>
 
       <div
-        className="flex justify-between item gap-2 mx-5 lg:mx-8 text-sm cursor-pointer dropdown dropdown-top"
+        className="flex justify-between item gap-2 mx-5 lg:mx-6 text-sm cursor-pointer dropdown dropdown-top"
         tabIndex="0">
-        <div className="flex gap-4 items-center">
-          <span className="w-8 h-8 rounded-full bg-[#C4C4C4]"></span>
+        <div className="flex gap-3 items-center">
+          <span className="relative w-10 h-10 rounded-full bg-[#C4C4C4]">
+            <Image
+              src={userData?.profilePicture}
+              alt={userData?.firstName}
+              className="rounded-full"
+              placeholder="blur"
+              blurDataURL="/dummyAvatar.svg"
+              layout="fill"
+              objectFit="cover"
+              objectPosition="center"
+            />
+          </span>
           <div>
             <h2 className="text-[#222222]">
               {userData?.firstName} {userData?.lastName}

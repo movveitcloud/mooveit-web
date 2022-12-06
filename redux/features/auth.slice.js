@@ -41,6 +41,37 @@ export const signup = createAsyncThunk("/auth/register", async ({ payload, reset
   }
 });
 
+export const updateUser = createAsyncThunk("/user/update-user", async ({ payload, id }, { rejectWithValue }) => {
+  try {
+    const response = await api.updateUser({ payload, id });
+    successPopUp({
+      msg: "Profile successfully updated",
+      duration: 500,
+    });
+    return response.data;
+  } catch (err) {
+    errorPopUp({ msg: err.response.data.error });
+    return rejectWithValue(err.response.data);
+  }
+});
+
+export const updateProfileImage = createAsyncThunk(
+  "/user/update-user/upload",
+  async ({ payload, id }, { rejectWithValue }) => {
+    try {
+      const response = await api.updateProfileImage({ payload, id });
+      // successPopUp({
+      //   msg: "Profile picture successfully updated",
+      //   duration: 500,
+      // });
+      return response.data;
+    } catch (err) {
+      errorPopUp({ msg: err.response.data.error });
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 export const forgotPassword = createAsyncThunk(
   "/auth/forgot-password",
   async ({ payload, reset }, { rejectWithValue }) => {
@@ -147,6 +178,8 @@ const authSlice = createSlice({
     forgotLoading: false,
     resetLoading: false,
     verifyLoading: false,
+    updateLoading: false,
+    profilePictureLoading: false,
     verifyEmailLoading: false,
     resendEmailVerifyLoading: false,
   },
@@ -184,6 +217,32 @@ const authSlice = createSlice({
     },
     [signup.rejected]: (state, action) => {
       state.signupLoading = false;
+    },
+
+    [updateUser.pending]: (state) => {
+      state.updateLoading = true;
+    },
+    [updateUser.fulfilled]: (state, action) => {
+      state.updateLoading = false;
+      localStorage.setItem("user", JSON.stringify({ ...action.payload }));
+      state.user = action.payload;
+    },
+    [updateUser.rejected]: (state, action) => {
+      state.updateLoading = false;
+    },
+
+    [updateProfileImage.pending]: (state) => {
+      state.profilePictureLoading = true;
+    },
+    [updateProfileImage.fulfilled]: (state, action) => {
+      state.profilePictureLoading = false;
+      const userObject = JSON.parse(localStorage.getItem("user"));
+      userObject.response = action.payload.response;
+      localStorage.setItem("user", JSON.stringify({ ...userObject }));
+      state.user = action.payload;
+    },
+    [updateProfileImage.rejected]: (state, action) => {
+      state.profilePictureLoading = false;
     },
 
     [forgotPassword.pending]: (state) => {
