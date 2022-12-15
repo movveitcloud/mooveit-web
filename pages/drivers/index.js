@@ -13,7 +13,11 @@ const Drivers = () => {
   const handleSearch = (e) => {
     const { value } = e.target;
     let result = [];
-    result = drivers?.filter((a) => a.firstName.toLowerCase().includes(value.toLowerCase()));
+    result = drivers?.filter(
+      (a) =>
+        a.firstName.toLowerCase().includes(value.toLowerCase()) ||
+        a.lastName.toLowerCase().includes(value.toLowerCase())
+    );
     if (value) {
       setFilteredDrivers(result);
     } else {
@@ -43,7 +47,7 @@ const Drivers = () => {
                 <input
                   type="text"
                   className="text-sm outline-none bg-transparent"
-                  placeholder="Search by first name"
+                  placeholder="Search by name"
                   onChange={handleSearch}
                 />
               </div>

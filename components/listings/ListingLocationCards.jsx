@@ -16,7 +16,11 @@ const ListingLocationCard = ({ data }) => {
         transition={{ duration: 0.4 }}
         className="p-4 bg-white rounded-md w-full hover:shadow">
         <div className="w-full h-[200px]">
-          <img src={data?.media[0]} alt="listing view" className="w-full h-full object-cover rounded-md" />
+          <img
+            src={data?.media[0] || "/dummyListing.png"}
+            alt="listing view"
+            className="w-full h-full object-cover rounded-md"
+          />
         </div>
         <div className="flex mt-4 justify-between">
           <div className="flex gap-2 items-center text-[#959595] cursor-pointer">
