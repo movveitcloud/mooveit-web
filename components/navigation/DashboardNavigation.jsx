@@ -70,16 +70,18 @@ const DashboardNavigation = ({ pathname }) => {
         tabIndex="0">
         <div className="flex gap-3 items-center">
           <span className="relative w-10 h-10 rounded-full bg-[#C4C4C4]">
-            <Image
-              src={userData?.profilePicture}
-              alt={userData?.firstName}
-              className="rounded-full"
-              placeholder="blur"
-              blurDataURL="/dummyAvatar.svg"
-              layout="fill"
-              objectFit="cover"
-              objectPosition="center"
-            />
+            {userData && (
+              <Image
+                src={userData.profilePicture}
+                alt={userData.firstName}
+                className="rounded-full"
+                placeholder="blur"
+                blurDataURL="/dummyAvatar.svg"
+                layout="fill"
+                objectFit="cover"
+                objectPosition="center"
+              />
+            )}
           </span>
           <div>
             <h2 className="text-[#222222]">

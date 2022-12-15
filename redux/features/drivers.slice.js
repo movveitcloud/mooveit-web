@@ -43,6 +43,20 @@ export const updateDriver = createAsyncThunk(
   }
 );
 
+export const uploadDriverImage = createAsyncThunk(
+  "/drivers/:id/upload-drivers",
+  async ({ payload, setFormDetails, formDetails }, { rejectWithValue }) => {
+    try {
+      const response = await api.uploadDriverImage({ payload });
+      setFormDetails({ ...formDetails, profilePicture: response.data.data });
+      return response.data;
+    } catch (err) {
+      errorPopUp({ msg: err.response.data.error });
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 export const deleteDriver = createAsyncThunk(
   "/drivers/:delete",
   async ({ id, refreshDrivers }, { rejectWithValue }) => {
@@ -66,6 +80,8 @@ const driverSlice = createSlice({
     createLoading: false,
     updateLoading: false,
     deleteLoading: false,
+    driverImageLoading: false,
+    profilePicture: "",
     error: "",
   },
 
@@ -102,6 +118,17 @@ const driverSlice = createSlice({
     },
     [updateDriver.rejected]: (state, action) => {
       state.updateLoading = false;
+    },
+
+    [uploadDriverImage.pending]: (state) => {
+      state.driverImageLoading = true;
+    },
+    [uploadDriverImage.fulfilled]: (state, action) => {
+      state.profilePicture = action.payload.data;
+      state.driverImageLoading = false;
+    },
+    [uploadDriverImage.rejected]: (state, action) => {
+      state.driverImageLoading = false;
     },
 
     [deleteDriver.pending]: (state) => {

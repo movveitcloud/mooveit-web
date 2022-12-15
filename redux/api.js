@@ -36,6 +36,7 @@ export const getDrivers = () => API.get("/drivers");
 export const createDriver = (payload) => API.post("/drivers", payload);
 export const updateDriver = ({ payload, id }) => API.patch(`/drivers/${id}`, payload);
 export const deleteDriver = (id) => API.delete(`/drivers/${id}`);
+export const uploadDriverImage = ({ payload }) => API.post(`/drivers/upload`, payload);
 
 //CONFIGURATIONS
 export const getConfigurations = () => API.get("/admin/configurations");

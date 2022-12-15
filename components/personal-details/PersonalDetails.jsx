@@ -33,11 +33,6 @@ const PersonalDetails = ({ formDetails, setFormDetails, handleChange }) => {
         <div
           className="w-[100px] h-[100px] rounded-full bg-[#C4C4C4] relative cursor-pointer"
           onClick={() => profilePic.current.click()}>
-          {/* <img
-            src={formDetails.profilePicture || "/dummyAvatar.svg"}
-            alt="profile picture"
-            className="object-cover w-full h-full rounded-full"
-          /> */}
           <Image
             src={formDetails.profilePicture || "/dummyAvatar.svg"}
             alt="profile picture"
