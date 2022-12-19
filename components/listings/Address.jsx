@@ -83,8 +83,8 @@ const Address = ({ incomplete, open }) => {
           defaultCenter={defaultProps.center}
           center={formDetails?.coordinates}
           defaultZoom={defaultProps.zoom}>
-          {formDetails.coordinates.lat && (
-            <Marker lat={formDetails.coordinates.lat} lng={formDetails.coordinates.lng} />
+          {formDetails?.coordinates?.lat && (
+            <Marker lat={formDetails?.coordinates?.lat} lng={formDetails?.coordinates?.lng} />
           )}
         </GoogleMapReact>
       </div>
