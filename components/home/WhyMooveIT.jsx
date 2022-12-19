@@ -3,7 +3,7 @@ import React from "react";
 
 const WhyMooveIT = () => {
   return (
-    <section className="max-full pt-[6rem] bg-[#f9f9f9]">
+    <section className="max-full bg-[#f9f9f9]">
       <div className="flex ">
         <div className="w-full md:w-[50%] pb-[6rem] bg-primary text-white pt-[3rem]">
           <div className="text-left text-sm 2xl:text-base leading-7 mx-auto w-[90%] md:w-[74%] lg:max-w-[85%]">

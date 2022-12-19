@@ -1,6 +1,6 @@
 import { MapIcon } from "@heroicons/react/outline";
 import { LocationMarkerIcon } from "@heroicons/react/solid";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useContext } from "react";
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 import GoogleMapReact from "google-map-react";
@@ -9,7 +9,7 @@ import Accordion from "../shared/Accordion";
 
 const Marker = () => <LocationMarkerIcon className="w-8 text-red-500" />;
 
-const Address = ({ incomplete }) => {
+const Address = ({ incomplete, open }) => {
   const { formDetails, setFormDetails } = useContext(ListingInputContext);
 
   const handleChange = (address) => {
@@ -29,16 +29,10 @@ const Address = ({ incomplete }) => {
       .catch((error) => console.error("Error", error));
   };
 
-  const defaultProps = {
-    center: {
-      lat: 10.99835602,
-      lng: 77.01502627,
-    },
-    zoom: 15,
-  };
+  const defaultProps = { center: { lat: 10.99835602, lng: 77.01502627 }, zoom: 15 };
 
   return (
-    <Accordion title="address" incomplete={incomplete}>
+    <Accordion title="address" incomplete={incomplete} open={open}>
       <div className="flex flex-row flex-grow gap-4 items-center border border-[#959595] rounded-lg px-4 py-3">
         <MapIcon className="text-[#959595] w-6" />
         <div className="w-full">
@@ -83,7 +77,7 @@ const Address = ({ incomplete }) => {
       </div>
 
       {/* map */}
-      <div className="w-full h-[250px] mt-8 ">
+      <div className="w-full h-[250px] mt-8 rounded-md overflow-hidden">
         <GoogleMapReact
           bootstrapURLKeys={{ key: process.env.PLACES_KEY }}
           defaultCenter={defaultProps.center}

@@ -12,6 +12,7 @@ import {
 import { storageFeatures } from "../../helpers/data";
 import { formatMoney } from "../../helpers/utils";
 import BookContainer from "./BookContainer";
+import Image from "next/image";
 
 const BookListingMainCard = () => {
   const { userListing, userListingLoading } = useSelector((state) => state.listing);
@@ -50,11 +51,21 @@ const BookListingMainCard = () => {
                 {getFileType(img) === "mov" || getFileType(img) === "mp4" ? (
                   <video src={img} controls className="object-cover w-full h-full mb-2 rounded"></video>
                 ) : (
-                  <img
+                  <Image
                     src={img}
                     alt={img}
-                    className="object-cover min-w-full w-full h-full transition-all duration-700 select-none"
+                    className="rounded-md hover:shadow-md transition-all duration-700 min-w-full select-none"
+                    placeholder="blur"
+                    blurDataURL="/dummyListing.png"
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="top"
                   />
+                  // <img
+                  //   src={img}
+                  //   alt={img}
+                  //   className="object-cover min-w-full w-full h-full transition-all duration-700 select-none"
+                  // />
                 )}
               </div>
             );

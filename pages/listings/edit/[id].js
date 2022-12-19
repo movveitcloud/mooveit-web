@@ -141,8 +141,6 @@ const EditListing = () => {
     };
   }, [singleListing]);
 
-  console.log(singleListing);
-
   return (
     <DashboardLayout>
       {singleListingLoading ? (
@@ -159,8 +157,12 @@ const EditListing = () => {
             <h2 className="font-bold text-xl">{singleListing?.storageTitle}</h2>
           </div>
           <div className="w-[80%] mx-auto">
+            <div className="text-center text-xs mb-3">
+              <p>* submission will remain in draft until all fields are complete</p>
+              <p className="text-red-500">* red border-lines indicate incomplete fields</p>
+            </div>
             <>
-              <Address incomplete={!address} />
+              <Address incomplete={!address} open />
               <Type incomplete={!storageType || !storageFloor || storageFeatures.length == 0} />
               <Services />
             </>
