@@ -45,7 +45,7 @@ const Drivers = () => {
               <div className="flex border border-gray-400 p-2 px-3 rounded-md align-center items-center w-full">
                 <SearchIcon className="w-4 h-4 mr-3" />
                 <input
-                  type="text"
+                  type="search"
                   className="text-sm outline-none bg-transparent"
                   placeholder="Search by name"
                   onChange={handleSearch}
