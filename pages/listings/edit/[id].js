@@ -144,20 +144,20 @@ const EditListing = () => {
   return (
     <DashboardLayout>
       {singleListingLoading ? (
-        <div className="h-[500px] flex justify-center items-center">
+        <div className="flex h-[500px] items-center justify-center">
           <BeatLoader loading={singleListingLoading} color="#EDCC5B" />
         </div>
       ) : (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
-          <div className="flex gap-3 items-center mb-4">
-            <button className="gap-2 btn btn-link hover:no-underline" onClick={() => router.push("/listings")}>
+          <div className="mb-4 flex items-center gap-3">
+            <button className="btn btn-link gap-2 hover:no-underline" onClick={() => router.push("/listings")}>
               <ArrowNarrowLeftIcon className="w-4" />
               Back
             </button>
-            <h2 className="font-bold text-xl">{singleListing?.storageTitle}</h2>
+            <h2 className="text-xl font-bold">{singleListing?.storageTitle}</h2>
           </div>
-          <div className="w-[80%] mx-auto">
-            <div className="text-center text-xs mb-3">
+          <div className="mx-auto w-[80%]">
+            <div className="mb-3 text-center text-xs">
               <p>* submission will remain in draft until all fields are complete</p>
               <p className="text-red-500">* red border-lines indicate incomplete fields</p>
             </div>
@@ -173,7 +173,7 @@ const EditListing = () => {
               <Description incomplete={!storageTitle || !description} />
             </>
             <>
-              <Calendar />
+              {/* <Calendar /> */}
               <Access incomplete={!storageAccessPeriod || !storageAccessType} />
               <BookingDetails incomplete={!bookingDuration || !bookingNotice} />
             </>
@@ -181,7 +181,7 @@ const EditListing = () => {
 
             <div className="flex justify-end">
               <div className="flex gap-4">
-                <button className={`btn btn-outline btn-primary hover:btn-accent w-[175px]`} onClick={discardChanges}>
+                <button className={`btn btn-outline btn-primary w-[175px] hover:btn-accent`} onClick={discardChanges}>
                   Discard Changes
                 </button>
                 <button
