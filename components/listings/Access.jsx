@@ -12,7 +12,7 @@ const Access = ({ incomplete }) => {
 
   useEffect(() => {
     dispatch(getStorageAccessTypes());
-    // dispatch(getStorageAccessPeriods());
+    dispatch(getStorageAccessPeriods());
   }, []);
 
   return (

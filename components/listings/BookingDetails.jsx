@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ListingInputContext } from "../../context";
 import { arrivalNoticeOpts, spaceDuration } from "../../helpers/data";
@@ -10,10 +10,10 @@ const BookingDetails = ({ incomplete }) => {
   const { formDetails, handleChange } = useContext(ListingInputContext);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(getShortestPeriods());
-  //   dispatch(getNoticePeriods());
-  // }, []);
+  useEffect(() => {
+    dispatch(getShortestPeriods());
+    dispatch(getNoticePeriods());
+  }, []);
 
   return (
     <Accordion title="booking details" incomplete={incomplete}>

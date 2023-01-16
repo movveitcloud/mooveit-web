@@ -51,7 +51,7 @@ export const getStorageSizes = createAsyncThunk("/configurations/storage-size", 
   }
 });
 export const getStorageAccessPeriods = createAsyncThunk(
-  "/configurations/storage-access-periodgetStorageAccessPeriods",
+  "/configurations/storage-access-period",
   async ({}, { rejectWithValue }) => {
     try {
       const response = await api.getStorageAccessPeriods();
@@ -74,16 +74,19 @@ export const getStorageAccessTypes = createAsyncThunk(
     }
   }
 );
-export const getShortestPeriods = createAsyncThunk("/configurations/storage-", async ({}, { rejectWithValue }) => {
-  try {
-    const response = await api.getShortestPeriods();
-    return response.data;
-  } catch (err) {
-    errorPopUp({ msg: err.response.data.error });
-    return rejectWithValue(err.response.data);
+export const getShortestPeriods = createAsyncThunk(
+  "/configurations/booking-period",
+  async ({}, { rejectWithValue }) => {
+    try {
+      const response = await api.getShortestPeriods();
+      return response.data;
+    } catch (err) {
+      errorPopUp({ msg: err.response.data.error });
+      return rejectWithValue(err.response.data);
+    }
   }
-});
-export const getNoticePeriods = createAsyncThunk("/configurations/storage-fhfh", async ({}, { rejectWithValue }) => {
+);
+export const getNoticePeriods = createAsyncThunk("/configurations/notice-period", async ({}, { rejectWithValue }) => {
   try {
     const response = await api.getNoticePeriods();
     return response.data;

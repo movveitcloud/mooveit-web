@@ -46,5 +46,5 @@ export const getStorageFeatures = () => API.get("/configurations/storage-feature
 export const getStorageSizes = () => API.get("/configurations/storage-size");
 export const getStorageAccessPeriods = () => API.get("/configurations/storage-access-period");
 export const getStorageAccessTypes = () => API.get("/configurations/storage-access-type");
-export const getShortestPeriods = () => API.get("/configurations/storage-boo");
-export const getNoticePeriods = () => API.get("/configurations/storage-noo");
+export const getShortestPeriods = () => API.get("/configurations/booking-period");
+export const getNoticePeriods = () => API.get("/configurations/notice-period");
