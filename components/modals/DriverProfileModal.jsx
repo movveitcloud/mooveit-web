@@ -108,7 +108,9 @@ const DriverProfileModal = ({ setFilteredDrivers, data }) => {
           </label>
           <div className="space-y-4">
             <div className="flex justify-center">
-              <div className="w-[100px] h-[100px] relative cursor-pointer" onClick={() => profilePic.current.click()}>
+              <div
+                className="w-[100px] h-[100px] relative cursor-pointer overflow-hidden"
+                onClick={() => profilePic.current.click()}>
                 <Image
                   src={formDetails.profilePicture || "/dummyAvatar.svg"}
                   alt="profile picture"

@@ -40,21 +40,21 @@ const BookListingMainCard = () => {
 
   return (
     <BookContainer>
-      <div className="w-full h-[200px] md:h-[400px] relative overflow-hidden flex rounded-lg">
+      <div className="relative flex h-[200px] w-full overflow-hidden rounded-lg md:h-[400px]">
         {userListing?.media?.length > 0 ? (
           userListing?.media?.map((img, i) => {
             return (
               <div
                 key={i}
-                className="min-w-full w-full h-full transition-all duration-700 select-none"
+                className="h-full w-full min-w-full select-none transition-all duration-700"
                 style={{ transform: `translate(-${currentIndex * 100}%)` }}>
                 {getFileType(img) === "mov" || getFileType(img) === "mp4" ? (
-                  <video src={img} controls className="object-cover w-full h-full mb-2 rounded"></video>
+                  <video src={img} controls className="mb-2 h-full w-full rounded object-cover"></video>
                 ) : (
                   <Image
                     src={img}
                     alt={img}
-                    className="rounded-md hover:shadow-md transition-all duration-700 min-w-full select-none"
+                    className="min-w-full select-none rounded-md transition-all duration-700 hover:shadow-md"
                     placeholder="blur"
                     blurDataURL="/dummyListing.png"
                     layout="fill"
@@ -74,19 +74,19 @@ const BookListingMainCard = () => {
           <img
             src="/dummyListing.png"
             alt="no image yet"
-            className="object-cover min-w-full w-full h-full transition-all duration-700 select-none"
+            className="h-full w-full min-w-full select-none object-cover transition-all duration-700"
           />
         )}
         {currentIndex > 0 && (
           <div
-            className="absolute left-3 md:left-5 -translate-y-[50%] top-[50%] w-6 h-6 flex justify-center items-center rounded-full bg-[#DDDDDD99] hover:bg-[#ddddddaf] shadow text-white cursor-pointer select-none active:scale-90 transition-all duration-200"
+            className="absolute left-3 top-[50%] flex h-6 w-6 -translate-y-[50%] cursor-pointer select-none items-center justify-center rounded-full bg-[#DDDDDD99] text-white shadow transition-all duration-200 hover:bg-[#ddddddaf] active:scale-90 md:left-5"
             onClick={prevImage}>
             <ChevronLeftIcon className="w-4" />
           </div>
         )}
         {currentIndex < userListing?.media?.length - 1 && (
           <div
-            className="absolute right-3 md:right-5 -translate-y-[50%] top-[50%] w-6 h-6 flex justify-center items-center rounded-full bg-[#DDDDDD99] hover:bg-[#ddddddaf] shadow text-white cursor-pointer select-none active:scale-90 transition-all duration-200"
+            className="absolute right-3 top-[50%] flex h-6 w-6 -translate-y-[50%] cursor-pointer select-none items-center justify-center rounded-full bg-[#DDDDDD99] text-white shadow transition-all duration-200 hover:bg-[#ddddddaf] active:scale-90 md:right-5"
             onClick={nextImage}>
             <ChevronRightIcon className="w-4" />
           </div>
@@ -94,13 +94,13 @@ const BookListingMainCard = () => {
       </div>
 
       <div className="">
-        <h3 className="md:text-lg font-bold my-3 capitalize">{userListing?.storageTitle}</h3>
-        <p className="flex flex-row items-start gap-1 md:gap-2 text-primary">
+        <h3 className="my-3 font-bold capitalize md:text-lg">{userListing?.storageTitle}</h3>
+        <p className="flex flex-row items-start gap-1 text-primary md:gap-2">
           <LocationMarkerIcon className="w-4 min-w-[16px]" />
-          <span className="uppercase font-light text-sm md:text-base">{userListing?.address}</span>
+          <span className="text-sm font-light uppercase md:text-base">{userListing?.address}</span>
         </p>
 
-        <div className="py-3 space-y-4 md:space-y-5">
+        <div className="space-y-4 py-3 md:space-y-5">
           {userListing?.description && <p className="text-sm text-[#959595]">{userListing?.description}</p>}
           <div className="flex flex-row gap-3">
             <p className="flex flex-row items-center gap-2">
@@ -126,16 +126,16 @@ const BookListingMainCard = () => {
             <div className="flex flex-row gap-6">
               {userListing?.delivery && (
                 <p className="flex flex-row items-center gap-2">
-                  <span className="rounded-full p-[6px] bg-accent">
-                    <TruckIcon className="text-primary w-4" />
+                  <span className="rounded-full bg-accent p-[6px]">
+                    <TruckIcon className="w-4 text-primary" />
                   </span>
                   <span className="text-[12px]">Delivery</span>
                 </p>
               )}
               {userListing?.packing && (
                 <p className="flex flex-row items-center gap-2">
-                  <span className="rounded-full p-[6px] bg-accent">
-                    <ArchiveIcon className="text-primary w-4" />
+                  <span className="rounded-full bg-accent p-[6px]">
+                    <ArchiveIcon className="w-4 text-primary" />
                   </span>
                   <span className="text-[12px]">Pack & Move</span>
                 </p>
@@ -144,17 +144,17 @@ const BookListingMainCard = () => {
           )}
         </div>
 
-        <div className="flex flex-row space-x-6 items-center mt-2">
+        <div className="mt-2 flex flex-row items-center space-x-6">
           {userListing?.monthlyRate ? (
-            <p className="text-primary font-semibold text-xl">
-              {formatMoney(userListing?.monthlyRate)} <span className="text-[#959595] font-normal text-sm">/month</span>
+            <p className="text-xl font-semibold text-primary">
+              {formatMoney(userListing?.monthlyRate)} <span className="text-sm font-normal text-[#959595]">/month</span>
             </p>
           ) : (
             ""
           )}
           {userListing?.hourlyRate ? (
-            <p className="text-primary font-semibold text-xl">
-              {formatMoney(userListing?.hourlyRate)} <span className="text-[#959595] font-normal text-sm">/hour</span>
+            <p className="text-xl font-semibold text-primary">
+              {formatMoney(userListing?.hourlyRate)} <span className="text-sm font-normal text-[#959595]">/hour</span>
             </p>
           ) : (
             ""

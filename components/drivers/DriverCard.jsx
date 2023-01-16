@@ -13,7 +13,7 @@ const DriverCard = ({ data, data: { firstName, lastName, email, phone, _id, prof
         transition={{ duration: 0.6 }}
         className="flex p-5 flex-col text-center align-middle justify-between rounded-lg border hover:shadow relative">
         <div className="flex flex-col justify-center">
-          <div className="relative rounded-full w-16 h-16 bg-slate-300 self-center mb-3 flex items-center justify-center">
+          <div className="relative rounded-full overflow-hidden w-16 h-16 bg-slate-300 self-center mb-3 flex items-center justify-center">
             <Image
               src={profilePicture || "/dummyAvatar.svg"}
               alt="profile picture"

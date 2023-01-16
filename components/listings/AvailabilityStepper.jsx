@@ -26,7 +26,7 @@ const AvailabilityStepper = () => {
 
   return (
     <>
-      <Calendar />
+      {/* <Calendar /> */}
       <Access />
       <BookingDetails />
       <div className="my-16">
