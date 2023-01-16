@@ -1,13 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import { ListingInputContext } from "../../context";
-import { storageFeatures, storageFloors, storageKinds } from "../../helpers/data";
-import { getConfigurations } from "../../redux/features/config.slice";
+import { getStorageFeatures, getStorageFloors, getStorageTypes } from "../../redux/features/config.slice";
 import Accordion from "../shared/Accordion";
 
 const Type = ({ incomplete }) => {
-  const { configurations, loading } = useSelector((state) => state.configurations);
+  const { storageTypes, storageFloors, storageFeatures, loading } = useSelector((state) => state.config);
   const { formDetails, setFormDetails, handleChange } = useContext(ListingInputContext);
   const dispatch = useDispatch();
 
@@ -15,29 +14,29 @@ const Type = ({ incomplete }) => {
     setFormDetails({ ...formDetails, storageFeatures: [...value]?.map((item) => item.value) });
   };
 
-  // useEffect(() => {
-  //   dispatch(getConfigurations());
-  // }, []);
-
-  // console.log(configurations?.storageFeatures);
+  useEffect(() => {
+    dispatch(getStorageTypes());
+    dispatch(getStorageFloors());
+    dispatch(getStorageFeatures());
+  }, []);
 
   return (
     <Accordion title="type" incomplete={incomplete}>
       <div className="space-y-6">
         <div>
           <h3 className="mb-3">What kind of storage do you have?</h3>
-          <div className="items-center border border-[#959595] rounded-lg px-4 py-3">
+          <div className="items-center rounded-lg border border-[#959595] px-4 py-3">
             <select
               name="storageType"
               value={formDetails.storageType}
-              className="w-full bg-transparent h-full outline-none cursor-pointer"
+              className="h-full w-full cursor-pointer bg-transparent outline-none"
               onChange={handleChange}>
               <option value="" disabled>
                 Select storage type
               </option>
-              {storageKinds.map(({ name, value }, i) => (
+              {storageTypes?.map(({ label, value }, i) => (
                 <option value={value} key={i}>
-                  {name}
+                  {label}
                 </option>
               ))}
             </select>
@@ -46,18 +45,18 @@ const Type = ({ incomplete }) => {
 
         <div>
           <h3 className="mb-3">What floor is your storage on?</h3>
-          <div className="items-center border border-[#959595] rounded-lg px-4 py-3">
+          <div className="items-center rounded-lg border border-[#959595] px-4 py-3">
             <select
               name="storageFloor"
               value={formDetails.storageFloor}
-              className="w-full bg-transparent h-full outline-none cursor-pointer"
+              className="h-full w-full cursor-pointer bg-transparent outline-none"
               onChange={handleChange}>
               <option value="" disabled>
                 Select storage floor
               </option>
-              {storageFloors.map(({ name, value }, i) => (
+              {storageFloors?.map(({ label, value }, i) => (
                 <option value={value} key={i}>
-                  {name}
+                  {label}
                 </option>
               ))}
             </select>
@@ -68,7 +67,7 @@ const Type = ({ incomplete }) => {
           <h3 className="mb-3">What features does your storage have?</h3>
           {/* <div className="items-center border border-[#959595] rounded-lg px-4 py-3"> */}
           <Select
-            value={storageFeatures.filter((item) => formDetails.storageFeatures.includes(item.value))}
+            value={storageFeatures?.filter((item) => formDetails.storageFeatures.includes(item.value))}
             onChange={(value) => handleUpdate(value)}
             options={storageFeatures}
             isMulti

@@ -6,6 +6,6 @@ export const store = configureStore({
     auth: authReducer,
     listing: listingReducer,
     drivers: driverReducer,
-    configurations: configReducer,
+    config: configReducer,
   },
 });
