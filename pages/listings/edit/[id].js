@@ -29,9 +29,6 @@ const EditListing = () => {
   const pendingModal = useRef(null);
   const query = router.query.id;
 
-  const serviceOptions = ["delivery", "packing"];
-  const services = [];
-  serviceOptions.map((item) => formDetails[item] && services.push(item));
   const {
     address,
     formattedAddress,
@@ -39,8 +36,7 @@ const EditListing = () => {
     storageType,
     storageFloor,
     storageFeatures,
-    packing,
-    delivery,
+    services,
     storageSize,
     storageNumber,
     streetView,
@@ -91,8 +87,6 @@ const EditListing = () => {
       storageType,
       storageFloor,
       storageFeatures,
-      packing,
-      delivery,
       services,
       streetView,
       storageSize,
@@ -140,6 +134,8 @@ const EditListing = () => {
       setFormDetails(initialState);
     };
   }, [singleListing]);
+
+  console.log(singleListing);
 
   return (
     <DashboardLayout>
