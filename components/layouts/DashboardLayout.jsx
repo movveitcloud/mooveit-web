@@ -6,6 +6,7 @@ import { authenticatedUser } from "../../redux/features/auth.slice";
 import Meta from "../navigation/Meta";
 import DashboardNavigation from "../navigation/DashboardNavigation";
 import TitleBarNav from "../navigation/TitleBarNav";
+import Head from "next/head";
 
 const DashboardLayout = ({ children, name }) => {
   const [loading, setLoading] = useState(true);
@@ -53,6 +54,9 @@ const DashboardLayout = ({ children, name }) => {
   return (
     <>
       <Meta title={`Dashboard | ${pageTitle}`} />
+      <Head>
+        <meta name="robots" content="noindex,nofollow" />
+      </Head>
       {pageReady && (
         <div className="justify-content flex h-screen items-center text-black">
           <aside className="hidden h-screen w-3/12 overflow-y-auto border-r bg-white lg:block">

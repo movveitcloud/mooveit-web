@@ -24,20 +24,20 @@ const Signup = () => {
   return (
     <AuthLayout title="Sign Up">
       <div className="text-center">
-        <h1 className="py-3 font-semibold text-2xl md:text-3xl text-black">Create an account</h1>
-        <div className="flex justify-center my-3 md:my-6">
-          <div className="flex space-x-4 bg-white p-4 rounded-xl shadow">
+        <h1 className="py-3 text-2xl font-semibold text-black md:text-3xl">Create an account</h1>
+        <div className="my-3 flex justify-center md:my-6">
+          <div className="flex space-x-4 rounded-xl bg-white p-4 shadow">
             <button
-              className={`py-2 px-6 rounded-lg text-sm transition-all duration-300 border ${
-                active == "customer" ? "bg-primary text-white border-primary" : "border-[#ccc]"
+              className={`rounded-lg border py-2 px-6 text-sm transition-all duration-300 ${
+                active == "customer" ? "border-primary bg-primary text-white" : "border-[#ccc]"
               }`}
               onClick={() => setActive("customer")}>
               Customer
             </button>
-            <hr className="bg-[#ccc] h-full w-[1px]" />
+            <hr className="h-full w-[1px] bg-[#ccc]" />
             <button
-              className={`py-2 px-6 rounded-lg text-sm transition-all duration-300 border ${
-                active == "partner" ? "bg-primary text-white border-primary" : "border-[#ccc]"
+              className={`rounded-lg border py-2 px-6 text-sm transition-all duration-300 ${
+                active == "partner" ? "border-primary bg-primary text-white" : "border-[#ccc]"
               }`}
               onClick={() => setActive("partner")}>
               Partner
@@ -74,7 +74,7 @@ const Signup = () => {
             />
           </div>
           <FormPassword register={register} name="password" errors={errors} errorMessage="Please add a password" />
-          <button className={`${signupLoading && "loading"}  btn btn-block btn-primary mt-8 mb-6`} type="submit">
+          <button className={`${signupLoading && "loading"}  btn btn-primary btn-block mt-8 mb-6`} type="submit">
             {signupLoading ? "" : active == "partner" ? "Become a partner" : "Create account"}
           </button>
         </form>
