@@ -86,6 +86,8 @@ const Media = ({ edit, id, incomplete }) => {
                 <UploadIcon className="w-6 text-[#959595]" />
               </div>
               <p className="text-center text-sm mx-auto text-[#959595]">Upload pictures/videos of your listing</p>
+              <p className="text-center text-xs mx-auto text-[#959595]"> jpeg, png, mov, and mp4 allowed</p>
+              <p className="text-center text-xs mx-auto text-[#959595]"> max size is 5MB</p>
             </>
           ) : (
             ""

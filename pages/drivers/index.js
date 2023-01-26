@@ -13,7 +13,11 @@ const Drivers = () => {
   const handleSearch = (e) => {
     const { value } = e.target;
     let result = [];
-    result = drivers?.filter((a) => a.firstName.toLowerCase().includes(value.toLowerCase()));
+    result = drivers?.filter(
+      (a) =>
+        a.firstName.toLowerCase().includes(value.toLowerCase()) ||
+        a.lastName.toLowerCase().includes(value.toLowerCase())
+    );
     if (value) {
       setFilteredDrivers(result);
     } else {
@@ -28,27 +32,27 @@ const Drivers = () => {
   return (
     <DashboardLayout>
       {loading ? (
-        <div className="h-[400px] flex justify-center items-center">
+        <div className="flex h-[400px] items-center justify-center">
           <PulseLoader loading={loading} color="#EDCC5B" />
         </div>
       ) : (
         <div>
-          <div className="flex flex-col md:flex-row justify-between pb-8">
+          <div className="flex flex-col justify-between pb-8 md:flex-row">
             <div>
               <h2 className="semibold">Drivers ({filteredDrivers.length})</h2>
             </div>
-            <div className="flex gap-8 flex-col md:flex-row mt-6 md:mt-0">
-              <div className="flex border border-gray-400 p-2 px-3 rounded-md align-center items-center w-full">
-                <SearchIcon className="w-4 h-4 mr-3" />
+            <div className="mt-6 flex flex-col gap-8 md:mt-0 md:flex-row">
+              <div className="align-center flex w-full items-center rounded-md border border-gray-400 p-2 px-3">
+                <SearchIcon className="mr-3 h-4 w-4" />
                 <input
-                  type="text"
-                  className="text-sm outline-none bg-transparent"
-                  placeholder="Search by first name"
+                  type="search"
+                  className="bg-transparent text-sm outline-none"
+                  placeholder="Search by name"
                   onChange={handleSearch}
                 />
               </div>
 
-              <label htmlFor="addDriver" className="modal-button btn btn-accent normal-case flex gap-2 items-center">
+              <label htmlFor="addDriver" className="modal-button btn btn-accent flex items-center gap-2 normal-case">
                 <PlusIcon className="w-4" /> Add Driver
               </label>
             </div>
@@ -58,8 +62,8 @@ const Drivers = () => {
 
           {filteredDrivers.length === 0 ? (
             <div className="flex justify-center">
-              <div className="bg-white rounded-lg w-full md:w-[60%] flex justify-center mt-8">
-                <div className="px-4 py-24 flex flex-col space-y-4 items-center">
+              <div className="mt-8 flex w-full justify-center rounded-lg bg-white md:w-[60%]">
+                <div className="flex flex-col items-center space-y-4 px-4 py-24">
                   <img src="emptyStorage.svg" alt="empty storage icon" className="w-16 md:w-20" />
                   <p className="text-center text-[#AAAAAA]">
                     You do not have any drivers
@@ -69,7 +73,7 @@ const Drivers = () => {
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {[...filteredDrivers].reverse()?.map((driver, i) => (
                 <DriverCard data={driver} key={i} setFilteredDrivers={setFilteredDrivers} />
               ))}

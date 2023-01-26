@@ -72,6 +72,8 @@ export { default as BookingCards } from "./bookings/BookingCards";
 
 //CHECKOUT
 export { default as ListingCardCheckout } from "./checkout/ListingCardCheckout";
+export { default as PaymentPolicy } from "./checkout/PaymentPolicy";
+export { default as YourBooking } from "./checkout/YourBooking";
 
 //DRIVERS
 export { default as DriverCard } from "./drivers/DriverCard";

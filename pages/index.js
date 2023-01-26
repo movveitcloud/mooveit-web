@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import {
   FindStorage,
   HeroSection,
@@ -10,16 +9,6 @@ import {
 } from "../components";
 
 const Home = () => {
-  function getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {});
-    }
-  }
-
-  useEffect(() => {
-    getLocation();
-  }, []);
-
   return (
     <PageLayout>
       <HeroSection />
@@ -27,7 +16,7 @@ const Home = () => {
       <WhyMooveIt />
       <FindStorage />
       <FeaturedListings />
-      <div className="mt-20 mb-32">
+      <div className="my-20">
         <StorageListingCTA />
       </div>
     </PageLayout>

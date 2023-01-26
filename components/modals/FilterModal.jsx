@@ -19,8 +19,8 @@ const FilterModal = ({ formDetails, setFormDetails, initialState, handleChange }
       storageSize: storageSize ? storageSize : "",
       storageType: storageType ? storageType : "",
       type: type,
-      minPrice: minPrice ? minPrice : null,
-      maxPrice: maxPrice ? maxPrice : null,
+      minPrice: minPrice ? minPrice : 0,
+      maxPrice: maxPrice ? maxPrice : 100000,
       delivery: delivery ? true : null,
       packing: packing ? true : null,
     };

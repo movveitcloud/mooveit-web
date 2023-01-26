@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { Meta } from "../index";
 import { authenticatedUser } from "../../redux/features/auth.slice";
 import { dashboardNavLinks } from "../../helpers/data";
+import { ListingInputContext } from "../../context";
 
 const NewListingLayout = ({ children }) => {
+  const { activeStepper, setActiveStepper, initialState, setFormDetails } = useContext(ListingInputContext);
   const [hasPermission, setHasPermission] = useState(false);
   const user = authenticatedUser();
   const router = useRouter();
@@ -17,6 +19,12 @@ const NewListingLayout = ({ children }) => {
     if (!item?.permission.includes(role) && pathname !== "/onboarding")
       return router.replace(`${user.role == "partner" ? "/listings" : "/your-storage"}`);
     setHasPermission(true);
+  };
+
+  const onCancel = () => {
+    router.push("/listings");
+    setActiveStepper(0);
+    setFormDetails(initialState);
   };
 
   useEffect(() => {
@@ -34,23 +42,23 @@ const NewListingLayout = ({ children }) => {
   return (
     <>
       <Meta />
-      <div className="flex flex-col h-screen overflow-y-auto bg-[#F9F9F9]">
+      <div className="flex h-screen flex-col overflow-y-auto bg-[#F9F9F9]">
         <div>
-          <nav className="max-w-[90%] lg:max-w-[85%] mx-auto py-6 flex items-center justify-between">
+          <nav className="mx-auto flex max-w-[90%] items-center justify-between py-6 lg:max-w-[85%]">
             <Link href="/">
               <a>
                 <img src="/logo.png" alt="logo" className="max-h-8" />
               </a>
             </Link>
             {pathname === "/onboarding" && (
-              <p className="text-[#222222] cursor-pointer" onClick={() => router.replace("/listings")}>
+              <p className="cursor-pointer text-[#222222]" onClick={() => router.replace("/listings")}>
                 Skip
               </p>
             )}
-            {pathname === "/listings/create" && (
-              <div className="w-12 h-12 rounded-full bg-[#FFEFD8] flex justify-center items-center text-lg text-[#222222] cursor-pointer">
-                <p>O</p>
-              </div>
+            {pathname === "/listings/create" && activeStepper === 0 && (
+              <button className="cursor-pointer text-red-500" onClick={onCancel}>
+                Cancel
+              </button>
             )}
           </nav>
         </div>

@@ -31,13 +31,13 @@ const BookListing = () => {
   return (
     <PageLayout>
       {userListingLoading ? (
-        <div className="h-[500px] flex justify-center items-center">
-          <BeatLoader loading={userListingLoading} color="#4543A5" />
+        <div className="flex h-[500px] items-center justify-center">
+          <BeatLoader loading={userListingLoading} color="#EDCC5B" />
         </div>
       ) : listingError ? (
-        <div className="h-[500px] flex flex-col justify-center items-center space-y-4">
-          <div className="bg-accent rounded-full w-fit flex justify-center p-5 items-center h-auto">
-            <EmojiSadIcon className="text-primary w-14 md:w-20" />
+        <div className="flex h-[500px] flex-col items-center justify-center space-y-4">
+          <div className="flex h-auto w-fit items-center justify-center rounded-full bg-accent p-5">
+            <EmojiSadIcon className="w-14 text-primary md:w-20" />
           </div>
           <h1 className="text-3xl">Oops! this listing doesn't seem to exist anymore</h1>
           <button className="btn btn-primary btn-wide" onClick={() => router.replace("/search")}>
@@ -51,15 +51,15 @@ const BookListing = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
-            className="max-w-[90%] lg:max-w-[85%] mx-auto py-3 md:py-5 space-y-8">
-            <div className="flex flex-col lg:flex-row space-y-6 lg:space-x-8 lg:space-y-0">
-              <div className="w-full lg:w-[60%] flex flex-col space-y-8">
+            className="mx-auto max-w-[90%] space-y-8 py-3 md:py-5 lg:max-w-[85%]">
+            <div className="flex flex-col space-y-6 lg:flex-row lg:space-x-8 lg:space-y-0">
+              <div className="flex w-full flex-col space-y-8 lg:w-[60%]">
                 <BookListingMainCard />
                 <BookingDescription />
               </div>
 
               <div className="w-full lg:w-[40%]">
-                <div className="lg:sticky lg:top-8 flex flex-col md:flex-row lg:flex-col space-y-6 space-x-0 lg:space-y-8 md:space-y-0 md:space-x-8 lg:space-x-0">
+                <div className="flex flex-col space-y-6 space-x-0 md:flex-row md:space-y-0 md:space-x-8 lg:sticky lg:top-8 lg:flex-col lg:space-y-8 lg:space-x-0">
                   <BookNow />
                   <MessagePartner />
                 </div>
