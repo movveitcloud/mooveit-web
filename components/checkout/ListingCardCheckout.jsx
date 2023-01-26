@@ -4,20 +4,20 @@ import { formatMoney } from "../../helpers/utils";
 
 const PriceItem = ({ name, amount, total }) => {
   return (
-    <div className={`flex justify-between ${total ? "font-bold text-lg" : "font-[500] text-sm"}`}>
+    <div className={`flex justify-between ${total ? "text-lg font-bold" : "text-sm font-[500]"}`}>
       <p>{name}</p>
       <p className={`text-primary`}>{formatMoney(amount)}</p>
     </div>
   );
 };
 
-const ListingCardCheckout = ({ item }) => {
+const ListingCardCheckout = ({ item, bookingInfo }) => {
   const initialState = { type: "hourly" };
   const [bookingDetails, setbookingDetails] = useState(initialState);
-  const { type } = bookingDetails;
+  const { type, time, unitPrice } = bookingInfo;
 
-  const period = 400;
-  const pricePerPeriod = type === "hourly" ? 4.9 : 300;
+  const period = time;
+  const pricePerPeriod = unitPrice;
 
   const price = pricePerPeriod * period;
   const movingPrice = 0;
@@ -27,21 +27,21 @@ const ListingCardCheckout = ({ item }) => {
   const total = subTotal + taxes;
 
   return (
-    <div className="bg-white w-full sm:w-[375px] rounded-lg p-5 hover:shadow transition-shadow duration-500 h-full">
-      <div className="w-full h-[200px]">
+    <div className="h-full w-full rounded-lg bg-white p-5 transition-shadow duration-500 hover:shadow sm:w-[375px]">
+      <div className="h-[200px] w-full">
         <img
           src={item?.media?.[0]}
           alt="Listing"
-          className="object-cover w-full h-full rounded-lg hover:shadow-md transition-all duration-200"
+          className="h-full w-full rounded-lg object-cover transition-all duration-200 hover:shadow-md"
         />
       </div>
       <div className="">
-        <h3 className="text-[#222222] font-bold py-3">{`${item?.storageTitle?.slice(0, 38)}${
+        <h3 className="py-3 font-bold text-[#222222]">{`${item?.storageTitle?.slice(0, 38)}${
           item?.storageTitle?.length > 38 ? "..." : ""
         }`}</h3>
         <p className="flex flex-row items-center gap-2 text-primary">
           <LocationMarkerIcon className="w-4" />
-          <span className="text-sm uppercase tooltip tooltip-primary" data-tip={item?.address}>{`${item?.address?.slice(
+          <span className="tooltip tooltip-primary text-sm uppercase" data-tip={item?.address}>{`${item?.address?.slice(
             0,
             38
           )}${item?.address?.length > 38 ? "..." : ""}`}</span>
@@ -50,18 +50,18 @@ const ListingCardCheckout = ({ item }) => {
 
       <div className="mt-4 space-y-3">
         <div className="flex justify-between text-sm">
-          <p className="font-semibold">
-            Price <span className="text-[#959595] font-normal">{`(per ${type == "hourly" ? "hour" : "month"})`}</span>
+          <p>
+            Price <span className="font-normal text-[#959595]">{`(per ${type == "hourly" ? "hour" : "month"})`}</span>
           </p>
-          <p className="text-lg text-primary">{formatMoney(pricePerPeriod)}</p>
+          <p className="text-primary">{formatMoney(pricePerPeriod)}</p>
         </div>
-
-        <PriceItem name={`x${period} ${type == "hourly" ? "hours" : "months"}`} amount={price} />
-        <PriceItem name="Moving" amount={movingPrice} />
-        <PriceItem name="Packing" amount={packingPrice} />
-        <hr className="border-dashed" />
+        <PriceItem name={`x${period} ${type == "hourly" ? "hour" : "month"}${time > 1 ? "s" : ""}`} amount={price} />
+        {movingPrice > 0 && <PriceItem name="Moving" amount={movingPrice} />}
+        {packingPrice > 0 && <PriceItem name="Packing" amount={packingPrice} />}
+        <hr />
         <PriceItem name="Subtotal" amount={subTotal} />
         <PriceItem name="Tax" amount={taxes} />
+        <hr className="border-dashed" />
         <PriceItem name="Total" amount={total} total />
       </div>
     </div>
