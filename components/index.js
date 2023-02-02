@@ -86,3 +86,6 @@ export { default as ListingDetails } from "./book-listing/Description/ListingDet
 export { default as BookingDescription } from "./book-listing/Description/BookingDescription";
 export { default as Location } from "./book-listing/Location/Location";
 export { default as SimilarListings } from "./book-listing/SimilarListings";
+
+//USER-STORAGE
+export { default as StorageTabs } from "./your-storage/Tabs";
