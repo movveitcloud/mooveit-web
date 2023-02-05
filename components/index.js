@@ -86,3 +86,16 @@ export { default as ListingDetails } from "./book-listing/Description/ListingDet
 export { default as BookingDescription } from "./book-listing/Description/BookingDescription";
 export { default as Location } from "./book-listing/Location/Location";
 export { default as SimilarListings } from "./book-listing/SimilarListings";
+
+//USER-STORAGE
+export { default as StorageTabs } from "./your-storage/Tabs";
+export { default as StorageCard } from "./your-storage/StorageCard";
+export { default as EmptyStorage } from "./your-storage/EmptyStorage";
+export { default as Price } from "./your-storage/Price";
+export { default as AdditionalServices } from "./your-storage/AdditionalServices";
+export { default as BookingPeriod } from "./your-storage/BookingPeriod";
+export { default as PartnersInformation } from "./your-storage/PartnersInformation";
+export { default as Payment } from "./your-storage/Payment";
+export { default as Disputes } from "./your-storage/Disputes";
+export { default as Legal } from "./your-storage/Legal";
+export { default as StorageListing } from "./your-storage/StorageListing";
