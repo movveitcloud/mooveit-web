@@ -18,6 +18,7 @@ const Address = ({ incomplete, open }) => {
       area: suggestion?.formattedSuggestion?.secondaryText,
     };
     setFormDetails({ ...formDetails, address, formattedAddress }); //you have to select from google options to set address and enforce coordinates
+    setInputValue(address);
 
     geocodeByAddress(address)
       .then((results) => getLatLng(results[0]))
