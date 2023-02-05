@@ -4,7 +4,19 @@ import { Address, Type, Services, StepperControls } from "../index";
 
 const BasicInformationStepper = () => {
   const { formDetails } = useContext(ListingInputContext);
-  const { address, formattedAddress, coordinates, storageType, storageFloor, services, storageFeatures } = formDetails;
+  const {
+    address,
+    formattedAddress,
+    coordinates,
+    storageType,
+    storageFloor,
+    services,
+    storageFeatures,
+    vehicleType,
+    costPerKm,
+    packagingSize,
+    costPerSize,
+  } = formDetails;
   const disableBtn = !address || !storageType || !storageFloor || storageFeatures.length == 0;
 
   const payload = {
@@ -18,6 +30,10 @@ const BasicInformationStepper = () => {
     storageFloor,
     storageFeatures,
     services,
+    vehicleType,
+    costPerKm,
+    packagingSize,
+    costPerSize,
   };
 
   return (

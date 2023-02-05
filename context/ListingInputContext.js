@@ -12,6 +12,10 @@ const initialState = {
   storageFeaturesArray: [],
   storageFeatures: [],
   services: [],
+  vehicleType: "",
+  costPerKm: "",
+  packagingSize: "",
+  costPerSize: "",
 
   //Space Details Stepper
   streetView: false,
