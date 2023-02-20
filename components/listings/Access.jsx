@@ -1,29 +1,37 @@
-import React, { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { ListingInputContext } from "../../context";
-import { howAccessListing, whenAccessListing } from "../../helpers/data";
+import { getStorageAccessPeriods, getStorageAccessTypes } from "../../redux/features/config.slice";
 import Accordion from "../shared/Accordion";
 import Switch from "../shared/Switch";
 
-const Access = () => {
+const Access = ({ incomplete }) => {
+  const { storageAccessTypes, storageAccessPeriods } = useSelector((state) => state.config);
   const { formDetails, handleChange } = useContext(ListingInputContext);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getStorageAccessTypes());
+    dispatch(getStorageAccessPeriods());
+  }, []);
 
   return (
-    <Accordion title="access">
+    <Accordion title="access" incomplete={incomplete}>
       <div className="space-y-6">
         <div>
           <h3 className="mb-3">When can your customers access your listing??</h3>
-          <div className="items-center border border-[#959595] rounded-lg px-4 py-3">
+          <div className="items-center rounded-lg border border-[#959595] px-4 py-3">
             <select
               name="storageAccessPeriod"
               value={formDetails.storageAccessPeriod}
-              className="w-full bg-transparent h-full outline-none cursor-pointer"
+              className="h-full w-full cursor-pointer bg-transparent outline-none"
               onChange={handleChange}>
               <option value="" disabled>
                 Select access
               </option>
-              {whenAccessListing.map(({ name, value }, i) => (
+              {storageAccessPeriods.map(({ label, value }, i) => (
                 <option value={value} key={i}>
-                  {name}
+                  {label}
                 </option>
               ))}
             </select>
@@ -32,38 +40,38 @@ const Access = () => {
 
         <div>
           <h3 className="mb-3">How can customers access your listing?</h3>
-          <div className="items-center border border-[#959595] rounded-lg px-4 py-3">
+          <div className="items-center rounded-lg border border-[#959595] px-4 py-3">
             <select
               name="storageAccessType"
               value={formDetails.storageAccessType}
-              className="w-full bg-transparent h-full outline-none cursor-pointer"
+              className="h-full w-full cursor-pointer bg-transparent outline-none"
               onChange={handleChange}>
               <option value="" disabled>
                 Select mode
               </option>
-              {howAccessListing.map(({ name, value }, i) => (
+              {storageAccessTypes.map(({ label, value }, i) => (
                 <option value={value} key={i}>
-                  {name}
+                  {label}
                 </option>
               ))}
             </select>
           </div>
         </div>
 
-        <div className="flex gap-5 items-center">
+        <div className="flex items-center gap-5">
           <p className="font-semibold">Parking Permit Required</p>
           <Switch name="parkingPermit" handleChange={handleChange} formDetails={formDetails} />
         </div>
 
         <div>
           <h3 className="mb-3">Parking Instructions</h3>
-          <div className="items-center border border-[#959595] rounded-lg px-4 py-3">
+          <div className="items-center rounded-lg border border-[#959595] px-4 py-3">
             <textarea
               name="parkingInstruction"
               value={formDetails.parkingInstruction}
               onChange={handleChange}
               placeholder="Include any details your customer has to know about parking here"
-              className="w-full outline-none rounded"
+              className="w-full rounded outline-none"
               rows={6}
             />
           </div>

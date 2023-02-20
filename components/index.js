@@ -25,6 +25,9 @@ export { default as Switch } from "./shared/Switch";
 
 //MODALS
 export { default as UnavailabilityModal } from "./modals/UnavailabilityModal";
+export { default as PendingModal } from "./modals/PendingModal";
+export { default as AddDriverModal } from "./modals/AddDriverModal";
+export { default as DriverProfileModal } from "./modals/DriverProfileModal";
 
 //HOME
 export { default as HowItWorks } from "./home/HowItWorks";
@@ -67,6 +70,14 @@ export { default as Communication } from "./personal-details/Communication";
 export { default as PartnerBookings } from "./bookings/PartnerBookings";
 export { default as BookingCards } from "./bookings/BookingCards";
 
+//CHECKOUT
+export { default as ListingCardCheckout } from "./checkout/ListingCardCheckout";
+export { default as PaymentPolicy } from "./checkout/PaymentPolicy";
+export { default as YourBooking } from "./checkout/YourBooking";
+
+//DRIVERS
+export { default as DriverCard } from "./drivers/DriverCard";
+
 //BOOK_LISTING
 export { default as BookListingMainCard } from "./book-listing/BookListingMainCard";
 export { default as BookNow } from "./book-listing/BookNow";
@@ -75,3 +86,16 @@ export { default as ListingDetails } from "./book-listing/Description/ListingDet
 export { default as BookingDescription } from "./book-listing/Description/BookingDescription";
 export { default as Location } from "./book-listing/Location/Location";
 export { default as SimilarListings } from "./book-listing/SimilarListings";
+
+//USER-STORAGE
+export { default as StorageTabs } from "./your-storage/Tabs";
+export { default as StorageCard } from "./your-storage/StorageCard";
+export { default as EmptyStorage } from "./your-storage/EmptyStorage";
+export { default as Price } from "./your-storage/Price";
+export { default as AdditionalServices } from "./your-storage/AdditionalServices";
+export { default as BookingPeriod } from "./your-storage/BookingPeriod";
+export { default as PartnersInformation } from "./your-storage/PartnersInformation";
+export { default as Payment } from "./your-storage/Payment";
+export { default as Disputes } from "./your-storage/Disputes";
+export { default as Legal } from "./your-storage/Legal";
+export { default as StorageListing } from "./your-storage/StorageListing";

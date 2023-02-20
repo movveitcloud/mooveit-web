@@ -1,7 +1,6 @@
+import { useState, useEffect, useContext } from "react";
 import { MapIcon } from "@heroicons/react/outline";
 import { LocationMarkerIcon } from "@heroicons/react/solid";
-import React from "react";
-import { useContext } from "react";
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 import GoogleMapReact from "google-map-react";
 import { ListingInputContext } from "../../context";
@@ -9,19 +8,17 @@ import Accordion from "../shared/Accordion";
 
 const Marker = () => <LocationMarkerIcon className="w-8 text-red-500" />;
 
-const Address = () => {
+const Address = ({ incomplete, open }) => {
   const { formDetails, setFormDetails } = useContext(ListingInputContext);
-
-  const handleChange = (address) => {
-    setFormDetails({ ...formDetails, address });
-  };
+  const [inputValue, setInputValue] = useState("");
 
   const handleSelect = (address, placeId, suggestion) => {
     const formattedAddress = {
       street: suggestion?.formattedSuggestion?.mainText,
       area: suggestion?.formattedSuggestion?.secondaryText,
     };
-    setFormDetails({ ...formDetails, address, formattedAddress });
+    setFormDetails({ ...formDetails, address, formattedAddress }); //you have to select from google options to set address and enforce coordinates
+    setInputValue(address);
 
     geocodeByAddress(address)
       .then((results) => getLatLng(results[0]))
@@ -29,25 +26,23 @@ const Address = () => {
       .catch((error) => console.error("Error", error));
   };
 
-  const defaultProps = {
-    center: {
-      lat: 10.99835602,
-      lng: 77.01502627,
-    },
-    zoom: 15,
-  };
+  const defaultProps = { center: { lat: 10.99835602, lng: 77.01502627 }, zoom: 15 };
+
+  useEffect(() => {
+    setInputValue(formDetails.address);
+  }, [formDetails]);
 
   return (
-    <Accordion title="address">
-      <div className="flex flex-row flex-grow gap-4 items-center border border-[#959595] rounded-lg px-4 py-3">
-        <MapIcon className="text-[#959595] w-6" />
+    <Accordion title="address" incomplete={incomplete} open={open}>
+      <div className="flex flex-grow flex-row items-center gap-4 rounded-lg border border-[#959595] px-4 py-3">
+        <MapIcon className="w-6 text-[#959595]" />
         <div className="w-full">
           <PlacesAutocomplete
-            value={formDetails.address}
-            onChange={handleChange}
+            value={inputValue}
+            onChange={(value) => setInputValue(value)}
             onSelect={handleSelect}
             debounce={400}
-            shouldFetchSuggestions={formDetails.address.length > 5}>
+            shouldFetchSuggestions={formDetails.address.length > 3}>
             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
               <div className="relative">
                 <input
@@ -56,7 +51,7 @@ const Address = () => {
                     className: "w-full border-none outline-none",
                   })}
                 />
-                <div className="absolute left-0 right-0 top-10 p-3 z-50 bg-white">
+                <div className="absolute left-0 right-0 top-10 z-50 bg-white p-3">
                   {loading && <div>Loading...</div>}
                   {suggestions.map((suggestion) => {
                     const className = suggestion.active ? "suggestion-item--active py-2" : "suggestion-item py-2";
@@ -83,14 +78,14 @@ const Address = () => {
       </div>
 
       {/* map */}
-      <div className="w-full h-[250px] mt-8">
+      <div className="mt-8 h-[250px] w-full overflow-hidden rounded-md">
         <GoogleMapReact
           bootstrapURLKeys={{ key: process.env.PLACES_KEY }}
           defaultCenter={defaultProps.center}
-          center={formDetails.coordinates}
+          center={formDetails?.coordinates}
           defaultZoom={defaultProps.zoom}>
-          {formDetails.coordinates.lat && (
-            <Marker lat={formDetails.coordinates.lat} lng={formDetails.coordinates.lng} />
+          {formDetails?.coordinates?.lat && (
+            <Marker lat={formDetails?.coordinates?.lat} lng={formDetails?.coordinates?.lng} />
           )}
         </GoogleMapReact>
       </div>

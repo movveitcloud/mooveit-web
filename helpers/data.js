@@ -1,20 +1,22 @@
 import {
   CalendarIcon,
-  ClockIcon,
   CreditCardIcon,
   CubeIcon,
   LightBulbIcon,
   LockClosedIcon,
+  TruckIcon,
   UserCircleIcon,
   UserGroupIcon,
   VideoCameraIcon,
-  ViewGridIcon,
 } from "@heroicons/react/outline";
 import {
   CubeIcon as CubeIconSolid,
   CalendarIcon as CalendarIconSolid,
   UserCircleIcon as UserCircleIconSolid,
   CreditCardIcon as CreditCardIconSolid,
+  TruckIcon as TruckIconSolid,
+  SearchCircleIcon as SearchCircleIconSolid,
+  CurrencyPoundIcon as CurrencyPoundIconSolid,
 } from "@heroicons/react/solid";
 
 export const navLinks = [
@@ -111,6 +113,14 @@ export const dashboardNavLinks = [
     iconActive: <CreditCardIconSolid className="w-full" />,
     permission: ["customer", "partner"],
   },
+  {
+    name: "drivers",
+    path: "/drivers",
+    title: "Drivers",
+    icon: <TruckIcon className="w-full" />,
+    iconActive: <TruckIconSolid className="w-full" />,
+    permission: ["partner"],
+  },
 ];
 
 export const footerLinks = [
@@ -154,6 +164,31 @@ export const mediaLinks = [
   { path: "#", title: "Instagram", icon: "/instagram.svg" },
   { path: "#", title: "Youtube", icon: "/youtube.svg" },
   { path: "#", title: "Facebook", icon: "/facebook.svg" },
+];
+
+export const howItWorks = [
+  {
+    icon: <UserCircleIconSolid className="w-8 md:w-9" />,
+
+    title: "Create an account",
+    body: "Join MovveIt or login if you already have an account",
+    linkText: "Sign Up",
+    link: "/signup",
+  },
+  {
+    icon: <SearchCircleIconSolid className="w-8 md:w-9" />,
+    title: "Search listings",
+    body: "Search for a listing near you, or at your desired location",
+    linkText: "Search Listings",
+    link: "/search",
+  },
+  {
+    icon: <CurrencyPoundIconSolid className="w-8 md:w-9" />,
+    title: "Book listings",
+    body: "Book a storage space for a scheduled period and make payment",
+    linkText: "",
+    link: "",
+  },
 ];
 
 export const storageFeats = [

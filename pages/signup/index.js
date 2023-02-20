@@ -24,18 +24,25 @@ const Signup = () => {
   return (
     <AuthLayout title="Sign Up">
       <div className="text-center">
-        <h1 className="py-6 font-semibold text-2xl md:text-3xl text-black">Create an account</h1>
-        <div className="bg-white rounded-2xl my-10 flex gap-5 items-center justify-center w-fit p-3 mx-auto shadow">
-          <span
-            className={`${active == "customer" && "bg-primary text-white py-2 px-5 rounded-xl "} cursor-pointer`}
-            onClick={() => setActive("customer")}>
-            Customer
-          </span>
-          <span
-            className={`${active == "partner" && "bg-primary text-white py-2 px-5 rounded-xl "} cursor-pointer`}
-            onClick={() => setActive("partner")}>
-            Partner
-          </span>
+        <h1 className="py-3 text-2xl font-semibold text-black md:text-3xl">Create an account</h1>
+        <div className="my-3 flex justify-center md:my-6">
+          <div className="flex space-x-4 rounded-xl bg-white p-4 shadow">
+            <button
+              className={`rounded-lg border py-2 px-6 text-sm transition-all duration-300 ${
+                active == "customer" ? "border-primary bg-primary text-white" : "border-[#ccc]"
+              }`}
+              onClick={() => setActive("customer")}>
+              Customer
+            </button>
+            <hr className="h-full w-[1px] bg-[#ccc]" />
+            <button
+              className={`rounded-lg border py-2 px-6 text-sm transition-all duration-300 ${
+                active == "partner" ? "border-primary bg-primary text-white" : "border-[#ccc]"
+              }`}
+              onClick={() => setActive("partner")}>
+              Partner
+            </button>
+          </div>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -48,7 +55,7 @@ const Signup = () => {
             errorMessage="Please add an email address"
           />
 
-          <div className="flex flex-col xl:flex-row xl:gap-1 ">
+          <div className="flex flex-col xl:flex-row xl:gap-2 ">
             <FormInput
               label="First Name"
               name="firstName"
@@ -67,7 +74,7 @@ const Signup = () => {
             />
           </div>
           <FormPassword register={register} name="password" errors={errors} errorMessage="Please add a password" />
-          <button className={`${signupLoading && "loading"}  btn btn-block btn-primary mt-8 mb-6`} type="submit">
+          <button className={`${signupLoading && "loading"}  btn btn-primary btn-block mt-8 mb-6`} type="submit">
             {signupLoading ? "" : active == "partner" ? "Become a partner" : "Create account"}
           </button>
         </form>

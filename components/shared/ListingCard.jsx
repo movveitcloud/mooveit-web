@@ -3,23 +3,32 @@ import Link from "next/link";
 import { ArchiveIcon, ClockIcon, LocationMarkerIcon, MapIcon, TruckIcon } from "@heroicons/react/outline";
 import { formatMoney } from "../../helpers/utils";
 import { storageFeatures } from "../../helpers/data";
-import { StarIcon } from "@heroicons/react/solid";
+import { DuplicateIcon, StarIcon } from "@heroicons/react/solid";
+import Image from "next/image";
 
 const ListingCard = ({ item }) => {
   const getFeatures = () => {
-    const filter = storageFeatures.filter((p) => item?.storageFeatures.includes(p.value));
+    const filter = storageFeatures.filter((p) => item?.storageFeatures?.includes(p.value));
     return filter;
   };
 
   return (
     <Link href={`/book/${item?._id}`}>
       <a className="bg-white w-full sm:w-[375px] rounded-lg p-5 hover:shadow transition-shadow duration-500 h-full">
-        <div className="w-full h-[200px]">
-          <img
-            src={item?.media[0]}
+        <div className="relative w-full h-[200px] rounded-lg overflow-hidden">
+          <Image
+            src={item?.media?.[0]}
             alt="Listing"
-            className="object-cover w-full h-full rounded-lg hover:shadow-md transition-all duration-200"
+            className="rounded-lg hover:shadow-md transition-all duration-300 hover:scale-110"
+            placeholder="blur"
+            blurDataURL="/dummyListing.png"
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center"
           />
+          {item?.media?.length > 1 && (
+            <DuplicateIcon className="w-7 rotate-180 fill-[#e2e1e1] absolute top-3 right-3 drop-shado" />
+          )}
         </div>
         <div className="">
           <h3 className="text-[#222222] font-bold py-3">{`${item?.storageTitle?.slice(0, 38)}${
@@ -42,7 +51,7 @@ const ListingCard = ({ item }) => {
               </p>
               <p className="flex flex-row items-center gap-2 text-[#107E7E]">
                 <MapIcon className="text-[#222222] w-4" />
-                <span className="text-[#222222] text-[12px] uppercase">{`${item?.storageSize} SQ. FT`}</span>
+                <span className="text-[#222222] text-[12px] uppercase">{`${item?.storageSize?.name} SQ. FT`}</span>
               </p>
             </div>
 

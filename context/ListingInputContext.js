@@ -11,12 +11,15 @@ const initialState = {
   storageFloor: "",
   storageFeaturesArray: [],
   storageFeatures: [],
-  delivery: false,
-  packing: false,
+  services: [],
+  vehicleType: "",
+  costPerKm: "",
+  packagingSize: "",
+  costPerSize: "",
 
   //Space Details Stepper
   streetView: false,
-  storageSize: "",
+  storageSize: { name: "" },
   storageNumber: 1,
   image: [],
   storageTitle: "",
@@ -44,7 +47,7 @@ const initialState = {
 export const ListingInputContextProvider = ({ children }) => {
   const [formDetails, setFormDetails] = useState(initialState);
   const [activeStepper, setActiveStepper] = useState(0);
-  const [preview, setPreview] = useState([]);
+  const [geolocation, setGeolocation] = useState();
 
   const handleChange = (e) => {
     const { type, name, value, checked } = e.target;
@@ -55,17 +58,26 @@ export const ListingInputContextProvider = ({ children }) => {
     });
   };
 
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => setGeolocation(position));
+    }
+  }
+
+  useEffect(() => {
+    getLocation();
+  }, []);
+
   return (
     <ListingInputContext.Provider
       value={{
         initialState,
         formDetails,
         activeStepper,
+        geolocation,
         setActiveStepper,
         setFormDetails,
         handleChange,
-        preview,
-        setPreview,
       }}>
       {children}
     </ListingInputContext.Provider>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/outline";
 import { motion } from "framer-motion";
 
-const Accordion = ({ title, open, children }) => {
+const Accordion = ({ title, open, children, incomplete }) => {
   const [active, setActive] = useState(false);
   const arrowIcon = active ? <ChevronUpIcon className="w-4" /> : <ChevronDownIcon className="w-4" />;
 
@@ -13,7 +13,10 @@ const Accordion = ({ title, open, children }) => {
   }, []);
 
   return (
-    <div className="mb-8 bg-white rounded-xl h-full">
+    <div
+      className={`mb-8 bg-white rounded-xl h-full border-[0.5px] transition-all duration-300 ${
+        incomplete ? "border-red-500" : "border-white"
+      }`}>
       <div
         className="flex justify-between px-4 md:px-6 py-4 mt-2 text-[#222222] cursor-pointer"
         onClick={() => setActive(!active)}>

@@ -4,7 +4,7 @@ import { formatMoney } from "../../helpers/utils";
 import Accordion from "../shared/Accordion";
 import { ListingInputContext } from "../../context";
 
-const Pricing = () => {
+const Pricing = ({ incomplete }) => {
   const { formDetails, setFormDetails, handleChange } = useContext(ListingInputContext);
   const elastic = useRef(null);
   const custom = useRef(null);
@@ -21,7 +21,7 @@ const Pricing = () => {
   };
 
   return (
-    <Accordion title="Pricing">
+    <Accordion title="Pricing" incomplete={incomplete}>
       <div className="flex flex-row-reverse gap-8">
         <div
           className={`p-6 rounded rounded-tr-2xl w-full border border-[#e2e2e2] ${

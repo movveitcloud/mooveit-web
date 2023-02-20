@@ -1,12 +1,13 @@
-import React from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 const WhyMooveIT = () => {
   return (
-    <section className="max-full pt-[6rem] bg-[#f9f9f9]">
+    <section className="max-full bg-[#f9f9f9]">
       <div className="flex ">
-        <div className="w-full md:w-[50%] pb-[6rem] bg-primary text-white pt-[3rem]">
-          <div className="text-left text-sm 2xl:text-base leading-7 mx-auto w-[90%] md:w-[74%] lg:max-w-[85%]">
-            <h2 className="my-[2rem] font-semibold text-2xl text-white">Why MooveIT?</h2>
+        <div className="w-full bg-primary pb-[6rem] pt-[3rem] text-white md:w-[50%]">
+          <div className="mx-auto w-[90%] text-left text-sm leading-7 md:w-[74%] lg:max-w-[85%] 2xl:text-base">
+            <h2 className="my-[2rem] text-2xl font-semibold text-white">Why MooveIT?</h2>
             <p className="mt-8 mb-4 font-light ">
               MooveIT provides an advanced online marketplace for self-storage and moving services that will effectively
               connect customers and service providers, bringing greater convenience for both.
@@ -17,10 +18,22 @@ const WhyMooveIT = () => {
               industry by leveraging state-of-the-art technologies like AI, ML and Augmented Reality.
               <br />
             </p>
-            <button className="btn btn-accent w-[175px] text-xs mt-8 font-light text-[#222222]">Search Listings</button>
+            <Link href="/search">
+              <a className="btn btn-accent mt-8 w-[175px] text-xs font-light text-[#222222]">Browse Listings</a>
+            </Link>
           </div>
         </div>
-        <div className="w-full hidden md:block md:w-[50%] bg-primary bg-[url(/side.png)] bg-cover bg-no-repeat"></div>
+        <div className="relative hidden bg-primary md:block md:w-[50%]">
+          <Image
+            src="/side.png"
+            alt="movveit"
+            // placeholder="blur"
+            // blurDataURL="/fallback.png"
+            className=""
+            layout="fill"
+            objectFit="cover"
+          />
+        </div>
       </div>
     </section>
   );
