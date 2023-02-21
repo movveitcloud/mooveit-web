@@ -89,7 +89,7 @@ export { default as Location } from "./book-listing/Location/Location";
 export { default as SimilarListings } from "./book-listing/SimilarListings";
 
 //USER-STORAGE
-export { default as StorageTabs } from "./your-storage/Tabs";
+export { default as Tabs } from "./your-storage/Tabs";
 export { default as EmptyStorage } from "./your-storage/EmptyStorage";
 export { default as Price } from "./your-storage/Price";
 export { default as AdditionalServices } from "./your-storage/AdditionalServices";
