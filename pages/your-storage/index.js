@@ -1,11 +1,13 @@
 import { AdjustmentsIcon } from "@heroicons/react/outline";
 import React from "react";
 import { useState } from "react";
-import { DashboardLayout, EmptyStorage, StorageCard, StorageTabs } from "../../components";
+import { DashboardLayout, EmptyStorage, StorageTabs, YourstorageLayout } from "../../components";
 import { FilterIcon } from "@heroicons/react/outline";
 
 const YourStorage = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const storageStatus = ["active", "enquiries"];
+
   const tabItems = [
     { name: "Active", count: 22 },
     { name: "Enquiries", count: 22 },
@@ -20,12 +22,8 @@ const YourStorage = () => {
         </div>
       </div>
       {/* <EmptyStorage /> */}
-      <div className="mt-12 flex w-full flex-wrap gap-5">
-        <StorageCard />
-        <StorageCard />
-        <StorageCard />
-        <StorageCard />
-      </div>
+
+      <YourstorageLayout storageStatus={storageStatus[activeTab]} />
     </DashboardLayout>
   );
 };

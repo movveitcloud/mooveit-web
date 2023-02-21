@@ -1,4 +1,4 @@
-import { CalculatorIcon, CalendarIcon } from "@heroicons/react/outline";
+import { CalculatorIcon, CalendarIcon, MailIcon } from "@heroicons/react/outline";
 import React from "react";
 
 import Accordion from "../shared/Accordion";
@@ -20,6 +20,8 @@ const PartnersInformation = () => {
         <div className="border-1 btn  mt-2 border-accent px-9 text-[#12181F] hover:border-accent hover:bg-accent">
           {/* <FilterIcon className="mr-3 w-4" /> */}
           {/* <EnvelopeIcon /> */}
+          <MailIcon className="mr-3 w-4" />
+
           <p>MESSAGE PARTNER</p>
         </div>
       </div>
