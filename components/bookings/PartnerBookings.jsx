@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FilterIcon } from "@heroicons/react/outline";
 import { BookingCards } from "..";
-import { Tabs, YourstorageLayout } from "../../components";
+import { Tabs, BookingsLayout } from "../../components";
 
 const AllBookings = () => {
   const [activeItem, setActive] = useState(0);
@@ -12,7 +12,7 @@ const AllBookings = () => {
     { name: "History", count: 22 },
   ];
   const [activeTab, setActiveTab] = useState(0);
-  const storageStatus = ["active", "enquiries"];
+  const bookingStatus = ["active", "enquiries", "history"];
 
   return (
     // <div>
@@ -60,7 +60,7 @@ const AllBookings = () => {
       </div>
       {/* <EmptyStorage /> */}
 
-      <YourstorageLayout storageStatus={storageStatus[activeTab]} />
+      <BookingsLayout bookingStatus={bookingStatus[activeTab]} />
     </div>
   );
 };

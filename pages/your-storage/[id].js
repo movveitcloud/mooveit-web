@@ -7,7 +7,7 @@ import {
   DashboardLayout,
   PartnersInformation,
   Price,
-  StorageTabs,
+  Tabs,
   StorageListing,
   Disputes,
   Legal,
@@ -49,7 +49,7 @@ const Manage = () => {
             <p>Manage</p>
           </div>
           <div className="mb-10">
-            <StorageTabs activeTab={activeTab} setActiveTab={setActiveTab} tabItems={tabItems} />
+            <Tabs activeTab={activeTab} setActiveTab={setActiveTab} tabItems={tabItems} />
           </div>
           {activeTab == 0 ? (
             <StorageListing />
