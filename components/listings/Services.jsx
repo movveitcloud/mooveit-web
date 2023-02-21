@@ -83,7 +83,7 @@ const Services = ({ incomplete }) => {
           </>
         )}
 
-        {formDetails?.services?.includes("packing") && (
+        {!formDetails?.services?.includes("packing") && (
           <>
             <div>
               <h3 className="mb-3">What's your packaging size?</h3>
