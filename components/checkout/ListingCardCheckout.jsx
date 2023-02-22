@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LocationMarkerIcon } from "@heroicons/react/outline";
 import { formatMoney } from "../../helpers/utils";
 
@@ -11,10 +11,10 @@ const PriceItem = ({ name, amount, total }) => {
   );
 };
 
-const ListingCardCheckout = ({ item, bookingInfo }) => {
+const ListingCardCheckout = ({ item, bookingInfo, setBookingInfo }) => {
   const initialState = { type: "hourly" };
   const [bookingDetails, setbookingDetails] = useState(initialState);
-  const { type, time, unitPrice } = bookingInfo;
+  const { type, time, unitPrice, moving, packing } = bookingInfo;
 
   const period = time;
   const pricePerPeriod = unitPrice;
@@ -25,6 +25,10 @@ const ListingCardCheckout = ({ item, bookingInfo }) => {
   const subTotal = price + movingPrice + packingPrice;
   const taxes = (7.5 / 100) * subTotal;
   const total = subTotal + taxes;
+
+  useEffect(() => {
+    setBookingInfo({ ...bookingInfo, total });
+  }, [total]);
 
   return (
     <div className="h-full w-full rounded-lg bg-white p-5 transition-shadow duration-500 hover:shadow sm:w-[375px]">
@@ -56,13 +60,13 @@ const ListingCardCheckout = ({ item, bookingInfo }) => {
           <p className="text-primary">{formatMoney(pricePerPeriod)}</p>
         </div>
         <PriceItem name={`x${period} ${type == "hourly" ? "hour" : "month"}${time > 1 ? "s" : ""}`} amount={price} />
-        {movingPrice > 0 && <PriceItem name="Moving" amount={movingPrice} />}
-        {packingPrice > 0 && <PriceItem name="Packing" amount={packingPrice} />}
+        {moving && <PriceItem name="Moving" amount={movingPrice} />}
+        {packing && <PriceItem name="Packing" amount={packingPrice} />}
         <hr />
         <PriceItem name="Subtotal" amount={subTotal} />
         <PriceItem name="Tax" amount={taxes} />
         <hr className="border-dashed" />
-        <PriceItem name="Total" amount={total} total />
+        <PriceItem name="Total" amount={bookingInfo.total} total />
       </div>
     </div>
   );

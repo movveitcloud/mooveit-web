@@ -4,8 +4,16 @@ import BookContainer from "../book-listing/BookContainer";
 import { useRouter } from "next/router";
 import { differenceInHours, differenceInMonths, format } from "date-fns";
 import Switch from "../shared/Switch";
+import { useDispatch, useSelector } from "react-redux";
+import { bookListing } from "../../redux/features/booking.slice";
+import { authenticatedUser } from "../../redux/features/auth.slice";
 
 const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange }) => {
+  const { bookListingLoading } = useSelector((state) => state.booking);
+  const dispatch = useDispatch();
+
+  const user = authenticatedUser();
+
   const router = useRouter();
   const today = new Date();
   const min = format(new Date(), "yyyy-MM-dd hh:mm");
@@ -36,6 +44,25 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange }) => {
     setBookingDetails({ ...bookingDetails, [name]: val });
   };
 
+  const handleSuccess = () => {
+    router.push(`${user.role == "customer" ? "/your-storage" : "/listings"}`);
+  };
+
+  const handleBooking = () => {
+    const payload = {
+      storageListing: bookingInfo.listingId,
+      startDate,
+      endDate,
+      price: bookingInfo.total,
+      pickupAddress: bookingDetails.pickupAddress,
+      moving: bookingDetails.moving,
+      packing: bookingDetails.packing,
+      type,
+    };
+    console.log(payload);
+    dispatch(bookListing({ payload, handleSuccess }));
+  };
+
   useEffect(() => {
     setBookingDetails({ ...bookingDetails, ...JSON.parse(sessionStorage.getItem("booking")) });
     setPageReady(true);
@@ -44,8 +71,6 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange }) => {
   useEffect(() => {
     setBookingInfo({ ...bookingInfo, time, pickupAddress: bookingDetails.pickupAddress });
   }, [bookingDetails]);
-
-  console.log(bookingInfo);
 
   return (
     pageReady && (
@@ -161,12 +186,18 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange }) => {
           </div>
 
           <button
-            className={`btn btn-primary flex w-full gap-2 text-sm normal-case disabled:btn-accent ${
-              true ? "btn-disabled bg-primary bg-opacity-50 text-[#ccc]" : ""
-            }`}
-            // onClick={handleBooking}
-          >
-            <TruckIcon className="w-4" /> Book Now
+            disabled={!bookingInfo.consent}
+            className={`${
+              bookListingLoading ? "loading" : ""
+            } btn btn-primary flex w-full gap-2 text-sm normal-case disabled:btn-accent disabled:bg-primary disabled:bg-opacity-50 disabled:text-[#ccc]`}
+            onClick={handleBooking}>
+            {bookListingLoading ? (
+              ""
+            ) : (
+              <>
+                <TruckIcon className="w-4" /> Book Now
+              </>
+            )}
           </button>
         </div>
       </BookContainer>
