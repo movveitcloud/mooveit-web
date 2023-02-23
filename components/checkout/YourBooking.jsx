@@ -7,6 +7,7 @@ import Switch from "../shared/Switch";
 import { useDispatch, useSelector } from "react-redux";
 import { bookListing } from "../../redux/features/booking.slice";
 import { authenticatedUser } from "../../redux/features/auth.slice";
+import { getDistance } from "geolib";
 
 const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange }) => {
   const { bookListingLoading } = useSelector((state) => state.booking);
@@ -37,6 +38,14 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange }) => {
   const totalMonths = differenceInMonths(new Date(endDate), new Date(startDate)) + 1;
   const isHourly = type == "hourly" ? true : false;
   const time = isHourly ? totalHours : totalMonths;
+
+  console.log(
+    getDistance(
+      { latitude: 6.434056139929536, longitude: 3.4148140177920734 },
+      { latitude: 6.577647463588065, longitude: 3.342676759213575 }
+    ) / 1000,
+    "distance"
+  );
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
