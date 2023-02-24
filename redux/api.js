@@ -48,3 +48,9 @@ export const getStorageAccessPeriods = () => API.get("/configurations/storage-ac
 export const getStorageAccessTypes = () => API.get("/configurations/storage-access-type");
 export const getShortestPeriods = () => API.get("/configurations/booking-period");
 export const getNoticePeriods = () => API.get("/configurations/notice-period");
+
+//BOOKINGS
+export const getBookings = () => API.get("/booking");
+export const getSingleBooking = (id) => API.get(`/booking/${id}`);
+export const approveBooking = ({ payload, id }) => API.patch(`/booking/${id}`, payload);
+export const denyBooking = ({ payload, id }) => API.patch(`/booking/${id}`, payload);

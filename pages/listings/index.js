@@ -6,6 +6,7 @@ import { DashboardLayout, ListingLocationCard } from "../../components";
 
 const Listings = () => {
   const { listings, listingLoading } = useSelector((state) => state.listing);
+
   const dispatch = useDispatch();
   const [filteredArray, setFilteredArray] = useState([]);
   const [activeItem, setActive] = useState(0);

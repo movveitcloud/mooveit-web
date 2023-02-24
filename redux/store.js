@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { authReducer, configReducer, driverReducer, listingReducer } from "./features";
+import { authReducer, configReducer, driverReducer, listingReducer, bookingReducer } from "./features";
 
 export const store = configureStore({
   reducer: {
@@ -7,5 +7,6 @@ export const store = configureStore({
     listing: listingReducer,
     drivers: driverReducer,
     config: configReducer,
+    booking: bookingReducer,
   },
 });

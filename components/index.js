@@ -30,6 +30,7 @@ export { default as UnavailabilityModal } from "./modals/UnavailabilityModal";
 export { default as PendingModal } from "./modals/PendingModal";
 export { default as AddDriverModal } from "./modals/AddDriverModal";
 export { default as DriverProfileModal } from "./modals/DriverProfileModal";
+export { default as DisapproveBookingModal } from "./modals/DisapproveBookingModal";
 
 //HOME
 export { default as HowItWorks } from "./home/HowItWorks";

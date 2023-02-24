@@ -1,18 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FilterIcon } from "@heroicons/react/outline";
 import { BookingCards } from "..";
 import { Tabs, BookingsLayout } from "../../components";
+import { useRouter } from "next/router";
+import { getBooking } from "../../redux/features/bookings.slice";
+
+import { useDispatch, useSelector } from "react-redux";
+import { PulseLoader } from "react-spinners";
 
 const AllBookings = () => {
   const [activeItem, setActive] = useState(0);
   const items = ["Active Bookings", "Enquires", "History"];
+
+  const router = useRouter();
+  const { bookings, bookingLoading } = useSelector((state) => state.booking);
+  const dispatch = useDispatch();
+  const BookingType = ({ status }) => bookings?.filter((booking) => booking.approvalStatus === status);
+  const approvedBookings = BookingType({ status: "approved" });
+  const pendingBookings = BookingType({ status: "pending" });
+  const disapprovedBookings = BookingType({ status: "disapproved" });
+
   const tabItems = [
-    { name: "Active Bookings", count: 22 },
-    { name: "Enquiries", count: 22 },
-    { name: "History", count: 22 },
+    { name: "Approved", count: approvedBookings.length },
+    { name: "Pending", count: pendingBookings.length },
+    { name: "Disapproved", count: disapprovedBookings.length },
   ];
+
   const [activeTab, setActiveTab] = useState(0);
-  const bookingStatus = ["active", "enquiries", "history"];
+  const bookingCounts = [approvedBookings.length, pendingBookings.length, disapprovedBookings.length];
+  const bookingStatus = ["approved", "pending", "disapproved"];
+
+  useEffect(() => {
+    dispatch(getBooking());
+  }, []);
 
   return (
     // <div>
@@ -49,19 +69,40 @@ const AllBookings = () => {
     //     </div>
     //   )}
     // </div>
-
-    <div>
-      <div className="flex justify-between">
-        <Tabs activeTab={activeTab} setActiveTab={setActiveTab} tabItems={tabItems} />
-        <div className="border-1 btn  mt-2 border-accent px-9 text-black hover:border-accent hover:bg-accent">
+    <>
+      {bookingLoading ? (
+        <div className="relative">
+          <div className="flex h-[500px] items-center justify-center">
+            <PulseLoader loading={bookingLoading} color="#EDCC5B" />
+          </div>
+        </div>
+      ) : (
+        <div>
+          <div className="flex justify-between">
+            <Tabs activeTab={activeTab} setActiveTab={setActiveTab} tabItems={tabItems} />
+            {/* <div className="border-1 btn  mt-2 border-accent px-9 text-black hover:border-accent hover:bg-accent">
           <FilterIcon className="mr-3 w-4" />
           <p>Filters</p>
+        </div> */}
+          </div>
+          {/* <EmptyStorage /> */}
+          {bookingCounts[activeTab] === 0 ? (
+            <div className="text-center text-xl font-bold ">
+              <div className="flex justify-center">
+                <div className="mt-8 flex w-full justify-center rounded-lg bg-white md:w-[60%]">
+                  <div className="flex flex-col items-center space-y-4 px-4 py-24">
+                    <img src="emptyStorage.svg" alt="empty storage icon" className="w-16 md:w-20" />
+                    <p className="text-center text-xl font-bold text-[#AAAAAA]">{`No ${bookingStatus[activeTab]} booking at this time.`}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <BookingsLayout bookings={bookings} bookingStatus={bookingStatus[activeTab]} />
+          )}
         </div>
-      </div>
-      {/* <EmptyStorage /> */}
-
-      <BookingsLayout bookingStatus={bookingStatus[activeTab]} />
-    </div>
+      )}
+    </>
   );
 };
 
