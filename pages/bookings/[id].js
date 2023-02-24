@@ -19,7 +19,7 @@ const Manage = () => {
   const query = router.query.id;
   const id = query;
   const { bookings, singleBooking, singleBookingLoading, approveBookingLoading } = useSelector(
-    (state) => state.booking
+    (state) => state.bookings
   );
   const dispatch = useDispatch();
   const approve = () => {

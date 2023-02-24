@@ -13,7 +13,7 @@ const AllBookings = () => {
   const items = ["Active Bookings", "Enquires", "History"];
 
   const router = useRouter();
-  const { bookings, bookingLoading } = useSelector((state) => state.booking);
+  const { bookings, bookingLoading } = useSelector((state) => state.bookings);
   const dispatch = useDispatch();
   const BookingType = ({ status }) => bookings?.filter((booking) => booking.approvalStatus === status);
   const approvedBookings = BookingType({ status: "approved" });

@@ -57,7 +57,7 @@ export const disapproveBooking = createAsyncThunk(
 );
 
 const bookingsSlice = createSlice({
-  name: "booking",
+  name: "bookings",
   initialState: {
     bookings: [],
     bookingLoading: false,
@@ -121,7 +121,5 @@ const bookingsSlice = createSlice({
     },
   },
 });
-
-// export const {} = driverSlice.actions;
 
 export default bookingsSlice.reducer;

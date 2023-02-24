@@ -8,7 +8,7 @@ const DisapproveBookingModal = ({ id }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const closeModal = useRef(null);
-  const { bookings, disapproveBookingLoading, singleBooking } = useSelector((state) => state.booking);
+  const { bookings, disapproveBookingLoading, singleBooking } = useSelector((state) => state.bookings);
   const handleDisapprove = () => {
     const payload = { approvalStatus: "disapproved" };
     //console.log(payload);
