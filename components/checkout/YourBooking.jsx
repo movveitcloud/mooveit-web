@@ -12,18 +12,20 @@ import { getDistance } from "geolib";
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 import { ListingInputContext } from "../../context";
 
-const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange,userListing }) => {
+const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange, userListing }) => {
   const { bookListingLoading } = useSelector((state) => state.booking);
-  const dis= !bookingInfo.pickupAddress || !bookingInfo.pickupDistance || !bookingInfo.consent 
-  const disabled=bookingInfo?.moving? !bookingInfo.pickupAddress || !bookingInfo.pickupDistance || !bookingInfo.consent : !bookingInfo.consent
+  const dis = !bookingInfo.pickupAddress || !bookingInfo.pickupDistance || !bookingInfo.consent;
+  const disabled = bookingInfo?.moving
+    ? !bookingInfo.pickupAddress || !bookingInfo.pickupDistance || !bookingInfo.consent
+    : !bookingInfo.consent;
   const dispatch = useDispatch();
 
   const user = authenticatedUser();
-  const storageLocation=userListing.coordinates
+  const storageLocation = userListing.coordinates;
 
   const router = useRouter();
   const query = router.query.listingId;
- 
+
   const today = new Date();
   const min = format(new Date(), "yyyy-MM-dd hh:mm");
 
@@ -58,55 +60,43 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange,userList
   //   "km"
   // );
 
-
   //console.log(geolocation, "geo");
 
   useEffect(() => {
-    if(searchGeoLocation){
-      console.log(
-      getDistance(
-        storageLocation,
-        searchGeoLocation
-          ) / 1000,
-          "km"
-      )
-      setBookingInfo({ ...bookingInfo,pickupDistance:getDistance(
-        storageLocation,
-        searchGeoLocation
-          ) / 1000})
-       
-
+    if (searchGeoLocation) {
+      console.log(getDistance(storageLocation, searchGeoLocation) / 1000, "km");
+      setBookingInfo({ ...bookingInfo, pickupDistance: getDistance(storageLocation, searchGeoLocation) / 1000 });
+    } else {
+      setBookingInfo({ ...bookingInfo, pickupDistance: "" });
     }
-    else{setBookingInfo({ ...bookingInfo,pickupDistance:""})
-    
-  }
-    
   }, [searchGeoLocation]);
-  
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     const val = type === "checkbox" ? checked : value;
     setBookingDetails({ ...bookingDetails, [name]: val });
-    
   };
   const handleLocation = (address) => {
     setSearchLocation(address);
-    if(!address){setBookingInfo({ ...bookingInfo,pickupAddress:""})}
-    if(address!=bookingInfo.pickupAddress){setBookingInfo({ ...bookingInfo,pickupAddress:""})}
+    if (!address) {
+      setBookingInfo({ ...bookingInfo, pickupAddress: "" });
+    }
+    if (address != bookingInfo.pickupAddress) {
+      setBookingInfo({ ...bookingInfo, pickupAddress: "" });
+    }
     //console.log(bookingInfo)
     //setBookingDetails({ ...bookingDetails, pickupAddress: address });
-//     console.log(address);
-//     console.log(searchLocation)
-//     if(address)
-//    { geocodeByAddress(address)
-//     .then((results) => getLatLng(results[0]))
-//     .then((latLng) => setSearchGeoLocation( latLng))
-   
-//     .catch((error) => {console.error("This is Error", error),setSearchGeoLocation("")})
-//     console.log(searchGeoLocation)
-//  //console.log(searchGeoLocation);
-// }
+    //     console.log(address);
+    //     console.log(searchLocation)
+    //     if(address)
+    //    { geocodeByAddress(address)
+    //     .then((results) => getLatLng(results[0]))
+    //     .then((latLng) => setSearchGeoLocation( latLng))
+
+    //     .catch((error) => {console.error("This is Error", error),setSearchGeoLocation("")})
+    //     console.log(searchGeoLocation)
+    //  //console.log(searchGeoLocation);
+    // }
   };
 
   const handleSuccess = () => {
@@ -124,7 +114,7 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange,userList
       packing: bookingDetails.packing,
       type,
     };
-    console.log(payload);
+    //console.log(payload);
     dispatch(bookListing({ payload, handleSuccess }));
   };
 
@@ -132,22 +122,25 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange,userList
     setSearchLocation(address);
     setBookingDetails({ ...bookingDetails, pickupAddress: address });
     console.log(bookingDetails);
-    if(address)
-  {geocodeByAddress(address)
-    .then((results) => getLatLng(results[0]))
-    .then((latLng) => setSearchGeoLocation(latLng ))
-    // .then((latLng) => setBookingInfo({ ...bookingInfo,pickupDistance:getDistance(
-    //   storageLocation,
-    //   searchGeoLocation
-    //     ) / 1000}))
-        .then((latLng) => setBookingInfo({ ...bookingInfo,pickupAddress:address}))
-    .catch((error) => {console.error("This is Error", error),setSearchGeoLocation("")})
-  console.log(searchGeoLocation)}
-  else{setBookingInfo({ ...bookingInfo,pickupAddress:""})}
-   
+    if (address) {
+      geocodeByAddress(address)
+        .then((results) => getLatLng(results[0]))
+        .then((latLng) => setSearchGeoLocation(latLng))
+        // .then((latLng) => setBookingInfo({ ...bookingInfo,pickupDistance:getDistance(
+        //   storageLocation,
+        //   searchGeoLocation
+        //     ) / 1000}))
+        .then((latLng) => setBookingInfo({ ...bookingInfo, pickupAddress: address }))
+        .catch((error) => {
+          console.error("This is Error", error), setSearchGeoLocation("");
+        });
+      //console.log(searchGeoLocation)
+    } else {
+      setBookingInfo({ ...bookingInfo, pickupAddress: "" });
+    }
   };
-  
-  const {singleListing} = useSelector((state) => state.listing);
+
+  const { singleListing } = useSelector((state) => state.listing);
   //console.log(storageLocation);
 
   useEffect(() => {
@@ -158,7 +151,7 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange,userList
   useEffect(() => {
     setBookingInfo({ ...bookingInfo, time, pickupAddress: bookingDetails.pickupAddress });
   }, [bookingDetails]);
-  console.log(storageLocation)
+  //console.log(storageLocation)
 
   return (
     pageReady && (
@@ -245,46 +238,46 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange,userList
                 placeholder="Enter pickup address"
               /> */}
               <div className="mb-2 flex flex-grow flex-row  items-center md:mb-0 md:gap-4">
-              <PlacesAutocomplete
-                value={searchLocation}
-                name="pickupAddress"
-                onChange={handleLocation}
-                onSelect={handleSelect}
-                debounce={400}
-                searchOptions={{ types: ["locality", "country"] }}
-                shouldFetchSuggestions={searchLocation.length > 3}>
-                {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                  <div className="relative h-full">
-                    <input
-                      {...getInputProps({
-                        placeholder: "pickupAddress",
-                        className: "w-full rounded border border-[#959595] p-2 focus:border-primary",
-                      })}
-                    />
-                    <div className="p- absolute left-0 right-0 top-10 z-50">
-                      {/* {loading && <div>Loading...</div>} */}
-                      {suggestions.map((suggestion) => {
-                        const className = suggestion.active ? "suggestion-item--active py-2" : "suggestion-item py-2";
-                        // inline style for demonstration purpose
-                        const style = suggestion.active
-                          ? { backgroundColor: "#fafafa", cursor: "pointer" }
-                          : { backgroundColor: "#ffffff", cursor: "pointer" };
-                        return (
-                          <div
-                            key={suggestion.description}
-                            {...getSuggestionItemProps(suggestion, {
-                              className,
-                              style,
-                            })}>
-                            <span>{suggestion.description}</span>
-                          </div>
-                        );
-                      })}
+                <PlacesAutocomplete
+                  value={searchLocation}
+                  name="pickupAddress"
+                  onChange={handleLocation}
+                  onSelect={handleSelect}
+                  debounce={400}
+                  searchOptions={{ types: ["locality", "country"] }}
+                  shouldFetchSuggestions={searchLocation.length > 3}>
+                  {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                    <div className="relative h-full">
+                      <input
+                        {...getInputProps({
+                          placeholder: "pickupAddress",
+                          className: "w-full rounded border border-[#959595] p-2 focus:border-primary",
+                        })}
+                      />
+                      <div className="p- absolute left-0 right-0 top-10 z-50">
+                        {/* {loading && <div>Loading...</div>} */}
+                        {suggestions.map((suggestion) => {
+                          const className = suggestion.active ? "suggestion-item--active py-2" : "suggestion-item py-2";
+                          // inline style for demonstration purpose
+                          const style = suggestion.active
+                            ? { backgroundColor: "#fafafa", cursor: "pointer" }
+                            : { backgroundColor: "#ffffff", cursor: "pointer" };
+                          return (
+                            <div
+                              key={suggestion.description}
+                              {...getSuggestionItemProps(suggestion, {
+                                className,
+                                style,
+                              })}>
+                              <span>{suggestion.description}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
                     </div>
-                  </div>
-                )}
-              </PlacesAutocomplete>
-              {/* <button
+                  )}
+                </PlacesAutocomplete>
+                {/* <button
                 className="btn btn-primary flex  flex-row flex-nowrap text-[0.6rem] font-normal  md:w-[220px]  md:gap-2 md:text-[0.9rem]"
                 onClick={handleLocation}>
                 <SearchIcon className="mr-1 w-4 md:w-5" />
@@ -293,24 +286,24 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange,userList
               </div>
             </div>
           )}
- {bookingInfo?.packing && (
-  <>
-          <div className="flex items-center justify-between">
-            <div className="flex flex-row items-center gap-2 text-[#107E7E]">
-              <span className="rounded-full bg-accent p-2">
-                <TruckIcon className="w-6 text-primary" />
-              </span>
-              <div>
-                <h2 className="text-sm font-semibold text-[#12181F]">Packing</h2>
-                <p className="text-[12px] text-[#959595]">
-                  Packing This listing offers packing services for an additional cost
-                </p>
-              </div>
-            </div>
+          {bookingInfo?.packing && (
+            <>
+              <div className="flex items-center justify-between">
+                <div className="flex flex-row items-center gap-2 text-[#107E7E]">
+                  <span className="rounded-full bg-accent p-2">
+                    <TruckIcon className="w-6 text-primary" />
+                  </span>
+                  <div>
+                    <h2 className="text-sm font-semibold text-[#12181F]">Packing</h2>
+                    <p className="text-[12px] text-[#959595]">
+                      Packing This listing offers packing services for an additional cost
+                    </p>
+                  </div>
+                </div>
 
-            <Switch name="packing" handleChange={handleServiceChange} formDetails={bookingInfo} />
-          </div>
-          </>
+                <Switch name="packing" handleChange={handleServiceChange} formDetails={bookingInfo} />
+              </div>
+            </>
           )}
           <div className="flex items-center gap-5">
             <p className="text-[#959595]">
@@ -321,8 +314,7 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange,userList
             </p>
             <Switch name="consent" handleChange={handleServiceChange} formDetails={bookingInfo} />
           </div>
-         
- 
+
           <button
             // disabled={!bookingInfo.consent}
             disabled={disabled}
@@ -339,7 +331,6 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange,userList
             )}
           </button>
         </div>
-        
       </BookContainer>
     )
   );

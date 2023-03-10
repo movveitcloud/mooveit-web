@@ -62,8 +62,6 @@ export const createPaymentLink = createAsyncThunk(
       //router.push("/your-storage/pay");
       return response.data;
     } catch (err) {
-      console.log(err.response.data.error);
-      console.log(payload);
       errorPopUp({ msg: err.response.data.error });
       return rejectWithValue(err.response.data);
     }
@@ -79,10 +77,9 @@ export const handlePayment = createAsyncThunk(
       }, 5000);
       //successPopUp({ msg: "Booking approved successfully" });
       //router.push("/bookings");
-      console.log(response.data);
+
       return response.data;
     } catch (err) {
-      console.log(payload);
       errorPopUp({ msg: err.response.data.error });
       return rejectWithValue(err.response.data);
     }
