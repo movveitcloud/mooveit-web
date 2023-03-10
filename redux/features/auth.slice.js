@@ -26,6 +26,7 @@ export const login = createAsyncThunk("/auth/login", async ({ payload, reset, ro
         ),
       // location.replace(`${user.isVerified ? (user.role == "partner" ? "/listings" : "/your-storage") : "/verify"}`),
     });
+
     reset({ email: "", password: "" });
     return response.data;
   } catch (err) {

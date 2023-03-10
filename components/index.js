@@ -13,6 +13,7 @@ export { default as NewListingLayout } from "./layouts/NewListingLayout";
 export { default as DashboardLayout } from "./layouts/DashboardLayout";
 export { default as YourstorageLayout } from "./layouts/YourstorageLayout";
 export { default as BookingsLayout } from "./layouts/BookingsLayout";
+export { default as PaymentLayout } from "./layouts/PaymentLayout";
 
 //SHARED
 export { default as PageLoading } from "./shared/PageLoading";
@@ -31,6 +32,7 @@ export { default as PendingModal } from "./modals/PendingModal";
 export { default as AddDriverModal } from "./modals/AddDriverModal";
 export { default as DriverProfileModal } from "./modals/DriverProfileModal";
 export { default as DisapproveBookingModal } from "./modals/DisapproveBookingModal";
+export { default as MakePaymentModal } from "./modals/MakePaymentModal";
 
 //HOME
 export { default as HowItWorks } from "./home/HowItWorks";

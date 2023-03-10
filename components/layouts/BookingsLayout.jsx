@@ -27,8 +27,40 @@ const BookingsLayout = ({ bookingStatus, bookings }) => {
 
   return (
     <div className="mt-8 flex w-full flex-wrap gap-5">
-      {bookings.map(
-        ({ storageListing, user, approvalStatus, _id, name }, i) =>
+      {bookings.map(({ storageListing, user, approvalStatus, _id, name, paymentStatus }, i) =>
+        bookingStatus === "active" && paymentStatus === "successful" ? (
+          <div
+            className="mb-5  w-full  rounded-md bg-white p-4 transition-transform duration-500 hover:scale-105 hover:shadow md:w-[48%] lg:w-[31%]"
+            key={i}>
+            <div className="rounnded-md h-[120px]">
+              <img
+                src={storageListing?.media[0] || "/listing.png"}
+                alt="listing view"
+                className="h-full w-full rounded-md object-cover"
+              />
+            </div>
+            <div className=" mt-3 flex text-[#959595]">
+              <LocationMarkerIcon className="mr-2 w-4" />
+              <h4 className="text-[.6rem] lg:text-[.7rem]">{storageListing.address}</h4>
+            </div>
+
+            <div className="mt-2 flex items-center justify-between md:mt-4">
+              <div className="flex items-center gap-2 align-middle">
+                <div className="h-[50px] w-[50px]">
+                  <img src="/dummyAvatar.png" className="h-[60px] w-[60px] rounded-[50%] object-contain " alt="user" />
+                </div>
+                <h4 className="text-[.7rem] font-semibold  lg:text-[.8rem]">
+                  {user.firstName} {user.lastName}
+                </h4>
+              </div>
+              <div className="justify-right mr-0 flex cursor-pointer " onClick={() => viewBooking(_id, approvalStatus)}>
+                <PencilIcon className="mr-2 w-4 text-[#4543A5] " />
+                <p className="text-[.7rem] text-[#4543A5] lg:text-[.8rem]">MANAGE</p>
+              </div>
+            </div>
+          </div>
+        ) : (
+          (paymentStatus === null || paymentStatus === "error") &&
           bookingStatus === approvalStatus && (
             <div
               className="mb-5  w-full  rounded-md bg-white p-4 transition-transform duration-500 hover:scale-105 hover:shadow md:w-[48%] lg:w-[31%]"
@@ -67,6 +99,7 @@ const BookingsLayout = ({ bookingStatus, bookings }) => {
               </div>
             </div>
           )
+        )
       )}
     </div>
   );

@@ -14,21 +14,44 @@ const AllBookings = () => {
 
   const router = useRouter();
   const { bookings, bookingLoading } = useSelector((state) => state.bookings);
+  console.log(bookings);
   const dispatch = useDispatch();
   const BookingType = ({ status }) => bookings?.filter((booking) => booking.approvalStatus === status);
-  const approvedBookings = BookingType({ status: "approved" });
-  const pendingBookings = BookingType({ status: "pending" });
-  const disapprovedBookings = BookingType({ status: "disapproved" });
+  // const approvedBookings = BookingType({ status: "approved" });
+  // const pendingBookings = BookingType({ status: "pending" });
+  // const disapprovedBookings = BookingType({ status: "disapproved" });
+  const approvedBookings = bookings
+    ? Object.values(bookings).filter(
+        (booking) => booking?.approvalStatus == "approved" && booking?.paymentStatus == null
+      )
+    : "";
+  const pendingBookings = bookings
+    ? Object.values(bookings).filter((booking) => booking?.approvalStatus == "pending")
+    : "";
+  const disapprovedBookings = bookings
+    ? Object.values(bookings).filter((booking) => booking?.approvalStatus == "disapproved")
+    : "";
+  const paidBookings = bookings
+    ? Object.values(bookings).filter(
+        (booking) => booking?.approvalStatus == "approved" && booking?.paymentStatus == "successful"
+      )
+    : "";
 
   const tabItems = [
+    { name: "Active", count: paidBookings.length },
     { name: "Approved", count: approvedBookings.length },
     { name: "Pending", count: pendingBookings.length },
     { name: "Disapproved", count: disapprovedBookings.length },
   ];
 
   const [activeTab, setActiveTab] = useState(0);
-  const bookingCounts = [approvedBookings.length, pendingBookings.length, disapprovedBookings.length];
-  const bookingStatus = ["approved", "pending", "disapproved"];
+  const bookingCounts = [
+    paidBookings.length,
+    approvedBookings.length,
+    pendingBookings.length,
+    disapprovedBookings.length,
+  ];
+  const bookingStatus = ["active", "approved", "pending", "disapproved"];
 
   useEffect(() => {
     dispatch(getBooking());

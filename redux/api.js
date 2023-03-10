@@ -54,6 +54,8 @@ export const getNoticePeriods = () => API.get("/configurations/notice-period");
 
 //BOOKINGS
 export const getBookings = () => API.get("/booking");
+export const createPaymentLink = (payload) => API.post("/booking/create-payment-link", payload);
 export const getSingleBooking = (id) => API.get(`/booking/${id}`);
 export const approveBooking = ({ payload, id }) => API.patch(`/booking/${id}`, payload);
 export const denyBooking = ({ payload, id }) => API.patch(`/booking/${id}`, payload);
+export const handlePayment= (payload ) => API.patch("/booking/payment/confirm", payload);

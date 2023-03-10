@@ -15,6 +15,7 @@ export const getBooking = createAsyncThunk("/booking", async ({}, { rejectWithVa
 export const getSingleBooking = createAsyncThunk("/booking/bookingId", async ({ id }, { rejectWithValue }) => {
   try {
     const response = await api.getSingleBooking(id);
+
     return response.data;
   } catch (err) {
     errorPopUp({ msg: err.response.data.error });
@@ -22,15 +23,11 @@ export const getSingleBooking = createAsyncThunk("/booking/bookingId", async ({ 
   }
 });
 export const approveBooking = createAsyncThunk("/booking/Id", async ({ payload, id, router }, { rejectWithValue }) => {
-  console.log(id);
-
   try {
     const response = await api.approveBooking({ payload, id });
     successPopUp({ msg: "Booking approved successfully" });
     router.push("/bookings");
-    console.log(id);
-    console.log(payload);
-    console.log(response.data);
+
     return response.data;
   } catch (err) {
     errorPopUp({ msg: err.response.data.error });
@@ -44,12 +41,48 @@ export const disapproveBooking = createAsyncThunk(
       const response = await api.denyBooking({ payload, id });
       successPopUp({ msg: "Booking disapproved successfully" });
       closeModal.current.click();
-      console.log(id);
-      console.log(payload);
       router.push("/bookings");
+      return response.data;
+    } catch (err) {
+      errorPopUp({ msg: err.response.data.error });
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+export const createPaymentLink = createAsyncThunk(
+  "/booking/paymentlink",
+  async ({ payload, router, closeModal, refreshPage }, { rejectWithValue }) => {
+    // console.log(refreshPage, "booking");
+    //refreshPage();
+    try {
+      const response = await api.createPaymentLink(payload);
+      refreshPage();
+      //successPopUp({ msg: "Link created successfully" });
+      closeModal.current.click();
+      //router.push("/your-storage/pay");
+      return response.data;
+    } catch (err) {
+      console.log(err.response.data.error);
+      console.log(payload);
+      errorPopUp({ msg: err.response.data.error });
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+export const handlePayment = createAsyncThunk(
+  "/booking/payment/confirm",
+  async ({ payload, router, bookingId }, { rejectWithValue }) => {
+    try {
+      const response = await api.handlePayment(payload);
+      setTimeout(() => {
+        router.push(`/your-storage/${bookingId}`);
+      }, 5000);
+      //successPopUp({ msg: "Booking approved successfully" });
+      //router.push("/bookings");
       console.log(response.data);
       return response.data;
     } catch (err) {
+      console.log(payload);
       errorPopUp({ msg: err.response.data.error });
       return rejectWithValue(err.response.data);
     }
@@ -67,12 +100,10 @@ const bookingsSlice = createSlice({
     approveBookingLoading: false,
     disapproveBooking: {},
     disapproveBookingLoading: false,
-    //   createLoading: false,
-    //   updateLoading: false,
-    //   deleteLoading: false,
-    //   driverImageLoading: false,
-    //   profilePicture: "",
-    //   error: "",
+    paymentLinkLoading: false,
+    paymentLink: {},
+    payment: {},
+    paymentLoading: false,
   },
 
   reducers: {},
@@ -118,6 +149,26 @@ const bookingsSlice = createSlice({
     },
     [disapproveBooking.rejected]: (state, action) => {
       state.disapproveBookingLoading = false;
+    },
+    [createPaymentLink.pending]: (state) => {
+      state.paymentLinkLoading = true;
+    },
+    [createPaymentLink.fulfilled]: (state, action) => {
+      state.paymentLinkLoading = false;
+      state.paymentLink = action.payload.data;
+    },
+    [createPaymentLink.rejected]: (state, action) => {
+      state.paymentLinkLoading = false;
+    },
+    [handlePayment.pending]: (state) => {
+      state.paymentLoading = true;
+    },
+    [handlePayment.fulfilled]: (state, action) => {
+      state.paymentLoading = false;
+      state.payment = action.payload.data;
+    },
+    [handlePayment.rejected]: (state, action) => {
+      state.paymentLoading = false;
     },
   },
 });

@@ -15,12 +15,14 @@ const ListingCardCheckout = ({ item, bookingInfo, setBookingInfo }) => {
   const initialState = { type: "hourly" };
   const [bookingDetails, setbookingDetails] = useState(initialState);
   const { type, time, unitPrice, moving, packing } = bookingInfo;
-
+console.log(item)
   const period = time;
   const pricePerPeriod = unitPrice;
+const movingCost=item.costPerKm
+const movingDistance=bookingInfo.pickupDistance? bookingInfo.pickupDistance: 0
 
   const price = pricePerPeriod * period;
-  const movingPrice = 0;
+  const movingPrice = movingCost * movingDistance;
   const packingPrice = 0;
   const subTotal = price + movingPrice + packingPrice;
   const taxes = (7.5 / 100) * subTotal;

@@ -27,6 +27,7 @@ const Search = () => {
   }, [query]);
 
   console.log(geolocation, "geo");
+  
 
   return (
     <PageLayout>

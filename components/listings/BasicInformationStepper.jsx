@@ -35,6 +35,7 @@ const BasicInformationStepper = () => {
     packagingSize,
     costPerSize,
   };
+  console.log(payload)
 
   return (
     <>

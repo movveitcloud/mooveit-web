@@ -4,22 +4,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { disapproveBooking, getSingleBooking } from "../../redux/features/bookings.slice";
 
-const DisapproveBookingModal = ({ id }) => {
+const DisapproveBookingModal = ({ id,singleBooking }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const closeModal = useRef(null);
-  const { bookings, disapproveBookingLoading, singleBooking } = useSelector((state) => state.bookings);
+  const { bookings, disapproveBookingLoading } = useSelector((state) => state.bookings);
   const handleDisapprove = () => {
     const payload = { approvalStatus: "disapproved" };
     //console.log(payload);
     dispatch(disapproveBooking({ payload, id, router, closeModal }));
   };
 
-  useEffect(() => {
-    if (id) {
-      dispatch(getSingleBooking({ id }));
-    }
-  }, [id]);
+  // useEffect(() => {
+  //   if (id) {
+  //     dispatch(getSingleBooking({ id }));
+  //   }
+  // }, [id]);
 
   return (
     <>
