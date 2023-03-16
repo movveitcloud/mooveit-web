@@ -18,7 +18,8 @@ export const getService = ({ options, key, name }) => {
 
 export const getValue = ({ options, key }) => {
   const item = options.find((p) => p.value == key);
-  return item ? item.name : "N/A";
+
+  return item ? item.label : "N/A";
 };
 
 export const isPartner = authenticatedUser() && authenticatedUser().role == "partner" ? true : false;

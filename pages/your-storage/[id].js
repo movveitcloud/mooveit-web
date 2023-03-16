@@ -39,7 +39,7 @@ const Manage = () => {
       const payload = {
         bookingId: query,
       };
-      console.log(payload);
+      //console.log(payload);
       dispatch(createPaymentLink({ payload, router, closeModal, refreshPage: refreshPage }));
     }
   };
@@ -96,6 +96,7 @@ const Manage = () => {
                 <RentersInformation
                   firstName={singleBooking?.user?.firstName}
                   lastName={singleBooking.user?.lastName}
+                  profilePicture={singleBooking.user?.profilePicture}
                 />
                 <RentersBookingPeriod
                   startPeriod={

@@ -47,7 +47,15 @@ const BookingsLayout = ({ bookingStatus, bookings }) => {
             <div className="mt-2 flex items-center justify-between md:mt-4">
               <div className="flex items-center gap-2 align-middle">
                 <div className="h-[50px] w-[50px]">
-                  <img src="/dummyAvatar.png" className="h-[60px] w-[60px] rounded-[50%] object-contain " alt="user" />
+                  {user.profilePicture ? (
+                    <img src={user.profilePicture} className=" w-30 h-30 rounded-full object-cover " alt="user" />
+                  ) : (
+                    <img
+                      src="/dummyAvatar.png"
+                      className="h-[60px] w-[60px] rounded-[50%] object-contain "
+                      alt="user"
+                    />
+                  )}
                 </div>
                 <h4 className="text-[.7rem] font-semibold  lg:text-[.8rem]">
                   {user.firstName} {user.lastName}
@@ -80,11 +88,20 @@ const BookingsLayout = ({ bookingStatus, bookings }) => {
               <div className="mt-2 flex items-center justify-between md:mt-4">
                 <div className="flex items-center gap-2 align-middle">
                   <div className="h-[50px] w-[50px]">
-                    <img
+                    {user.profilePicture ? (
+                      <img src={user.profilePicture} className=" w-30 h-30 rounded-full object-cover " alt="user" />
+                    ) : (
+                      <img
+                        src="/dummyAvatar.png"
+                        className="h-[60px] w-[60px] rounded-[50%] object-contain "
+                        alt="user"
+                      />
+                    )}
+                    {/* <img
                       src="/dummyAvatar.png"
                       className="h-[60px] w-[60px] rounded-[50%] object-contain "
                       alt="user"
-                    />
+                    /> */}
                   </div>
                   <h4 className="text-[.7rem] font-semibold  lg:text-[.8rem]">
                     {user.firstName} {user.lastName}

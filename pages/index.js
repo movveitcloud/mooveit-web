@@ -13,6 +13,7 @@ const Home = () => {
     <PageLayout>
       <HeroSection />
       <HowItWorks />
+
       <WhyMooveIt />
       <FindStorage />
       <FeaturedListings />

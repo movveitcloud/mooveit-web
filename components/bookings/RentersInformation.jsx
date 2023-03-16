@@ -4,12 +4,16 @@ import React from "react";
 
 import Accordion from "../shared/Accordion";
 
-const RentersInformation = ({ firstName, lastName }) => {
+const RentersInformation = ({ firstName, lastName, profilePicture }) => {
   return (
     <Accordion title="Renter's Information">
       <div className="flex flex-grow flex-col items-center justify-center  gap-2  ">
         <div className="h-[50px] w-[50px]">
-          <img src="/dummyAvatar.png" className="h-[60px] w-[60px] rounded-[50%] object-contain " alt="user" />
+          {profilePicture ? (
+            <img src={profilePicture} className=" w-30 h-30 rounded-full object-cover " alt="user" />
+          ) : (
+            <img src="/dummyAvatar.png" className="h-[60px] w-[60px] rounded-[50%] object-contain " alt="user" />
+          )}
         </div>
         <div className="flex items-center justify-center space-x-2">
           <p>

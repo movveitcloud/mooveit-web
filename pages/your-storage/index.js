@@ -17,6 +17,7 @@ const YourStorage = () => {
   const { bookings, bookingLoading, singleBooking, singleBookingLoading, approveBookingLoading } = useSelector(
     (state) => state.bookings
   );
+
   //console.log(bookings);
   const dispatch = useDispatch();
   //const BookingType = ({ status }) => bookings?.filter((booking) => booking.approvalStatus === status);
@@ -36,6 +37,7 @@ const YourStorage = () => {
         (booking) => booking?.approvalStatus == "approved" && booking?.paymentStatus == "successful"
       )
     : "";
+
   // const pendingBookings = BookingType({ status: "pending" });
 
   const storageCounts = [
@@ -70,6 +72,7 @@ const YourStorage = () => {
         <div>
           <div className="flex justify-between">
             <Tabs activeTab={activeTab} setActiveTab={setActiveTab} tabItems={tabItems} />
+
             {/* <div className="border-1 btn  mt-2 border-accent px-9 text-black hover:border-accent hover:bg-accent">
           <FilterIcon className="mr-3 w-4" />
           <p>Filters</p>

@@ -61,7 +61,7 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange, userLis
   // );
 
   //console.log(geolocation, "geo");
-
+  console.log(bookingInfo);
   useEffect(() => {
     if (searchGeoLocation) {
       console.log(getDistance(storageLocation, searchGeoLocation) / 1000, "km");

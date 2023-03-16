@@ -103,12 +103,14 @@ const AllBookings = () => {
         <div>
           <div className="flex justify-between">
             <Tabs activeTab={activeTab} setActiveTab={setActiveTab} tabItems={tabItems} />
+
             {/* <div className="border-1 btn  mt-2 border-accent px-9 text-black hover:border-accent hover:bg-accent">
           <FilterIcon className="mr-3 w-4" />
           <p>Filters</p>
         </div> */}
           </div>
           {/* <EmptyStorage /> */}
+
           {bookingCounts[activeTab] === 0 ? (
             <div className="text-center text-xl font-bold ">
               <div className="flex justify-center">
