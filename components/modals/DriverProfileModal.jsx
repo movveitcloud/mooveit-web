@@ -3,7 +3,9 @@ import { PencilIcon } from "@heroicons/react/solid";
 import { XIcon } from "@heroicons/react/outline";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteDriver, getDrivers, updateDriver } from "../../redux/features/drivers.slice";
+import { deleteDriver, getDrivers, updateDriver, uploadDriverImage } from "../../redux/features/drivers.slice";
+import Image from "next/image";
+import { FadeLoader } from "react-spinners";
 
 const InputField = ({ formDetails, name, type, handleChange, placeholder, label, disabled }) => {
   return (
@@ -39,10 +41,11 @@ const initialState = {
 
 const DriverProfileModal = ({ setFilteredDrivers, data }) => {
   const [formDetails, setFormDetails] = useState(initialState);
-  const { firstName, lastName, email, phone, vehicleNo, licenseNo } = formDetails;
-  const { updateLoading, deleteLoading } = useSelector((state) => state.drivers);
+  const { firstName, lastName, email, phone, vehicleNo, licenseNo, profilePicture } = formDetails;
+  const { updateLoading, deleteLoading, driverImageLoading } = useSelector((state) => state.drivers);
   const dispatch = useDispatch();
   const driverProfileRef = useRef(null);
+  const profilePic = useRef(null);
 
   const btnDisabled = !firstName || !lastName || !email || !phone || !vehicleNo || !licenseNo;
 
@@ -54,18 +57,17 @@ const DriverProfileModal = ({ setFilteredDrivers, data }) => {
       [name]: val,
     });
   };
-
   const handleImageUpload = (e) => {
     const [file] = e.target.files;
     const maxAllowedSize = 0.2 * 1024 * 1024; //200KB calculation
 
     if (file) {
       if (file.size > maxAllowedSize) return errorPopUp({ msg: "image should not be more than 200KB" });
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setFormDetails({ ...formDetails, profilePicture: e.target.result });
-      };
-      reader.readAsDataURL(file);
+      const formData = new FormData();
+      if (formData) {
+        formData.append("profilePicture", file);
+      }
+      dispatch(uploadDriverImage({ payload: formData, setFormDetails, formDetails }));
     }
   };
 
@@ -75,13 +77,17 @@ const DriverProfileModal = ({ setFilteredDrivers, data }) => {
     setFormDetails(initialState);
   };
 
-  const payload = { firstName, lastName, phone, vehicleNo, licenseNo };
+  const payload = { firstName, lastName, phone, vehicleNo, licenseNo, profilePicture };
 
   const handleSubmit = () => {
     dispatch(updateDriver({ payload, id: data?._id, refreshDrivers }));
   };
   const handleDelete = () => {
     dispatch(deleteDriver({ payload, id: data?._id, refreshDrivers }));
+  };
+
+  const closeModal = () => {
+    setFormDetails(data);
   };
 
   useEffect(() => {
@@ -97,18 +103,30 @@ const DriverProfileModal = ({ setFilteredDrivers, data }) => {
           <label
             htmlFor={data?._id}
             className="btn btn-sm btn-circle bg-accent text-primary hover:text-white border-accent hover:bg-primary hover:border-none absolute right-6 top-6"
-            // onClick={closeModal}
-          >
+            onClick={closeModal}>
             <XIcon className="w-4" />
           </label>
           <div className="space-y-4">
-            {/* <div className="flex justify-center">
-              <div className="w-[100px] h-[100px] relative cursor-pointer" onClick={() => profilePic.current.click()}>
-                <img
+            <div className="flex justify-center">
+              <div
+                className="w-[100px] h-[100px] relative cursor-pointer overflow-hidden"
+                onClick={() => profilePic.current.click()}>
+                <Image
                   src={formDetails.profilePicture || "/dummyAvatar.svg"}
                   alt="profile picture"
-                  className="object-cover w-full h-full rounded-full"
+                  className="rounded-full"
+                  placeholder="blur"
+                  blurDataURL="/dummyAvatar.svg"
+                  layout="fill"
+                  objectFit="cover"
                 />
+                {driverImageLoading ? (
+                  <span className="absolute top-0 bottom-0 right-0 left-0 grid place-items-center shadow rounded-full bg-primary bg-opacity-30">
+                    <FadeLoader loading={driverImageLoading} color="#EDCC5B" height={10} width={4} />
+                  </span>
+                ) : (
+                  ""
+                )}
                 <input
                   type="file"
                   className="hidden"
@@ -121,7 +139,7 @@ const DriverProfileModal = ({ setFilteredDrivers, data }) => {
                   <PencilIcon className="w-4 text-primary" />
                 </div>
               </div>
-            </div> */}
+            </div>
 
             <div className="flex flex-col sm:flex-row  gap-3 sm:gap-6">
               <InputField

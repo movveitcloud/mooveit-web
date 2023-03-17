@@ -6,8 +6,9 @@ import { authenticatedUser } from "../../redux/features/auth.slice";
 import Meta from "../navigation/Meta";
 import DashboardNavigation from "../navigation/DashboardNavigation";
 import TitleBarNav from "../navigation/TitleBarNav";
+import Head from "next/head";
 
-const DashboardLayout = ({ children, name, userInfo }) => {
+const DashboardLayout = ({ children, name }) => {
   const [loading, setLoading] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [pageReady, setPageReady] = useState(false);
@@ -53,13 +54,16 @@ const DashboardLayout = ({ children, name, userInfo }) => {
   return (
     <>
       <Meta title={`Dashboard | ${pageTitle}`} />
+      <Head>
+        <meta name="robots" content="noindex,nofollow" />
+      </Head>
       {pageReady && (
-        <div className="h-screen flex justify-content items-center text-black">
-          <aside className="hidden bg-white h-screen w-3/12 overflow-y-auto lg:block border-r">
+        <div className="justify-content flex h-screen items-center text-black">
+          <aside className="hidden h-screen w-3/12 overflow-y-auto border-r bg-white lg:block">
             <DashboardNavigation pathname={router.asPath} />
           </aside>
 
-          <div className="h-screen w-full mx-auto bg-[#fafafa] overflow-y-auto overflow-x-hidden">
+          <div className="mx-auto h-screen w-full overflow-y-auto overflow-x-hidden bg-[#fafafa]">
             <div className="sticky top-0 z-[20] bg-white">
               <TitleBarNav
                 menuOpen={menuOpen}
@@ -72,7 +76,7 @@ const DashboardLayout = ({ children, name, userInfo }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1 }}
-              className="px-3 sm:px-8 py-6">
+              className="px-3 py-6 sm:px-8">
               {hasPermission && children}
             </motion.div>
           </div>

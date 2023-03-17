@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { authenticatedUser } from "../../redux/features/auth.slice";
+import { authenticatedUser, updateUser } from "../../redux/features/auth.slice";
 import { Communication, DashboardLayout, PersonalDetails, Security } from "../../components";
+import { useDispatch, useSelector } from "react-redux";
 
 const initialState = {
   profilePicture: "",
@@ -19,8 +20,22 @@ const initialState = {
 
 const PersonalDetailsPage = () => {
   const [formDetails, setFormDetails] = useState(initialState);
-  const { firstName, lastName, email, phone } = formDetails;
-  const user = authenticatedUser();
+  const {
+    firstName,
+    lastName,
+    email,
+    phone,
+    enable2fa,
+    supportEmail,
+    supportText,
+    reminderEmail,
+    reminderText,
+    marketingEmail,
+    marketingText,
+  } = formDetails;
+  const { updateLoading, user } = useSelector((state) => state.auth);
+  const userDetail = authenticatedUser();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { type, name, value, checked } = e.target;
@@ -30,22 +45,45 @@ const PersonalDetailsPage = () => {
       [name]: val,
     });
   };
+
   const getData = () => {
     setFormDetails({
       ...formDetails,
-      profilePicture: user.profilePic || "",
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      phone: user.phone || "",
-      enable2fa: user.enable2fa || false,
+      profilePicture: userDetail.profilePicture || "",
+      firstName: userDetail.firstName,
+      lastName: userDetail.lastName,
+      email: userDetail.email,
+      phone: userDetail.phone || "",
+      enable2fa: userDetail.enable2fa || false,
+      supportEmail: userDetail.supportEmail || false,
+      supportText: userDetail.supportText || false,
+      reminderEmail: userDetail.reminderEmail || false,
+      reminderText: userDetail.reminderText || false,
+      marketingEmail: userDetail.marketingEmail || false,
+      marketingText: userDetail.marketingText || false,
     });
   };
-  const handleUpdate = () => {};
+
+  const handleUpdate = () => {
+    const payload = {
+      firstName,
+      lastName,
+      email,
+      phone,
+      enable2fa,
+      supportEmail,
+      supportText,
+      reminderEmail,
+      reminderText,
+      marketingEmail,
+      marketingText,
+    };
+    dispatch(updateUser({ payload, id: userDetail?._id }));
+  };
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [user]);
 
   return (
     <DashboardLayout name="Personal Details">
@@ -61,8 +99,10 @@ const PersonalDetailsPage = () => {
               onClick={getData}>
               Discard Changes
             </button>
-            <button className="btn btn-primary md:w-[175px] font-normal normal-case" onClick={handleUpdate}>
-              Save
+            <button
+              className={`${updateLoading ? "loading" : ""} btn btn-primary md:w-[175px] font-normal normal-case`}
+              onClick={handleUpdate}>
+              {updateLoading ? "" : "Update Profile"}
             </button>
           </div>
         </div>

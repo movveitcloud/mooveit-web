@@ -17,6 +17,8 @@ export const resetPassword = ({ payload, token }) => API.patch(`/auth/reset-pass
 export const verifyResetToken = (token) => API.get(`/auth/reset-password/${token}`);
 export const verifyEmail = (payload) => API.post("/auth/verify", payload);
 export const resendVerifyEmail = (payload) => API.post("/auth/verify", payload);
+export const updateUser = ({ payload, id }) => API.patch(`/users/${id}`, payload);
+export const updateProfileImage = ({ payload, id }) => API.patch(`/users/${id}/upload`, payload);
 
 //LISTINGS
 export const createListing = (payload) => API.post("/listings", payload);
@@ -34,6 +36,15 @@ export const getDrivers = () => API.get("/drivers");
 export const createDriver = (payload) => API.post("/drivers", payload);
 export const updateDriver = ({ payload, id }) => API.patch(`/drivers/${id}`, payload);
 export const deleteDriver = (id) => API.delete(`/drivers/${id}`);
+export const uploadDriverImage = ({ payload }) => API.post(`/drivers/upload`, payload);
 
 //CONFIGURATIONS
-export const getConfigurations = () => API.get("/admin/configurations");
+export const getStorageTypes = () => API.get("/configurations/storage-type");
+export const getStorageServices = () => API.get("/configurations/services");
+export const getStorageFloors = () => API.get("/configurations/storage-floor");
+export const getStorageFeatures = () => API.get("/configurations/storage-features");
+export const getStorageSizes = () => API.get("/configurations/storage-size");
+export const getStorageAccessPeriods = () => API.get("/configurations/storage-access-period");
+export const getStorageAccessTypes = () => API.get("/configurations/storage-access-type");
+export const getShortestPeriods = () => API.get("/configurations/booking-period");
+export const getNoticePeriods = () => API.get("/configurations/notice-period");

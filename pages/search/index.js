@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
-import { ListingCard, PageLayout, SearchBar } from "../../components";
 import { getSearchListings } from "../../redux/features/listings.slice";
 import { useDispatch, useSelector } from "react-redux";
+import { ListingInputContext } from "../../context";
+import { ListingCard, PageLayout, SearchBar } from "../../components";
 import ListingSkelenton from "../../components/shared/ListingSkelenton";
 
 const Search = () => {
+  const { geolocation } = useContext(ListingInputContext);
   const { searchListings, searchLoading } = useSelector((state) => state.listing);
   const [showMap, setShowMap] = useState(false);
   const [count, setCount] = useState(9);
@@ -24,6 +26,8 @@ const Search = () => {
     // }
   }, [query]);
 
+  console.log(geolocation, "geo");
+
   return (
     <PageLayout>
       <div>
@@ -38,24 +42,24 @@ const Search = () => {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="max-w-[90%] lg:max-w-[85%] mx-auto my-16">
+              className="mx-auto my-16 max-w-[90%] lg:max-w-[85%]">
               {searchLoading ? (
-                <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-10 place-items-center">
+                <div className="grid place-items-center gap-10 md:grid-cols-2 xl:grid-cols-3">
                   <ListingSkelenton />
                   <ListingSkelenton />
                   <ListingSkelenton />
                 </div>
               ) : searchListings.length === 0 ? (
                 <div className="flex justify-center">
-                  <div className="bg-white rounded-lg w-full md:w-[60%] flex justify-center mt-8">
-                    <div className="px-4 py-24 flex flex-col space-y-4 items-center">
+                  <div className="mt-8 flex w-full justify-center rounded-lg bg-white md:w-[60%]">
+                    <div className="flex flex-col items-center space-y-4 px-4 py-24">
                       <img src="emptyStorage.svg" alt="empty storage icon" className="w-16 md:w-20" />
                       <p className="text-center text-[#AAAAAA]">Oops we couldn't find any listing</p>
                     </div>
                   </div>
                 </div>
               ) : (
-                <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-10 place-items-center">
+                <div className="grid place-items-center gap-10 md:grid-cols-2 xl:grid-cols-3">
                   {[...searchListings]
                     ?.reverse()
                     .slice(0, count)
@@ -67,8 +71,8 @@ const Search = () => {
             </motion.div>
 
             {searchListings?.length > 5 && count < searchListings?.length && (
-              <div className="flex justify-center my-16" onClick={handleShowMore}>
-                <button className="btn btn-outline btn-primary px-12 font-normal text-sm">Show More</button>
+              <div className="my-16 flex justify-center" onClick={handleShowMore}>
+                <button className="btn btn-outline btn-primary px-12 text-sm font-normal">Show More</button>
               </div>
             )}
           </>
