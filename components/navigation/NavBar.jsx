@@ -28,9 +28,9 @@ const NavBar = () => {
   }, []);
 
   return (
-    <header className="uppercase bg-[#f9f9f9] text-[#222222]">
-      <div className="flex justify-between items-center py-6 max-w-[90%] lg:max-w-[85%] mx-auto text-sm text-black">
-        <div className="flex flex-row gap-10 items-center ">
+    <header className="bg-[#f9f9f9] uppercase text-[#222222]">
+      <div className="mx-auto flex max-w-[90%] items-center justify-between py-6 text-sm text-black lg:max-w-[85%]">
+        <div className="flex flex-row items-center gap-10 ">
           <Link href="/">
             <a>
               <img src="/logo.png" alt="Mooveit" className="max-h-7" />
@@ -38,7 +38,7 @@ const NavBar = () => {
           </Link>
 
           <nav className="hidden lg:block">
-            <ul className="flex gap-6 items-center">
+            <ul className="flex items-center gap-6">
               {navLinks?.map((item, i) => (
                 <li className="" key={i}>
                   <MenuItem item={item} pageLink={pageLink} pageReady={pageReady} />
@@ -49,24 +49,24 @@ const NavBar = () => {
         </div>
 
         {pageReady && authenticatedUser() ? (
-          <div className="hidden lg:block dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-accent w-[130px] rounded-btn flex gap-2 items-center capitalize">
+          <div className="dropdown-end dropdown hidden lg:block">
+            <label tabIndex={0} className="btn btn-accent rounded-btn flex w-[130px] items-center gap-2 capitalize">
               <UserIcon className="w-5" />
               <span>{authenticatedUser().firstName}</span>
             </label>
             <ul
               tabIndex={0}
-              className="menu dropdown-content capitalize p-2 shadow bg-base-100 rounded-lg w-48 mt-4 z-50">
+              className="dropdown-content menu z-50 mt-4 w-48 rounded-lg bg-base-100 p-2 capitalize shadow">
               <li>
                 <Link href={isPartner ? "/listings" : "/your-storage"}>
-                  <a className="flex gap-2 items-center border-b">
+                  <a className="flex items-center gap-2 border-b">
                     <ViewGridIcon className="w-5" />
                     <span>Dashboard</span>
                   </a>
                 </Link>
               </li>
               <li onClick={handleLogout}>
-                <p className="flex gap-2 items-center text-red-500">
+                <p className="flex items-center gap-2 text-red-500">
                   <LogoutIcon className="w-5" />
                   <span>Log Out</span>
                 </p>
@@ -74,28 +74,28 @@ const NavBar = () => {
             </ul>
           </div>
         ) : (
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden items-center gap-4 lg:flex">
             <Link href="/signup" className="">
               <a className="hover:text-primary"> Become a Partner</a>
             </Link>
             <Link href="/login">
-              <a className="btn btn-primary text-sm w-[125px] font-normal">Log In</a>
+              <a className="btn btn-primary w-[125px] text-sm font-normal">Log In</a>
             </Link>
           </div>
         )}
 
         {/* mobile menu start */}
-        <MenuAlt3Icon className="lg:hidden w-8 text-primary cursor-pointer" onClick={() => setMenuOpen(true)} />
+        <MenuAlt3Icon className="w-8 cursor-pointer text-primary lg:hidden" onClick={() => setMenuOpen(true)} />
         {menuOpen && (
           <div
-            className="fixed left-0 right-0 bottom-0 h-screen w-full lg:hidden bg-[#0000003d] z-[99999]"
+            className="fixed left-0 right-0 bottom-0 z-[99999] h-screen w-full bg-[#0000003d] lg:hidden"
             onClick={() => setMenuOpen(false)}>
             <AnimatePresence>
               <motion.div
                 initial={{ x: -100 }}
                 animate={{ x: 0 }}
                 exit={{ x: -100 }}
-                className="fixed top-0 left-0 bg-primary h-screen overflow-y-scroll"
+                className="fixed top-0 left-0 h-screen overflow-y-scroll bg-primary"
                 onClick={(e) => e.stopPropagation()}>
                 <MobileNavbar setMenuOpen={setMenuOpen} pageLink={pageLink} />
               </motion.div>

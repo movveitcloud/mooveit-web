@@ -30,7 +30,7 @@ const Search = () => {
   useEffect(() => {
     dispatch(getBooking());
   }, []);
-  const chosenBookings = bookings?.map(({ storageListing }) => storageListing._id);
+  const chosenBookings = bookings?.map(({ storageListing }) => storageListing?._id);
   console.log(searchListings);
 
   //console.log(geolocation, "geo");
