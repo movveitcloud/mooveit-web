@@ -6,15 +6,18 @@ import { DashboardLayout, ListingLocationCard } from "../../components";
 
 const Listings = () => {
   const { listings, listingLoading } = useSelector((state) => state.listing);
+
   const dispatch = useDispatch();
   const [filteredArray, setFilteredArray] = useState([]);
   const [activeItem, setActive] = useState(0);
   const items = ["Published", "Pending", "Draft", "Rejected"];
+  
 
   const approvedListings = listings?.filter((listing) => listing?.status == "approved");
   const pendingListings = listings?.filter((listing) => listing?.status == "pending" && listing.completed);
   const draftListings = listings?.filter((listing) => listing?.status == "pending" && !listing.completed);
   const disapprovedListings = listings?.filter((listing) => listing?.status == "disapproved");
+  console.log( approvedListings)
 
   const displayTabs = disapprovedListings?.length > 0 ? 4 : 3;
 

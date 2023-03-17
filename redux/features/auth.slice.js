@@ -4,7 +4,7 @@ import crypto from "crypto-js";
 import * as api from "../api";
 const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY;
 
-export const login = createAsyncThunk("/auth/login", async ({ payload, reset }, { rejectWithValue }) => {
+export const login = createAsyncThunk("/auth/login", async ({ payload, reset, router }, { rejectWithValue }) => {
   try {
     const response = await api.login(payload);
     const bytes = response.data.response ? crypto.AES.decrypt(response.data.response, ENCRYPTION_KEY) : "";
@@ -13,8 +13,20 @@ export const login = createAsyncThunk("/auth/login", async ({ payload, reset }, 
       msg: `Welcome back, ${user.firstName}`,
       duration: 500,
       callback: () =>
-        location.replace(`${user.isVerified ? (user.role == "partner" ? "/listings" : "/your-storage") : "/verify"}`),
+        location.replace(
+          `${
+            user.isVerified
+              ? router.query && router.query.redirect
+                ? router.query.redirect
+                : user.role == "partner"
+                ? "/listings"
+                : "/your-storage"
+              : "/verify"
+          }`
+        ),
+      // location.replace(`${user.isVerified ? (user.role == "partner" ? "/listings" : "/your-storage") : "/verify"}`),
     });
+
     reset({ email: "", password: "" });
     return response.data;
   } catch (err) {

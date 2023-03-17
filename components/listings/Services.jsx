@@ -7,10 +7,10 @@ import { storageKinds } from "../../helpers/data";
 
 const Services = ({ incomplete }) => {
   const { storageServices } = useSelector((state) => state.config);
-  const { formDetails, setFormDetails } = useContext(ListingInputContext);
+  const { formDetails, setFormDetails,handleChange } = useContext(ListingInputContext);
   const dispatch = useDispatch();
 
-  const handleChange = (e) => {
+  const handleChanges = (e) => {
     const { name } = e.target;
     const { services } = formDetails;
     const isSelected = services?.includes(name);
@@ -19,12 +19,13 @@ const Services = ({ incomplete }) => {
       ...formDetails,
       services: isSelected ? services.filter((el) => el !== name) : [...services, name],
     });
+    console.log(formDetails)
   };
 
   useEffect(() => {
     dispatch(getStorageServices());
   }, []);
-
+  console.log(formDetails)
   return (
     <Accordion title="services" incomplete={incomplete}>
       <div className="space-y-5">
@@ -37,7 +38,7 @@ const Services = ({ incomplete }) => {
                   type="checkbox"
                   name={label}
                   checked={formDetails?.services?.includes(label)}
-                  onChange={handleChange}
+                  onChange={handleChanges}
                   className="checkbox checkbox-primary checkbox-xs rounded-sm border-[#767670] outline-none"
                 />
                 <p className="text-sm capitalize md:text-base">{label}</p>

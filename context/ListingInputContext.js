@@ -32,8 +32,8 @@ const initialState = {
   unavailabilityDate: "",
   storageAccessPeriod: "",
   storageAccessType: "",
-  parkingPermit: false,
-  parkingInstruction: "",
+  packingPermit: false,
+  packingInstruction: "",
   bookingDuration: "",
   bookingNotice: "",
 

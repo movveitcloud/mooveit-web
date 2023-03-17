@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getStorageFeatures } from "../../redux/features/config.slice";
 import {
   ArchiveIcon,
   ChevronLeftIcon,
@@ -9,12 +10,19 @@ import {
   MapIcon,
   TruckIcon,
 } from "@heroicons/react/outline";
-import { storageFeatures } from "../../helpers/data";
-import { formatMoney } from "../../helpers/utils";
+//import { storageFeatures } from "../../helpers/data";
+import { distanceInKM, formatMoney } from "../../helpers/utils";
 import BookContainer from "./BookContainer";
 import Image from "next/image";
 
 const BookListingMainCard = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getStorageFeatures());
+  }, []);
+
+  const { storageFeatures } = useSelector((state) => state.config);
+
   const { userListing, userListingLoading } = useSelector((state) => state.listing);
   const [currentIndex, setCurrentIndex] = useState(0);
   const videoRef = useRef(null);
@@ -105,7 +113,10 @@ const BookListingMainCard = () => {
           <div className="flex flex-row gap-3">
             <p className="flex flex-row items-center gap-2">
               <ClockIcon className="w-4" />
-              <span className="text-[12px] uppercase">24 HR ACCESS</span>
+              {/* <span className="text-[12px] uppercase">24 HR ACCESS</span> */}
+              <span className="text-[12px] uppercase text-[#222222]">
+                {`${userListing?.storageAccessPeriod} ACCESS`}{" "}
+              </span>
             </p>
             <p className="flex flex-row items-center gap-2">
               <MapIcon className="w-4" />
@@ -115,13 +126,13 @@ const BookListingMainCard = () => {
 
           {/*storage features */}
           <div className="flex flex-row items-center gap-2">
-            {getFeatures()?.map(({ label, value, icon }) => (
+            {getFeatures()?.map(({ label, value, image }) => (
               <span key={value} className="tooltip tooltip-primary cursor-pointer" data-tip={label}>
-                {icon}
+                <img src={image} alt="feature-icon" className="h-4 w-4" />
               </span>
             ))}
           </div>
-
+          {/* 
           {(userListing?.delivery || userListing?.packing) && (
             <div className="flex flex-row gap-6">
               {userListing?.delivery && (
@@ -141,7 +152,54 @@ const BookListingMainCard = () => {
                 </p>
               )}
             </div>
-          )}
+          )} */}
+          <div className="flex flex-row gap-6 ">
+            {userListing?.services?.map(
+              (val) =>
+                (val === "delivery" || val === "packing") && (
+                  <div className="flex flex-row gap-6 ">
+                    {val === "delivery" && (
+                      <p className="flex flex-row items-center gap-2">
+                        <span className="rounded-full bg-accent p-[6px]">
+                          <TruckIcon className="w-4 text-primary" />
+                        </span>
+                        <span className="text-[12px]">Delivery</span>
+                      </p>
+                    )}
+
+                    {val === "packing" && (
+                      <p className="flex flex-row items-center gap-2">
+                        <span className="rounded-full bg-accent p-[6px]">
+                          <ArchiveIcon className="w-4 text-primary" />
+                        </span>
+                        <span className="text-[12px]">Pack & Move</span>
+                      </p>
+                    )}
+                  </div>
+                )
+            )}
+          </div>
+
+          {/* {(userListing?.delivery || userListing?.packing) && (
+            <div className="flex flex-row gap-6">
+              {userListing?.delivery && (
+                <p className="flex flex-row items-center gap-2">
+                  <span className="rounded-full bg-accent p-[6px]">
+                    <TruckIcon className="w-4 text-primary" />
+                  </span>
+                  <span className="text-[12px]">Delivery</span>
+                </p>
+              )}
+              {userListing?.packing && (
+                <p className="flex flex-row items-center gap-2">
+                  <span className="rounded-full bg-accent p-[6px]">
+                    <ArchiveIcon className="w-4 text-primary" />
+                  </span>
+                  <span className="text-[12px]">Pack & Move</span>
+                </p>
+              )}
+            </div>
+          )} */}
         </div>
 
         <div className="mt-2 flex flex-row items-center space-x-6">

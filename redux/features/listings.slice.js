@@ -61,6 +61,7 @@ export const saveExit = createAsyncThunk(
 export const getListings = createAsyncThunk("/listing", async ({}, { rejectWithValue }) => {
   try {
     const response = await api.getListings();
+
     return response.data;
   } catch (err) {
     errorPopUp({ msg: err.response.data.error });

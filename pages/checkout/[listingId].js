@@ -9,7 +9,7 @@ import { EmojiSadIcon } from "@heroicons/react/outline";
 import { authenticatedUser } from "../../redux/features/auth.slice";
 
 const Checkout = () => {
-  const initialState = { moving: false, packing: false, consent: false };
+  const initialState = { moving: false, packing: false, consent: false, total: "" };
   const { userListing, userListingLoading, listingError } = useSelector((state) => state.listing);
   const [bookingInfo, setBookingInfo] = useState(initialState);
   const router = useRouter();
@@ -32,8 +32,11 @@ const Checkout = () => {
   useEffect(() => {
     setBookingInfo({ ...bookingInfo, ...JSON.parse(sessionStorage.getItem("booking")) });
   }, []);
-
-  console.log(user);
+  useEffect(() => {
+    if (!user && query) {
+      router.push({ pathname: "/login", query: { redirect: `/checkout/${query}` } });
+    }
+  }, [query]);
 
   return (
     <PageLayout>
@@ -65,13 +68,16 @@ const Checkout = () => {
                   bookingInfo={bookingInfo}
                   setBookingInfo={setBookingInfo}
                   handleServiceChange={handleServiceChange}
+                  userListing={userListing}
                 />
                 <PaymentPolicy />
               </div>
 
               <div className="w-full lg:w-[40%]">
                 <div className="flex flex-col space-y-6 space-x-0 md:flex-row md:space-y-0 md:space-x-8 lg:sticky lg:top-8 lg:flex-col lg:space-y-8 lg:space-x-0">
-                  {userListing && <ListingCardCheckout bookingInfo={bookingInfo} item={userListing} />}
+                  {userListing && (
+                    <ListingCardCheckout bookingInfo={bookingInfo} item={userListing} setBookingInfo={setBookingInfo} />
+                  )}
                 </div>
               </div>
             </div>

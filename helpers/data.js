@@ -1,5 +1,6 @@
 import {
   CalendarIcon,
+  ClockIcon,
   CreditCardIcon,
   CubeIcon,
   LightBulbIcon,
@@ -11,6 +12,7 @@ import {
 } from "@heroicons/react/outline";
 import {
   CubeIcon as CubeIconSolid,
+  ClockIcon as ClockIconSolid,
   CalendarIcon as CalendarIconSolid,
   UserCircleIcon as UserCircleIconSolid,
   CreditCardIcon as CreditCardIconSolid,
@@ -73,7 +75,7 @@ export const dashboardNavLinks = [
     title: "Bookings",
     icon: <CalendarIcon className="w-full" />,
     iconActive: <CalendarIconSolid className="w-full" />,
-    permission: ["customer", "partner"],
+    permission: ["partner"],
   },
   {
     name: "account",
@@ -112,6 +114,14 @@ export const dashboardNavLinks = [
     icon: <CreditCardIcon className="w-full" />,
     iconActive: <CreditCardIconSolid className="w-full" />,
     permission: ["customer", "partner"],
+  },
+  {
+    name: "history",
+    path: "/history",
+    title: "History",
+    icon: <ClockIcon className="w-full" />,
+    iconActive: <ClockIconSolid className="w-full" />,
+    permission: ["customer"],
   },
   {
     name: "drivers",
@@ -237,10 +247,10 @@ export const storageFloors = [
   { name: "Multiple Floors", value: "multipleFloors" },
 ];
 export const storageFeatures = [
-  { label: "CCTV", value: "cctv", icon: <VideoCameraIcon className="text-[#222222] w-4" /> },
-  { label: "Alarm", value: "alarm", icon: <LightBulbIcon className="text-[#222222] w-4" /> },
-  { label: "Padlock", value: "padlock", icon: <LockClosedIcon className="text-[#222222] w-4" /> },
-  { label: "Onsite Staff", value: "onsiteStaff", icon: <UserGroupIcon className="text-[#222222] w-4" /> },
+  { label: "CCTV", value: "cctv", icon: <VideoCameraIcon className="w-4 text-[#222222]" /> },
+  { label: "Alarm", value: "alarm", icon: <LightBulbIcon className="w-4 text-[#222222]" /> },
+  { label: "Padlock", value: "padlock", icon: <LockClosedIcon className="w-4 text-[#222222]" /> },
+  { label: "Onsite Staff", value: "onsiteStaff", icon: <UserGroupIcon className="w-4 text-[#222222]" /> },
 ];
 export const whenAccessListing = [
   { name: "Any Time", value: "anyTime" },
