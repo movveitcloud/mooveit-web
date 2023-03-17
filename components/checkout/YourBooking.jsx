@@ -240,7 +240,7 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange, userLis
               <div className="mb-2 flex flex-grow flex-row  items-center md:mb-0 md:gap-4">
                 <PlacesAutocomplete
                   value={searchLocation}
-                  name="pickupAddress"
+                  name="Pickup Address"
                   onChange={handleLocation}
                   onSelect={handleSelect}
                   debounce={400}
