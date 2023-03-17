@@ -10,7 +10,7 @@ import {
   TruckIcon,
 } from "@heroicons/react/outline";
 import { storageFeatures } from "../../helpers/data";
-import { formatMoney } from "../../helpers/utils";
+import { distanceInKM, formatMoney } from "../../helpers/utils";
 import BookContainer from "./BookContainer";
 import Image from "next/image";
 
