@@ -5,6 +5,7 @@ import { PencilIcon, LocationMarkerIcon } from "@heroicons/react/outline";
 const YourstorageLayout = ({ storageStatus, bookings }) => {
   const router = useRouter();
   const viewStorage = (_id) => router.push(`/your-storage/${_id}`);
+  console.log(bookings);
 
   return (
     <div className="mt-12 flex w-full flex-wrap gap-5">
@@ -23,7 +24,7 @@ const YourstorageLayout = ({ storageStatus, bookings }) => {
             </div>
             <div className=" mt-3 flex text-[#959595]">
               <LocationMarkerIcon className="mr-2 w-4" />
-              <h4 className="text-[.6rem] lg:text-[.7rem]">{storageListing.address}</h4>
+              <h4 className="text-[.6rem] lg:text-[.7rem]">{storageListing?.address}</h4>
             </div>
 
             <div className="float-right mt-2 cursor-pointer md:mt-4 " onClick={() => viewStorage(_id)}>
@@ -46,7 +47,7 @@ const YourstorageLayout = ({ storageStatus, bookings }) => {
             </div>
             <div className=" mt-3 flex text-[#959595]">
               <LocationMarkerIcon className="mr-2 w-4" />
-              <h4 className="text-[.6rem] lg:text-[.7rem]">{storageListing.address}</h4>
+              <h4 className="text-[.6rem] lg:text-[.7rem]">{storageListing?.address}</h4>
             </div>
 
             <div className="float-right mt-2 cursor-pointer md:mt-4 " onClick={() => viewStorage(_id)}>

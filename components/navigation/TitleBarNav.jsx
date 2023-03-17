@@ -12,42 +12,42 @@ const TitleBarNav = ({ pageTitle, pathname, menuOpen, setMenuOpen }) => {
   const user = authenticatedUser();
 
   const handleClick = () => {
-    isPartner ? router.push("/listings/create") : null;
+    isPartner ? router.push("/listings/create") : router.push("/search");
   };
 
   return (
-    <div className="py-5 px-4 lg:px-8 lg:py-5 w-full border-b">
-      <div className="flex justify-between items-center gap-4">
-        <div className="hidden sm:flex flex-row flex-grow gap-3 items-center">
-          <SearchIcon className="text-primary w-5" />
+    <div className="w-full border-b py-5 px-4 lg:px-8 lg:py-5">
+      <div className="flex items-center justify-between gap-4">
+        <div className="hidden flex-grow flex-row items-center gap-3 sm:flex">
+          <SearchIcon className="w-5 text-primary" />
           <input
             type="text"
             placeholder={isPartner ? "Looking for something" : "Search listings by location  or partner"}
-            className="w-full bg-transparent h-full pr-6 outline-none text-base placeholder:text-[#A5A5A5]"
+            className="h-full w-full bg-transparent pr-6 text-base outline-none placeholder:text-[#A5A5A5]"
           />
         </div>
         <div className="flex items-center gap-6">
           <button className="btn btn-primary px-8 font-normal" onClick={handleClick}>
-            {isPartner ? "Create Listing" : "Become a Partner"}
+            {isPartner ? "Create Listing" : "Book a listing"}
           </button>
-          <div className="justify-center items-center border border-accent rounded p-3 cursor-pointer  hidden sm:flex">
+          <div className="hidden cursor-pointer items-center justify-center rounded border border-accent  p-3 sm:flex">
             <BellIcon className="w-6 text-[#222222]" />
           </div>
         </div>
-        <MenuAlt3Icon className="lg:hidden w-8 text-black cursor-pointer" onClick={() => setMenuOpen(true)} />
+        <MenuAlt3Icon className="w-8 cursor-pointer text-black lg:hidden" onClick={() => setMenuOpen(true)} />
       </div>
 
       {/* mobile menu start */}
       {menuOpen && (
         <div
-          className="fixed left-0 right-0 bottom-0 h-screen w-full lg:hidden bg-[#0000003d] z-[99999]"
+          className="fixed left-0 right-0 bottom-0 z-[99999] h-screen w-full bg-[#0000003d] lg:hidden"
           onClick={() => setMenuOpen(false)}>
           <AnimatePresence>
             <motion.div
               initial={{ x: -100 }}
               animate={{ x: 0 }}
               exit={{ x: -100 }}
-              className="fixed top-0 left-0 bg-white h-screen"
+              className="fixed top-0 left-0 h-screen bg-white"
               onClick={(e) => e.stopPropagation()}>
               <DashboardNavigation pathname={pathname} />
             </motion.div>
