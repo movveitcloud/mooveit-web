@@ -11,6 +11,9 @@ export { default as AppLayout } from "./layouts/AppLayout";
 export { default as AuthLayout } from "./layouts/AuthLayout";
 export { default as NewListingLayout } from "./layouts/NewListingLayout";
 export { default as DashboardLayout } from "./layouts/DashboardLayout";
+export { default as YourstorageLayout } from "./layouts/YourstorageLayout";
+export { default as BookingsLayout } from "./layouts/BookingsLayout";
+export { default as PaymentLayout } from "./layouts/PaymentLayout";
 
 //SHARED
 export { default as PageLoading } from "./shared/PageLoading";
@@ -28,6 +31,8 @@ export { default as UnavailabilityModal } from "./modals/UnavailabilityModal";
 export { default as PendingModal } from "./modals/PendingModal";
 export { default as AddDriverModal } from "./modals/AddDriverModal";
 export { default as DriverProfileModal } from "./modals/DriverProfileModal";
+export { default as DisapproveBookingModal } from "./modals/DisapproveBookingModal";
+export { default as MakePaymentModal } from "./modals/MakePaymentModal";
 
 //HOME
 export { default as HowItWorks } from "./home/HowItWorks";
@@ -69,6 +74,10 @@ export { default as Communication } from "./personal-details/Communication";
 //BOOKINGS
 export { default as PartnerBookings } from "./bookings/PartnerBookings";
 export { default as BookingCards } from "./bookings/BookingCards";
+export { default as RentersInformation } from "./bookings/RentersInformation";
+export { default as RentersBookingPeriod } from "./bookings/RentersBookingPeriod";
+export { default as RentersAdditionalServices } from "./bookings/RentersAdditionalServices";
+export { default as RentersPrice } from "./bookings/RentersPrice";
 
 //CHECKOUT
 export { default as ListingCardCheckout } from "./checkout/ListingCardCheckout";
@@ -88,8 +97,7 @@ export { default as Location } from "./book-listing/Location/Location";
 export { default as SimilarListings } from "./book-listing/SimilarListings";
 
 //USER-STORAGE
-export { default as StorageTabs } from "./your-storage/Tabs";
-export { default as StorageCard } from "./your-storage/StorageCard";
+export { default as Tabs } from "./your-storage/Tabs";
 export { default as EmptyStorage } from "./your-storage/EmptyStorage";
 export { default as Price } from "./your-storage/Price";
 export { default as AdditionalServices } from "./your-storage/AdditionalServices";

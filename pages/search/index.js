@@ -6,10 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { ListingInputContext } from "../../context";
 import { ListingCard, PageLayout, SearchBar } from "../../components";
 import ListingSkelenton from "../../components/shared/ListingSkelenton";
+import { getBooking } from "../../redux/features/bookings.slice";
 
 const Search = () => {
   const { geolocation } = useContext(ListingInputContext);
   const { searchListings, searchLoading } = useSelector((state) => state.listing);
+  const { bookings } = useSelector((state) => state.bookings);
   const [showMap, setShowMap] = useState(false);
   const [count, setCount] = useState(9);
   const dispatch = useDispatch();
@@ -25,8 +27,13 @@ const Search = () => {
     dispatch(getSearchListings({ payload: { area: query ? query.toLowerCase() : "" } }));
     // }
   }, [query]);
+  useEffect(() => {
+    dispatch(getBooking());
+  }, []);
+  const chosenBookings = bookings?.map(({ storageListing }) => storageListing._id);
+  console.log(searchListings);
 
-  console.log(geolocation, "geo");
+  //console.log(geolocation, "geo");
 
   return (
     <PageLayout>
@@ -59,11 +66,20 @@ const Search = () => {
                   </div>
                 </div>
               ) : (
+                // <div className="grid place-items-center gap-10 md:grid-cols-2 xl:grid-cols-3">
+                //   {[...searchListings]
+                //     ?.reverse()
+                //     .slice(0, count)
+                //     ?.map((item, i) => (
+                //       <ListingCard item={item} key={i} />
+                //     ))}
+                // </div>
                 <div className="grid place-items-center gap-10 md:grid-cols-2 xl:grid-cols-3">
                   {[...searchListings]
                     ?.reverse()
                     .slice(0, count)
-                    ?.map((item, i) => (
+                    ?.filter((items) => !chosenBookings.includes(items._id))
+                    .map((item, i) => (
                       <ListingCard item={item} key={i} />
                     ))}
                 </div>

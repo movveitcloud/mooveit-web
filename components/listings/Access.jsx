@@ -60,15 +60,15 @@ const Access = ({ incomplete }) => {
 
         <div className="flex items-center gap-5">
           <p className="font-semibold">Parking Permit Required</p>
-          <Switch name="parkingPermit" handleChange={handleChange} formDetails={formDetails} />
+          <Switch name="packingPermit" handleChange={handleChange} formDetails={formDetails} />
         </div>
 
         <div>
           <h3 className="mb-3">Parking Instructions</h3>
           <div className="items-center rounded-lg border border-[#959595] px-4 py-3">
             <textarea
-              name="parkingInstruction"
-              value={formDetails.parkingInstruction}
+              name="packingInstruction"
+              value={formDetails.packingInstruction}
               onChange={handleChange}
               placeholder="Include any details your customer has to know about parking here"
               className="w-full rounded outline-none"
