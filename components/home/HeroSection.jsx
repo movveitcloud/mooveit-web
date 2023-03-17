@@ -116,14 +116,14 @@ const HeroSection = () => {
               </button>
             </div>
 
-            <p className="text-base text-[#959595]">OR</p>
+            {/* <p className="text-base text-[#959595]">OR</p> */}
 
-            <button className="flex w-full flex-row justify-center rounded-2xl  bg-accent p-6 transition-transform active:scale-[95%] ">
+            {/* <button className="flex w-full flex-row justify-center rounded-2xl  bg-accent p-6 transition-transform active:scale-[95%] ">
               <div className="flex flex-row  items-center md:gap-4">
                 <LocationMarkerIcon className="mr-1 w-5 text-primary md:w-6" />
                 <p className="text-base text-[0.8rem] text-primary md:text-base">Use Live Location</p>
               </div>
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

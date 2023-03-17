@@ -41,7 +41,7 @@ const BookingsLayout = ({ bookingStatus, bookings }) => {
             </div>
             <div className=" mt-3 flex text-[#959595]">
               <LocationMarkerIcon className="mr-2 w-4" />
-              <h4 className="text-[.6rem] lg:text-[.7rem]">{storageListing.address}</h4>
+              <h4 className="text-[.6rem] lg:text-[.7rem]">{storageListing?.address}</h4>
             </div>
 
             <div className="mt-2 flex items-center justify-between md:mt-4">
@@ -82,7 +82,7 @@ const BookingsLayout = ({ bookingStatus, bookings }) => {
               </div>
               <div className=" mt-3 flex text-[#959595]">
                 <LocationMarkerIcon className="mr-2 w-4" />
-                <h4 className="text-[.6rem] lg:text-[.7rem]">{storageListing.address}</h4>
+                <h4 className="text-[.6rem] lg:text-[.7rem]">{storageListing?.address}</h4>
               </div>
 
               <div className="mt-2 flex items-center justify-between md:mt-4">
