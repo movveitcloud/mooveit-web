@@ -152,7 +152,7 @@ const Manage = () => {
                 className={`${paymentLinkLoading && "loading"}  
               border-1 btn mt-2   border-[#15C53B] px-9  text-[#15C53B] hover:border-[#15C53B] hover:bg-[#15C53B] hover:text-black`}
                 onClick={createLink}>
-                <p> {paymentLinkLoading ? "" : "CREATE PAYMENT LINK"}</p>
+                <p> {paymentLinkLoading ? "" : "Complete Booking"}</p>
               </div>
             </div>
           )}

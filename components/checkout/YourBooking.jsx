@@ -8,13 +8,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { bookListing } from "../../redux/features/booking.slice";
 import { getSingleListing } from "../../redux/features/listings.slice";
 import { authenticatedUser } from "../../redux/features/auth.slice";
+import GoogleMapReact from "google-map-react";
 import { getDistance } from "geolib";
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 import { ListingInputContext } from "../../context";
+import Accordion from "../shared/Accordion";
+import { MapIcon } from "@heroicons/react/outline";
 
 const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange, userListing }) => {
+  const Marker = () => <LocationMarkerIcon className="w-8 text-red-500" />;
+
   const { bookListingLoading } = useSelector((state) => state.booking);
   const dis = !bookingInfo.pickupAddress || !bookingInfo.pickupDistance || !bookingInfo.consent;
+  const defaultProps = { zoom: 15 };
   const disabled = bookingInfo?.moving
     ? !bookingInfo.pickupAddress || !bookingInfo.pickupDistance || !bookingInfo.consent
     : !bookingInfo.consent;
@@ -62,6 +68,8 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange, userLis
 
   //console.log(geolocation, "geo");
   console.log(bookingInfo);
+  console.log(userListing);
+  console.log(searchGeoLocation.lat);
   useEffect(() => {
     if (searchGeoLocation) {
       console.log(getDistance(storageLocation, searchGeoLocation) / 1000, "km");
@@ -222,14 +230,15 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange, userLis
           </div>
 
           {bookingInfo?.moving && (
-            <div className="flex flex-row items-center gap-4">
-              <div className="flex min-w-fit items-center gap-2">
-                <span className="rounded-full bg-accent p-2">
-                  <LocationMarkerIcon className="w-6 text-primary" />
-                </span>
-                <h2 className="text-sm font-semibold text-[#12181F]">Pickup Address</h2>
-              </div>
-              {/* <input
+            <>
+              <div className="flex flex-row items-center gap-4">
+                <div className="flex min-w-fit items-center gap-2">
+                  <span className="rounded-full bg-accent p-2">
+                    <LocationMarkerIcon className="w-6 text-primary" />
+                  </span>
+                  <h2 className="text-sm font-semibold text-[#12181F]">Pickup Address</h2>
+                </div>
+                {/* <input
                 type="text"
                 name="pickupAddress"
                 value={bookingDetails.pickupAddress}
@@ -237,54 +246,63 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange, userLis
                 className="w-full rounded border border-[#959595] p-2 focus:border-primary"
                 placeholder="Enter pickup address"
               /> */}
-              <div className="mb-2 flex flex-grow flex-row  items-center md:mb-0 md:gap-4">
-                <PlacesAutocomplete
-                  value={searchLocation}
-                  name="Pickup Address"
-                  onChange={handleLocation}
-                  onSelect={handleSelect}
-                  debounce={400}
-                  searchOptions={{ types: ["locality", "country"] }}
-                  shouldFetchSuggestions={searchLocation.length > 3}>
-                  {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                    <div className="relative h-full">
-                      <input
-                        {...getInputProps({
-                          placeholder: "pickupAddress",
-                          className: "w-full rounded border border-[#959595] p-2 focus:border-primary",
-                        })}
-                      />
-                      <div className="p- absolute left-0 right-0 top-10 z-50">
-                        {/* {loading && <div>Loading...</div>} */}
-                        {suggestions.map((suggestion) => {
-                          const className = suggestion.active ? "suggestion-item--active py-2" : "suggestion-item py-2";
-                          // inline style for demonstration purpose
-                          const style = suggestion.active
-                            ? { backgroundColor: "#fafafa", cursor: "pointer" }
-                            : { backgroundColor: "#ffffff", cursor: "pointer" };
-                          return (
-                            <div
-                              key={suggestion.description}
-                              {...getSuggestionItemProps(suggestion, {
-                                className,
-                                style,
-                              })}>
-                              <span>{suggestion.description}</span>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  )}
-                </PlacesAutocomplete>
-                {/* <button
-                className="btn btn-primary flex  flex-row flex-nowrap text-[0.6rem] font-normal  md:w-[220px]  md:gap-2 md:text-[0.9rem]"
-                onClick={handleLocation}>
-                <SearchIcon className="mr-1 w-4 md:w-5" />
-                <span className="leading-5">Search Location</span>
-              </button> */}
+
+                <div className="flex flex-grow flex-row items-center gap-4 rounded-lg border border-[#959595] px-4 py-2">
+                  <MapIcon className="w-6 text-[#959595]" />
+                  <div className=" w-full outline-none">
+                    <PlacesAutocomplete
+                      value={searchLocation}
+                      name="pickupAddress"
+                      onChange={handleLocation}
+                      onSelect={handleSelect}
+                      debounce={400}
+                      searchOptions={{ types: ["locality", "country"] }}
+                      shouldFetchSuggestions={searchLocation.length > 3}>
+                      {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                        <div className="relative h-full">
+                          <input
+                            {...getInputProps({
+                              placeholder: "Pickup Address",
+                              className: "w-full outline-none border-none border-[#959595] focus:border-primary",
+                            })}
+                          />
+                          <div className="p- absolute left-0 right-0 top-10 z-50">
+                            {/* {loading && <div>Loading...</div>} */}
+                            {suggestions.map((suggestion) => {
+                              const className = suggestion.active
+                                ? "suggestion-item--active py-2"
+                                : "suggestion-item py-2";
+                              // inline style for demonstration purpose
+                              const style = suggestion.active
+                                ? { backgroundColor: "#fafafa", cursor: "pointer" }
+                                : { backgroundColor: "#ffffff", cursor: "pointer" };
+                              return (
+                                <div
+                                  key={suggestion.description}
+                                  {...getSuggestionItemProps(suggestion, {
+                                    className,
+                                    style,
+                                  })}>
+                                  <span>{suggestion.description}</span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+                    </PlacesAutocomplete>
+                  </div>
+                </div>
               </div>
-            </div>
+              <div className="mt-8 h-[250px] w-full overflow-hidden rounded-md">
+                <GoogleMapReact
+                  bootstrapURLKeys={{ key: process.env.PLACES_KEY }}
+                  center={searchGeoLocation}
+                  defaultZoom={defaultProps.zoom}>
+                  {searchGeoLocation?.lat && <Marker lat={searchGeoLocation?.lat} lng={searchGeoLocation?.lng} />}
+                </GoogleMapReact>
+              </div>
+            </>
           )}
           {bookingInfo?.packing && (
             <>

@@ -10,7 +10,7 @@ import { getBooking } from "../../redux/features/bookings.slice";
 
 const Search = () => {
   const { geolocation } = useContext(ListingInputContext);
-  const { searchListings, searchLoading } = useSelector((state) => state.listing);
+  const { searchListings, searchLoading, listings } = useSelector((state) => state.listing);
   const { bookings } = useSelector((state) => state.bookings);
   const [showMap, setShowMap] = useState(false);
   const [count, setCount] = useState(9);
