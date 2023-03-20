@@ -56,6 +56,9 @@ export const ListingInputContextProvider = ({ children }) => {
       ...formDetails,
       [name]: val,
     });
+    console.log(formDetails);
+    console.log(checked);
+    console.log(val);
   };
 
   function getLocation() {
