@@ -7,7 +7,7 @@ import PreviewModal from "../modals/PreviewModal";
 
 const PricingStepper = () => {
   const { formDetails, handleChange } = useContext(ListingInputContext);
-  const { monthlyRate, hourlyRate, consent } = formDetails;
+  const { monthlyRate, hourlyRate, consent, autoApprove } = formDetails;
   const publishModal = useRef(null);
 
   const disableBtn = !monthlyRate || monthlyRate == 0 || !hourlyRate || hourlyRate == 0 || !consent;
@@ -17,7 +17,7 @@ const PricingStepper = () => {
     <>
       <div className="space-y-6">
         <Pricing />
-        <div className="flex gap-5 items-center">
+        <div className="flex items-center gap-5">
           <p className="">
             I agree with MovveIT's{" "}
             <Link href="#" className="font-semibold">
@@ -29,7 +29,17 @@ const PricingStepper = () => {
             name="consent"
             onChange={handleChange}
             checked={formDetails.consent}
-            className="toggle toggle-primary toggle-sm bg-[#cccccc] h-4 w-7"
+            className="toggle toggle-primary toggle-sm h-4 w-7 bg-[#cccccc]"
+          />
+        </div>
+        <div className="flex items-center gap-5">
+          <p className="">Auto approve lisiting </p>
+          <input
+            type="checkbox"
+            name="autoApprove"
+            onChange={handleChange}
+            checked={formDetails.autoApprove}
+            className="toggle toggle-primary toggle-sm h-4 w-7 bg-[#cccccc]"
           />
         </div>
       </div>

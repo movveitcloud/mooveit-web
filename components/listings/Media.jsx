@@ -79,22 +79,22 @@ const Media = ({ edit, id, incomplete }) => {
   return (
     <Accordion title="Media" incomplete={incomplete}>
       <div className="space-y-6">
-        <div className="bg-[#EEEEEE] px-5 py-5 text-center rounded-lg">
+        <div className="rounded-lg bg-[#EEEEEE] px-5 py-5 text-center">
           {formDetails?.image?.length === 0 ? (
             <>
-              <div className="mx-auto flex justify-center item-center rounded-full mb-[.6rem] w-16 h-16">
+              <div className="item-center mx-auto mb-[.6rem] flex h-16 w-16 justify-center rounded-full">
                 <UploadIcon className="w-6 text-[#959595]" />
               </div>
-              <p className="text-center text-sm mx-auto text-[#959595]">Upload pictures/videos of your listing</p>
-              <p className="text-center text-xs mx-auto text-[#959595]"> jpeg, png, mov, and mp4 allowed</p>
-              <p className="text-center text-xs mx-auto text-[#959595]"> max size is 5MB</p>
+              <p className="mx-auto text-center text-sm text-[#959595]">Upload pictures/videos of your listing</p>
+              <p className="mx-auto text-center text-xs text-[#959595]"> jpeg, png, mov, and mp4 allowed</p>
+              <p className="mx-auto text-center text-xs text-[#959595]"> max size is 5MB</p>
             </>
           ) : (
             ""
           )}
           <div className="flex flex-wrap">
             {formDetails?.image?.map((img, index) => (
-              <div key={index} className="w-full relative md:w-[32%] h-[200px] mb-[2.5rem] rounded-md mr-2">
+              <div key={index} className="relative mb-[2.5rem] mr-2 h-[200px] w-full rounded-md md:w-[32%]">
                 {uploading ? (
                   <div>
                     <Skeleton height={225} />
@@ -102,12 +102,12 @@ const Media = ({ edit, id, incomplete }) => {
                 ) : img.substring(img.lastIndexOf(".") + 1).toLowerCase() === "mp4" ||
                   img.substring(img.lastIndexOf(".") + 1).toLowerCase() === "mov" ? (
                   <>
-                    <video src={img} controls className="w-[95%] h-full mb-2 object-cover rounded"></video>
-                    <span className="bg-black p-2  hover:bg-red-500 cursor-pointer  rounded-[50%] absolute  -right-0  -top-2 ">
+                    <video src={img} controls className="mb-2 h-full w-[95%] rounded object-cover"></video>
+                    <span className="absolute -right-0  -top-2 cursor-pointer  rounded-[50%] bg-black  p-2  hover:bg-red-500 ">
                       <XIcon
                         id={index}
                         key={index}
-                        className="text-white w-4  font-bold"
+                        className="w-4 font-bold  text-white"
                         onClick={(e) => {
                           removeItem(e, index);
                         }}
@@ -121,13 +121,13 @@ const Media = ({ edit, id, incomplete }) => {
                       id={index}
                       alt="pic1"
                       name="media"
-                      className="w-[95%] h-full mb-2 object-cover rounded"
+                      className="mb-2 h-full w-[95%] rounded object-cover"
                     />
-                    <span className="bg-black p-2  hover:bg-red-500 cursor-pointer  rounded-[50%] absolute  -right-0  -top-2 ">
+                    <span className="absolute -right-0  -top-2 cursor-pointer  rounded-[50%] bg-black  p-2  hover:bg-red-500 ">
                       <XIcon
                         id={index}
                         key={index}
-                        className="text-white w-4  font-bold"
+                        className="w-4 font-bold  text-white"
                         onClick={(e) => {
                           removeItem(e, index);
                         }}
@@ -138,9 +138,9 @@ const Media = ({ edit, id, incomplete }) => {
               </div>
             ))}
             {formDetails?.image?.length > 0 && (
-              <div className="w-full flex items-center  md:w-[32%] h-[200px] mb-[2.5rem] rounded-md mr-2">
+              <div className="mb-[2.5rem] mr-2 flex  h-[200px] w-full items-center rounded-md md:w-[32%]">
                 <PlusCircleIcon
-                  className="text-[#989797] mx-auto  w-14 hover:text-primary font-bold"
+                  className="mx-auto w-14  font-bold text-[#989797] hover:text-primary"
                   onClick={() => uploadFile()}
                 />
               </div>
@@ -151,11 +151,11 @@ const Media = ({ edit, id, incomplete }) => {
           ) : (
             <button
               onClick={() => uploadFile()}
-              className="border-[#222222] px-[1.5rem] mb-3 py-[.3rem] border text-sm rounded-[5px] text-[#222222] mt-[1rem]">
+              className="mb-3 mt-[1rem] rounded-[5px] border border-[#222222] px-[1.5rem] py-[.3rem] text-sm text-[#222222]">
               Upload
             </button>
           )}
-          <div className="text-center hidden">
+          <div className="hidden text-center">
             <input
               accept="video/mp4,video/x-m4v,video/mov,video/*,image/jpg, image/png, image/*"
               type="file"
