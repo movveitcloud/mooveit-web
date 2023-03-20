@@ -46,7 +46,7 @@ const HeroSection = () => {
           <p className="mx-auto text-sm text-white sm:max-w-[85%] md:text-base">
             Get access to a pool of prospective customers when you list your storage with us.
           </p>
-          <Link href="/get-started">
+          <Link href="/signup">
             <a className="btn btn-primary w-[150px] text-sm font-normal">Get Started</a>
           </Link>
         </div>
@@ -116,14 +116,14 @@ const HeroSection = () => {
               </button>
             </div>
 
-            <p className="text-base text-[#959595]">OR</p>
+            {/* <p className="text-base text-[#959595]">OR</p> */}
 
-            <button className="flex w-full flex-row justify-center rounded-2xl  bg-accent p-6 transition-transform active:scale-[95%] ">
+            {/* <button className="flex w-full flex-row justify-center rounded-2xl  bg-accent p-6 transition-transform active:scale-[95%] ">
               <div className="flex flex-row  items-center md:gap-4">
                 <LocationMarkerIcon className="mr-1 w-5 text-primary md:w-6" />
                 <p className="text-base text-[0.8rem] text-primary md:text-base">Use Live Location</p>
               </div>
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

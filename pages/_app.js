@@ -31,6 +31,12 @@ function MyApp({ Component, pageProps }) {
           />
           <Meta />
           <Component {...pageProps} />
+
+          <Script
+            type="text/javascript"
+            src="https://embed.tawk.to/6418b62731ebfa0fe7f3b0d9/1gs08f3mr"
+            strategy="afterInteractive"
+          />
         </ListingInputContextProvider>
       </Provider>
     </>

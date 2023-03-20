@@ -32,8 +32,8 @@ const initialState = {
   unavailabilityDate: "",
   storageAccessPeriod: "",
   storageAccessType: "",
-  parkingPermit: false,
-  parkingInstruction: "",
+  packingPermit: false,
+  packingInstruction: "",
   bookingDuration: "",
   bookingNotice: "",
 
@@ -42,6 +42,7 @@ const initialState = {
   monthlyRate: 0,
   hourlyRate: 0,
   consent: false,
+  autoApprove: false,
 };
 
 export const ListingInputContextProvider = ({ children }) => {
@@ -56,6 +57,9 @@ export const ListingInputContextProvider = ({ children }) => {
       ...formDetails,
       [name]: val,
     });
+    console.log(formDetails);
+    console.log(checked);
+    console.log(val);
   };
 
   function getLocation() {

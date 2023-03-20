@@ -2,7 +2,7 @@ import React from "react";
 import Accordion from "../shared/Accordion";
 import { formatMoney } from "../../helpers/utils";
 
-const RentersPrice = () => {
+const RentersPrice = ({ listingPrice }) => {
   const PriceItem = ({ name, amount, total }) => {
     return (
       <div className={`flex justify-between ${total ? "text-lg font-bold" : "text-sm font-[500]"}`}>
@@ -26,19 +26,17 @@ const RentersPrice = () => {
     <Accordion title="price">
       <div className="mt-2 space-y-3  ">
         <div className="flex justify-between text-sm">
-          <p>
-            Price <span className="font-normal text-[#959595]">{`(per ${type == "hourly" ? "hour" : "month"})`}</span>
-          </p>
-          <p className="text-primary">{formatMoney(pricePerPeriod)}</p>
+          <p>Price</p>
+          <p className="text-primary">{formatMoney(listingPrice)}</p>
         </div>
-        <PriceItem name={`x${period} ${type == "hourly" ? "hour" : "month"}${time > 1 ? "s" : ""}`} amount={price} />
+        {/* <PriceItem name={`x${period} ${type == "hourly" ? "hour" : "month"}${time > 1 ? "s" : ""}`} amount={price} />
         {movingPrice > 0 && <PriceItem name="Moving" amount={movingPrice} />}
         {packingPrice > 0 && <PriceItem name="Packing" amount={packingPrice} />}
         <hr />
         <PriceItem name="Subtotal" amount={subTotal} />
         <PriceItem name="Tax" amount={taxes} />
         <hr className="border-dashed" />
-        <PriceItem name="Total" amount={total} total />
+        <PriceItem name="Total" amount={total} total /> */}
       </div>
     </Accordion>
   );

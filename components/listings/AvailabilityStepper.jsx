@@ -8,8 +8,8 @@ const AvailabilityStepper = () => {
     unavailabilityPeriods,
     storageAccessPeriod,
     storageAccessType,
-    parkingPermit,
-    parkingInstruction,
+    packingPermit,
+    packingInstruction,
     bookingDuration,
     bookingNotice,
   } = formDetails;
@@ -18,11 +18,12 @@ const AvailabilityStepper = () => {
     unavailabilityPeriods,
     storageAccessPeriod,
     storageAccessType,
-    parkingPermit,
-    parkingInstruction,
+    packingPermit,
+    packingInstruction,
     bookingDuration,
     bookingNotice,
   };
+  
 
   return (
     <>

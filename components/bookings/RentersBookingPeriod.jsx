@@ -3,7 +3,7 @@ import React from "react";
 
 import Accordion from "../shared/Accordion";
 
-const RentersBookingPeriod = () => {
+const RentersBookingPeriod = ({ startPeriod, endPeriod }) => {
   return (
     <Accordion title="Booking Period">
       <div className=" mb-6 flex   items-center  justify-between rounded-lg border-l-4 border-accent bg-[#F9F9F9] px-2  py-4 text-sm md:w-[100%] md:px-6">
@@ -14,7 +14,7 @@ const RentersBookingPeriod = () => {
             </div>
           </span>
           <p className=" mr-2 text-[12px] uppercase md:text-[14px]">
-            9:30 am, 13th Aug, 2022 - 6:00 pm, 13th Aug, 2022{" "}
+            {startPeriod} - {endPeriod}
           </p>
         </div>
       </div>

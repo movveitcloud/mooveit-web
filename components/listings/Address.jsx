@@ -23,6 +23,7 @@ const Address = ({ incomplete, open }) => {
     geocodeByAddress(address)
       .then((results) => getLatLng(results[0]))
       .then((latLng) => setFormDetails({ ...formDetails, coordinates: latLng, address, formattedAddress }))
+      
       .catch((error) => console.error("Error", error));
   };
 

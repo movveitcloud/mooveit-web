@@ -11,7 +11,7 @@ const RentersAdditionalServices = ({ delivery, packing }) => {
         ) : (
           <div className=" flex flex-col items-center gap-6">
             <div className="flex items-center gap-5">
-              {delivery && (
+              {delivery == "true" && (
                 <div className="flex flex-row items-center gap-2 text-[#959595]">
                   <span className="rounded-full bg-accent p-[6px]">
                     <TruckIcon className="w-6 text-primary" />
@@ -25,7 +25,7 @@ const RentersAdditionalServices = ({ delivery, packing }) => {
             </div>
 
             <div className="flex items-center gap-5">
-              {packing && (
+              {packing == "true" && (
                 <div className="flex flex-row items-center gap-2 text-[#959595]">
                   <span className="rounded-full bg-accent p-[6px]">
                     <ArchiveIcon className="w-6 text-primary" />

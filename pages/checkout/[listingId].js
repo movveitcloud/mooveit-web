@@ -68,6 +68,7 @@ const Checkout = () => {
                   bookingInfo={bookingInfo}
                   setBookingInfo={setBookingInfo}
                   handleServiceChange={handleServiceChange}
+                  userListing={userListing}
                 />
                 <PaymentPolicy />
               </div>
