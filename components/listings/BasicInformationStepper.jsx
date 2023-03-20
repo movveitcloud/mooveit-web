@@ -17,6 +17,7 @@ const BasicInformationStepper = () => {
     packagingSize,
     costPerSize,
   } = formDetails;
+  
   const disableBtn = !address || !storageType || !storageFloor || storageFeatures.length == 0;
 
   const payload = {
