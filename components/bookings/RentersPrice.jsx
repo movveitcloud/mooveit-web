@@ -23,13 +23,16 @@ const RentersPrice = ({ listingPrice }) => {
   const taxes = (7.5 / 100) * subTotal;
   const total = subTotal + taxes;
   return (
-    <Accordion title="price">
-      <div className="mt-2 space-y-3  ">
-        <div className="flex justify-between text-sm">
-          <p>Price</p>
-          <p className="text-primary">{formatMoney(listingPrice)}</p>
-        </div>
-        {/* <PriceItem name={`x${period} ${type == "hourly" ? "hour" : "month"}${time > 1 ? "s" : ""}`} amount={price} />
+    <>
+      <div className="flex cursor-pointer justify-between px-4  text-[#222222] md:px-6">
+        <h2 className="text-left text-sm font-semibold capitalize md:text-base">Price</h2>
+      </div>
+      <div className=" flex cursor-pointer justify-between px-4 py-4 text-[#222222] md:px-6">
+        <div className="   ">
+          <div className="flex justify-between text-sm">
+            <p className="text-primary">{formatMoney(listingPrice)}</p>
+          </div>
+          {/* <PriceItem name={`x${period} ${type == "hourly" ? "hour" : "month"}${time > 1 ? "s" : ""}`} amount={price} />
         {movingPrice > 0 && <PriceItem name="Moving" amount={movingPrice} />}
         {packingPrice > 0 && <PriceItem name="Packing" amount={packingPrice} />}
         <hr />
@@ -37,8 +40,9 @@ const RentersPrice = ({ listingPrice }) => {
         <PriceItem name="Tax" amount={taxes} />
         <hr className="border-dashed" />
         <PriceItem name="Total" amount={total} total /> */}
+        </div>
       </div>
-    </Accordion>
+    </>
   );
 };
 

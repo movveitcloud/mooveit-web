@@ -7,6 +7,8 @@ import { getBooking, getSingleBooking, approveBooking, createPaymentLink } from 
 import { useDispatch, useSelector } from "react-redux";
 import { getService } from "../../helpers/utils";
 import Link from "next/link";
+import { CalculatorIcon, CalendarIcon, MailIcon } from "@heroicons/react/outline";
+import { BadgeCheckIcon } from "@heroicons/react/solid";
 import {
   DashboardLayout,
   RentersInformation,
@@ -43,7 +45,7 @@ const Manage = () => {
       dispatch(createPaymentLink({ payload, router, closeModal, refreshPage: refreshPage }));
     }
   };
-  //console.log(singleBooking?.paymentLink);
+  console.log(singleBooking);
   const Back = () => {
     router.push("/your-storage");
   };
@@ -92,7 +94,8 @@ const Manage = () => {
                   {singleBooking?.paymentStatus == "successful" ? "active" : singleBooking?.approvalStatus}
                 </p>
               </div>
-              <>
+              <div
+                className={`mb-8 h-full rounded-md border-[0.5px] bg-white p-2 transition-all duration-300 ${"border-white"}`}>
                 <RentersInformation
                   firstName={singleBooking?.user?.firstName}
                   lastName={singleBooking.user?.lastName}
@@ -131,7 +134,13 @@ const Manage = () => {
                   })}
                 />
                 <RentersPrice listingPrice={singleBooking?.price} />
-              </>
+              </div>
+
+              {/* <>
+                
+               
+                
+              </> */}
             </div>
           </motion.div>
           {singleBooking?.paymentStatus == "successful" ||

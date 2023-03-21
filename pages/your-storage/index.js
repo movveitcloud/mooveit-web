@@ -39,7 +39,7 @@ const YourStorage = () => {
     : "";
 
   // const pendingBookings = BookingType({ status: "pending" });
-
+  console.log(approvedBookings);
   const storageCounts = [
     paidBookings.length,
     approvedBookings.length,
