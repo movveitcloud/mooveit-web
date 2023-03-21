@@ -24,6 +24,7 @@ const PageLayout = ({ children, name }) => {
   useEffect(() => {
     getPageTitle();
   }, [router.pathname]);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       window.addEventListener("scroll", () => setShowScroll(window.pageYOffset > 400));
@@ -34,7 +35,7 @@ const PageLayout = ({ children, name }) => {
   return (
     <>
       <Meta title={pageTitle} />
-      <div className="flex flex-col justify-between min-h-screen">
+      <div className="flex min-h-screen flex-col justify-between">
         <div>
           <NavBar />
           {children}
@@ -45,7 +46,7 @@ const PageLayout = ({ children, name }) => {
       </div>
       {showScroll && (
         <button
-          className="hidden md:block fixed bottom-6 right-6 p-3 bg-accent hover:bg-primary shadow active:scale-90 text-primary hover:text-white rounded text-sm transition-all duration-300"
+          className="fixed bottom-32 right-6 hidden rounded bg-accent p-3 text-sm text-primary shadow transition-all duration-300 hover:bg-primary hover:text-white active:scale-90 md:block"
           onClick={scrollToTop}>
           <ArrowNarrowUpIcon className="w-5" />
         </button>

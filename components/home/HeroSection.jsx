@@ -46,7 +46,7 @@ const HeroSection = () => {
           <p className="mx-auto text-sm text-white sm:max-w-[85%] md:text-base">
             Get access to a pool of prospective customers when you list your storage with us.
           </p>
-          <Link href="/get-started">
+          <Link href="/signup">
             <a className="btn btn-primary w-[150px] text-sm font-normal">Get Started</a>
           </Link>
         </div>

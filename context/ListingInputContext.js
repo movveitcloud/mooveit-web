@@ -42,6 +42,7 @@ const initialState = {
   monthlyRate: 0,
   hourlyRate: 0,
   consent: false,
+  autoApprove: false,
 };
 
 export const ListingInputContextProvider = ({ children }) => {
