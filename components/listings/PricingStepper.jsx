@@ -18,6 +18,16 @@ const PricingStepper = () => {
       <div className="space-y-6">
         <Pricing />
         <div className="flex items-center gap-5">
+          <p className="">Auto approve all booking requests </p>
+          <input
+            type="checkbox"
+            name="autoApprove"
+            onChange={handleChange}
+            checked={formDetails.autoApprove}
+            className="toggle toggle-primary toggle-sm h-4 w-7 bg-[#cccccc]"
+          />
+        </div>
+        <div className="flex items-center gap-5">
           <p className="">
             I agree with MovveIT's{" "}
             <Link href="#" className="font-semibold">
@@ -29,16 +39,6 @@ const PricingStepper = () => {
             name="consent"
             onChange={handleChange}
             checked={formDetails.consent}
-            className="toggle toggle-primary toggle-sm h-4 w-7 bg-[#cccccc]"
-          />
-        </div>
-        <div className="flex items-center gap-5">
-          <p className="">Auto approve lisiting </p>
-          <input
-            type="checkbox"
-            name="autoApprove"
-            onChange={handleChange}
-            checked={formDetails.autoApprove}
             className="toggle toggle-primary toggle-sm h-4 w-7 bg-[#cccccc]"
           />
         </div>
