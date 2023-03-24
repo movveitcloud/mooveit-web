@@ -20,6 +20,8 @@ const BookNow = () => {
   const bookingStartDate = useRef();
   const bookingEndDate = useRef();
   const preview = userListing?.status !== "approved";
+  
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,6 +41,9 @@ const BookNow = () => {
   const price = isHourly ? hourlyRate : monthlyRate;
   const time = isHourly ? totalHours : totalMonths;
   const total = price * time;
+
+  const disabled=!total
+  
 
   const handleBooking = () => {
     const payload = {
@@ -141,6 +146,7 @@ const BookNow = () => {
           <p className="text-xl font-bold text-primary">{startDate && endDate ? formatMoney(total) : "- -"}</p>
         </div>
         <button
+         disabled={disabled}
           className={`btn btn-primary flex w-full gap-2 text-sm normal-case disabled:btn-accent ${
             preview ? "btn-disabled bg-primary bg-opacity-50 text-[#ccc]" : ""
           }`}

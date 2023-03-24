@@ -78,6 +78,8 @@ export { default as RentersInformation } from "./bookings/RentersInformation";
 export { default as RentersBookingPeriod } from "./bookings/RentersBookingPeriod";
 export { default as RentersAdditionalServices } from "./bookings/RentersAdditionalServices";
 export { default as RentersPrice } from "./bookings/RentersPrice";
+export { default as RentersType } from "./bookings/RentersType";
+export { default as RentersAccess } from "./bookings/RentersAccess";
 
 //CHECKOUT
 export { default as ListingCardCheckout } from "./checkout/ListingCardCheckout";

@@ -155,9 +155,9 @@ const BookListingMainCard = () => {
           )} */}
           <div className="flex flex-row gap-6 ">
             {userListing?.services?.map(
-              (val) =>
+              (val,i) =>
                 (val === "delivery" || val === "packing") && (
-                  <div className="flex flex-row gap-6 ">
+                  <div className="flex flex-row gap-6 " key={i}>
                     {val === "delivery" && (
                       <p className="flex flex-row items-center gap-2">
                         <span className="rounded-full bg-accent p-[6px]">

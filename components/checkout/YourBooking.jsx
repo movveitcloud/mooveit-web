@@ -20,7 +20,7 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange, userLis
 
   const { bookListingLoading } = useSelector((state) => state.booking);
   const dis = !bookingInfo.pickupAddress || !bookingInfo.pickupDistance || !bookingInfo.consent;
-  const defaultProps = { zoom: 15 };
+  const defaultProps = { center: { lat: 10.99835602, lng: 77.01502627 }, zoom: 15 };
   const disabled = bookingInfo?.moving
     ? !bookingInfo.pickupAddress || !bookingInfo.pickupDistance || !bookingInfo.consent
     : !bookingInfo.consent;
@@ -72,7 +72,7 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange, userLis
   //console.log(searchGeoLocation.lat);
   useEffect(() => {
     if (searchGeoLocation) {
-      console.log(getDistance(storageLocation, searchGeoLocation) / 1000, "km");
+      //console.log(getDistance(storageLocation, searchGeoLocation) / 1000, "km");
       setBookingInfo({ ...bookingInfo, pickupDistance: getDistance(storageLocation, searchGeoLocation) / 1000 });
     } else {
       setBookingInfo({ ...bookingInfo, pickupDistance: "" });
@@ -106,7 +106,7 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange, userLis
     //  //console.log(searchGeoLocation);
     // }
   };
-
+  
   const handleSuccess = () => {
     router.push(`${user.role == "customer" ? "/your-storage" : "/listings"}`);
   };
@@ -118,18 +118,21 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange, userLis
       endDate,
       price: bookingInfo.total,
       pickupAddress: bookingDetails.pickupAddress,
-      moving: bookingDetails.moving,
-      packing: bookingDetails.packing,
+      // moving: bookingDetails.moving,
+      // packing: bookingDetails.packing,
+      moving: bookingInfo.moving,
+      packing: bookingInfo.packing,
       type,
     };
-    //console.log(payload);
+   
     dispatch(bookListing({ payload, handleSuccess }));
   };
+  
 
   const handleSelect = (address) => {
     setSearchLocation(address);
     setBookingDetails({ ...bookingDetails, pickupAddress: address });
-    console.log(bookingDetails);
+    
     if (address) {
       geocodeByAddress(address)
         .then((results) => getLatLng(results[0]))
@@ -149,8 +152,7 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange, userLis
   };
 
   const { singleListing } = useSelector((state) => state.listing);
-  //console.log(storageLocation);
-
+ 
   useEffect(() => {
     setBookingDetails({ ...bookingDetails, ...JSON.parse(sessionStorage.getItem("booking")) });
     setPageReady(true);
@@ -297,7 +299,7 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange, userLis
               <div className="mt-8 h-[250px] w-full overflow-hidden rounded-md">
                 <GoogleMapReact
                   bootstrapURLKeys={{ key: process.env.PLACES_KEY }}
-                  center={searchGeoLocation}
+                  center={searchGeoLocation ? searchGeoLocation : 0}
                   defaultZoom={defaultProps.zoom}>
                   {searchGeoLocation?.lat && <Marker lat={searchGeoLocation?.lat} lng={searchGeoLocation?.lng} />}
                 </GoogleMapReact>

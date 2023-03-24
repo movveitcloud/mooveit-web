@@ -66,23 +66,23 @@ const Search = () => {
                   </div>
                 </div>
               ) : (
-                // <div className="grid place-items-center gap-10 md:grid-cols-2 xl:grid-cols-3">
-                //   {[...searchListings]
-                //     ?.reverse()
-                //     .slice(0, count)
-                //     ?.map((item, i) => (
-                //       <ListingCard item={item} key={i} />
-                //     ))}
-                // </div>
                 <div className="grid place-items-center gap-10 md:grid-cols-2 xl:grid-cols-3">
                   {[...searchListings]
                     ?.reverse()
                     .slice(0, count)
-                    ?.filter((items) => !chosenBookings.includes(items._id))
-                    .map((item, i) => (
+                    ?.map((item, i) => (
                       <ListingCard item={item} key={i} />
                     ))}
                 </div>
+                // <div className="grid place-items-center gap-10 md:grid-cols-2 xl:grid-cols-3">
+                //   {[...searchListings]
+                //     ?.reverse()
+                //     .slice(0, count)
+                //     ?.filter((items) => !chosenBookings.includes(items._id))
+                //     .map((item, i) => (
+                //       <ListingCard item={item} key={i} />
+                //     ))}
+                // </div>
               )}
             </motion.div>
 

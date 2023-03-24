@@ -48,7 +48,7 @@ const ListingDetails = () => {
   const { storageServices } = useSelector((state) => state.config);
 
   const { userListing, userListingLoading } = useSelector((state) => state.listing);
-  console.log(userListing);
+  
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className="space-y-8">

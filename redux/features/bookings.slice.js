@@ -58,11 +58,13 @@ export const createPaymentLink = createAsyncThunk(
       const response = await api.createPaymentLink(payload);
       refreshPage();
       //successPopUp({ msg: "Link created successfully" });
-      closeModal.current.click();
+      //closeModal.current.click();
       //router.push("/your-storage/pay");
       return response.data;
     } catch (err) {
       errorPopUp({ msg: err.response.data.error });
+      //console.log(payload);
+      //console.log(err.response.data);
       return rejectWithValue(err.response.data);
     }
   }

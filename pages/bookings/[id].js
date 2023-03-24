@@ -85,7 +85,7 @@ const Manage = () => {
                   }
                 />
 
-                <RentersAdditionalServices
+                {/* <RentersAdditionalServices
                   delivery={getService({
                     options: "delivery",
                     key: singleBooking?.storageListing?.services,
@@ -98,6 +98,12 @@ const Manage = () => {
                     list: singleBooking,
                     name: "packing",
                   })}
+                /> */}
+                 <RentersAdditionalServices
+                  delivery={singleBooking?.moving==true?"true":""
+                  }
+                  packing={singleBooking?.packing==true?"true":""
+                }
                 />
                 <RentersPrice listingPrice={singleBooking?.price} />
               </>
