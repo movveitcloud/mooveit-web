@@ -86,8 +86,8 @@ const Manage = () => {
   const { storageTypes } = useSelector((state) => state.config);
   const { storageFloors } = useSelector((state) => state.config);
   const { storageFeatures } = useSelector((state) => state.config);
-  const { StorageAccessPeriods } = useSelector((state) => state.config);
-  const { StorageAccessTypes } = useSelector((state) => state.config);
+  const { storageAccessPeriods } = useSelector((state) => state.config);
+  const { storageAccessTypes } = useSelector((state) => state.config);
   console.log(storageFeatures);
   // useEffect(() => {
   //   if (singleBooking) {
@@ -153,6 +153,7 @@ const Manage = () => {
                   packing={singleBooking?.packing == true ? "true" : ""}
                   pickupAddress={singleBooking?.pickupAddress}
                 />
+                <RentersPrice listingPrice={singleBooking?.price} />
                 <RentersType
                   storageType={getValue({ options: storageTypes, key: singleBooking?.storageListing?.storageType })}
                   storageFloor={getValue({ options: storageFloors, key: singleBooking?.storageListing?.storageFloor })}
@@ -161,16 +162,16 @@ const Manage = () => {
                     key: singleBooking?.storageListing?.storageFeatures,
                   })}
                 />
-                {/* <RentersAccess
+                <RentersAccess
                   storageAccessPeriod={getValue({
-                    options: StorageAccessPeriods,
+                    options: storageAccessPeriods,
                     key: singleBooking?.storageListing?.storageAccessPeriod,
                   })}
                   storageAccessType={getValue({
-                    options: StorageAccessTypes,
+                    options: storageAccessTypes,
                     key: singleBooking?.storageListing?.storageAccessType,
                   })}
-                /> */}
+                />
                 {/* <RentersAdditionalServices
                   delivery={getService({
                     options: "delivery",
@@ -185,7 +186,6 @@ const Manage = () => {
                     name: "packing",
                   })}
                 /> */}
-                <RentersPrice listingPrice={singleBooking?.price} />
               </div>
 
               {/* <>

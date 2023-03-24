@@ -6,14 +6,28 @@ import { getBooking, getSingleBooking, approveBooking } from "../../redux/featur
 import { useDispatch, useSelector } from "react-redux";
 import { PulseLoader } from "react-spinners";
 import { getService } from "../../helpers/utils";
+import { getValue, getValueArray } from "../../helpers/utils";
 import {
   DashboardLayout,
   RentersInformation,
   RentersBookingPeriod,
   RentersAdditionalServices,
   RentersPrice,
+  RentersType,
+  RentersAccess,
   DisapproveBookingModal,
 } from "../../components";
+import {
+  getStorageAccessPeriods,
+  getShortestPeriods,
+  getNoticePeriods,
+  getStorageServices,
+  getStorageSizes,
+  getStorageAccessTypes,
+  getStorageFeatures,
+  getStorageFloors,
+  getStorageTypes,
+} from "../../redux/features/config.slice";
 import { ChevronRightIcon } from "@heroicons/react/outline";
 
 const Manage = () => {
@@ -23,7 +37,7 @@ const Manage = () => {
   const { bookings, singleBooking, singleBookingLoading, approveBookingLoading } = useSelector(
     (state) => state.bookings
   );
-
+  console.log(singleBooking);
   const dispatch = useDispatch();
   const approve = () => {
     const payload = { approvalStatus: "approved" };
@@ -40,6 +54,20 @@ const Manage = () => {
       dispatch(getSingleBooking({ id }));
     }
   }, [query]);
+
+  useEffect(() => {
+    dispatch(getStorageTypes());
+    dispatch(getStorageFloors());
+    dispatch(getStorageFeatures());
+    dispatch(getStorageAccessPeriods());
+    dispatch(getStorageAccessTypes());
+  }, []);
+  const { storageTypes } = useSelector((state) => state.config);
+  const { storageFloors } = useSelector((state) => state.config);
+  const { storageFeatures } = useSelector((state) => state.config);
+  const { storageAccessPeriods } = useSelector((state) => state.config);
+  const { storageAccessTypes } = useSelector((state) => state.config);
+  console.log(storageFeatures);
   //console.log(singleBooking);
   return (
     <DashboardLayout>
@@ -99,14 +127,31 @@ const Manage = () => {
                     name: "packing",
                   })}
                 /> */}
-                 <RentersAdditionalServices
-                  delivery={singleBooking?.moving==true?"true":""
-                  }
-                  packing={singleBooking?.packing==true?"true":""
-                }
+                <RentersAdditionalServices
+                  delivery={singleBooking?.moving == true ? "true" : ""}
+                  packing={singleBooking?.packing == true ? "true" : ""}
+                  pickupAddress={singleBooking?.pickupAddress}
                 />
                 <RentersPrice listingPrice={singleBooking?.price} />
               </>
+              <RentersType
+                storageType={getValue({ options: storageTypes, key: singleBooking?.storageListing?.storageType })}
+                storageFloor={getValue({ options: storageFloors, key: singleBooking?.storageListing?.storageFloor })}
+                storageFeatures={getValueArray({
+                  options: storageFeatures,
+                  key: singleBooking?.storageListing?.storageFeatures,
+                })}
+              />
+              <RentersAccess
+                storageAccessPeriod={getValue({
+                  options: storageAccessPeriods,
+                  key: singleBooking?.storageListing?.storageAccessPeriod,
+                })}
+                storageAccessType={getValue({
+                  options: storageAccessTypes,
+                  key: singleBooking?.storageListing?.storageAccessType,
+                })}
+              />
 
               {singleBooking.approvalStatus === "pending" ? (
                 <div className=" flex justify-center gap-3">

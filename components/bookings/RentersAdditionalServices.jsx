@@ -20,8 +20,8 @@ const RentersAdditionalServices = ({ delivery, packing, pickupAddress }) => {
                     <span className="rounded-full bg-accent p-[6px]">
                       <TruckIcon className="w-6 text-primary" />
                     </span>
-                    <div className="flex flex-col">
-                      <span className="text-base text-[#222222]">Pickup Address</span>
+                    <div className="flex flex-col text-sm text-primary md:text-base">
+                      <span className=" text-[#222222]">Pickup Address</span>
                       {/* <p>This listing offers moving services for an additional cost</p> */}
                       <p>{pickupAddress}</p>
                     </div>

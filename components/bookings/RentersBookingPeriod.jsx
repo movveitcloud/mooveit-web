@@ -11,13 +11,13 @@ const RentersBookingPeriod = ({ startPeriod, endPeriod }) => {
       </div>
       {/* <div className=" flex cursor-pointer justify-between  px-4 py-4 text-[#222222] md:px-6"> */}
       {/* <div className="  flex w-full   items-center  justify-between rounded-lg border-l-4 border-accent bg-[#F9F9F9] px-4  py-4 text-sm md:w-[100%] md:px-6"> */}
-      <div className="flex   w-full  items-center justify-start py-4  px-4 md:px-6 ">
+      <div className="flex   w-full  items-center justify-start py-4  px-4  md:px-6  md:text-base">
         <span className="flex h-10 w-10 items-center  justify-center rounded-full ">
-          <div className="mr-2 flex h-8 w-8  items-center justify-center rounded-full bg-white ">
+          <div className="mr-2 flex h-8 w-8  items-center justify-center rounded-full bg-accent ">
             {<CalendarIcon className="w-4" />}
           </div>
         </span>
-        <p className=" mr-2 text-[12px] uppercase md:text-[14px]">
+        <p className=" mr-2 text-sm uppercase md:text-base">
           {startPeriod} - {endPeriod}
         </p>
       </div>

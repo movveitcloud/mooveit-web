@@ -32,11 +32,11 @@ const RentersPrice = ({ listingPrice }) => {
         <div className="   ">
           <div className="flex items-center justify-between text-sm">
             <span className="flex h-10 w-10 items-center  justify-center rounded-full ">
-              <div className="mr-2 flex h-8 w-8 items-center  justify-center rounded-full bg-white font-bold ">
+              <div className="mr-2 flex h-8 w-8 items-center  justify-center rounded-full bg-accent font-bold ">
                 <CreditCardIcon className="w-4" />
               </div>
             </span>
-            <p className="text-primary">{formatMoney(listingPrice)}</p>
+            <p className="text-sm text-primary md:text-base">{formatMoney(listingPrice)}</p>
           </div>
           {/* <PriceItem name={`x${period} ${type == "hourly" ? "hour" : "month"}${time > 1 ? "s" : ""}`} amount={price} />
         {movingPrice > 0 && <PriceItem name="Moving" amount={movingPrice} />}

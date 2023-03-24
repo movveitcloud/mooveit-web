@@ -7,18 +7,19 @@ const Access = ({ storageAccessPeriod, storageAccessType, parkingInstruction, pa
       <div className="mt-2 flex cursor-pointer justify-between  px-4  text-[#222222] md:px-6">
         <h2 className="text-left text-sm font-semibold capitalize md:text-base">Access</h2>
       </div>
-      <div className="grid grid-cols-1 gap-2 gap-y-4 md:grid-cols-2">
-        <div>
-          <h3 className="font-semibold">Storage Access Period</h3>
-          <div className="items-center ">{storageAccessPeriod}</div>
-        </div>
+      <div className="  px-4 py-4 text-sm text-[#222222] md:px-6 md:text-base">
+        <div className="grid grid-cols-1 gap-2 gap-y-4 md:grid-cols-2">
+          <div>
+            <h3 className="mb-2 font-semibold ">Storage Access Period</h3>
+            <div className="items-center ">{storageAccessPeriod}</div>
+          </div>
 
-        <div>
-          <h3 className="font-semibold ">Storage Access Type</h3>
-          <div className="items-center ">{storageAccessType}</div>
-        </div>
+          <div>
+            <h3 className="mb-2 font-semibold ">Storage Access Type</h3>
+            <div className="items-center ">{storageAccessType}</div>
+          </div>
 
-        {/* <div className="items-center">
+          {/* <div className="items-center">
           <p className="font-bold">Parking Permit</p>
           {parkingPermit}
         </div>
@@ -27,6 +28,7 @@ const Access = ({ storageAccessPeriod, storageAccessType, parkingInstruction, pa
           <h3 className="font-bold">Parking Instructions</h3>
           <div className="items-center">{parkingInstruction}</div>
         </div> */}
+        </div>
       </div>
     </>
   );
