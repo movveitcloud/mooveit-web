@@ -5,7 +5,7 @@ import { PencilIcon, LocationMarkerIcon } from "@heroicons/react/outline";
 const YourstorageLayout = ({ storageStatus, bookings }) => {
   const router = useRouter();
   const viewStorage = (_id) => router.push(`/your-storage/${_id}`);
-  console.log(bookings);
+  //console.log(bookings);
 
   return (
     <div className="mt-12 flex w-full flex-wrap gap-5">
@@ -27,7 +27,10 @@ const YourstorageLayout = ({ storageStatus, bookings }) => {
               <h4 className="text-[.6rem] lg:text-[.7rem]">{storageListing?.address}</h4>
             </div>
 
-            <div className="float-right mt-2 cursor-pointer md:mt-4 " onClick={() => viewStorage(_id)}>
+            <div
+              className="mt-2 flex cursor-pointer items-center justify-between md:mt-4 "
+              onClick={() => viewStorage(_id)}>
+              <div className="text-[.7rem] font-semibold  lg:text-[.8rem]">{storageListing?.storageTitle}</div>
               <div className=" flex">
                 <PencilIcon className="mr-2 w-4 text-[#4543A5] " />
                 <p className="cursor-pointer text-[.7rem] text-[#4543A5] lg:text-[.8rem]">MANAGE</p>
@@ -50,7 +53,10 @@ const YourstorageLayout = ({ storageStatus, bookings }) => {
               <h4 className="text-[.6rem] lg:text-[.7rem]">{storageListing?.address}</h4>
             </div>
 
-            <div className="float-right mt-2 cursor-pointer md:mt-4 " onClick={() => viewStorage(_id)}>
+            <div
+              className="mt-2 flex cursor-pointer items-center justify-between md:mt-4 "
+              onClick={() => viewStorage(_id)}>
+              <div className="text-[.7rem] font-semibold  lg:text-[.8rem]">{storageListing?.storageTitle}</div>
               <div className=" flex">
                 <PencilIcon className="mr-2 w-4 text-[#4543A5] " />
                 <p className="cursor-pointer text-[.7rem] text-[#4543A5] lg:text-[.8rem]">MANAGE</p>

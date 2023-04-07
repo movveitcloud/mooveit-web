@@ -17,8 +17,23 @@ export const getService = ({ options, key, name }) => {
 };
 
 export const getValue = ({ options, key }) => {
+  console.log(key);
   const item = options.find((p) => p.value == key);
+  console.log(options);
+  console.log(key);
+  return item ? item.label : "N/A";
+};
 
+export const getValueArray = ({ options, key }) => {
+  const item = {};
+  let arrs = [];
+  console.log(key);
+  key?.map((val) => {
+    console.log(val);
+    item = options.find((p) => p.value == val);
+    arrs = [...arrs, item];
+  });
+  console.log(options);
   return item ? item.label : "N/A";
 };
 
