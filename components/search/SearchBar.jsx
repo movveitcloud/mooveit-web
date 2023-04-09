@@ -146,12 +146,12 @@ const SearchBar = ({ showMap, setShowMap }) => {
 
           <div className="mx-auto md:m-0">
             <div className="flex justify-center md:gap-8">
-              <button
+              {/* <button
                 className="btn btn-primary mr-8 flex items-center px-6 text-sm text-[0.8rem] font-normal normal-case md:mr-0 md:gap-2 md:text-[1em]"
                 onClick={toggleView}>
                 <MapIcon className="mr-2 w-4 md:mr-0 " />
                 {showMap ? "Hide Map" : "Show Map"}
-              </button>
+              </button> */}
               <label
                 htmlFor="filter"
                 className="btn btn-outline btn-primary flex items-center px-6 text-sm text-[0.8rem] font-normal normal-case hover:btn-accent md:gap-2 md:text-[1em]">

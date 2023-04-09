@@ -26,6 +26,7 @@ const BookListingMainCard = () => {
   const { userListing, userListingLoading } = useSelector((state) => state.listing);
   const [currentIndex, setCurrentIndex] = useState(0);
   const videoRef = useRef(null);
+  console.log(userListing);
 
   const prevImage = () => {
     if (currentIndex > 0) {
@@ -155,7 +156,7 @@ const BookListingMainCard = () => {
           )} */}
           <div className="flex flex-row gap-6 ">
             {userListing?.services?.map(
-              (val,i) =>
+              (val, i) =>
                 (val === "delivery" || val === "packing") && (
                   <div className="flex flex-row gap-6 " key={i}>
                     {val === "delivery" && (

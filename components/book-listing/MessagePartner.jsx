@@ -6,7 +6,7 @@ import BookContainer from "./BookContainer";
 
 const MessagePartner = () => {
   const { userListing, userListingLoading } = useSelector((state) => state.listing);
-  //console.log(userListing);
+  console.log(userListing);
 
   return (
     <BookContainer>
