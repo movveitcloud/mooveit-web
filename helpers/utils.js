@@ -17,10 +17,8 @@ export const getService = ({ options, key, name }) => {
 };
 
 export const getValue = ({ options, key }) => {
-  console.log(key);
   const item = options.find((p) => p.value == key);
-  console.log(options);
-  console.log(key);
+
   return item ? item.label : "N/A";
 };
 

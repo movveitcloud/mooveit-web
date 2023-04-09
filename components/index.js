@@ -22,6 +22,7 @@ export { default as FormPassword } from "./shared/FormPassword";
 export { default as FeaturedListings } from "./shared/FeaturedListings";
 export { default as StorageListingCTA } from "./shared/StorageListingCTA";
 export { default as ListingCard } from "./shared/ListingCard";
+export { default as ListingCardHome } from "./shared/ListingCardHome";
 export { default as Accordion } from "./shared/Accordion";
 export { default as PageTransition } from "./shared/PageTransition";
 export { default as Switch } from "./shared/Switch";

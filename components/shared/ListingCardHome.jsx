@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getStorageFeatures } from "../../redux/features/config.slice";
 import Image from "next/image";
 
-const ListingCard = ({ item }) => {
+const ListingCardHome = ({ item }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getStorageFeatures());
@@ -22,7 +22,7 @@ const ListingCard = ({ item }) => {
 
   return (
     <Link href={`/book/${item?._id}`}>
-      <a className="h-full w-full rounded-lg bg-white p-5 transition-shadow duration-500 hover:shadow sm:w-[375px]">
+      <a className="h-full w-[300px] rounded-lg bg-white p-5 transition-shadow duration-500 hover:shadow">
         <div className="relative h-[200px] w-full overflow-hidden rounded-lg">
           <Image
             src={item?.media?.[0]}
@@ -46,8 +46,8 @@ const ListingCard = ({ item }) => {
             <LocationMarkerIcon className="w-4" />
             <span
               className="tooltip tooltip-primary text-sm uppercase"
-              data-tip={item?.address}>{`${item?.address?.slice(0, 38)}${
-              item?.address?.length > 38 ? "..." : ""
+              data-tip={item?.address}>{`${item?.address?.slice(0, 23)}${
+              item?.address?.length > 23 ? "..." : ""
             }`}</span>
           </p>
 
@@ -135,4 +135,4 @@ const ListingCard = ({ item }) => {
   );
 };
 
-export default ListingCard;
+export default ListingCardHome;

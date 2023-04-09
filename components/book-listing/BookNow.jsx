@@ -20,8 +20,6 @@ const BookNow = () => {
   const bookingStartDate = useRef();
   const bookingEndDate = useRef();
   const preview = userListing?.status !== "approved";
-  
-  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -42,8 +40,7 @@ const BookNow = () => {
   const time = isHourly ? totalHours : totalMonths;
   const total = price * time;
 
-  const disabled=!total
-  
+  const disabled = !total;
 
   const handleBooking = () => {
     const payload = {
@@ -61,9 +58,9 @@ const BookNow = () => {
 
   return (
     <BookContainer>
-      <div className="space-y-5 md:space-y-6">
-        <h2 className="font-semibold capitalize">Book Now</h2>
-        <div className="flex space-x-4">
+      <div className=" space-y-5 md:space-y-6">
+        <h2 className="mb-4 font-semibold capitalize">Book Now</h2>
+        <div className=" flex h-full space-x-4 ">
           <button
             className={`rounded-lg border py-2 px-6 text-xs uppercase transition-all duration-300 md:text-sm ${
               type == "hourly" ? "border-primary bg-primary text-white" : "border-[#AAAAAA} text-[#AAAAAA]"
@@ -80,7 +77,7 @@ const BookNow = () => {
           </button>
         </div>
 
-        <div>
+        <div className="  ">
           <p className="mb-3">Date & Time</p>
           <div className="flex flex-col items-center space-y-3 md:flex-row md:space-x-4 md:space-y-0">
             <div
@@ -146,8 +143,8 @@ const BookNow = () => {
           <p className="text-xl font-bold text-primary">{startDate && endDate ? formatMoney(total) : "- -"}</p>
         </div>
         <button
-         disabled={disabled}
-          className={`btn btn-primary flex w-full gap-2 text-sm normal-case disabled:btn-accent ${
+          disabled={disabled}
+          className={`btn btn-primary   flex w-full gap-2 text-sm normal-case disabled:btn-accent ${
             preview ? "btn-disabled bg-primary bg-opacity-50 text-[#ccc]" : ""
           }`}
           onClick={handleBooking}>

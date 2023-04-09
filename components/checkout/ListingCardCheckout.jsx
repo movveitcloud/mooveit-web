@@ -17,25 +17,24 @@ const ListingCardCheckout = ({ item, bookingInfo, setBookingInfo }) => {
   const [pickup, setPickup] = useState(0);
   const { type, time, unitPrice, moving, packing, pickupDistance } = bookingInfo;
   const movingDistance = pickupDistance;
-  const { costPerKm } = item
-  
+  const { costPerKm } = item;
 
   const period = time;
   const pricePerPeriod = unitPrice;
   const movingCost = costPerKm ? costPerKm : 0;
-  
-  const dist = movingDistance?movingDistance:0;
-  const movingCostNum = +movingCost
 
-  const movingPrice = movingCostNum * dist ;
+  const dist = movingDistance ? movingDistance : 0;
+  const movingCostNum = +movingCost;
+
+  const movingPrice = movingCostNum * dist;
   const packingPrice = 0;
   const price = pricePerPeriod * period;
-  
+
   const subTotal = price + movingPrice + packingPrice;
   const taxes = (7.5 / 100) * subTotal;
+  const tot = subTotal + taxes;
+  console.log(typeof taxes);
   const total = Math.round(subTotal + taxes);
-  
-  
 
   useEffect(() => {
     setBookingInfo({ ...bookingInfo, total });

@@ -1,7 +1,7 @@
 import React from "react";
 
 const BookContainer = ({ children }) => {
-  return <div className="bg-white rounded-lg p-5 w-full">{children}</div>;
+  return <div className=" w-full rounded-lg bg-white p-5">{children}</div>;
 };
 
 export default BookContainer;
