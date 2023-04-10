@@ -27,11 +27,13 @@ const Search = () => {
     dispatch(getSearchListings({ payload: { area: query ? query.toLowerCase() : "" } }));
     // }
   }, [query]);
+  //console.log(query);
+
   useEffect(() => {
     dispatch(getBooking());
   }, []);
   const chosenBookings = bookings?.map(({ storageListing }) => storageListing?._id);
-  console.log(searchListings);
+  //console.log(searchListings);
 
   //console.log(geolocation, "geo");
 
@@ -86,11 +88,14 @@ const Search = () => {
               )}
             </motion.div>
 
-            {searchListings?.length > 5 && count < searchListings?.length && (
-              <div className="my-16 flex justify-center" onClick={handleShowMore}>
-                <button className="btn btn-outline btn-primary px-12 text-sm font-normal">Show More</button>
-              </div>
-            )}
+            {searchLoading
+              ? ""
+              : searchListings?.length > 5 &&
+                count < searchListings?.length && (
+                  <div className="my-16 flex justify-center" onClick={handleShowMore}>
+                    <button className="btn btn-outline btn-primary px-12 text-sm font-normal">Show More</button>
+                  </div>
+                )}
           </>
         )}
       </div>
