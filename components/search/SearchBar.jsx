@@ -12,6 +12,7 @@ import {
 import FilterModal from "../modals/FilterModal";
 import Switch from "../shared/Switch";
 import PlacesAutocomplete from "react-places-autocomplete";
+import { useRouter } from "next/router";
 
 const initialState = {
   address: "",
@@ -26,10 +27,17 @@ const initialState = {
 };
 
 const SearchBar = ({ showMap, setShowMap }) => {
+  const [searchTerm, setSearchTerm] = useState("");
   const [formDetails, setFormDetails] = useState(initialState);
 
-  const handleAddressChange = (address) => setFormDetails({ ...formDetails, address });
-  const handleSelect = (address) => setFormDetails({ ...formDetails, address });
+  const handleAddressChange = (address) => {
+    setFormDetails({ ...formDetails, address });
+    setSearchTerm(address);
+  };
+  const handleSelect = (address) => {
+    setFormDetails({ ...formDetails, address });
+    setSearchTerm(address);
+  };
 
   const handleChange = (e) => {
     const { type, name, value, checked } = e.target;
@@ -45,20 +53,28 @@ const SearchBar = ({ showMap, setShowMap }) => {
     setShowMap(!showMap);
   };
 
+  const router = useRouter();
+
+  const handleSearch = (e) => {
+    // console.log("hi");
+    if (!searchTerm) return errorPopUp({ msg: "Please enter a location" });
+    router.push({ pathname: "/search", query: { s: searchTerm.toLowerCase() } });
+  };
+
   return (
     <div className="sticky top-0 z-40 text-sm">
       <div className="flex bg-primary">
-        <div className="mx-auto max-w-full justify-center p-5 md:max-w-[90%] lg:max-w-[85%] ">
-          <div className="flex w-full flex-col items-center rounded-lg bg-white px-10  py-4 md:flex-row md:gap-2">
-            <div className="mb-2  flex items-center gap-1 md:mb-0 md:gap-3">
-              <div className="flex items-center  border-r md:gap-2">
+        <div className="mx-auto max-w-full justify-center  p-5 md:max-w-[90%] lg:max-w-[85%] ">
+          <div className="flex w-full flex-col items-center  rounded-lg bg-white  px-10  py-4 md:flex-row md:gap-2">
+            <div className="mb-2 mr-20 flex items-start   gap-1 md:mb-0 md:gap-3">
+              <div className="flex items-center   md:gap-2">
                 <LocationMarkerIcon className="mr-1 w-5 md:mr-0" />
                 {/* <input
                   type="text"
                   className="bg-transparent text-[0.6rem] md:text-[0.9em]  outline-none w-full"
                   placeholder="LONDON, UK"
                 /> */}
-                <div className="w-full">
+                <div className="w-full ">
                   <PlacesAutocomplete
                     value={formDetails.address}
                     onChange={handleAddressChange}
@@ -67,7 +83,7 @@ const SearchBar = ({ showMap, setShowMap }) => {
                     searchOptions={{ types: ["locality", "country"] }}
                     shouldFetchSuggestions={formDetails?.address?.length > 5}>
                     {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                      <div className="relative">
+                      <div className="relative ">
                         <input
                           {...getInputProps({
                             placeholder: "Enter location",
@@ -107,16 +123,16 @@ const SearchBar = ({ showMap, setShowMap }) => {
                   placeholder="ANY TIME"
                 />
               </div> */}
-              <div className="flex items-center  md:gap-2">
+              {/* <div className="flex items-center  md:gap-2">
                 <UserIcon className="mr-1 w-5 md:mr-0" />
                 <input
                   type="text"
                   className="w-full bg-transparent text-[0.6rem] outline-none md:text-[0.9em]"
                   placeholder="ANY PARTNER"
                 />
-              </div>
+              </div> */}
             </div>
-            <div className="w-full md:w-auto  ">
+            <div className="w-full md:w-auto  " onClick={handleSearch}>
               <button className=" btn btn-accent btn-sm flex h-8 w-full flex-nowrap items-center gap-2 px-5 text-sm text-[0.7rem] font-normal normal-case md:w-auto md:text-[0.9em]">
                 <SearchIcon className="w-4" /> Search
               </button>

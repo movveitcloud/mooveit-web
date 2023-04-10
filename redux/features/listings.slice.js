@@ -65,6 +65,7 @@ export const getListings = createAsyncThunk("/listing", async ({}, { rejectWithV
     return response.data;
   } catch (err) {
     errorPopUp({ msg: err.response.data.error });
+
     return rejectWithValue(err.response.data);
   }
 });
@@ -122,6 +123,7 @@ export const getSearchListings = createAsyncThunk(
       return response.data;
     } catch (err) {
       errorPopUp({ msg: err.response.data.error });
+
       return rejectWithValue(err.response.data);
     }
   }

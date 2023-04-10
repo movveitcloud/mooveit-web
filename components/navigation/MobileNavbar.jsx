@@ -14,41 +14,85 @@ const MobileNavBar = ({ pageLink, setMenuOpen }) => {
 
   return (
     <aside className="flex flex-col gap-6 py-8 px-4">
-      <div className="px-2 flex justify-between items-center  mt-2 mb-4">
+      <div className="mt-2 mb-4 flex items-center  justify-between px-2">
         <Link href="/">
           <a>
-            <img src="/logo.png" alt="logo" className="w-32 mr-8" onClick={() => setMenuOpen(false)} />
+            <img src="/logo.png" alt="logo" className="mr-8 w-32" onClick={() => setMenuOpen(false)} />
           </a>
         </Link>
-        <XIcon className="w-5 text-white cursor-pointer" onClick={() => setMenuOpen(false)} />
+        <XIcon className="w-5 cursor-pointer text-white" onClick={() => setMenuOpen(false)} />
       </div>
 
       <nav>
         <ul className="flex flex-col gap-4">
           {navLinks?.map(({ path, title, subMenus }, i) =>
             subMenus ? (
-              <details key={i}>
-                <summary className="flex justify-between items-center cursor-pointer" key={title}>
-                  <h2 className="text-white font-normal capitalize">{title}</h2>
+              // <details key={i}>
+              //   <summary className="flex cursor-pointer items-center justify-between" key={title}>
+              //     <h2 className="font-normal capitalize text-white">{title}</h2>
+              //     <div>
+              //       <ChevronDownIcon className="w-3 text-white" />
+              //     </div>
+              //   </summary>
+              //   <div className="mt-2 flex flex-col gap-3 text-sm">
+              //     {subMenus.map(({ title, path, deepMenus }) =>
+              //       deepMenus ? (
+              //         <details key={i}>
+              //           <summary className="ml-2 flex cursor-pointer items-center justify-between text-sm" key={title}>
+              //             <h2 className="font-normal capitalize text-white">{title}</h2>
+              //             <div>
+              //               <ChevronDownIcon className="w-3 text-white" />
+              //             </div>
+              //           </summary>
+              //           <div className=" flex flex-col gap-1 text-sm">
+              //             {deepMenus?.map(({ title, path }) => (
+              //               <Link href={path} key={path}>
+              //                 <a
+              //                   className="ml-3 rounded-md py-1 pl-3 capitalize text-[#d9d9d9] hover:text-accent"
+              //                   onClick={() => setMenuOpen(false)}>
+              //                   {title}
+              //                 </a>
+              //               </Link>
+              //             ))}
+              //           </div>
+              //         </details>
+              //       ) : (
+              //         <Link href={path} passHref={title == "Blog" && true} key={i}>
+              //           <a
+              //             target={title == "Blog" && "_blank"}
+              //             className={`${
+              //               pageLink == path && "font-semibold text-accent"
+              //             } ml-2 text-sm capitalize text-white hover:text-accent`}
+              //             onClick={() => setMenuOpen(false)}>
+              //             {title}
+              //           </a>
+              //         </Link>
+              //       )
+              //     )}
+              //   </div>
+              // </details>
+              <div key={i}>
+                <div className="flex cursor-pointer items-center justify-between" key={title}>
+                  <h2 className="font-normal capitalize text-white">{title}</h2>
                   <div>
                     <ChevronDownIcon className="w-3 text-white" />
                   </div>
-                </summary>
-                <div className="flex flex-col gap-3 text-sm mt-2">
+                </div>
+                <div className="mt-2 flex flex-col gap-3 text-sm">
                   {subMenus.map(({ title, path, deepMenus }) =>
                     deepMenus ? (
                       <details key={i}>
-                        <summary className="ml-2 text-sm flex justify-between items-center cursor-pointer" key={title}>
-                          <h2 className="text-white font-normal capitalize">{title}</h2>
+                        <summary className="ml-2 flex cursor-pointer items-center justify-between text-sm" key={title}>
+                          <h2 className="font-normal capitalize text-white">{title}</h2>
                           <div>
                             <ChevronDownIcon className="w-3 text-white" />
                           </div>
                         </summary>
-                        <div className="flex flex-col gap-1 text-sm">
+                        <div className=" flex flex-col gap-1 text-sm">
                           {deepMenus?.map(({ title, path }) => (
                             <Link href={path} key={path}>
                               <a
-                                className="ml-3 py-1 pl-3 rounded-md text-[#d9d9d9] hover:text-accent capitalize"
+                                className="ml-3 rounded-md py-1 pl-3 capitalize text-[#d9d9d9] hover:text-accent"
                                 onClick={() => setMenuOpen(false)}>
                                 {title}
                               </a>
@@ -61,8 +105,8 @@ const MobileNavBar = ({ pageLink, setMenuOpen }) => {
                         <a
                           target={title == "Blog" && "_blank"}
                           className={`${
-                            pageLink == path && "text-accent font-semibold"
-                          } ml-2 text-sm text-white hover:text-accent capitalize`}
+                            pageLink == path && "font-semibold text-accent"
+                          } ml-2 text-sm capitalize text-white hover:text-accent`}
                           onClick={() => setMenuOpen(false)}>
                           {title}
                         </a>
@@ -70,14 +114,14 @@ const MobileNavBar = ({ pageLink, setMenuOpen }) => {
                     )
                   )}
                 </div>
-              </details>
+              </div>
             ) : (
               <Link href={path} passHref={title == "Blog" && true} key={i}>
                 <a
                   target={title == "Blog" && "_blank"}
                   className={`${
-                    pageLink == path && "text-accent font-semibold"
-                  } text-white hover:text-accent capitalize`}
+                    pageLink == path && "font-semibold text-accent"
+                  } capitalize text-white hover:text-accent`}
                   onClick={() => setMenuOpen(false)}>
                   {title}
                 </a>
@@ -89,7 +133,7 @@ const MobileNavBar = ({ pageLink, setMenuOpen }) => {
 
       {pageReady && authenticatedUser() ? (
         <Link href={isPartner ? "/listings" : "/your-storage"}>
-          <a className="btn btn-accent w-full capitalize rounded-btn flex gap-2 items-center">
+          <a className="btn btn-accent rounded-btn flex w-full items-center gap-2 capitalize">
             <ViewGridIcon className="w-5" />
             <span>Dashboard</span>
           </a>
@@ -103,7 +147,7 @@ const MobileNavBar = ({ pageLink, setMenuOpen }) => {
           </Link>
           <Link href="/login">
             <a
-              className="btn bg-white hover:bg-white text-primary text-sm w-full font-normal"
+              className="btn w-full bg-white text-sm font-normal text-primary hover:bg-white"
               onClick={() => setMenuOpen(false)}>
               Log In
             </a>
