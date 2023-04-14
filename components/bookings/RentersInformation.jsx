@@ -1,15 +1,18 @@
 import { CalculatorIcon, CalendarIcon, MailIcon } from "@heroicons/react/outline";
 import { BadgeCheckIcon } from "@heroicons/react/solid";
+import Link from "next/link";
 import React from "react";
 
 import Accordion from "../shared/Accordion";
 
-const RentersInformation = ({ firstName, lastName, profilePicture,partner }) => {
+const RentersInformation = ({ data: { profilePicture, firstName, partner, email, lastName } }) => {
   return (
     // <Accordion title="Renter's Information">
     <>
       <div className="mt-2 flex cursor-pointer justify-between px-4 pt-6 text-[#222222] md:px-6">
-        <h2 className="text-left text-sm font-semibold capitalize md:text-base">{partner? "Partner's Information":"Renter's Information"}</h2>
+        <h2 className="text-left text-sm font-semibold capitalize md:text-base">
+          {partner ? "Partner's Information" : "Renter's Information"}
+        </h2>
       </div>
       <div className=" flex cursor-pointer justify-between px-4 py-4 text-[#222222] md:px-6">
         <div className="flex flex-grow flex-col items-center justify-center  gap-2  ">
@@ -21,9 +24,7 @@ const RentersInformation = ({ firstName, lastName, profilePicture,partner }) => 
             )}
           </div>
           <div className="flex items-center justify-center space-x-2">
-            <p>{partner?partner.firstName +" "+ partner.lastName: firstName +" " + lastName }
-              
-            </p>
+            <p>{partner ? partner.firstName + " " + partner.lastName : firstName + " " + lastName}</p>
             <BadgeCheckIcon className="ml-3 w-5 text-primary" />
           </div>
           {/* <div className="flex items-center justify-center space-x-2">
@@ -32,8 +33,9 @@ const RentersInformation = ({ firstName, lastName, profilePicture,partner }) => 
         </div> */}
           <div className="border-1 btn  mt-2 border-accent px-9 text-[#12181F] hover:border-accent hover:bg-accent">
             <MailIcon className="mr-3 w-4" />
-
-            <p>{partner?"MESSAGE PARTNER":"MESSAGE RENTER"}</p>
+            <a href={`mailto: ${email}`} target="_blank">
+              <p>{partner ? "MESSAGE PARTNER" : "MESSAGE RENTER"}</p>
+            </a>
           </div>
         </div>
       </div>

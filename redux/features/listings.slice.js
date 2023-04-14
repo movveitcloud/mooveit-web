@@ -65,7 +65,6 @@ export const getListings = createAsyncThunk("/listing", async ({}, { rejectWithV
     return response.data;
   } catch (err) {
     errorPopUp({ msg: err.response.data.error });
-
     return rejectWithValue(err.response.data);
   }
 });
@@ -85,7 +84,7 @@ export const getUserListing = createAsyncThunk("/users/listing/listingId", async
     const response = await api.getUserListing(id);
     return response.data;
   } catch (err) {
-    // errorPopUp({ msg: err.response.data.error });
+    errorPopUp({ msg: err.response.data.error });
     return rejectWithValue(err.response.data);
   }
 });
@@ -123,7 +122,6 @@ export const getSearchListings = createAsyncThunk(
       return response.data;
     } catch (err) {
       errorPopUp({ msg: err.response.data.error });
-
       return rejectWithValue(err.response.data);
     }
   }

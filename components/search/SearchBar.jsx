@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { ListingInputContext } from "../../context";
 import {
   ClockIcon,
   CubeIcon,
@@ -29,6 +30,7 @@ const initialState = {
 const SearchBar = ({ showMap, setShowMap }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [formDetails, setFormDetails] = useState(initialState);
+  const { serviceProvided, setServiceProvided, initialService } = useContext(ListingInputContext);
 
   const handleAddressChange = (address) => {
     setFormDetails({ ...formDetails, address });
@@ -46,7 +48,14 @@ const SearchBar = ({ showMap, setShowMap }) => {
       ...formDetails,
       [name]: val,
     });
+    setServiceProvided({ ...serviceProvided, [name]: val });
+    console.log(serviceProvided);
+    //console.log(name + checked);
+    //console.log(formDetails);
   };
+  useEffect(() => {
+    setServiceProvided(initialService);
+  }, []);
 
   const toggleView = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -60,6 +69,7 @@ const SearchBar = ({ showMap, setShowMap }) => {
     if (!searchTerm) return errorPopUp({ msg: "Please enter a location" });
     router.push({ pathname: "/search", query: { s: searchTerm.toLowerCase() } });
   };
+  //console.log(serviceProvided);
 
   return (
     <div className="sticky top-0 z-40 text-sm">
@@ -162,12 +172,12 @@ const SearchBar = ({ showMap, setShowMap }) => {
 
           <div className="mx-auto md:m-0">
             <div className="flex justify-center md:gap-8">
-              {/* <button
+              <button
                 className="btn btn-primary mr-8 flex items-center px-6 text-sm text-[0.8rem] font-normal normal-case md:mr-0 md:gap-2 md:text-[1em]"
                 onClick={toggleView}>
                 <MapIcon className="mr-2 w-4 md:mr-0 " />
                 {showMap ? "Hide Map" : "Show Map"}
-              </button> */}
+              </button>
               <label
                 htmlFor="filter"
                 className="btn btn-outline btn-primary flex items-center px-6 text-sm text-[0.8rem] font-normal normal-case hover:btn-accent md:gap-2 md:text-[1em]">

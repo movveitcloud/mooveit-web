@@ -26,6 +26,7 @@ const StepperControls = ({ disabled, payload, publishModal }) => {
       dispatch(updateListing({ payload, activeStepper, setActiveStepper, id: data._id }));
     }
     if (activeStepper === 3) {
+      console.log(payload);
       dispatch(updateListing({ payload, activeStepper, setActiveStepper, id: data._id, publishModal }));
     }
   };
@@ -33,7 +34,7 @@ const StepperControls = ({ disabled, payload, publishModal }) => {
   return (
     <div className={`flex ${activeStepper > 0 ? "justify-between" : "justify-end"} `}>
       {activeStepper > 0 && (
-        <button className="gap-2 btn btn-link hover:no-underline" onClick={() => setActiveStepper(activeStepper - 1)}>
+        <button className="btn btn-link gap-2 hover:no-underline" onClick={() => setActiveStepper(activeStepper - 1)}>
           <ArrowNarrowLeftIcon className="w-4" />
           Back
         </button>
@@ -42,7 +43,7 @@ const StepperControls = ({ disabled, payload, publishModal }) => {
       <div className="flex gap-4">
         {activeStepper > 0 && (
           <button
-            className={`${exitLoading && "loading"} btn btn-outline btn-primary hover:btn-accent w-[175px]`}
+            className={`${exitLoading && "loading"} btn btn-outline btn-primary w-[175px] hover:btn-accent`}
             onClick={handleSaveExit}>
             {exitLoading ? "" : "Save & Exit"}
           </button>
