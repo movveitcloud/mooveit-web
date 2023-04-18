@@ -129,7 +129,7 @@ const Manage = () => {
                   // lastName={singleBooking.user?.lastName}
                   // profilePicture={singleBooking.user?.profilePicture}
                   // partner={singleBooking?.partner}
-                  data={singleBooking?.user}
+                  data={singleBooking?.partner}
                 />
                 <RentersBookingPeriod
                   startPeriod={

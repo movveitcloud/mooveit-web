@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { ListingInputContext } from "../../context";
 import {
   ClockIcon,
@@ -14,6 +15,7 @@ import FilterModal from "../modals/FilterModal";
 import Switch from "../shared/Switch";
 import PlacesAutocomplete from "react-places-autocomplete";
 import { useRouter } from "next/router";
+import { clearFilteredListings, filterListings } from "../../redux/features/listings.slice";
 
 const initialState = {
   address: "",
@@ -28,9 +30,11 @@ const initialState = {
 };
 
 const SearchBar = ({ showMap, setShowMap }) => {
+  const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
   const [formDetails, setFormDetails] = useState(initialState);
   const { serviceProvided, setServiceProvided, initialService } = useContext(ListingInputContext);
+  const { searchListings, searchLoading, listings, filteredListings } = useSelector((state) => state.listing);
 
   const handleAddressChange = (address) => {
     setFormDetails({ ...formDetails, address });
@@ -49,9 +53,7 @@ const SearchBar = ({ showMap, setShowMap }) => {
       [name]: val,
     });
     setServiceProvided({ ...serviceProvided, [name]: val });
-    console.log(serviceProvided);
-    //console.log(name + checked);
-    //console.log(formDetails);
+    //console.log(serviceProvided);
   };
   useEffect(() => {
     setServiceProvided(initialService);
@@ -65,7 +67,6 @@ const SearchBar = ({ showMap, setShowMap }) => {
   const router = useRouter();
 
   const handleSearch = (e) => {
-    // console.log("hi");
     if (!searchTerm) return errorPopUp({ msg: "Please enter a location" });
     router.push({ pathname: "/search", query: { s: searchTerm.toLowerCase() } });
   };
@@ -87,6 +88,7 @@ const SearchBar = ({ showMap, setShowMap }) => {
                 <div className="w-full ">
                   <PlacesAutocomplete
                     value={formDetails.address}
+                    //value={address}
                     onChange={handleAddressChange}
                     onSelect={handleSelect}
                     debounce={400}

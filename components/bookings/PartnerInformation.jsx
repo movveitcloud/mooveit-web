@@ -5,12 +5,12 @@ import React from "react";
 
 import Accordion from "../shared/Accordion";
 
-const RentersInformation = ({ data: { profilePicture, firstName, partner, email, lastName } }) => {
+const PartnerInformation = ({ data: { profilePicture, firstName, email, lastName } }) => {
   return (
     // <Accordion title="Renter's Information">
     <>
       <div className="mt-2 flex cursor-pointer justify-between px-4 pt-6 text-[#222222] md:px-6">
-        <h2 className="text-left text-sm font-semibold capitalize md:text-base">Partner's Information</h2>
+        <h2 className="text-left text-sm font-semibold capitalize md:text-base">Renter's Information</h2>
       </div>
       <div className=" flex cursor-pointer justify-between px-4 py-4 text-[#222222] md:px-6">
         <div className="flex flex-grow flex-col items-center justify-center  gap-2  ">
@@ -32,7 +32,7 @@ const RentersInformation = ({ data: { profilePicture, firstName, partner, email,
           <div className="border-1 btn  mt-2 border-accent px-9 text-[#12181F] hover:border-accent hover:bg-accent">
             <MailIcon className="mr-3 w-4" />
             <a href={`mailto: ${email}`} target="_blank" rel="noreferrer">
-              <p>MESSAGE PARTNER</p>
+              <p>MESSAGE RENTER</p>
             </a>
           </div>
         </div>
@@ -42,4 +42,4 @@ const RentersInformation = ({ data: { profilePicture, firstName, partner, email,
   );
 };
 
-export default RentersInformation;
+export default PartnerInformation;
