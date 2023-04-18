@@ -22,6 +22,7 @@ export { default as FormPassword } from "./shared/FormPassword";
 export { default as FeaturedListings } from "./shared/FeaturedListings";
 export { default as StorageListingCTA } from "./shared/StorageListingCTA";
 export { default as ListingCard } from "./shared/ListingCard";
+export { default as ListingCardHome } from "./shared/ListingCardHome";
 export { default as Accordion } from "./shared/Accordion";
 export { default as PageTransition } from "./shared/PageTransition";
 export { default as Switch } from "./shared/Switch";
@@ -75,9 +76,12 @@ export { default as Communication } from "./personal-details/Communication";
 export { default as PartnerBookings } from "./bookings/PartnerBookings";
 export { default as BookingCards } from "./bookings/BookingCards";
 export { default as RentersInformation } from "./bookings/RentersInformation";
+export { default as PartnerInformation } from "./bookings/PartnerInformation";
 export { default as RentersBookingPeriod } from "./bookings/RentersBookingPeriod";
 export { default as RentersAdditionalServices } from "./bookings/RentersAdditionalServices";
 export { default as RentersPrice } from "./bookings/RentersPrice";
+export { default as RentersType } from "./bookings/RentersType";
+export { default as RentersAccess } from "./bookings/RentersAccess";
 
 //CHECKOUT
 export { default as ListingCardCheckout } from "./checkout/ListingCardCheckout";

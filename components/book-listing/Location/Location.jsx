@@ -1,40 +1,70 @@
-import React from "react";
+import React, { useState } from "react";
 import { LocationMarkerIcon, MapIcon } from "@heroicons/react/outline";
 import GoogleMap from "./GoogleMap";
+import { useDispatch, useSelector } from "react-redux";
 import BookContainer from "../BookContainer";
+import GoogleMapReact from "google-map-react";
+import { CalendarIcon, TruckIcon } from "@heroicons/react/outline";
+import { useEffect } from "react";
 
 const Location = () => {
   const Landmarks = ["Westfield Park", "easyGuide", "Crosby Moran Hall", "Lots Road Power Station"];
+  const { userListing, userListingLoading } = useSelector((state) => state.listing);
+
+  const defaultProps = {
+    center: {
+      lat: 57.1498891,
+      lng: -2.0937528,
+    },
+    zoom: 15,
+  };
+
+  const Marker = () => <LocationMarkerIcon className="w-8 text-red-500" />;
+
   return (
     <BookContainer>
-      <h2 className="text-md font-semibold">Location</h2>
-      <div className="md:flex justify-between align-top  gap-5 mt-6">
-        <div className="bg-[#EEEEEE] md:w-1/3 p-6  rounded-md">
+      {/* <h2 className="text-md font-semibold">Location</h2> */}
+      {/* <div className="mt-6 justify-between gap-5  align-top md:flex"> */}
+      <div className="mt-6   ">
+        {/* <div className="rounded-md bg-[#EEEEEE] p-6  md:w-1/3">
           <h3 className="text-[14px] font-bold">Need Directions?</h3>
-          <div className="flex flex-row flex-grow md:gap-4 bg-[#E7E7E7] items-center mb-2 md:mb-0 p-4 mt-4 mb-4 rounded-md">
-            <MapIcon className="text-primary w-5 md:w-6 mr-1" />
+          <div className="mb-2 mt-4 mb-4 flex flex-grow flex-row items-center rounded-md bg-[#E7E7E7] p-4 md:mb-0 md:gap-4">
+            <MapIcon className="mr-1 w-5 text-primary md:w-6" />
             <input
               type="text"
               // value={""}
               // onChange={""}
               placeholder="Enter postcode or location"
-              className="w-full text-[#959595] bg-transparent h-full  pr-6 outline-none text-base placeholder:text-[#959595] placeholder:text-[10px] md:placeholder:text-[14px]"
+              className="h-full w-full bg-transparent pr-6  text-base text-[#959595] outline-none placeholder:text-[10px] placeholder:text-[#959595] md:placeholder:text-[14px]"
             />
             <div className="w-8">
               <img src="/search-status.png" className="w-full" />
             </div>
           </div>
 
-          <h3 className="text-[14px] mt-6 mb-4 font-bold">Nearest Landmarks</h3>
+          <h3 className="mt-6 mb-4 text-[14px] font-bold">Nearest Landmarks</h3>
           {Landmarks.map((landmark, i) => (
-            <div className="flex mb-4" key={i}>
-              <LocationMarkerIcon className="text-primary w-5 md:w-6 mr-1 " />
+            <div className="mb-4 flex" key={i}>
+              <LocationMarkerIcon className="mr-1 w-5 text-primary md:w-6 " />
               <p className="text-[12px] text-[#959595]">{landmark}</p>
             </div>
           ))}
-        </div>
-        <div className="mt-5 md:w-2/3 md:mt-0 rounded-md  ">
-          <GoogleMap />
+        </div> */}
+        {/* <div className="mt-5 rounded-md md:mt-0 md:w-2/3  "> */}
+        <div className=" w-full rounded-md  md:mt-0 ">
+          {/* <GoogleMap /> */}
+
+          {userListing?.coordinates?.lat && (
+            <div className="mt-8 h-[500px] w-full overflow-hidden  rounded-md">
+              <GoogleMapReact
+                bootstrapURLKeys={{ key: process.env.PLACES_KEY }}
+                defaultCenter={{ lat: +userListing?.coordinates?.lat, lng: +userListing?.coordinates?.lng }}
+                defaultZoom={defaultProps.zoom}>
+                {/* <AnyReactComponent lat={59.955413} lng={30.337844} text="My Marker" /> */}
+                <Marker lat={+userListing?.coordinates?.lat} lng={+userListing?.coordinates?.lng} />
+              </GoogleMapReact>
+            </div>
+          )}
         </div>
       </div>
     </BookContainer>

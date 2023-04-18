@@ -22,5 +22,18 @@ export const getValue = ({ options, key }) => {
   return item ? item.label : "N/A";
 };
 
+export const getValueArray = ({ options, key }) => {
+  const item = {};
+  let arrs = [];
+  console.log(key);
+  key?.map((val) => {
+    console.log(val);
+    item = options.find((p) => p.value == val);
+    arrs = [...arrs, item];
+  });
+  console.log(options);
+  return item ? item.label : "N/A";
+};
+
 export const isPartner = authenticatedUser() && authenticatedUser().role == "partner" ? true : false;
 export const isCustomer = authenticatedUser() && authenticatedUser().role == "customer" ? true : false;

@@ -21,8 +21,9 @@ const Checkout = () => {
     const { name, value, type, checked } = e.target;
     const val = type === "checkbox" ? checked : value;
     setBookingInfo({ ...bookingInfo, [name]: val });
+    
   };
-
+ 
   useEffect(() => {
     if (query) {
       dispatch(getUserListing({ id: query }));

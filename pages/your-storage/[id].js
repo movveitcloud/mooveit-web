@@ -7,6 +7,9 @@ import { getBooking, getSingleBooking, approveBooking, createPaymentLink } from 
 import { useDispatch, useSelector } from "react-redux";
 import { getService } from "../../helpers/utils";
 import Link from "next/link";
+import { CalculatorIcon, CalendarIcon, MailIcon } from "@heroicons/react/outline";
+import { BadgeCheckIcon } from "@heroicons/react/solid";
+import { getValue, getValueArray } from "../../helpers/utils";
 import {
   DashboardLayout,
   RentersInformation,
@@ -15,7 +18,20 @@ import {
   RentersPrice,
   DisapproveBookingModal,
   MakePaymentModal,
+  RentersType,
+  RentersAccess,
 } from "../../components";
+import {
+  getStorageAccessPeriods,
+  getShortestPeriods,
+  getNoticePeriods,
+  getStorageServices,
+  getStorageSizes,
+  getStorageAccessTypes,
+  getStorageFeatures,
+  getStorageFloors,
+  getStorageTypes,
+} from "../../redux/features/config.slice";
 import { ChevronRightIcon } from "@heroicons/react/outline";
 import { PulseLoader } from "react-spinners";
 
@@ -39,11 +55,11 @@ const Manage = () => {
       const payload = {
         bookingId: query,
       };
-      //console.log(payload);
+
       dispatch(createPaymentLink({ payload, router, closeModal, refreshPage: refreshPage }));
     }
   };
-  //console.log(singleBooking?.paymentLink);
+  console.log(singleBooking);
   const Back = () => {
     router.push("/your-storage");
   };
@@ -58,7 +74,21 @@ const Manage = () => {
       //console.log(paymentLink.paymentLink);
     }
   }, [paymentLink]);
-  //console.log(singleBooking, "single");
+  console.log(singleBooking, "single");
+
+  useEffect(() => {
+    dispatch(getStorageTypes());
+    dispatch(getStorageFloors());
+    dispatch(getStorageFeatures());
+    dispatch(getStorageAccessPeriods());
+    dispatch(getStorageAccessTypes());
+  }, []);
+  const { storageTypes } = useSelector((state) => state.config);
+  const { storageFloors } = useSelector((state) => state.config);
+  const { storageFeatures } = useSelector((state) => state.config);
+  const { storageAccessPeriods } = useSelector((state) => state.config);
+  const { storageAccessTypes } = useSelector((state) => state.config);
+  //console.log(storageFeatures);
   // useEffect(() => {
   //   if (singleBooking) {
   //     singleBooking?.type == "hourly" ? setStorageDate(singleBooking?.endDate?.split("T")[0]) : "";
@@ -92,11 +122,14 @@ const Manage = () => {
                   {singleBooking?.paymentStatus == "successful" ? "active" : singleBooking?.approvalStatus}
                 </p>
               </div>
-              <>
+              <div
+                className={`mb-8 h-full rounded-md border-[0.5px] bg-white p-2 transition-all duration-300 ${"border-white"}`}>
                 <RentersInformation
-                  firstName={singleBooking?.user?.firstName}
-                  lastName={singleBooking.user?.lastName}
-                  profilePicture={singleBooking.user?.profilePicture}
+                  // firstName={singleBooking?.user?.firstName}
+                  // lastName={singleBooking.user?.lastName}
+                  // profilePicture={singleBooking.user?.profilePicture}
+                  // partner={singleBooking?.partner}
+                  data={singleBooking?.partner}
                 />
                 <RentersBookingPeriod
                   startPeriod={
@@ -117,6 +150,30 @@ const Manage = () => {
                   }
                 />
                 <RentersAdditionalServices
+                  delivery={singleBooking?.moving == true ? "true" : ""}
+                  packing={singleBooking?.packing == true ? "true" : ""}
+                  pickupAddress={singleBooking?.pickupAddress}
+                />
+                <RentersPrice listingPrice={singleBooking?.price} />
+                <RentersType
+                  storageType={getValue({ options: storageTypes, key: singleBooking?.storageListing?.storageType })}
+                  storageFloor={getValue({ options: storageFloors, key: singleBooking?.storageListing?.storageFloor })}
+                  storageFeatures={getValueArray({
+                    options: storageFeatures,
+                    key: singleBooking?.storageListing?.storageFeatures,
+                  })}
+                />
+                <RentersAccess
+                  storageAccessPeriod={getValue({
+                    options: storageAccessPeriods,
+                    key: singleBooking?.storageListing?.storageAccessPeriod,
+                  })}
+                  storageAccessType={getValue({
+                    options: storageAccessTypes,
+                    key: singleBooking?.storageListing?.storageAccessType,
+                  })}
+                />
+                {/* <RentersAdditionalServices
                   delivery={getService({
                     options: "delivery",
                     key: singleBooking?.storageListing?.services,
@@ -129,9 +186,14 @@ const Manage = () => {
                     list: singleBooking,
                     name: "packing",
                   })}
-                />
-                <RentersPrice listingPrice={singleBooking?.price} />
-              </>
+                /> */}
+              </div>
+
+              {/* <>
+                
+               
+                
+              </> */}
             </div>
           </motion.div>
           {singleBooking?.paymentStatus == "successful" ||

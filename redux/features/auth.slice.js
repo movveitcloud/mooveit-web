@@ -31,6 +31,7 @@ export const login = createAsyncThunk("/auth/login", async ({ payload, reset, ro
     return response.data;
   } catch (err) {
     errorPopUp({ msg: err.response.data.error });
+
     return rejectWithValue(err.response.data);
   }
 });
@@ -49,6 +50,7 @@ export const signup = createAsyncThunk("/auth/register", async ({ payload, reset
     return response.data;
   } catch (err) {
     errorPopUp({ msg: err.response.data.error });
+
     return rejectWithValue(err.response.data);
   }
 });
@@ -127,6 +129,7 @@ export const verifyResetToken = createAsyncThunk(
     } catch (err) {
       location.replace("/login");
       errorPopUp({ msg: err.response.data.error });
+
       return rejectWithValue(err.response.data);
     }
   }

@@ -44,11 +44,15 @@ const initialState = {
   consent: false,
   autoApprove: false,
 };
-
+const initialService = {
+  delivery: false,
+  packing: false,
+};
 export const ListingInputContextProvider = ({ children }) => {
   const [formDetails, setFormDetails] = useState(initialState);
   const [activeStepper, setActiveStepper] = useState(0);
   const [geolocation, setGeolocation] = useState();
+  const [serviceProvided, setServiceProvided] = useState(initialService);
 
   const handleChange = (e) => {
     const { type, name, value, checked } = e.target;
@@ -57,9 +61,6 @@ export const ListingInputContextProvider = ({ children }) => {
       ...formDetails,
       [name]: val,
     });
-    console.log(formDetails);
-    console.log(checked);
-    console.log(val);
   };
 
   function getLocation() {
@@ -79,6 +80,9 @@ export const ListingInputContextProvider = ({ children }) => {
         formDetails,
         activeStepper,
         geolocation,
+        initialService,
+        serviceProvided,
+        setServiceProvided,
         setActiveStepper,
         setFormDetails,
         handleChange,

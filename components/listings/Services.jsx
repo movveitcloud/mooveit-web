@@ -7,7 +7,7 @@ import { storageKinds } from "../../helpers/data";
 
 const Services = ({ incomplete }) => {
   const { storageServices } = useSelector((state) => state.config);
-  const { formDetails, setFormDetails,handleChange } = useContext(ListingInputContext);
+  const { formDetails, setFormDetails, handleChange } = useContext(ListingInputContext);
   const dispatch = useDispatch();
 
   const handleChanges = (e) => {
@@ -19,13 +19,13 @@ const Services = ({ incomplete }) => {
       ...formDetails,
       services: isSelected ? services.filter((el) => el !== name) : [...services, name],
     });
-    console.log(formDetails)
+    console.log(formDetails);
   };
 
   useEffect(() => {
     dispatch(getStorageServices());
   }, []);
-  console.log(formDetails)
+  console.log(formDetails);
   return (
     <Accordion title="services" incomplete={incomplete}>
       <div className="space-y-5">
@@ -73,7 +73,7 @@ const Services = ({ incomplete }) => {
               <div className="items-center rounded-lg border border-[#959595] px-4 py-3">
                 <input
                   name="costPerKm"
-                  type="tel"
+                  type="number"
                   value={formDetails.costPerKm}
                   className="h-full w-full bg-transparent outline-none"
                   onChange={handleChange}
@@ -111,7 +111,7 @@ const Services = ({ incomplete }) => {
               <div className="items-center rounded-lg border border-[#959595] px-4 py-3">
                 <input
                   name="costPerSize"
-                  type="tel"
+                  type="number"
                   value={formDetails.costPerSize}
                   className="h-full w-full bg-transparent outline-none"
                   onChange={handleChange}

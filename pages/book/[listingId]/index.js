@@ -59,9 +59,9 @@ const BookListing = () => {
               </div>
 
               <div className="w-full lg:w-[40%]">
-                <div className="flex flex-col space-y-6 space-x-0 md:flex-row md:space-y-0 md:space-x-8 lg:sticky lg:top-8 lg:flex-col lg:space-y-8 lg:space-x-0">
+                <div className="flex flex-col space-y-6 space-x-0    md:flex-row md:space-y-0 md:space-x-8 lg:sticky lg:top-8 lg:flex-col lg:space-y-8 lg:space-x-0">
                   <BookNow />
-                  <MessagePartner />
+                  {/* <MessagePartner /> */}
                 </div>
               </div>
             </div>

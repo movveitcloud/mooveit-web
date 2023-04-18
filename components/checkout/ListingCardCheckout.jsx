@@ -14,19 +14,27 @@ const PriceItem = ({ name, amount, total }) => {
 const ListingCardCheckout = ({ item, bookingInfo, setBookingInfo }) => {
   const initialState = { type: "hourly" };
   const [bookingDetails, setbookingDetails] = useState(initialState);
-  const { type, time, unitPrice, moving, packing } = bookingInfo;
-  console.log(item);
+  const [pickup, setPickup] = useState(0);
+  const { type, time, unitPrice, moving, packing, pickupDistance } = bookingInfo;
+  const movingDistance = pickupDistance;
+  const { costPerKm } = item;
+
   const period = time;
   const pricePerPeriod = unitPrice;
-  const movingCost = item.costPerKm ? item.costPerKm : 0;
-  const movingDistance = bookingInfo.pickupDistance ? bookingInfo.pickupDistance : 0;
+  const movingCost = costPerKm ? costPerKm : 0;
 
-  const price = pricePerPeriod * period;
-  const movingPrice = movingCost * movingDistance;
+  const dist = movingDistance ? movingDistance : 0;
+  const movingCostNum = +movingCost;
+
+  const movingPrice = movingCostNum * dist;
   const packingPrice = 0;
+  const price = pricePerPeriod * period;
+
   const subTotal = price + movingPrice + packingPrice;
   const taxes = (7.5 / 100) * subTotal;
-  const total = subTotal + taxes;
+  const tot = subTotal + taxes;
+  console.log(typeof taxes);
+  const total = Math.round(subTotal + taxes);
 
   useEffect(() => {
     setBookingInfo({ ...bookingInfo, total });
@@ -61,6 +69,7 @@ const ListingCardCheckout = ({ item, bookingInfo, setBookingInfo }) => {
           </p>
           <p className="text-primary">{formatMoney(pricePerPeriod)}</p>
         </div>
+
         <PriceItem name={`x${period} ${type == "hourly" ? "hour" : "month"}${time > 1 ? "s" : ""}`} amount={price} />
         {moving && <PriceItem name="Moving" amount={movingPrice} />}
         {packing && <PriceItem name="Packing" amount={packingPrice} />}
