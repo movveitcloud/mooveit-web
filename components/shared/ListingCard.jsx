@@ -1,6 +1,15 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
-import { ArchiveIcon, ClockIcon, LocationMarkerIcon, MapIcon, TruckIcon } from "@heroicons/react/outline";
+import {
+  ArchiveIcon,
+  ClockIcon,
+  LocationMarkerIcon,
+  MapIcon,
+  TruckIcon,
+  CheckBadgeIcon,
+  CheckCircleIcon,
+  CheckIcon,
+} from "@heroicons/react/outline";
 import { formatMoney } from "../../helpers/utils";
 //import { storageFeatures } from "../../helpers/data";
 import { DuplicateIcon, StarIcon } from "@heroicons/react/solid";
@@ -39,9 +48,20 @@ const ListingCard = ({ item }) => {
           )}
         </div>
         <div className="">
-          <h3 className="py-3 font-bold text-[#222222]">{`${item?.storageTitle?.slice(0, 38)}${
-            item?.storageTitle?.length > 38 ? "..." : ""
-          }`}</h3>
+          <div className="flex items-center justify-between">
+            <h3 className="py-3 font-bold text-[#222222]">{`${item?.storageTitle?.slice(0, 38)}${
+              item?.storageTitle?.length > 38 ? "..." : ""
+            }`}</h3>
+
+            {item?.autoApprove == true && (
+              <span
+                className="tooltip tooltip-primary rounded-full bg-accent p-[6px] text-sm uppercase"
+                data-tip={"Auto approval"}>
+                <CheckCircleIcon className="w-4 text-primary" />
+                {/* <CheckIcon className="w-4 text-primary" /> */}
+              </span>
+            )}
+          </div>
           <p className="flex flex-row items-center gap-2 text-primary">
             <LocationMarkerIcon className="w-4" />
             <span

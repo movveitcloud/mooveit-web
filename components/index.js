@@ -76,6 +76,7 @@ export { default as Communication } from "./personal-details/Communication";
 export { default as PartnerBookings } from "./bookings/PartnerBookings";
 export { default as BookingCards } from "./bookings/BookingCards";
 export { default as RentersInformation } from "./bookings/RentersInformation";
+export { default as PartnerInformation } from "./bookings/PartnerInformation";
 export { default as RentersBookingPeriod } from "./bookings/RentersBookingPeriod";
 export { default as RentersAdditionalServices } from "./bookings/RentersAdditionalServices";
 export { default as RentersPrice } from "./bookings/RentersPrice";

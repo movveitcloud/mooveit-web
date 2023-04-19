@@ -65,7 +65,6 @@ export const getListings = createAsyncThunk("/listing", async ({}, { rejectWithV
     return response.data;
   } catch (err) {
     errorPopUp({ msg: err.response.data.error });
-
     return rejectWithValue(err.response.data);
   }
 });
@@ -85,7 +84,7 @@ export const getUserListing = createAsyncThunk("/users/listing/listingId", async
     const response = await api.getUserListing(id);
     return response.data;
   } catch (err) {
-    // errorPopUp({ msg: err.response.data.error });
+    errorPopUp({ msg: err.response.data.error });
     return rejectWithValue(err.response.data);
   }
 });
@@ -120,10 +119,10 @@ export const getSearchListings = createAsyncThunk(
   async ({ payload }, { rejectWithValue }) => {
     try {
       const response = await api.getSearchListings(payload);
+
       return response.data;
     } catch (err) {
       errorPopUp({ msg: err.response.data.error });
-
       return rejectWithValue(err.response.data);
     }
   }
@@ -134,6 +133,7 @@ const listingsSlice = createSlice({
   initialState: {
     data: null,
     listings: [],
+    filteredListings: [],
     featuredListings: [],
     searchListings: [],
     singleListing: {},
@@ -149,7 +149,15 @@ const listingsSlice = createSlice({
     deleteLoading: false,
   },
 
-  reducers: {},
+  // reducers: {},
+  reducers: {
+    filterListings: (state, action) => {
+      state.filteredListings = action.payload;
+    },
+    clearFilteredListings: (state, action) => {
+      state.filteredListings = action.payload;
+    },
+  },
 
   extraReducers: {
     [createListing.pending]: (state) => {
@@ -213,6 +221,7 @@ const listingsSlice = createSlice({
     [getSearchListings.fulfilled]: (state, action) => {
       state.searchLoading = false;
       state.searchListings = action.payload.data;
+      //state.filteredListings = action.payload.data;
     },
     [getSearchListings.rejected]: (state, action) => {
       state.searchLoading = false;
@@ -254,5 +263,6 @@ const listingsSlice = createSlice({
 });
 
 // export const {} = listingsSlice.actions;
+export const { filterListings, clearFilteredListings } = listingsSlice.actions;
 
 export default listingsSlice.reducer;

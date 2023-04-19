@@ -16,6 +16,7 @@ import {
   RentersType,
   RentersAccess,
   DisapproveBookingModal,
+  PartnerInformation,
 } from "../../components";
 import {
   getStorageAccessPeriods,
@@ -67,8 +68,8 @@ const Manage = () => {
   const { storageFeatures } = useSelector((state) => state.config);
   const { storageAccessPeriods } = useSelector((state) => state.config);
   const { storageAccessTypes } = useSelector((state) => state.config);
-  console.log(storageFeatures);
-  //console.log(singleBooking);
+  //console.log(storageFeatures);
+  console.log(singleBooking);
   return (
     <DashboardLayout>
       {singleBookingLoading ? (
@@ -93,10 +94,17 @@ const Manage = () => {
                 </p>
               </div>
               <>
-                <RentersInformation
-                  firstName={singleBooking?.user?.firstName}
-                  lastName={singleBooking.user?.lastName}
-                  profilePicture={singleBooking.user?.profilePicture}
+                {/* <RentersInformation
+                  // firstName={singleBooking?.user?.firstName}
+                  // lastName={singleBooking.user?.lastName}
+                  // profilePicture={singleBooking.user?.profilePicture}
+                  data={singleBooking?.user}
+                /> */}
+                <PartnerInformation
+                  // firstName={singleBooking?.user?.firstName}
+                  // lastName={singleBooking.user?.lastName}
+                  // profilePicture={singleBooking.user?.profilePicture}
+                  data={singleBooking?.user}
                 />
                 <RentersBookingPeriod
                   startPeriod={

@@ -55,7 +55,7 @@ const Location = () => {
           {/* <GoogleMap /> */}
 
           {userListing?.coordinates?.lat && (
-            <div className="mt-8 h-[250px] w-full overflow-hidden  rounded-md">
+            <div className="mt-8 h-[500px] w-full overflow-hidden  rounded-md">
               <GoogleMapReact
                 bootstrapURLKeys={{ key: process.env.PLACES_KEY }}
                 defaultCenter={{ lat: +userListing?.coordinates?.lat, lng: +userListing?.coordinates?.lng }}

@@ -9,6 +9,7 @@ import {
   LocationMarkerIcon,
   MapIcon,
   TruckIcon,
+  CheckCircleIcon,
 } from "@heroicons/react/outline";
 //import { storageFeatures } from "../../helpers/data";
 import { distanceInKM, formatMoney } from "../../helpers/utils";
@@ -103,8 +104,20 @@ const BookListingMainCard = () => {
       </div>
 
       <div className="">
-        <h3 className="my-3 font-bold capitalize md:text-lg">{userListing?.storageTitle}</h3>
-        <p className="flex flex-row items-start gap-1 text-primary md:gap-2">
+        <div className="flex items-center justify-between">
+          <h3 className="my-3 font-bold capitalize md:text-lg">{userListing?.storageTitle}</h3>
+
+          {userListing?.autoApprove == true && (
+            <span
+              className="tooltip tooltip-primary rounded-full bg-accent p-[6px] text-sm uppercase"
+              data-tip={"Auto approval"}>
+              <CheckCircleIcon className="w-4 text-primary" />
+              {/* <CheckIcon className="w-4 text-primary" /> */}
+            </span>
+          )}
+        </div>
+
+        <p className="flex flex-row items-center gap-1 text-primary md:gap-2">
           <LocationMarkerIcon className="w-4 min-w-[16px]" />
           <span className="text-sm font-light uppercase md:text-base">{userListing?.address}</span>
         </p>

@@ -20,21 +20,21 @@ const PreviewModal = () => {
   return (
     <>
       <input type="checkbox" id="preview" className="modal-toggle" />
-      <label htmlFor="previe" className="modal">
-        <label className="modal-box p-8 relative w-[80%] md:w-[60%] max-w-[600px] rounded-xl z-20 bg-[#F9F9F9]">
+      <label htmlFor="preview" className="modal">
+        <label className="modal-box relative z-20 w-[80%] max-w-[600px] rounded-xl bg-[#F9F9F9] p-8 md:w-[60%]">
           {/* {success ? ( */}
-          <div className="flex flex-col flex-grow items-center justify-center text-center px-5">
-            <div className="bg-accent rounded-full w-fit flex justify-center p-8 items-center mb-10">
-              <p className="text-6xl text-center">🎉</p>
+          <div className="flex flex-grow flex-col items-center justify-center px-5 text-center">
+            <div className="mb-10 flex w-fit items-center justify-center rounded-full bg-accent p-8">
+              <p className="text-center text-6xl">🎉</p>
             </div>
-            <h2 className="text-2xl md:text-3xl text-black font-semibold">Your listing is almost live!</h2>
-            <p className="text-[#959595] mt-1">Please wait up to 24 hours for your liting to be approved.</p>
-            <div className="w-[256px] mt-5 space-y-2">
+            <h2 className="text-2xl font-semibold text-black md:text-3xl">Your listing is almost live!</h2>
+            <p className="mt-1 text-[#959595]">Please wait up to 24 hours for your liting to be approved.</p>
+            <div className="mt-5 w-[256px] space-y-2">
               <a
                 href={`/book/${data?._id}`}
                 target="_blank"
                 rel="noreferrer"
-                className="btn btn-outline btn-primary hover:btn-accent w-full">
+                className="btn btn-outline btn-primary w-full hover:btn-accent">
                 preview
               </a>
               <button className="btn btn-primary w-full" onClick={handleProceed}>

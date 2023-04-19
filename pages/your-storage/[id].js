@@ -88,7 +88,7 @@ const Manage = () => {
   const { storageFeatures } = useSelector((state) => state.config);
   const { storageAccessPeriods } = useSelector((state) => state.config);
   const { storageAccessTypes } = useSelector((state) => state.config);
-  console.log(storageFeatures);
+  //console.log(storageFeatures);
   // useEffect(() => {
   //   if (singleBooking) {
   //     singleBooking?.type == "hourly" ? setStorageDate(singleBooking?.endDate?.split("T")[0]) : "";
@@ -125,10 +125,11 @@ const Manage = () => {
               <div
                 className={`mb-8 h-full rounded-md border-[0.5px] bg-white p-2 transition-all duration-300 ${"border-white"}`}>
                 <RentersInformation
-                  firstName={singleBooking?.user?.firstName}
-                  lastName={singleBooking.user?.lastName}
-                  profilePicture={singleBooking.user?.profilePicture}
-                  partner={singleBooking?.partner}
+                  // firstName={singleBooking?.user?.firstName}
+                  // lastName={singleBooking.user?.lastName}
+                  // profilePicture={singleBooking.user?.profilePicture}
+                  // partner={singleBooking?.partner}
+                  data={singleBooking?.partner}
                 />
                 <RentersBookingPeriod
                   startPeriod={

@@ -8,6 +8,7 @@ import "react-calendar/dist/Calendar.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import { ListingInputContextProvider } from "../context/ListingInputContext";
 import Script from "next/script";
+import "react-tooltip/dist/react-tooltip.css";
 
 function MyApp({ Component, pageProps }) {
   return (
