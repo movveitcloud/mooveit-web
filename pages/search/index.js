@@ -6,15 +6,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { ListingInputContext } from "../../context";
 import { ListingCard, PageLayout, SearchBar } from "../../components";
 import ListingSkelenton from "../../components/shared/ListingSkelenton";
-import { LocationMarkerIcon, MapIcon } from "@heroicons/react/outline";
+import { LocationMarkerIcon, MapIcon, OfficeBuildingIcon } from "@heroicons/react/outline";
 import GoogleMapReact from "google-map-react";
 //import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 //import { getBooking } from "../../redux/features/bookings.slice";
 //import Google from "../../components/book-listing/Location/Google";
 import { clearFilteredListings, filterListings } from "../../redux/features/listings.slice";
+import { Tooltip } from "react-tooltip";
+import Link from "next/link";
 
 const Search = () => {
-  const { geolocation } = useContext(ListingInputContext);
+  const { geolocation, serviceProvided, setServiceProvided } = useContext(ListingInputContext);
   const { searchListings, searchLoading, listings, filteredListings } = useSelector((state) => state.listing);
   const { bookings } = useSelector((state) => state.bookings);
   const [showMap, setShowMap] = useState(false);
@@ -30,7 +32,6 @@ const Search = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const query = router.query.s;
-  const { serviceProvided, setServiceProvided } = useContext(ListingInputContext);
   const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
   const handleShowMore = () => {
@@ -61,6 +62,7 @@ const Search = () => {
       item?.services?.length == 1 &&
       item?.services?.map((val) => (val == "delivery" ? viewDelivery.push(item) : viewPacking.push(item)))
   );
+
   viewArr?.map(
     (item) =>
       item?.services?.length > 1 &&
@@ -75,8 +77,6 @@ const Search = () => {
   }
 
   if (serviceProvided.delivery == true) {
-    //dispatch(filterListings([]));
-    console.log(viewDelivery);
     view = viewDelivery;
   }
   if (serviceProvided.packing == true) {
@@ -89,7 +89,6 @@ const Search = () => {
   }
   useEffect(() => {
     dispatch(filterListings(view));
-    console.log(filteredListings);
   }, [serviceProvided.packing, serviceProvided.delivery]);
 
   // useEffect(() => {
@@ -99,9 +98,9 @@ const Search = () => {
   //console.log(searchListings);
 
   //console.log(geolocation, "geo");
-  const Marker = () => <LocationMarkerIcon className="w-8 text-red-500" />;
-  console.log(serviceProvided);
-  console.log(filteredListings);
+  // const Marker = () => <LocationMarkerIcon className="w-8 text-red-500" />;
+
+  console.log(view, "viewww");
 
   //if (checked) {
   //   //   //alert("hi");
@@ -115,6 +114,33 @@ const Search = () => {
   //   //   //   dispatch(clearFilteredListings(searchListings));
   //   // }
 
+  const handleApiLoaded = (map, maps) => {
+    const bounds = new maps.LatLngBounds();
+    view.forEach(({ coordinates }) => {
+      bounds.extend(new maps.LatLng(+coordinates?.lat, +coordinates?.lng));
+    });
+    map.fitBounds(bounds);
+  };
+
+  // const defaultCenter = {
+  //   lat: 59.95,
+  //   lng: 30.33,
+  // };
+
+  const Marker = ({ storageTitle, listing }) => (
+    <div className="flex flex-col items-center transition-all duration-300 hover:scale-110">
+      <OfficeBuildingIcon className="w-8 text-white" />
+      <p className="text-sm font-semibold text-white">{storageTitle}</p>
+    </div>
+  );
+
+  const MarkerNew = ({ listing }) => (
+    <Tooltip anchorSelect="#listing" offset={12} clickable>
+      <ListingCard item={listing} />
+      {/* <p>{listing?.storageTitle}</p> */}
+    </Tooltip>
+  );
+
   return (
     <PageLayout>
       <div>
@@ -126,21 +152,23 @@ const Search = () => {
         )} */}
         {showMap && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="my-16">
-            <div className="mt-8 h-[500px] w-full overflow-hidden rounded-md">
+            <div className="mt-8 h-[80vh] w-full rounded-md">
               <GoogleMapReact
                 bootstrapURLKeys={{ key: process.env.PLACES_KEY }}
                 defaultCenter={{
                   lat: +filteredListings[0]?.coordinates.lat,
                   lng: +filteredListings[0]?.coordinates.lng,
                 }}
-                defaultZoom={1}>
-                {view?.map(({ coordinates, _id }) => {
-                  console.log(coordinates);
-                  return (
-                    <Marker key={_id} lat={+coordinates?.lat} lng={+coordinates?.lng} />
-                    // </div>
-                  );
-                })}
+                defaultZoom={10}
+                onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}>
+                {view.map((listing, index) => (
+                  <div id="listing" key={index} lat={+listing?.coordinates?.lat} lng={+listing?.coordinates?.lng}>
+                    <a target="_blaknk" rel="noreferer" href={`/book/${listing?._id}`}>
+                      <Marker listing={listing} storageTitle={listing?.storageTitle} />
+                    </a>
+                    {/* <MarkerNew listing={listing} /> */}
+                  </div>
+                ))}
               </GoogleMapReact>
             </div>
           </motion.div>
@@ -158,25 +186,30 @@ const Search = () => {
                     <ListingSkelenton />
                     <ListingSkelenton />
                   </div>
-                ) : view.length === 0 ? (
-                  <div className="flex justify-center">
-                    <div className="mt-8 flex w-full justify-center rounded-lg bg-white md:w-[60%]">
-                      <div className="flex flex-col items-center space-y-4 px-4 py-24">
-                        <img src="emptyStorage.svg" alt="empty storage icon" className="w-16 md:w-20" />
-                        <p className="text-center text-[#AAAAAA]">Oops we couldn't find any listing</p>
-                      </div>
-                    </div>
-                  </div>
                 ) : (
-                  <div className="grid place-items-center gap-10 md:grid-cols-2 xl:grid-cols-3">
-                    {[...view]
+                  <>
+                    {view && view.length > 1 && (
+                      <div className="grid place-items-center gap-10 md:grid-cols-2 xl:grid-cols-3">
+                        {[...view]
+                          ?.reverse()
+                          .slice(0, count)
+                          ?.map((item, i) => (
+                            <ListingCard item={item} key={i} />
+                          ))}
+                      </div>
+                    )}
 
-                      ?.reverse()
-                      .slice(0, count)
-                      ?.map((item, i) => (
-                        <ListingCard item={item} key={i} />
-                      ))}
-                  </div>
+                    {view?.length === 0 && (
+                      <div className="flex justify-center">
+                        <div className="mt-8 flex w-full justify-center rounded-lg bg-white md:w-[60%]">
+                          <div className="flex flex-col items-center space-y-4 px-4 py-24">
+                            <img src="emptyStorage.svg" alt="empty storage icon" className="w-16 md:w-20" />
+                            <p className="text-center text-[#AAAAAA]">Oops we couldn't find any listing</p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </>
                 )
 
                 // view.length === 0 ? (
