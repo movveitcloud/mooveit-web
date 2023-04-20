@@ -122,17 +122,9 @@ const Search = () => {
     map.fitBounds(bounds);
   };
 
-  // const defaultCenter = {
-  //   lat: 59.95,
-  //   lng: 30.33,
-  // };
-
-  const Marker = ({ storageTitle, listing }) => (
+  const Marker = () => (
     <div className="flex flex-col items-center transition-all duration-300 hover:scale-110">
-      {/* <LocationMarkerIcon className="w-12 text-[#EDCA59]" /> */}
       <img src="/movveit-map.png" className="w-12" />
-      {/* <OfficeBuildingIcon  /> */}
-      {/* <p className="text-sm font-semibold text-white">{storageTitle}</p> */}
     </div>
   );
 
@@ -161,7 +153,7 @@ const Search = () => {
                     key={index}
                     lat={+listing?.coordinates?.lat}
                     lng={+listing?.coordinates?.lng}>
-                    <Marker listing={listing} storageTitle={listing?.storageTitle} />
+                    <Marker />
 
                     <Tooltip
                       anchorSelect={`#listing-${listing._id}`}
