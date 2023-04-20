@@ -129,17 +129,13 @@ const Search = () => {
 
   const Marker = ({ storageTitle, listing }) => (
     <div className="flex flex-col items-center transition-all duration-300 hover:scale-110">
-      <OfficeBuildingIcon className="w-8 text-white" />
+      <LocationMarkerIcon className="w-8 text-[#EDCA59]" />
+      {/* <OfficeBuildingIcon  /> */}
       <p className="text-sm font-semibold text-white">{storageTitle}</p>
     </div>
   );
 
-  const MarkerNew = ({ listing }) => (
-    <Tooltip anchorSelect="#listing" offset={12} clickable>
-      <ListingCard item={listing} />
-      {/* <p>{listing?.storageTitle}</p> */}
-    </Tooltip>
-  );
+  const defaultCenter = { lat: 54.8, lng: -4.6 };
 
   return (
     <PageLayout>
@@ -152,21 +148,42 @@ const Search = () => {
         )} */}
         {showMap && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="my-16">
-            <div className="mt-8 h-[80vh] w-full rounded-md">
+            <div className="mt-8 h-[600px] w-full">
               <GoogleMapReact
                 bootstrapURLKeys={{ key: process.env.PLACES_KEY }}
-                defaultCenter={{
-                  lat: +filteredListings[0]?.coordinates.lat,
-                  lng: +filteredListings[0]?.coordinates.lng,
-                }}
-                defaultZoom={10}
+                defaultCenter={defaultCenter}
+                defaultZoom={6}
                 onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}>
                 {view.map((listing, index) => (
-                  <div id="listing" key={index} lat={+listing?.coordinates?.lat} lng={+listing?.coordinates?.lng}>
-                    <a target="_blaknk" rel="noreferer" href={`/book/${listing?._id}`}>
-                      <Marker listing={listing} storageTitle={listing?.storageTitle} />
-                    </a>
-                    {/* <MarkerNew listing={listing} /> */}
+                  <div
+                    id={`listing-${listing._id}`}
+                    key={index}
+                    lat={+listing?.coordinates?.lat}
+                    lng={+listing?.coordinates?.lng}>
+                    <Marker listing={listing} storageTitle={listing?.storageTitle} />
+
+                    <Tooltip
+                      anchorSelect={`#listing-${listing._id}`}
+                      offset={12}
+                      clickable
+                      style={{ backgroundColor: "white" }}>
+                      <div className="w-[300px] p-2 text-primary">
+                        <p className="text-xl font-bold">{listing?.storageTitle}</p>
+                        <p className="mb-2 text-base capitalize">{listing?.address}</p>
+                        <img src={listing?.media[0]} className="h-[150px] w-full object-cover" />
+                        <p className="my-2 text-sm capitalize">{listing?.description}</p>
+                        <p className="my-1 text-sm capitalize">
+                          <strong> Storage Type:</strong> {listing?.storageType}
+                        </p>
+                        <p className="my-1 text-sm capitalize">
+                          <strong>Storage Size: </strong>
+                          {listing?.storageSize?.name}
+                        </p>
+                        <Link href={`/book/${listing?._id}`}>
+                          <div className="text-sm text-blue-700 underline">View Listing</div>
+                        </Link>
+                      </div>
+                    </Tooltip>
                   </div>
                 ))}
               </GoogleMapReact>
