@@ -129,9 +129,10 @@ const Search = () => {
 
   const Marker = ({ storageTitle, listing }) => (
     <div className="flex flex-col items-center transition-all duration-300 hover:scale-110">
-      <LocationMarkerIcon className="w-8 text-[#EDCA59]" />
+      {/* <LocationMarkerIcon className="w-12 text-[#EDCA59]" /> */}
+      <img src="/movveit-map.png" className="w-12" />
       {/* <OfficeBuildingIcon  /> */}
-      <p className="text-sm font-semibold text-white">{storageTitle}</p>
+      {/* <p className="text-sm font-semibold text-white">{storageTitle}</p> */}
     </div>
   );
 
