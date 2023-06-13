@@ -18,9 +18,12 @@ const StorageListingCTA = () => {
         />
       </div>
       <div>
-        <h2 className="hidden md:inline font-semibold text-4xl text-[#222222]">Try Out Storage Listing</h2>
+        <h2 className="hidden md:inline font-semibold text-4xl text-[#222222]">Move it and make it easy</h2>
         <p className="text-base my-6  text-[#959595]">
-          Get access to a pool of prospective customers when you list your storage with us.
+        Get ready to experience the all-in-one solution to your moving and storage needs. We
+aren&#39;t just any storage listing company we have the most comprehensive database of
+storage firms and vehicle providers, making us the "Airbnb" of storage solutions and the
+most recent breakthrough in peer-to-peer moving and storage.
         </p>
         <Link href="/signup">
           <a className="btn btn-primary w-[175px] text-xs font-light">Become a Partner</a>

@@ -180,7 +180,7 @@ export const howItWorks = [
   {
     icon: <UserCircleIconSolid className="w-8 md:w-9" />,
 
-    title: "Ready to join the Movveit Part?",
+    title: "Ready to join the Movveit Party?",
     body: "Don't be shy, come on in and create an account! or if you're already a part of the crew, then simple login, and let's get this part started!",
     linkText: "Get Started",
     link: "/signup",
@@ -194,8 +194,8 @@ export const howItWorks = [
   },
   {
     icon: <CurrencyPoundIconSolid className="w-8 md:w-9" />,
-    title: "Ready to rock and roll ?",
-    body: "Let's get that storage space booked and sorted! Whether you need to stash your vintage record collection, your priceless posessions, or your secret stash of collectibles, we've got the perfect spot for you.",
+    title: "Ready to rock and roll?",
+    body: "Let's get that storage space booked and sorted! Whether you need to stash your collectibles, or posessions, we've got the perfect spot for you.",
     linkText: "Book Now",
     link: "/login",
   },
