@@ -1,13 +1,12 @@
 import React from "react";
 import { PageContent, PageLayout } from "../../components";
 import PageTitle from "../../components/shared/PageTitle";
+import ContentLayout from "../../components/layouts/ContentLayout";
 
 const AboutUs = () => {
   return <PageLayout>
     <PageTitle name={"About Us"}/>
-    <div className="w-[90%] px-10 sm:w-[100%] sm:px-2">
-
-    <PageContent 
+<ContentLayout>    <PageContent 
     subtitle={"Who we are"} 
     content1={"Welcome to Movve It! We're all about making your moving and storage experience a breeze. And guess what? We do it with the help of groundbreaking technologies like AI, ML, and AR orArtificial Intelligence, Machine Learning, and Augmented Reality."} 
    content2={"We aren’t just another run-of-the-mill storage company. Our team is comprised of passionate professionals who believe that work can be enjoyable. We foster a culture of collaboration, inclusivity, and productivity while maintaining a fun and friendly atmosphere."}
@@ -26,7 +25,7 @@ const AboutUs = () => {
    content2={"So, what does that mean for you? Well, let's start with AI and ML. We're using thesetechnologies to optimize our logistics and improve our customer service. That means faster, more efficient delivery and pick-up times for your storage needs. And our customer service team is top-notch, thanks to the power of AI and ML."}
    content3={"But, of course, that's not all. We're also utilizing Augmented Reality to take things to the next level.Say goodbye to the days of blindly renting a storage unit and hoping for the best. With our AR technology, you can visualize your storage unit before you even rent it! How cool is that?"}
    />
-       </div>
+       </ContentLayout>
 
   </PageLayout>;
 };

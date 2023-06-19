@@ -51,7 +51,7 @@ export const navLinks = [
  
   {
     path:"#",
-    title:"Solution",
+    title:"Solutions",
     subMenus:[
       {
         path:"/solution/delivery",
@@ -72,8 +72,7 @@ export const navLinks = [
     ]
   },
   { path: "/search", title: "Find Storage" },
-  { path: "/how-it-works", title: "How it Works" },
-  { path: "/support", title: "Support" },
+  { path: "/support", title: "Help & Support" },
 ];
 
 export const dashboardNavLinks = [
@@ -162,7 +161,7 @@ export const footerLinks = [
     heading: "The Company",
     subMenus: [
       { path: "/about-us", title: "About Us" },
-      { path: "/how-it-works", title: "How it Works" },
+      { path: "/support", title: "Help & Support" },
       { path: "/contact", title: "Contact" },
     ],
   },
