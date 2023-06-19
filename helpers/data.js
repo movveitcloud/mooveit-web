@@ -51,6 +51,28 @@ export const navLinks = [
   { path: "/search", title: "Find Storage" },
   { path: "/how-it-works", title: "How it Works" },
   { path: "/support", title: "Support" },
+  {
+    path:"#",
+    title:"Solution",
+    subMenus:[
+      {
+        path:"/solution/delivery",
+        title:"Delivery",
+      },
+      {
+        path:"/solution/self-storage",
+        title:"Self-Storage",
+      },
+      {
+        path:"/solution/packing-moving",
+        title:"Packing and Moving",
+      },
+      {
+        path:"/solution/for-you",
+        title:"Movveit for you",
+      }
+    ]
+  }
 ];
 
 export const dashboardNavLinks = [
@@ -144,11 +166,11 @@ export const footerLinks = [
     ],
   },
   {
-    heading: "Get Started",
+    heading: "Solution",
     subMenus: [
-      { path: "/search", title: "Find Storage" },
-      { path: "/signup", title:"Storage Partner" },
-      { path: "/login", title: "Login or Create Account" },
+      { path: "/solution/self-storage", title: "Find Storage" },
+      { path: "/solution/delivery", title:"Delivery" },
+      { path: "/solution/packing-moving", title: "Packing and Moving" },
     ],
   },
   {
