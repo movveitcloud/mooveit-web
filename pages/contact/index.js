@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { PageLayout } from "../../components";
 import { ContactContent } from "../../helpers/data";
 import PageTitle from "../../components/shared/PageTitle";
+import Link from "next/link";
 
 const Contact = () => {
 
@@ -14,14 +15,15 @@ const Contact = () => {
     How can we assist you? Do you have questions concerning our services?       </p>
 
       <div className="flex justify-center mt-5">
-        <a
-          href="/support"
-          className="btn border-black bg-black text-white md:btn-wide hover:bg-accent hover:border-accent hover:text-black  rounded-full font-normal normal-case">
-          Talk to support
-          <span>
+
+      <Link href={"/support"}>
+                  <a className="btn border-black bg-black text-white md:btn-wide hover:bg-accent hover:border-accent hover:text-black  rounded-full font-normal normal-case">Talk to support
+                  <span>
             {/* <ArrowRightIcon className="w-4 ml-3" /> */}
           </span>
-        </a>
+          </a>
+                </Link>
+        
       </div>
 
       <div className="flex flex-col py-8 lg:py-16 lg:flex-row gap-8 w-[90%] px-20">
