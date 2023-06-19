@@ -48,9 +48,7 @@ export const navLinks = [
   //     },
   //   ],
   // },
-  { path: "/search", title: "Find Storage" },
-  { path: "/how-it-works", title: "How it Works" },
-  { path: "/support", title: "Support" },
+ 
   {
     path:"#",
     title:"Solution",
@@ -72,7 +70,10 @@ export const navLinks = [
         title:"Movveit for you",
       }
     ]
-  }
+  },
+  { path: "/search", title: "Find Storage" },
+  { path: "/how-it-works", title: "How it Works" },
+  { path: "/support", title: "Support" },
 ];
 
 export const dashboardNavLinks = [
