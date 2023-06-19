@@ -169,7 +169,7 @@ export const footerLinks = [
   {
     heading: "Solution",
     subMenus: [
-      { path: "/solution/self-storage", title: "Find Storage" },
+      { path: "/solution/self-storage", title: "Self-Storage" },
       { path: "/solution/delivery", title:"Delivery" },
       { path: "/solution/packing-moving", title: "Packing and Moving" },
     ],
