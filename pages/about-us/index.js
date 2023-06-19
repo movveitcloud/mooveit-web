@@ -5,7 +5,7 @@ import PageTitle from "../../components/shared/PageTitle";
 const AboutUs = () => {
   return <PageLayout>
     <PageTitle name={"About Us"}/>
-    <div className="w-[90%] px-10">
+    <div className="w-[90%] px-10 sm:w-[100%] sm:px-2">
 
     <PageContent 
     subtitle={"Who we are"} 
