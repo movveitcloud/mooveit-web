@@ -2,14 +2,10 @@ import React from "react";
 import { PageLayout } from "../../components";
 import PageTitle from "../../components/shared/PageTitle";
 
-
-const Support = () => {
+const TermsOfUse = () => {
   return <PageLayout>
-<PageTitle name={"Support"} />
-    
-    
-   
+    <PageTitle name={"Terms Of Use"}/>
   </PageLayout>;
 };
 
-export default Support;
+export default TermsOfUse

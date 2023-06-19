@@ -22,33 +22,34 @@ import {
 } from "@heroicons/react/solid";
 
 export const navLinks = [
+  // {
+  //   path: "#",
+  //   title: "Storage",
+  //   subMenus: [
+  //     {
+  //       path: "/listing",
+  //       title: "Find Storage",
+  //       // deepMenus: [
+  //       //   { path: "", title: "" },
+  //       //   { path: "", title: "" },
+  //       //   { path: "", title: "" },
+  //       //   { path: "", title: "" },
+  //       // ],
+  //     },
+  //     {
+  //       path: "/signup",
+  //       title: "Partners",
+  //       // deepMenus: [
+  //       //   { path: "", title: "" },
+  //       //   { path: "", title: "" },
+  //       //   { path: "", title: "" },
+  //       //   { path: "", title: "" },
+  //       // ],
+  //     },
+  //   ],
+  // },
+  { path: "/search", title: "Find Storage" },
   { path: "/how-it-works", title: "How it Works" },
-  {
-    path: "",
-    title: "Storage",
-    subMenus: [
-      {
-        path: "",
-        title: "Storage 1",
-        // deepMenus: [
-        //   { path: "", title: "" },
-        //   { path: "", title: "" },
-        //   { path: "", title: "" },
-        //   { path: "", title: "" },
-        // ],
-      },
-      {
-        path: "",
-        title: "Storage 2",
-        // deepMenus: [
-        //   { path: "", title: "" },
-        //   { path: "", title: "" },
-        //   { path: "", title: "" },
-        //   { path: "", title: "" },
-        // ],
-      },
-    ],
-  },
   { path: "/support", title: "Support" },
 ];
 
@@ -135,36 +136,27 @@ export const dashboardNavLinks = [
 
 export const footerLinks = [
   {
-    heading: "Company",
+    heading: "The Company",
     subMenus: [
-      { path: "#", title: "Services" },
-      { path: "#", title: "Terms of Use" },
-      { path: "#", title: "Privacy Policy" },
-      { path: "#", title: "How it Works" },
-      { path: "#", title: "Blog" },
-      { path: "#", title: "FAQs" },
+      { path: "/about-us", title: "About Us" },
+      { path: "/how-it-works", title: "How it Works" },
+      { path: "/contact", title: "Contact" },
     ],
   },
   {
-    heading: "Company",
+    heading: "Get Started",
     subMenus: [
-      { path: "#", title: "Services" },
-      { path: "#", title: "Terms of Use" },
-      { path: "#", title: "Privacy Policy" },
-      { path: "#", title: "How it Works" },
-      { path: "#", title: "Blog" },
-      { path: "#", title: "FAQs" },
+      { path: "/search", title: "Find Storage" },
+      { path: "/signup", title:"Storage Partner" },
+      { path: "/login", title: "Login or Create Account" },
     ],
   },
   {
-    heading: "Company",
+    heading: "Legal",
     subMenus: [
-      { path: "#", title: "Services" },
-      { path: "#", title: "Terms of Use" },
-      { path: "#", title: "Privacy Policy" },
-      { path: "#", title: "How it Works" },
-      { path: "#", title: "Blog" },
-      { path: "#", title: "FAQs" },
+      { path: "/terms-of-use", title: "Terms of Use" },
+      { path: "/privacy-policy", title: "Privacy Policy" },
+      { path: "/cookie-policy", title: "Cookie Policy" },
     ],
   },
 ];
@@ -293,5 +285,33 @@ export const storageSize = [
   {
     name: "150 sq ft - One and Half garages or 2 Luton Van Loads",
     value: "150",
+  },
+];
+
+
+export const ContactContent = [
+  {
+    title: "Operations & Support",
+    content: "8 JKU Millwal, UK",
+   // icon: <BuildingOfficeIcon className="w-5   h-5 " />,
+  },
+
+  // {
+  //   title: "Mailing Addresses",
+  //   contents: ["info@unotelos.com", "ea_support@unotelos.com"],
+  //   icon: <EnvelopeIcon className="w-5 h-5" />,
+  // },
+
+  {
+    title: "Phone Numbers",
+    contents: [
+      "+44 -779-369-9396",
+    ],
+    // icon: <PhoneIcon className="w-5   h-5 " />,
+  },
+  {
+    title: "Mailing Addresses",
+    contents: ["info@movveit.com", "support@movveit.com"],
+    // icon: <EnvelopeIcon className="w-5 h-5" />,
   },
 ];

@@ -22,7 +22,7 @@ const Footer = () => {
 
           <div className="w-full">
             <h3 className="text-base text-white uppercase">Get in Touch</h3>
-            <div className="flex items-center gap-2 bg-[#373737] text-white text-sm rounded-2xl px-4 py-1 my-6">
+            {/* <div className="flex items-center gap-2 bg-[#373737] text-white text-sm rounded-2xl px-4 py-1 my-6">
               <input
                 type="email"
                 className="flex-1 bg-transparent py-3 placeholder:text-white outline-none"
@@ -31,7 +31,15 @@ const Footer = () => {
               <button className="btn bg-transparent hover:bg-transparent border-none w-fit p-0 text-white">
                 <PaperAirplaneIcon className="w-6 rotate-45" />
               </button>
-            </div>
+            </div> */}
+            <div className="flex items-center gap-1 bg-[#373737] text-white text-sm rounded-2xl px-2 py-1 my-3">
+              <p>info@movveit.com</p>
+
+</div>
+<div className="flex items-center gap-1 bg-[#373737] text-white text-sm rounded-2xl px-2 py-1 my-3">
+<p>+44 709 876 8965</p>
+
+</div>
 
             <div className="flex  md:gap-6 items-center">
               {mediaLinks?.map(({ path, title, icon }, i) => (

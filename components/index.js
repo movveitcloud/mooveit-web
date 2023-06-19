@@ -111,3 +111,4 @@ export { default as Payment } from "./your-storage/Payment";
 export { default as Disputes } from "./your-storage/Disputes";
 export { default as Legal } from "./your-storage/Legal";
 export { default as StorageListing } from "./your-storage/StorageListing";
+export {default as PageContent } from "./shared/PageContent";

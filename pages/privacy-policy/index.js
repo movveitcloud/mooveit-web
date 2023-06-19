@@ -2,14 +2,10 @@ import React from "react";
 import { PageLayout } from "../../components";
 import PageTitle from "../../components/shared/PageTitle";
 
-
-const Support = () => {
+const PrivacyPolicy = () => {
   return <PageLayout>
-<PageTitle name={"Support"} />
-    
-    
-   
+    <PageTitle name={"Privacy Policy"}/>
   </PageLayout>;
 };
 
-export default Support;
+export default PrivacyPolicy
