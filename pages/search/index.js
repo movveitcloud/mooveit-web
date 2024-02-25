@@ -198,7 +198,7 @@ const Search = () => {
                   </div>
                 ) : (
                   <>
-                    {view && view.length > 1 && (
+                    {view && view.length > 0 && (
                       <div className="grid place-items-center gap-10 md:grid-cols-2 xl:grid-cols-3">
                         {[...view]
                           ?.reverse()

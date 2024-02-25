@@ -9,7 +9,7 @@ const nextConfig = {
   },
   images: {
     loader: "default",
-    domains: ["mooveit-aws-storage.s3.amazonaws.com"],
+    domains: ["mooveit-aws-storage.s3.us-east-1.amazonaws.com", "mooveit-aws-storage.s3.amazonaws.com"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     formats: ["image/webp"],
   },
