@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
-import FindStorageCard from "./FindStorageCard";
 import { ListingCardHome } from "../../components";
 import { getSearchListings } from "../../redux/features/listings.slice";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,8 +14,8 @@ const FindStorage = () => {
     // if (query) {
     dispatch(getSearchListings({ payload: { area: "" } }));
     // }
-  }, []);
-  console.log(searchListings.length);
+  }, [dispatch]);
+
   return (
     searchListings.length > 0 && (
       <section className="w-full bg-[#f9f9f9]">
