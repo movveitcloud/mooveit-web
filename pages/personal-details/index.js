@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { authenticatedUser, updateUser } from "../../redux/features/auth.slice";
 import { Communication, DashboardLayout, PersonalDetails, Security } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
-import BankDetails from "../../components/personal-details/BankDetails";
 
 const initialState = {
   profilePicture: "",
