@@ -48,28 +48,28 @@ export const navLinks = [
   //     },
   //   ],
   // },
- 
+
   {
-    path:"#",
-    title:"Solutions",
-    subMenus:[
+    path: "#",
+    title: "Solutions",
+    subMenus: [
       {
-        path:"/solution/delivery",
-        title:"Delivery",
+        path: "/solution/delivery",
+        title: "Delivery",
       },
       {
-        path:"/solution/self-storage",
-        title:"Self-Storage",
+        path: "/solution/self-storage",
+        title: "Self-Storage",
       },
       {
-        path:"/solution/packing-moving",
-        title:"Packing and Moving",
+        path: "/solution/packing-moving",
+        title: "Packing and Moving",
       },
       {
-        path:"/solution/for-you",
-        title:"Movveit for you",
-      }
-    ]
+        path: "/solution/for-you",
+        title: "Movveit for you",
+      },
+    ],
   },
   { path: "/search", title: "Find Storage" },
   { path: "/support", title: "Help & Support" },
@@ -112,6 +112,11 @@ export const dashboardNavLinks = [
         path: "/personal-details",
         title: "Personal Details",
         permission: ["customer", "partner"],
+      },
+      {
+        path: "/account-details",
+        title: "Account Details",
+        permission: ["partner"],
       },
       // {
       //   path: "/reviews",
@@ -169,7 +174,7 @@ export const footerLinks = [
     heading: "Solution",
     subMenus: [
       { path: "/solution/self-storage", title: "Self-Storage" },
-      { path: "/solution/delivery", title:"Delivery" },
+      { path: "/solution/delivery", title: "Delivery" },
       { path: "/solution/packing-moving", title: "Packing and Moving" },
     ],
   },
@@ -310,12 +315,11 @@ export const storageSize = [
   },
 ];
 
-
 export const ContactContent = [
   {
     title: "Operations & Support",
     content: "8 JKU Millwal, UK",
-   // icon: <BuildingOfficeIcon className="w-5   h-5 " />,
+    // icon: <BuildingOfficeIcon className="w-5   h-5 " />,
   },
 
   // {
@@ -326,9 +330,7 @@ export const ContactContent = [
 
   {
     title: "Phone Numbers",
-    contents: [
-      "+44 -779-369-9396",
-    ],
+    contents: ["+44 -779-369-9396"],
     // icon: <PhoneIcon className="w-5   h-5 " />,
   },
   {
