@@ -58,4 +58,7 @@ export const createPaymentLink = (payload) => API.post("/booking/create-payment-
 export const getSingleBooking = (id) => API.get(`/booking/${id}`);
 export const approveBooking = ({ payload, id }) => API.patch(`/booking/${id}`, payload);
 export const denyBooking = ({ payload, id }) => API.patch(`/booking/${id}`, payload);
-export const handlePayment= (payload ) => API.patch("/booking/payment/confirm", payload);
+export const handlePayment = (payload) => API.patch("/booking/payment/confirm", payload);
+
+//BANKS
+export const getBanks = () => API.get("/banks");

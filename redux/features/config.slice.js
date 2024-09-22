@@ -96,6 +96,16 @@ export const getNoticePeriods = createAsyncThunk("/configurations/notice-period"
   }
 });
 
+export const getBanks = createAsyncThunk("/configurations/banks", async ({}, { rejectWithValue }) => {
+  try {
+    const response = await api.getBanks();
+    return response.data;
+  } catch (err) {
+    errorPopUp({ msg: err.response.data.error });
+    return rejectWithValue(err.response.data);
+  }
+});
+
 const configSlice = createSlice({
   name: "config",
   initialState: {
@@ -108,6 +118,7 @@ const configSlice = createSlice({
     storageAccessTypes: [],
     shortestPeriods: [],
     noticePeriods: [],
+    banks: [],
     loading: false,
     servicesLoading: false,
     floorLoading: false,
@@ -209,6 +220,14 @@ const configSlice = createSlice({
     },
     [getShortestPeriods.rejected]: (state, action) => {
       state.shortestPeriodsLoading = false;
+    },
+
+    [getBanks.pending]: (state) => {
+      state.banksLoading = true;
+    },
+    [getBanks.fulfilled]: (state, action) => {
+      state.banksLoading = false;
+      state.banks = action.payload.data;
     },
 
     [getNoticePeriods.pending]: (state) => {
