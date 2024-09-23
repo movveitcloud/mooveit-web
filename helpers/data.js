@@ -114,8 +114,8 @@ export const dashboardNavLinks = [
         permission: ["customer", "partner"],
       },
       {
-        path: "/account-details",
-        title: "Account Details",
+        path: "/bank-details",
+        title: "Bank Details",
         permission: ["partner"],
       },
       // {
@@ -338,4 +338,11 @@ export const ContactContent = [
     contents: ["info@movveit.com", "support@movveit.com"],
     // icon: <EnvelopeIcon className="w-5 h-5" />,
   },
+];
+
+export const currencies = [
+  { name: "British Pound - £", value: "GBP" },
+  { name: "Euro - €", value: "EUR" },
+  { name: "United States Dollar - $", value: "USD" },
+  { name: "Nigerian Naira - ₦", value: "NGN" },
 ];

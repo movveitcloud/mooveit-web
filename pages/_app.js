@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Script
         strategy="beforeInteractive"
-        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.PLACES_KEY}&libraries=places`}
+        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.PLACES_KEY}&libraries=places&loading=async`}
       />
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
       <Provider store={store}>

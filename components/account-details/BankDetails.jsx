@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authenticatedUser, updateProfileImage } from "../../redux/features/auth.slice";
 import { FadeLoader } from "react-spinners";
 import Image from "next/image";
+import { currencies } from "../../helpers/data";
 
 const BankDetails = ({ banks, formDetails, setFormDetails, handleChange }) => {
   const userDetail = authenticatedUser();
@@ -71,6 +72,70 @@ const BankDetails = ({ banks, formDetails, setFormDetails, handleChange }) => {
                 value={formDetails.sortCode}
                 onChange={handleChange}
                 placeholder="Enter bank sort code"
+                className="h-full w-full bg-transparent outline-none placeholder:text-[#959595]"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="flex gap-3 sm:gap-6">
+          <div className="w-full">
+            <h3 className="mb-3">Swift Code/BIC Code</h3>
+            <div className="items-center rounded-lg border border-[#959595] px-3 py-3 sm:px-4">
+              <input
+                type="text"
+                name="swiftCode"
+                value={formDetails.swiftCode}
+                onChange={handleChange}
+                placeholder="Enter Swift Code/BIC Code"
+                className="h-full w-full bg-transparent outline-none placeholder:text-[#959595]"
+              />
+            </div>
+          </div>
+
+          <div className="w-full">
+            <h3 className="mb-3">IBAN</h3>
+            <div className="items-center rounded-lg border border-[#959595] px-3 py-3 sm:px-4">
+              <input
+                type="number"
+                name="iban"
+                value={formDetails.iban}
+                onChange={handleChange}
+                placeholder="Enter IBAN"
+                className="h-full w-full bg-transparent outline-none placeholder:text-[#959595]"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="flex gap-3 sm:gap-6">
+          <div className="w-full">
+            <h3 className="mb-3">Currency</h3>
+            <div className="items-center rounded-lg border border-[#959595] px-3 py-3 sm:px-4">
+              <select
+                name="currency"
+                value={formDetails.currency}
+                onChange={handleChange}
+                className="h-full w-full bg-transparent outline-none placeholder:text-[#959595]">
+                <option value="">Select Currency</option>
+                {currencies.map((currency) => (
+                  <option value={currency.value} key={currency.value}>
+                    {currency.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div className="w-full">
+            <h3 className="mb-3">Tax ID</h3>
+            <div className="items-center rounded-lg border border-[#959595] px-3 py-3 sm:px-4">
+              <input
+                type="number"
+                name="taxId"
+                value={formDetails.taxId}
+                onChange={handleChange}
+                placeholder="Enter Tax ID"
                 className="h-full w-full bg-transparent outline-none placeholder:text-[#959595]"
               />
             </div>

@@ -29,6 +29,10 @@ const AccountDetailsPage = () => {
       accountName: userDetail.accountName,
       accountNumber: userDetail.accountNumber,
       sortCode: userDetail.sortCode,
+      currency: userDetail.currency,
+      taxId: userDetail.taxId,
+      iban: userDetail.iban,
+      swiftCode: userDetail.swiftCode,
     });
   }, [userDetail]);
 
@@ -38,6 +42,10 @@ const AccountDetailsPage = () => {
       accountName: formDetails.accountName,
       accountNumber: formDetails.accountNumber,
       sortCode: formDetails.sortCode,
+      currency: formDetails.currency,
+      taxId: formDetails.taxId,
+      iban: formDetails.iban,
+      swiftCode: formDetails.swiftCode,
     };
 
     dispatch(updateUser({ payload, id: userDetail?._id }));
