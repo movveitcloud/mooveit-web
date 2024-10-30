@@ -1,21 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ListingInputContext } from "../../context";
-import {
-  ClockIcon,
-  CubeIcon,
-  FilterIcon,
-  LocationMarkerIcon,
-  MapIcon,
-  SearchIcon,
-  TruckIcon,
-  UserIcon,
-} from "@heroicons/react/outline";
+import { CubeIcon, FilterIcon, LocationMarkerIcon, MapIcon, SearchIcon, TruckIcon } from "@heroicons/react/outline";
 import FilterModal from "../modals/FilterModal";
 import Switch from "../shared/Switch";
 import PlacesAutocomplete from "react-places-autocomplete";
 import { useRouter } from "next/router";
-import { clearFilteredListings, filterListings } from "../../redux/features/listings.slice";
+import GoogleMapProvider from "../providers/GoogleMapProvider";
 
 const initialState = {
   address: "",
@@ -86,45 +77,49 @@ const SearchBar = ({ showMap, setShowMap }) => {
                   placeholder="LONDON, UK"
                 /> */}
                 <div className="w-full ">
-                  <PlacesAutocomplete
-                    value={formDetails.address}
-                    //value={address}
-                    onChange={handleAddressChange}
-                    onSelect={handleSelect}
-                    debounce={400}
-                    searchOptions={{ types: ["locality", "country"] }}
-                    shouldFetchSuggestions={formDetails?.address?.length > 5}>
-                    {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                      <div className="relative ">
-                        <input
-                          {...getInputProps({
-                            placeholder: "Enter location",
-                            className: "w-full border-none outline-none",
-                          })}
-                        />
-                        <div className="absolute left-0 right-0 top-7 z-50">
-                          {loading && <div>Loading...</div>}
-                          {suggestions.map((suggestion) => {
-                            const className = suggestion.active ? "suggestion-item--active p-2" : "suggestion-item p-2";
-                            // inline style for demonstration purpose
-                            const style = suggestion.active
-                              ? { backgroundColor: "#fafafa", cursor: "pointer" }
-                              : { backgroundColor: "#ffffff", cursor: "pointer" };
-                            return (
-                              <div
-                                key={suggestion.description}
-                                {...getSuggestionItemProps(suggestion, {
-                                  className,
-                                  style,
-                                })}>
-                                <span>{suggestion.description}</span>
-                              </div>
-                            );
-                          })}
+                  <GoogleMapProvider>
+                    <PlacesAutocomplete
+                      value={formDetails.address}
+                      //value={address}
+                      onChange={handleAddressChange}
+                      onSelect={handleSelect}
+                      debounce={400}
+                      searchOptions={{ types: ["locality", "country"] }}
+                      shouldFetchSuggestions={formDetails?.address?.length > 5}>
+                      {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                        <div className="relative ">
+                          <input
+                            {...getInputProps({
+                              placeholder: "Enter location",
+                              className: "w-full border-none outline-none",
+                            })}
+                          />
+                          <div className="absolute left-0 right-0 top-7 z-50">
+                            {loading && <div>Loading...</div>}
+                            {suggestions.map((suggestion) => {
+                              const className = suggestion.active
+                                ? "suggestion-item--active p-2"
+                                : "suggestion-item p-2";
+                              // inline style for demonstration purpose
+                              const style = suggestion.active
+                                ? { backgroundColor: "#fafafa", cursor: "pointer" }
+                                : { backgroundColor: "#ffffff", cursor: "pointer" };
+                              return (
+                                <div
+                                  key={suggestion.description}
+                                  {...getSuggestionItemProps(suggestion, {
+                                    className,
+                                    style,
+                                  })}>
+                                  <span>{suggestion.description}</span>
+                                </div>
+                              );
+                            })}
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </PlacesAutocomplete>
+                      )}
+                    </PlacesAutocomplete>
+                  </GoogleMapProvider>
                 </div>
               </div>
               {/* <div className="flex items-center  md:gap-2 border-r">
