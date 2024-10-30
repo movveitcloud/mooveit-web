@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CalendarIcon, LocationMarkerIcon, TruckIcon } from "@heroicons/react/outline";
 import BookContainer from "../book-listing/BookContainer";
 import { useRouter } from "next/router";
@@ -6,14 +6,12 @@ import { differenceInHours, differenceInMonths, format } from "date-fns";
 import Switch from "../shared/Switch";
 import { useDispatch, useSelector } from "react-redux";
 import { bookListing } from "../../redux/features/booking.slice";
-import { getSingleListing } from "../../redux/features/listings.slice";
 import { authenticatedUser } from "../../redux/features/auth.slice";
 import GoogleMapReact from "google-map-react";
 import { getDistance } from "geolib";
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from "react-places-autocomplete";
-import { ListingInputContext } from "../../context";
-import Accordion from "../shared/Accordion";
 import { MapIcon } from "@heroicons/react/outline";
+import GoogleMapProvider from "../providers/GoogleMapProvider";
 
 const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange, userListing }) => {
   const Marker = () => <LocationMarkerIcon className="w-8 text-red-500" />;
@@ -106,7 +104,7 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange, userLis
     //  //console.log(searchGeoLocation);
     // }
   };
-  
+
   const handleSuccess = () => {
     router.push(`${user.role == "customer" ? "/your-storage" : "/listings"}`);
   };
@@ -124,15 +122,14 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange, userLis
       packing: bookingInfo.packing,
       type,
     };
-   
+
     dispatch(bookListing({ payload, handleSuccess }));
   };
-  
 
   const handleSelect = (address) => {
     setSearchLocation(address);
     setBookingDetails({ ...bookingDetails, pickupAddress: address });
-    
+
     if (address) {
       geocodeByAddress(address)
         .then((results) => getLatLng(results[0]))
@@ -152,7 +149,7 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange, userLis
   };
 
   const { singleListing } = useSelector((state) => state.listing);
- 
+
   useEffect(() => {
     setBookingDetails({ ...bookingDetails, ...JSON.parse(sessionStorage.getItem("booking")) });
     setPageReady(true);
@@ -252,47 +249,49 @@ const YourBooking = ({ bookingInfo, setBookingInfo, handleServiceChange, userLis
                 <div className="flex flex-grow flex-row items-center gap-4 rounded-lg border border-[#959595] px-4 py-2">
                   <MapIcon className="w-6 text-[#959595]" />
                   <div className=" w-full outline-none">
-                    <PlacesAutocomplete
-                      value={searchLocation}
-                      name="pickupAddress"
-                      onChange={handleLocation}
-                      onSelect={handleSelect}
-                      debounce={400}
-                      searchOptions={{ types: ["locality", "country"] }}
-                      shouldFetchSuggestions={searchLocation.length > 3}>
-                      {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                        <div className="relative h-full">
-                          <input
-                            {...getInputProps({
-                              placeholder: "Pickup Address",
-                              className: "w-full outline-none border-none border-[#959595] focus:border-primary",
-                            })}
-                          />
-                          <div className="p- absolute left-0 right-0 top-10 z-50">
-                            {/* {loading && <div>Loading...</div>} */}
-                            {suggestions.map((suggestion) => {
-                              const className = suggestion.active
-                                ? "suggestion-item--active py-2"
-                                : "suggestion-item py-2";
-                              // inline style for demonstration purpose
-                              const style = suggestion.active
-                                ? { backgroundColor: "#fafafa", cursor: "pointer" }
-                                : { backgroundColor: "#ffffff", cursor: "pointer" };
-                              return (
-                                <div
-                                  key={suggestion.description}
-                                  {...getSuggestionItemProps(suggestion, {
-                                    className,
-                                    style,
-                                  })}>
-                                  <span>{suggestion.description}</span>
-                                </div>
-                              );
-                            })}
+                    <GoogleMapProvider>
+                      <PlacesAutocomplete
+                        value={searchLocation}
+                        name="pickupAddress"
+                        onChange={handleLocation}
+                        onSelect={handleSelect}
+                        debounce={400}
+                        searchOptions={{ types: ["locality", "country"] }}
+                        shouldFetchSuggestions={searchLocation.length > 3}>
+                        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                          <div className="relative h-full">
+                            <input
+                              {...getInputProps({
+                                placeholder: "Pickup Address",
+                                className: "w-full outline-none border-none border-[#959595] focus:border-primary",
+                              })}
+                            />
+                            <div className="p- absolute left-0 right-0 top-10 z-50">
+                              {/* {loading && <div>Loading...</div>} */}
+                              {suggestions.map((suggestion) => {
+                                const className = suggestion.active
+                                  ? "suggestion-item--active py-2"
+                                  : "suggestion-item py-2";
+                                // inline style for demonstration purpose
+                                const style = suggestion.active
+                                  ? { backgroundColor: "#fafafa", cursor: "pointer" }
+                                  : { backgroundColor: "#ffffff", cursor: "pointer" };
+                                return (
+                                  <div
+                                    key={suggestion.description}
+                                    {...getSuggestionItemProps(suggestion, {
+                                      className,
+                                      style,
+                                    })}>
+                                    <span>{suggestion.description}</span>
+                                  </div>
+                                );
+                              })}
+                            </div>
                           </div>
-                        </div>
-                      )}
-                    </PlacesAutocomplete>
+                        )}
+                      </PlacesAutocomplete>
+                    </GoogleMapProvider>
                   </div>
                 </div>
               </div>

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { LocationMarkerIcon, MapIcon, SearchIcon } from "@heroicons/react/outline";
+import { MapIcon, SearchIcon } from "@heroicons/react/outline";
 import { errorPopUp } from "../../helpers/toastify";
 import PlacesAutocomplete from "react-places-autocomplete";
 import Image from "next/image";
+import GoogleMapProvider from "../providers/GoogleMapProvider";
 
 const HeroSection = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -66,46 +67,48 @@ const HeroSection = () => {
                   className="w-full bg-transparent h-full pr-6 outline-none text-base placeholder:text-[#959595] placeholder:text-[8px] md:placeholder:text-base"
                 /> */}
                 <div className="h-full w-full text-left text-base">
-                  <PlacesAutocomplete
-                    value={searchTerm}
-                    onChange={handleChange}
-                    onSelect={handleSelect}
-                    debounce={400}
-                    searchOptions={{ types: ["locality", "country"] }}
-                    shouldFetchSuggestions={searchTerm.length > 3}>
-                    {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                      <div className="relative h-full">
-                        <input
-                          {...getInputProps({
-                            placeholder: "Enter location",
-                            className: "w-full h-full border-none outline-none bg-transparent",
-                          })}
-                        />
-                        <div className="p- absolute left-0 right-0 top-10 z-50">
-                          {/* {loading && <div>Loading...</div>} */}
-                          {suggestions.map((suggestion) => {
-                            const className = suggestion.active
-                              ? "suggestion-item--active py-2"
-                              : "suggestion-item py-2";
-                            // inline style for demonstration purpose
-                            const style = suggestion.active
-                              ? { backgroundColor: "#fafafa", cursor: "pointer" }
-                              : { backgroundColor: "#ffffff", cursor: "pointer" };
-                            return (
-                              <div
-                                key={suggestion.description}
-                                {...getSuggestionItemProps(suggestion, {
-                                  className,
-                                  style,
-                                })}>
-                                <span>{suggestion.description}</span>
-                              </div>
-                            );
-                          })}
+                  <GoogleMapProvider>
+                    <PlacesAutocomplete
+                      value={searchTerm}
+                      onChange={handleChange}
+                      onSelect={handleSelect}
+                      debounce={400}
+                      searchOptions={{ types: ["locality", "country"] }}
+                      shouldFetchSuggestions={searchTerm.lenppackgth > 3}>
+                      {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                        <div className="relative h-full">
+                          <input
+                            {...getInputProps({
+                              placeholder: "Enter location",
+                              className: "w-full h-full border-none outline-none bg-transparent",
+                            })}
+                          />
+                          <div className="p- absolute left-0 right-0 top-10 z-50">
+                            {/* {loading && <div>Loading...</div>} */}
+                            {suggestions.map((suggestion) => {
+                              const className = suggestion.active
+                                ? "suggestion-item--active py-2"
+                                : "suggestion-item py-2";
+                              // inline style for demonstration purpose
+                              const style = suggestion.active
+                                ? { backgroundColor: "#fafafa", cursor: "pointer" }
+                                : { backgroundColor: "#ffffff", cursor: "pointer" };
+                              return (
+                                <div
+                                  key={suggestion.description}
+                                  {...getSuggestionItemProps(suggestion, {
+                                    className,
+                                    style,
+                                  })}>
+                                  <span>{suggestion.description}</span>
+                                </div>
+                              );
+                            })}
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </PlacesAutocomplete>
+                      )}
+                    </PlacesAutocomplete>
+                  </GoogleMapProvider>
                 </div>
               </div>
               <button

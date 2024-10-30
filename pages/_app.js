@@ -7,17 +7,12 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-calendar/dist/Calendar.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import { ListingInputContextProvider } from "../context/ListingInputContext";
-import Script from "next/script";
 import "react-tooltip/dist/react-tooltip.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Script
-        strategy="beforeInteractive"
-        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.PLACES_KEY}&libraries=places`}
-      />
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
       <Provider store={store}>
         <ListingInputContextProvider>
